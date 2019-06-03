@@ -1,0 +1,15 @@
+.button-controls {
+  display: block;
+  background: var(--button-machine);
+  width: 6rem;
+  text-transform: uppercase;
+  font-size: 0.5rem;
+  padding: 0.5rem 0;
+  border: 1px solid var(--machine-border-dark);
+  transition: background 0.5s ease-in-out;
+}
+
+.button-controls:hover {
+  cursor: pointer;
+  background: var(--button-machine-hover);
+}

@@ -1,0 +1,16 @@
+.controls,
+.buttons-play {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.headphones {
+  height: 30px;
+}
+
+.controls {
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+}

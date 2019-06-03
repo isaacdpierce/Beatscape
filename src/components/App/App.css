@@ -1,0 +1,16 @@
+.App {
+  width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: 3rem 1fr 10vw;
+  grid-gap: 0.5rem;
+}
+
+main {
+  grid-column: 1 / -1;
+  grid-row: 2 / -2;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

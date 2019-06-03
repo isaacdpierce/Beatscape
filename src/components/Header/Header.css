@@ -1,0 +1,32 @@
+.App-header {
+  grid-column: 1 / -1;
+  grid-row: 1 / span 1;
+  padding: 0 2rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  color: white;
+}
+
+.logo,
+.nav-links {
+  margin: 0;
+  font-weight: 100;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 1px var(--machine-color-dark);
+}
+
+.nav-links {
+  padding: 0;
+
+  display: flex;
+  min-width: 20vw;
+}
+
+.nav-links li {
+  font-size: 14px;
+}
+
+.nav-links li:not(:last-child) {
+  padding-right: 1rem;
+}

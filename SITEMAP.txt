@@ -1,0 +1,8 @@
+App
+  - Header
+    - Navbar
+  - Main
+    - Machine
+      - Track
+          - TrackSlider
+            - input

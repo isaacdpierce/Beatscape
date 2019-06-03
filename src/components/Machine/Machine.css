@@ -1,0 +1,17 @@
+.machine {
+  background: var(--machine-color-dark);
+  border-top: 2px solid var(--machine-color-shadow);
+  border-left: 2px solid var(--machine-color-shadow);
+  border-right: 2px solid var(--machine-color-shadow);
+  border-radius: 6px;
+  min-width: 840px;
+  height: 630px;
+}
+
+@media only screen and (max-width: 850px) {
+  .machine {
+    min-width: 490px;
+    height: 1000px;
+    margin-bottom: 5rem;
+  }
+}

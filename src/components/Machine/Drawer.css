@@ -1,0 +1,36 @@
+.drawer {
+  padding: 1rem 0;
+  display: flex;
+
+  justify-content: space-around;
+  background-color: black;
+  width: 95%;
+  z-index: -1;
+  border-left: 6px solid var(--machine-border-dark);
+  border-right: 6px solid var(--machine-border-dark);
+  position: relative;
+  left: 2.5%;
+  box-shadow: 0 1px 2px 1px var(--machine-color-shadow);
+  transition: all 0.5s ease-in-out;
+  box-shadow: inset 0 0 0 6px black;
+}
+
+.drawer::after {
+  content: '';
+  background: var(--machine-border-dark);
+  border-radius: 3px;
+  display: block;
+  position: absolute;
+  bottom: -10px;
+  width: 105%;
+  height: 10px;
+  border-left: 1px solid var(--machine-color-shadow-light);
+  border-right: 1px solid var(--machine-color-shadow-light);
+  border-bottom: 1px solid var(--machine-color-shadow-light);
+}
+
+.drawer > div > h3 {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: rgb(135, 128, 87);
+}

@@ -1,0 +1,21 @@
+:root {
+  --main-bg-color-dark: rgb(14, 23, 31);
+  --main-bg-color-light: rgb(90, 138, 181);
+
+  /* fonts */
+  --main-font-color: rgb(232, 232, 232);
+  --main-font-color-dark: rgb(121, 121, 121);
+
+  /* machine */
+  --machine-color-light: rgb(14, 14, 14);
+  --machine-color-dark: rgb(7, 7, 7);
+  --machine-border-dark: rgb(19, 19, 19);
+  --machine-border-light: rgb(33, 33, 33);
+  --machine-color-shadow: rgba(93, 135, 172, 0.563);
+  --machine-color-shadow-light: rgba(93, 135, 172, 0.317);
+
+  /* buttons */
+
+  --button-machine: rgb(9, 9, 9);
+  --button-machine-hover: rgb(12, 12, 12);
+}

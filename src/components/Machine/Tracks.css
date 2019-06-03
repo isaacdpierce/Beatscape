@@ -1,0 +1,27 @@
+.tracks {
+  background: var(--machine-color-light);
+  border: 1px solid var(--machine-border-dark);
+  padding: 2rem;
+
+  width: 780px;
+  height: 400px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 3px;
+}
+
+@media only screen and (max-width: 850px) {
+  .tracks {
+    height: 780px;
+    width: 400px;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .slider input {
+    width: 370px;
+  }
+}
