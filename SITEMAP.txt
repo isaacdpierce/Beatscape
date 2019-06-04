@@ -42,4 +42,10 @@ const style 2
         <Effect slider />
         <Effect slider />
       <Drawer style={open}/>
+
+      1. Make grid for Machine component
+      2. Create BottomControls Component
+      3. Move all functioning for Drawer and button to machine.js
+
+      ***TODO*** turn back on click handler on button
          

@@ -4,8 +4,10 @@
 
   /* fonts */
   --main-font-color: rgb(232, 232, 232);
+  --main-font-color-light: rgb(255, 255, 255);
   --main-font-color-dark: rgb(121, 121, 121);
   --yellow-font-color: rgb(135, 128, 87);
+  --yellow-font-color-light: rgb(189, 179, 124);
 
   /* machine */
   --machine-color-light: rgb(14, 14, 14);

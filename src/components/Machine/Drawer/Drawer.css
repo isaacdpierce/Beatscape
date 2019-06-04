@@ -1,4 +1,6 @@
 .drawer {
+  grid-column: 1 / -1;
+  grid-row: 3 / span 1;
   padding: 1rem 0;
   display: flex;
 
@@ -8,11 +10,10 @@
   z-index: -1;
   border-left: 6px solid var(--machine-border-dark);
   border-right: 6px solid var(--machine-border-dark);
+  box-shadow: 0 0px 3px 0 var(--machine-color-shadow);
   position: relative;
   left: 2.5%;
-  box-shadow: 0 1px 2px 1px var(--machine-color-shadow);
   transition: all 0.5s ease-in-out;
-  box-shadow: inset 0 0 0 6px black;
 }
 
 .drawer::after {
@@ -24,13 +25,18 @@
   bottom: -10px;
   width: 105%;
   height: 10px;
-  border-left: 1px solid var(--machine-color-shadow-light);
-  border-right: 1px solid var(--machine-color-shadow-light);
-  border-bottom: 1px solid var(--machine-color-shadow-light);
+  border-left: 2px solid var(--machine-color-shadow-light);
+  border-right: 2px solid var(--machine-color-shadow-light);
+  border-bottom: 2px solid var(--machine-color-shadow-light);
 }
 
 .drawer > div > h3 {
   text-transform: uppercase;
   font-size: 0.7rem;
   color: var(--yellow-font-color);
+}
+
+.drawer > div > h3 > a:hover {
+  cursor: pointer;
+  color: var(--machine-color-shadow-light);
 }

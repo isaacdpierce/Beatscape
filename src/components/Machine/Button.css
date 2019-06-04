@@ -6,7 +6,7 @@
   font-size: 0.5rem;
   padding: 0.5rem 0;
   border: 1px solid var(--machine-border-dark);
-  transition: background 0.5s ease-in-out;
+  transition: background 0.3s ease-in-out;
 }
 
 .button-controls:hover {

@@ -5,7 +5,10 @@
   border-right: 2px solid var(--machine-color-shadow);
   border-radius: 6px;
   min-width: 840px;
-  height: 630px;
+
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 1fr 2fr 1fr;
 }
 
 @media only screen and (max-width: 850px) {
