@@ -1,14 +1,23 @@
 import React from 'react';
+import { useState } from 'react';
 
 import './Track.css';
 
-const Track = ({ type, level }) => {
+const Track = ({ type, value }) => {
+  const [level, setLevel] = useState(50);
+
+  const handleChange = event => {
+    console.log(event.target.value);
+    setLevel(event.target.value);
+  };
+
   return (
     <div className='slider'>
       <label htmlFor='kicks'>{type}</label>
       <input
+        onChange={handleChange}
         type='range'
-        value={level}
+        value={value}
         id='start'
         name={type}
         min='0'
