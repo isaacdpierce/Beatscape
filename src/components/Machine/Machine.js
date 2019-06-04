@@ -19,8 +19,6 @@ const Machine = () => {
   const [drawer, setDrawer] = useState(false);
 
   const handleDrawer = () => {
-    console.log('clicked');
-
     setDrawer(!drawer);
   };
 

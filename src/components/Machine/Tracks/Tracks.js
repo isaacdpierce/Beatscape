@@ -1,12 +1,16 @@
 import React from 'react';
+import { useState } from 'react';
+
 import Track from './Track';
 
 import './Tracks.css';
 
-const LevelSliders = () => {
+const Tracks = () => {
+  const getLevel = () => {};
+
   return (
     <section className='tracks'>
-      <Track type='Kick' />
+      <Track type='Kick' level={getLevel()} />
       <Track type='Snare' />
       <Track type='Percussion' />
       <Track type='Cymbal' />
@@ -22,4 +26,4 @@ const LevelSliders = () => {
   );
 };
 
-export default LevelSliders;
+export default Tracks;

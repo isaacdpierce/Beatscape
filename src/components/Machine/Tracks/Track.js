@@ -2,11 +2,19 @@ import React from 'react';
 
 import './Track.css';
 
-const Track = ({ type }) => {
+const Track = ({ type, level }) => {
   return (
     <div className='slider'>
       <label htmlFor='kicks'>{type}</label>
-      <input type='range' id='start' name={type} min='0' max='10' step='.01' />
+      <input
+        type='range'
+        value={level}
+        id='start'
+        name={type}
+        min='0'
+        max='100'
+        step='.01'
+      />
     </div>
   );
 };
