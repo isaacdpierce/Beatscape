@@ -1,10 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
 
-import './Track.css';
+import '../Tracks/Track.css';
 
-const Track = ({ type }) => {
-  const [max, setMax] = useState(80);
+const AnimatedTrack = ({ type }) => {
   const [level, setLevel] = useState(50);
 
   const handleChange = event => {
@@ -26,10 +25,10 @@ const Track = ({ type }) => {
         name={type}
         min='0'
         max='100'
-        step='.1'
+        step='.01'
       />
     </div>
   );
 };
 
-export default Track;
+export default AnimatedTrack;

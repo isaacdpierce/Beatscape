@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { Route } from 'react-router-dom';
 import TopControls from './TopControls/TopControls';
 import Drawer from './Drawer/Drawer';
 import Tracks from './Tracks/Tracks';
+import AnimatedTracks from './AnimatedTracks/AnimatedTracks';
 import BottomControls from './BottomControls/BottomControls';
 
 import './Drawer/Drawer.css';
@@ -38,7 +40,10 @@ const Machine = () => {
   return (
     <section className='machine'>
       <TopControls handleAnimate={handleAnimate} handlePlay={handlePlay} />
-      <Tracks isAnimated={animate} />
+      <Route path='/' exact component={Tracks} />
+
+      <Route path='/animated' component={AnimatedTracks} />
+
       <BottomControls handleDrawer={handleDrawer} />
       <Drawer drawerStyle={drawer ? drawerClose : drawerOpen} />
     </section>

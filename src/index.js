@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import App from './components/App/App';
 import * as serviceWorker from './serviceWorker';
@@ -8,6 +9,7 @@ import { AnimationProvider } from './context/AnimationContext';
 import './assets/variables.css';
 
 const state = {
+  tracks: [],
   isAnimated: false,
   isPlaying: false,
   toggleAnimate: isAnimated => (isAnimated = !isAnimated),
@@ -15,9 +17,11 @@ const state = {
 };
 
 ReactDOM.render(
-  <AnimationProvider value={state}>
-    <App />
-  </AnimationProvider>,
+  <Router>
+    <AnimationProvider value={state}>
+      <App />
+    </AnimationProvider>
+  </Router>,
   document.getElementById('root')
 );
 

@@ -5,7 +5,38 @@
   justify-content: space-evenly;
 }
 
+.controls-top {
+  grid-column: 1 / -1;
+  grid-row: 1 / span 1;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
 .headphones {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  margin: 0;
+}
+
+.headphones__tooltip {
+  grid-column: 1 / -1;
+  grid-row: 1/-1;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(1px);
+  font-size: 12px;
+}
+
+.headphones__img {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 30px;
 }
 
@@ -13,10 +44,25 @@
   filter: brightness(130%);
 }
 
-.controls-top {
-  grid-column: 1 / -1;
-  grid-row: 1 / span 1;
-  height: 100%;
-  flex-direction: column;
-  align-items: center;
+/* Tooltip text */
+
+.headphones__tooltip .tooltiptext {
+  font-size: 12px;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.461);
+  color: #fff;
+  text-align: center;
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  top: 20px;
+  z-index: 1;
+  transition: opacity 1s ease-in-out;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.headphones__tooltip:hover .tooltiptext {
+  opacity: 1;
 }
