@@ -1,6 +1,6 @@
 :root {
-  --main-bg-color-dark: rgb(14, 23, 31);
-  --main-bg-color-light: rgb(90, 138, 181);
+  --main-bg-color-dark: #0e171f;
+  --main-bg-color-light: #5a8ab5;
 
   /* fonts */
   --main-font-color: rgb(232, 232, 232);

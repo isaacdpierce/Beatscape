@@ -1,19 +1,21 @@
 # NOTES
 
+## Create a master Volume
+
+controls the max point that all tracks can go to
+        - Probably need to set a minimal amount of track that will sit at the users chosen Volume
+  
 ## Track timing
 
 - Create a base timer that all tracks will sync to
 - Volume fades in and out as tracks transition
   
-## REFACTOR MACHINE
+## Track Left Right fades
 
-TopControls is it's own entity
-    - PLACE it on grid
+- Create a fader
 
-Tracks is its own entity
-    - PLACE it on grid
+## Create animation sequence
 
-DRAWER is being positioned relative and has z-index -1
-    - remove position relative and PLACE on grid
-
- 
+- Create a context for the whole machine isAnimating set to false
+- Clicking the animate button will change is animating to true 
+- Animation is initiated - all other controls are stopped until Stop animation is clicked

@@ -4,7 +4,6 @@ import Button from '../Button';
 import './BottomControls.css';
 
 const BottomControls = ({ handleDrawer }) => {
-  // *** TODO *** turn back on click handler on button
   return (
     <section className='controls-bottom'>
       <Button

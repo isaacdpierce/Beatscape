@@ -4,7 +4,7 @@ import { useState } from 'react';
 import './Track.css';
 
 const Track = ({ type, value }) => {
-  const [level, setLevel] = useState(50);
+  const [level, setLevel] = useState(value);
 
   const handleChange = event => {
     console.log(event.target.value);
@@ -17,7 +17,7 @@ const Track = ({ type, value }) => {
       <input
         onChange={handleChange}
         type='range'
-        value={value}
+        value={level}
         id='start'
         name={type}
         min='0'
