@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { getRandomInteger, useInterval } from '../../../assets/helpers/helpers';
+import { getRandomInteger } from '../../../assets/helpers/helpers';
 
-import '../Tracks/Track.css';
+import '../Tracks/Slider.css';
 
 const AnimatedTrack = ({ type, nextLevel }) => {
   const [value, setValue] = useState(50);

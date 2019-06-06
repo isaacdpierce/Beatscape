@@ -17,33 +17,18 @@ const drawerClose = {
 };
 
 const Machine = () => {
-  const [animate, setAnimate] = useState(false);
   const [drawer, setDrawer] = useState(false);
-
-  console.log('the value of animate is:' + animate);
 
   const handleDrawer = () => {
     setDrawer(!drawer);
   };
 
-  const handleAnimate = () => {
-    console.log('Animate Button clicked');
-    setAnimate(!animate);
-  };
-
-  const handlePlay = () => {
-    console.log('Play button clicked');
-
-    setAnimate(false);
-  };
-
   return (
     <section className='machine'>
-      <TopControls handleAnimate={handleAnimate} handlePlay={handlePlay} />
+      <TopControls />
       <Route path='/' exact component={Tracks} />
 
       <Route path='/animated' component={AnimatedTracks} />
-
       <BottomControls handleDrawer={handleDrawer} />
       <Drawer drawerStyle={drawer ? drawerClose : drawerOpen} />
     </section>

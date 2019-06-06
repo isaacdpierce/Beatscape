@@ -7,12 +7,12 @@ import headphones from '../../../assets/images/headphones.png';
 
 import './TopControls.css';
 
-const TopControls = ({ handleAnimate, handlePlay }) => {
+const TopControls = () => {
   return (
     <section className='controls-top'>
       <div className='buttons-play'>
         <NavLink to='/'>
-          <Button text='Play' type='controls' handleClick={handlePlay} />
+          <Button text='Play' type='controls' />
         </NavLink>
         <figure className='headphones'>
           <figcaption className='headphones__tooltip'>
@@ -24,11 +24,7 @@ const TopControls = ({ handleAnimate, handlePlay }) => {
             alt='Wear headphones'
           />
         </figure>
-        <Route
-          exact
-          path='/'
-          render={props => <AnimateButton handleAnimate={handleAnimate} />}
-        />
+        <Route exact path='/' render={props => <AnimateButton />} />
         {/* TODO Make handler for stopping animation handleStopAnimate */}
         <Route exact path='/animated' render={props => <StopAnimateButton />} />
       </div>

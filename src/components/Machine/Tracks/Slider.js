@@ -2,13 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 
 import './Slider.css';
-
-const styleVertical = {
-  transform: 'rotate(-90deg)',
-};
-
-// ! Set orientation to vertical or horizontal
-const Slider = ({ type, vertical = true }) => {
+//! To alter the classname add a prop with an element name
+//! set showValue to false to not show value
+const Slider = ({ type, modifier, showValue = true }) => {
   const [level, setLevel] = useState(50);
 
   const handleChange = event => {
@@ -17,10 +13,23 @@ const Slider = ({ type, vertical = true }) => {
   };
 
   return (
-    <div className='slider' style={vertical && styleVertical}>
+    <div className={modifier ? `slider__${modifier}` : 'slider'}>
       <label htmlFor='kicks'>
-        <span className='slider__value'>{level}</span>
-        <span className='slider__label'>{type}</span>
+        {showValue && (
+          <span
+            className={
+              modifier ? `slider__value--${modifier}` : 'slider__value'
+            }
+          >
+            {level}
+          </span>
+        )}
+
+        <span
+          className={modifier ? `slider__label--${modifier}` : 'slider__label'}
+        >
+          {type}
+        </span>
       </label>
 
       <input

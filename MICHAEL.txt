@@ -1,0 +1,13 @@
+# Notes for Michael
+
+- make individual sound sprites
+  
+      - small pieces of individual sounds
+
+      - some sounds come and go at the pace of walking by from one side of the sound to the other:
+          eg. plane flying over head - small group of people walking by - car driving by - walking past a busy cafe - walking past a river or stream
+
+      - some sounds are in the distance from a single spot: 
+          eg. distant horn - howling wolf - flash rainfall - distant traffic -distant waterfall
+  
+make individual long-term atmosphere moments - rainfall - cafe - wind.
