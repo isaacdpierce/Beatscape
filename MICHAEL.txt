@@ -11,3 +11,8 @@
           eg. distant horn - howling wolf - flash rainfall - distant traffic -distant waterfall
   
 make individual long-term atmosphere moments - rainfall - cafe - wind.
+
+## When viewing:
+
+1. Does the tooltip hover directly under the headphones
+2. Does the drawer line up

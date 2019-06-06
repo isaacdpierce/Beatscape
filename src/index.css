@@ -48,6 +48,12 @@ h2 {
 
 a {
   text-decoration: none;
+  font-size: 0.5rem;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: var(--yellow-link-color-hover);
 }
 
 li {

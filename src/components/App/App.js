@@ -1,4 +1,6 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
+import About from '../About/About';
 import Machine from '../Machine/Machine';
 import Header from '../Header/Header';
 
@@ -11,6 +13,7 @@ function App() {
       <main>
         <Machine />
       </main>
+      <Route exact path='/about' component={About} />
     </div>
   );
 }

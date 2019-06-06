@@ -9,6 +9,9 @@
   --yellow-font-color: rgb(135, 128, 87);
   --yellow-font-color-light: rgb(189, 179, 124);
 
+  --yellow-link-color-active: rgb(174, 141, 59);
+  --yellow-link-color-hover: rgb(220, 179, 77);
+
   /* machine */
   --machine-color-light: rgb(14, 14, 14);
   --machine-color-dark: rgb(7, 7, 7);
