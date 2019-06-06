@@ -1,46 +1,29 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { getRandomInteger } from '../../../assets/helpers/helpers';
+import React, { useState, useEffect } from 'react';
+import { getRandomInteger, useInterval } from '../../../assets/helpers/helpers';
 
 import '../Tracks/Track.css';
-
-function useInterval(callback, delay) {
-  const savedCallback = useRef();
-
-  // Remember the latest callback.
-  useEffect(() => {
-    savedCallback.current = callback;
-  }, [callback]);
-
-  // Set up the interval.
-  useEffect(() => {
-    function tick() {
-      savedCallback.current();
-    }
-    if (delay !== null) {
-      let id = setInterval(tick, delay);
-      return () => clearInterval(id);
-    }
-  }, [delay]);
-}
 
 const AnimatedTrack = ({ type, level, nextLevel }) => {
   const [value, setValue] = useState(level);
   const [next, setNext] = useState(nextLevel);
 
-  useInterval(() => {
-    if (value > next) {
-      console.log(`${value} is greater than ${next}`);
-      setValue(value - 1);
-    } else if (value < next) {
-      console.log(`${value} is less than ${next}`);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (value > next) {
+        console.log(`${value} is greater than ${next}`);
+        setValue(value - 1);
+      } else if (value < next) {
+        console.log(`${value} is less than ${next}`);
 
-      setValue(value + 1);
-    } else if (value === next) {
-      const newNum = getRandomInteger(0, 80);
-      console.log(`Your new Number is: ${newNum}`);
-      setNext(newNum);
-    }
-  }, 1000);
+        setValue(value + 1);
+      } else if (value === next) {
+        const newNum = getRandomInteger(0, 80);
+        console.log(`Your new Number is: ${newNum}`);
+        setNext(newNum);
+      }
+    }, getRandomInteger(1000, 10000));
+    return () => clearTimeout(timer);
+  });
 
   const handleChange = event => {
     console.log(event.target.value);
@@ -50,6 +33,7 @@ const AnimatedTrack = ({ type, level, nextLevel }) => {
   return (
     <div className='slider'>
       <label htmlFor='kicks'>
+        <span className='slider__value'>{value}</span>
         <span className='slider__label'>{type}</span>
       </label>
       <input
@@ -60,7 +44,7 @@ const AnimatedTrack = ({ type, level, nextLevel }) => {
         name={type}
         min='0'
         max='100'
-        step='1'
+        step={getRandomInteger(1, 5)}
       />
     </div>
   );
