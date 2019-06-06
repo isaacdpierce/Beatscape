@@ -6,7 +6,7 @@ import App from './components/App/App';
 import * as serviceWorker from './serviceWorker';
 import { AnimationProvider } from './context/AnimationContext';
 
-import './assets/variables.css';
+import './assets/variables/variables.css';
 
 const state = {
   tracks: [],
