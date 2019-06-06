@@ -3,8 +3,8 @@ import { getRandomInteger, useInterval } from '../../../assets/helpers/helpers';
 
 import '../Tracks/Track.css';
 
-const AnimatedTrack = ({ type, level, nextLevel }) => {
-  const [value, setValue] = useState(level);
+const AnimatedTrack = ({ type, nextLevel }) => {
+  const [value, setValue] = useState(50);
   const [next, setNext] = useState(nextLevel);
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const AnimatedTrack = ({ type, level, nextLevel }) => {
         onChange={handleChange}
         type='range'
         value={value}
-        id='start'
+        id={type}
         name={type}
         min='0'
         max='100'

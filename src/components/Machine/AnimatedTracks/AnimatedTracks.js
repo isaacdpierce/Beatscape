@@ -16,7 +16,6 @@ const Tracks = () => {
           <AnimatedTrack
             key={i}
             type={type}
-            level={getRandomInteger(0, 80)}
             nextLevel={getRandomInteger(0, 80)}
           />
         );
