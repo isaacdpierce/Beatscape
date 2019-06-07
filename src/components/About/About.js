@@ -1,10 +1,12 @@
 import React from 'react';
 
+import './About.css';
+import arrow from '../../assets/images/icon-arrow.png';
+
 const About = () => {
   return (
-    <section>
-      <h1>About Beatscape</h1>
-      <h2>Who</h2>
+    <section className='about'>
+      <h4>Who is Beatscape for?</h4>
       <p>
         Beatscape is for those who study endless days and nights.Those who drink
         far too much coffee.Those committed to academia.And those willing to
@@ -13,7 +15,7 @@ const About = () => {
         possibilities of Binaural Beats.And anyone who loves to listen to simple
         sound structures that keep the mind engaged for long periods of time.
       </p>
-      <h2>What</h2>
+      <h4>What does it do?</h4>
       <p>
         Beatscape is an animated soundscape generator.It is meant to mimic the
         audio landscape one experiences while moving through a living
@@ -24,32 +26,39 @@ const About = () => {
         composition.Then overlays specific 3 dimensional sounds that give the
         user a spirited and unpredictable audio experience.
       </p>
-      <p>Users have control over all individual levels of each track.</p>
+      <p>You have control over all individual levels of each track.</p>
       <p>The binaural tracks are designed for stimulating memory and focus.</p>
-      <p>Users can choose to animate the soundscape.</p>
-      <h3>Animate mode</h3>
+      <p>You can choose to animate the soundscape.</p>
+      <h4>Animate mode</h4>
       <p>
         When in animate mode the user experiences a dynamic and changing
         atmosphere.It simulates the way one would experience sound when walking
         through a landscape.
       </p>
-      <ol>
+      <ul>
         <li>
+          <img className='icon-arrow' src={arrow} />
           Sounds will be added and removed from the soundscape in a random and
           natural way.
         </li>
-        <li>Individual tracks will fade and gain.</li>
-        <li>Tracks will fade from left to right simulating movement.</li>
-      </ol>
-      <h2>Why</h2>
+        <li>
+          <img className='icon-arrow' src={arrow} />
+          Individual tracks will fade and gain.
+        </li>
+        <li>
+          <img className='icon-arrow' src={arrow} />
+          Tracks will fade from left to right simulating movement.
+        </li>
+      </ul>
+      <h4>Why does it exist?</h4>
       <p>
         Because you need perfect control over your atmosphere so you can
         optimize focus and productivity.
       </p>
       <p>
         Because listening to an 8 hour live YouTube feed of someone playing
-        unrelated tracks can be distracting and break concentration.Because
-        maximum focus comes from removing distractions.
+        unrelated tracks can be distracting and break concentration. Maximum
+        focus comes from removing distractions.
       </p>
       <p>
         How many times have you been listening to music that was great
@@ -62,14 +71,24 @@ const About = () => {
         can turn it all down and leave only the atmosphere tracks or only the
         Binaural beat. It's your soundscape - do what you want.
       </p>
-      <h2>Us</h2>
+      <h4>Us</h4>
       <p>
-        The sound designs for Beatscape are done by the right honorable-- the
-        very irreverent Michael Jaques of The Woodsman Sound Co.
+        The sound designs for Beatscape are done by the right honorable -- the
+        very reverent
+        <a href={'http://www.thewoodsmanmusic.io'}>
+          <h5 className='personal-link'>
+            Michael Jaques of The Woodsman Sound Co.
+          </h5>
+        </a>
       </p>
       <p>
         The web designs and code composition are done by the dishonorable and
-        very irrelevant Isaac Pierce of The Lockstone Web Agency.
+        very irrelevant
+        <a href={'http://www.isaacpierce.io'}>
+          <h5 className='personal-link'>
+            Isaac Pierce of The Lockstone Web Agency
+          </h5>
+        </a>
       </p>
       <h5>Thanks for coming.</h5>
     </section>

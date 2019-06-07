@@ -13,8 +13,8 @@ function App() {
       <main>
         <Route exact path='/' component={Machine} />
         <Route exact path='/animated' component={Machine} />
+        <Route exact path='/about' component={About} />
       </main>
-      <Route exact path='/about' component={About} />
     </div>
   );
 }

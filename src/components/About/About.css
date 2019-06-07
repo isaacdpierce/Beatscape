@@ -1,0 +1,21 @@
+.about {
+  width: 50vw;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.406);
+  text-shadow: 0 0 3px black;
+  border-radius: 6px;
+}
+
+.personal-link {
+  color: rgb(127, 174, 255);
+}
+
+.about li {
+  margin-bottom: 1rem;
+}
+
+.icon-arrow {
+  height: 20px;
+  padding-right: 0.5rem;
+  transform: translateY(2px);
+}

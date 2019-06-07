@@ -8,7 +8,6 @@
   grid-column: 1 / -1;
   grid-row: 1 / span 1;
   padding: 0 2rem;
-
   align-items: flex-end;
 }
 
@@ -17,7 +16,11 @@
   margin: 0;
   font-weight: 100;
   text-transform: uppercase;
-  text-shadow: 1px 1px 1px var(--machine-color-dark);
+  text-shadow: 0 0 6px var(black);
+}
+
+.logo:hover {
+  color: white;
 }
 
 .nav-links {
@@ -25,6 +28,14 @@
 
   display: flex;
   min-width: 20vw;
+}
+
+.nav-links a {
+  font-size: 14px;
+}
+
+.nav-links a:not(:last-child) {
+  padding-right: 1rem;
 }
 
 .selected-link {

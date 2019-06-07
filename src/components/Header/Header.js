@@ -6,7 +6,9 @@ const Header = () => {
   const links = ['about', 'instructions', 'login'];
   return (
     <header className='App-header'>
-      <h1 className='logo'>Beatscape</h1>
+      <NavLink to='/'>
+        <h1 className='logo'>Beatscape</h1>
+      </NavLink>
       <nav>
         <ul className='nav-links'>
           {links.map((link, i) => {

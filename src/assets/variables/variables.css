@@ -12,6 +12,8 @@
   --yellow-link-color-active: rgb(174, 141, 59);
   --yellow-link-color-hover: rgb(220, 179, 77);
 
+  --yellow-header-color: rgb(203, 164, 57);
+
   /* machine */
   --machine-color-light: rgb(14, 14, 14);
   --machine-color-dark: rgb(7, 7, 7);

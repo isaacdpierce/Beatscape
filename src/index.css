@@ -1,15 +1,10 @@
 * {
   box-sizing: border-box;
-  letter-spacing: 3px;
+
   font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
   line-height: calc(1.3em + (1.5 - 1.2) * ((100vw - 300px) / (1600 - 300)));
   color: var(--main-font-color);
   font-weight: 100;
-}
-
-*:hover {
-  color: var(--main-font-color-light);
-  font-weight: 300;
 }
 
 body {
@@ -36,19 +31,35 @@ code {
     monospace;
 }
 
+h1,
+h2,
+h3 {
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
 h1 {
   font-size: calc(27px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
 }
 h2 {
   font-size: calc(25px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
 }
-h2 {
+h3 {
   font-size: calc(23px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+}
+
+h4 {
+  font-size: calc(21px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+  color: var(--yellow-header-color);
+}
+
+p {
+  letter-spacing: 1px;
 }
 
 a {
   text-decoration: none;
-  font-size: 0.5rem;
+
   transition: color 0.2s ease-in-out;
 }
 
