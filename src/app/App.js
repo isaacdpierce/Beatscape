@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import About from '../About/About';
-import Machine from '../Machine/Machine';
-import Header from '../Header/Header';
+import About from '../routes/About/About';
+import Machine from '../components/Machine/Machine';
+import Header from '../components/Header/Header';
 
 import './App.css';
 

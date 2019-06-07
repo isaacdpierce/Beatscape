@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
-  const links = ['about', 'instructions', 'login'];
+  const links = ['about', 'guide', 'signup', 'login'];
   return (
     <header className='App-header'>
       <NavLink to='/'>
