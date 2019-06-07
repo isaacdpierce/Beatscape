@@ -4,7 +4,7 @@ import { getRandomInteger } from '../../../assets/helpers/helpers';
 import '../Tracks/Slider.css';
 
 const AnimatedTrack = ({ type, nextLevel }) => {
-  const [value, setValue] = useState(50);
+  const [value, setValue] = useState(500);
   const [next, setNext] = useState(nextLevel);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const AnimatedTrack = ({ type, nextLevel }) => {
 
         setValue(value + 1);
       } else if (value === next) {
-        const newNum = getRandomInteger(0, 80);
+        const newNum = getRandomInteger(0, 800);
         console.log(`Your new Number is: ${newNum}`);
         setNext(newNum);
       }
