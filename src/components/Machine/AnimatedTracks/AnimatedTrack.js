@@ -21,7 +21,7 @@ const AnimatedTrack = ({ type, nextLevel }) => {
         console.log(`Your new Number is: ${newNum}`);
         setNext(newNum);
       }
-    }, getRandomInteger(1000, 10000));
+    }, getRandomInteger(100, 1000));
     return () => clearTimeout(timer);
   });
 
@@ -43,7 +43,7 @@ const AnimatedTrack = ({ type, nextLevel }) => {
         id={type}
         name={type}
         min='0'
-        max='100'
+        max='1000'
         step={getRandomInteger(1, 5)}
       />
     </div>
