@@ -1,16 +1,17 @@
 import React from 'react';
 import { useState, useRef } from 'react';
 
-import './Slider.css';
+import './MasterSlider.css';
 
-const Slider = ({ type, modifier, showValue = true, changeMasterVolume }) => {
-  const [level, setLevel] = useState(500);
-
+const MasterSlider = ({
+  type,
+  modifier,
+  showValue = true,
+  changeMasterVolume,
+  masterVolume,
+}) => {
   const levelRef = useRef();
-
-  const handleChange = event => {
-    setLevel(levelRef.current.value);
-  };
+  const getlevel = () => levelRef.current.value;
 
   return (
     <div className={modifier ? `slider__${modifier}` : 'slider'}>
@@ -21,7 +22,7 @@ const Slider = ({ type, modifier, showValue = true, changeMasterVolume }) => {
               modifier ? `slider__value--${modifier}` : 'slider__value'
             }
           >
-            {level}
+            {masterVolume}
           </span>
         )}
 
@@ -33,10 +34,10 @@ const Slider = ({ type, modifier, showValue = true, changeMasterVolume }) => {
       </label>
 
       <input
-        onChange={handleChange}
+        onChange={() => changeMasterVolume(getlevel())}
         type='range'
         ref={levelRef}
-        value={level}
+        value={masterVolume}
         id='start'
         name={type}
         min='0'
@@ -47,4 +48,4 @@ const Slider = ({ type, modifier, showValue = true, changeMasterVolume }) => {
   );
 };
 
-export default Slider;
+export default MasterSlider;

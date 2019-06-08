@@ -4,23 +4,12 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import App from './app/App';
 import * as serviceWorker from './serviceWorker';
-import { AnimationProvider } from './context/AnimationContext';
 
 import './assets/variables/variables.css';
 
-const state = {
-  tracks: [],
-  isAnimated: false,
-  isPlaying: false,
-  toggleAnimate: isAnimated => (isAnimated = !isAnimated),
-  masterVolume: 50,
-};
-
 ReactDOM.render(
   <Router>
-    <AnimationProvider value={state}>
-      <App />
-    </AnimationProvider>
+    <App />
   </Router>,
   document.getElementById('root')
 );

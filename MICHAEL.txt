@@ -1,5 +1,16 @@
 # Notes for Michael
 
+## When viewing:
+
+1. Does the tooltip hover directly under the headphones
+2. Does the drawer line up
+
+## Naming
+
+I don't know what to name all the tracks - I made the shit up
+
+We need to come up with a naming convention based on what the tracks are - naming important to programming
+
 - make individual sound sprites
   
       - small pieces of individual sounds
@@ -12,7 +23,3 @@
   
 make individual long-term atmosphere moments - rainfall - cafe - wind.
 
-## When viewing:
-
-1. Does the tooltip hover directly under the headphones
-2. Does the drawer line up

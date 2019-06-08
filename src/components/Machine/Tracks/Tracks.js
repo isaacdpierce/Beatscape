@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Slider from './Slider';
-import tracksList from '../../../context/tracksList';
 import './Tracks.css';
+import MachineContext from '../../../context/MachineContext';
 
 const Tracks = () => {
+  const { STORE } = useContext(MachineContext);
+  const { tracks } = STORE;
+
   return (
     <section className='tracks'>
-      {tracksList.map((track, i) => {
+      {tracks.map((track, i) => {
         const { type } = track;
         return <Slider key={i} type={type} />;
       })}

@@ -1,24 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { getRandomInteger } from '../../../assets/helpers/helpers';
+import MachineContext from '../../../context/MachineContext';
 
 import '../Tracks/Slider.css';
 
 const AnimatedTrack = ({ type, nextLevel }) => {
+  const { masterVolume } = useContext(MachineContext);
+
   const [value, setValue] = useState(500);
   const [next, setNext] = useState(nextLevel);
 
+  console.log(`MasterVolume in ATrack is ${masterVolume}`);
+
+  const levelRef = useRef();
+
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (value > next) {
-        console.log(`${value} is greater than ${next}`);
+      if (value > masterVolume) {
+        setValue(masterVolume - 1);
+      } else if (value > next) {
         setValue(value - 1);
       } else if (value < next) {
-        console.log(`${value} is less than ${next}`);
-
         setValue(value + 1);
       } else if (value === next) {
-        const newNum = getRandomInteger(0, 800);
-        console.log(`Your new Number is: ${newNum}`);
+        const newNum = getRandomInteger(0, masterVolume);
         setNext(newNum);
       }
     }, getRandomInteger(100, 1000));
@@ -26,8 +31,7 @@ const AnimatedTrack = ({ type, nextLevel }) => {
   });
 
   const handleChange = event => {
-    console.log(event.target.value);
-    setValue(event.target.value);
+    setValue(levelRef.current.value);
   };
 
   return (
@@ -39,6 +43,7 @@ const AnimatedTrack = ({ type, nextLevel }) => {
       <input
         onChange={handleChange}
         type='range'
+        ref={levelRef}
         value={value}
         id={type}
         name={type}

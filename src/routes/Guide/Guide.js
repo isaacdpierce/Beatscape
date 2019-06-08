@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import TextBlock from '../../components/themes/TextBlock/TextBlock';
 import TrackGuide from './TrackGuide';
 
-import tracksList from '../../context/tracksList';
+import MachineContext from '../../context/MachineContext';
 
 const Guide = () => {
+  const context = useContext(MachineContext);
+  const tracks = context.tracks;
   return (
     <TextBlock>
       <h4>Getting Started</h4>
@@ -20,8 +22,8 @@ const Guide = () => {
 
       <h4>Tracks defined</h4>
       <ul style={{ marginBottom: '2rem' }}>
-        {tracksList.map((track, i) => (
-          <TrackGuide key={i} id={i} tracks={tracksList} />
+        {tracks.map((track, i) => (
+          <TrackGuide key={i} id={i} tracks={tracks} />
         ))}
       </ul>
 

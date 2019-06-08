@@ -33,8 +33,8 @@
 
 .drawer > div > h3 {
   text-transform: uppercase;
-  font-size: 0.7rem;
-  color: var(--yellow-font-color);
+  font-size: 0.8rem;
+  color: var(--yellow-font-color-light);
 }
 
 .drawer > div > h3 > a:hover {

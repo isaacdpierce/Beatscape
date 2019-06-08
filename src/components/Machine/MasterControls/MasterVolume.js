@@ -1,9 +1,18 @@
-import React from 'react';
-import Slider from '../Tracks/Slider';
+import React, { useContext } from 'react';
+import MachineContext from '../../../context/MachineContext';
+import MasterSlider from './MasterSlider';
 import './MasterSlider.css';
 
 const MasterVolume = () => {
-  return <Slider type='Master Volume' modifier='master' />;
+  const { changeMasterVolume, masterVolume } = useContext(MachineContext);
+  return (
+    <MasterSlider
+      type='Master Volume'
+      modifier='master'
+      changeMasterVolume={changeMasterVolume}
+      masterVolume={masterVolume}
+    />
+  );
 };
 
 export default MasterVolume;
