@@ -5,8 +5,8 @@ import TrackGuide from './TrackGuide';
 import MachineContext from '../../context/MachineContext';
 
 const Guide = () => {
-  const context = useContext(MachineContext);
-  const tracks = context.tracks;
+  const { STORE } = useContext(MachineContext);
+  const tracks = STORE.tracks;
   return (
     <TextBlock>
       <h4>Getting Started</h4>
