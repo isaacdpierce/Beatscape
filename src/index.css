@@ -169,3 +169,8 @@ input[type='range']:focus::-ms-fill-lower {
 input[type='range']:focus::-ms-fill-upper {
   background: #000000;
 }
+
+strong {
+  font-weight: 300;
+  font-size: 0.9rem;
+}

@@ -1,24 +1,25 @@
 import React from 'react';
+import TextBlock from '../../components/themes/TextBlock/TextBlock';
 
 import './About.css';
 import arrow from '../../assets/images/icon-arrow.png';
 
 const About = () => {
   return (
-    <section className='about'>
+    <TextBlock>
       <h4>Who is Beatscape for?</h4>
       <p>
-        Beatscape is for those who study endless days and nights. The ones who
-        drink way too much coffee and hunger for knowledge. And who are eager to
-        explore the potentials of the human mind. It's for those who love
-        instrumental Hip-Hop and appreciate the possibilities of binaural beats.
-        And for anyone who loves to listen to simple soundscapes that keep the
-        mind activated for extended periods of time.
+        Beatscape is for those who are eager to explore the potentials of the
+        human mind. Those who study endless days and nights. Who drink too much
+        coffee and hunger for knowledge. The ones who love instrumental Hip-Hop
+        and appreciate the possibilities of binaural beats. And anyone who loves
+        simple soundscapes that keep the mind activated for extended periods of
+        time.
       </p>
       <h4>What does it do?</h4>
       <p>
-        Beatscape is an animated soundscape generator. It mimics the audio
-        landscape one experiences while moving through a living environment.
+        Beatscape is a soundscape generator. It mimics the audio landscape one
+        experiences while moving through a living environment.
       </p>
       <p>
         It dynamically renders the individual tracks of a completed music
@@ -36,16 +37,16 @@ const About = () => {
       </p>
       <ul>
         <li>
-          <img className='icon-arrow' src={arrow} />
+          <img className='icon-arrow' src={arrow} alt='' />
           Sounds will be added and removed from the soundscape in a random and
           natural way.
         </li>
         <li>
-          <img className='icon-arrow' src={arrow} />
+          <img className='icon-arrow' src={arrow} alt='' />
           Individual tracks will fade and gain.
         </li>
         <li>
-          <img className='icon-arrow' src={arrow} />
+          <img className='icon-arrow' src={arrow} alt='' />
           Tracks will fade from left to right simulating movement.
         </li>
       </ul>
@@ -72,7 +73,7 @@ const About = () => {
         Binaural beat. It's your soundscape - do what you want.
       </p>
       <h4>Us</h4>
-      <p>
+      <div>
         The sound designs for Beatscape are done by the right honorable and very
         reverent
         <a href={'http://www.thewoodsmanmusic.io'}>
@@ -80,8 +81,8 @@ const About = () => {
             Michael Jaques of The Woodsman Sound Co.
           </h5>
         </a>
-      </p>
-      <p>
+      </div>
+      <div>
         The web designs and code composition are done by the dishonorable and
         very irrelevant
         <a href={'http://www.isaacpierce.io'}>
@@ -89,9 +90,9 @@ const About = () => {
             Isaac Pierce of The Lockstone Web Agency
           </h5>
         </a>
-      </p>
+      </div>
       <h5>Thanks for coming.</h5>
-    </section>
+    </TextBlock>
   );
 };
 
