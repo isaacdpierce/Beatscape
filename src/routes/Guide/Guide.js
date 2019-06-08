@@ -18,6 +18,13 @@ const Guide = () => {
         possible journeys.
       </p>
 
+      <h4>Tracks defined</h4>
+      <ul style={{ marginBottom: '2rem' }}>
+        {tracksList.map((track, i) => (
+          <TrackGuide key={i} id={i} tracks={tracksList} />
+        ))}
+      </ul>
+
       <h4>Modes</h4>
       <strong>Play Mode</strong>
 
@@ -28,13 +35,6 @@ const Guide = () => {
         ear. Once you find what you like hit the save button and add them to
         your lists.
       </p>
-
-      <h5>Tracks defined:</h5>
-      <ul style={{ marginBottom: '2rem' }}>
-        {tracksList.map((track, i) => (
-          <TrackGuide key={i} id={i} tracks={tracksList} />
-        ))}
-      </ul>
 
       <strong>Animate mode</strong>
       <p>

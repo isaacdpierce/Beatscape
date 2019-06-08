@@ -4,13 +4,12 @@ import { NavLink } from 'react-router-dom';
 import './Footer.css';
 
 const Footer = () => {
-  const links = ['contact', 'about', 'youtube', 'soundcloud'];
+  const links = ['contact', 'about us', 'youtube', 'soundcloud'];
   return (
     <footer>
       <div className='copyright'>
-        <div>
-          <p>Sound design by Michael Jacques &copy;2019 </p>
-        </div>
+        <p>Sound design by Michael Jacques &copy;2019 </p>
+
         <nav>
           <ul className='nav-links'>
             {links.map((link, i) => {
@@ -27,9 +26,8 @@ const Footer = () => {
             })}
           </ul>
         </nav>
-        <div>
-          <p>Web app created by Isaac Pierce &copy;2019 </p>
-        </div>
+
+        <p>Web app created by Isaac Pierce &copy;2019 </p>
       </div>
     </footer>
   );

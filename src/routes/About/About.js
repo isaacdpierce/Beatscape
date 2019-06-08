@@ -72,6 +72,18 @@ const About = () => {
         can turn it all down and leave only the atmosphere tracks or only the
         Binaural beat. It's your soundscape - do what you want.
       </p>
+      <h4>When should I use it?</h4>
+      <p>
+        The soundscapes are designed to stimulate focus, memory and cognition.
+      </p>
+      <p>Suggestions include but are not limited to the following:</p>
+      <p>
+        <img className='icon-arrow' src={arrow} alt='' />
+        Studying, coding, designing, reading, writing, playing chess, driving,
+        meditating, climbing trees, building forts, cleaning, dancing,
+        snowboarding, skateboarding, base jumping, taming wild animals,
+        wrestling alligators and building igloos.
+      </p>
       <h4>Us</h4>
       <div>
         The sound designs for Beatscape are done by the right honorable and very

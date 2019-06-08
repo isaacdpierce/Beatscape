@@ -17,21 +17,28 @@
   font-weight: 100;
   text-transform: uppercase;
   text-shadow: 0 0 6px var(black);
+  align-self: flex-end;
 }
 
 .logo:hover {
   color: white;
 }
 
+.App-header > nav {
+  display: flex;
+  height: 100%;
+  padding-bottom: 0.1rem;
+}
+
 .nav-links {
   padding: 0;
-
+  letter-spacing: 1px;
   display: flex;
   min-width: 20vw;
 }
 
 .nav-links a {
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .nav-links a:not(:last-child) {
