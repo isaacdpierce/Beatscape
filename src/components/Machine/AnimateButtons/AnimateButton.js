@@ -1,13 +1,8 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import Button from '../Button';
+import LinkButton from '../LinkButton';
 
 const AnimateButton = () => {
-  return (
-    <NavLink to='/animated'>
-      <Button text='Animate' type='controls' />
-    </NavLink>
-  );
+  return <LinkButton to='/animated' text='Animate' />;
 };
 
 export default AnimateButton;

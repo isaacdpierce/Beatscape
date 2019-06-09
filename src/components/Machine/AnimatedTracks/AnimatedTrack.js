@@ -6,6 +6,7 @@ import '../Tracks/Slider.css';
 
 const AnimatedTrack = ({ type, nextLevel }) => {
   const { masterVolume } = useContext(MachineContext);
+  const [isAnimated, setIsAnimated] = useState(false);
 
   const [value, setValue] = useState(500);
   const [next, setNext] = useState(nextLevel);
@@ -14,8 +15,8 @@ const AnimatedTrack = ({ type, nextLevel }) => {
 
   const levelRef = useRef();
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
+  const timer = () => {
+    setTimeout(() => {
       if (value > masterVolume) {
         setValue(masterVolume - 1);
       } else if (value > next) {
@@ -28,6 +29,10 @@ const AnimatedTrack = ({ type, nextLevel }) => {
       }
     }, getRandomInteger(100, 1000));
     return () => clearTimeout(timer);
+  };
+
+  useEffect(() => {
+    isAnimated && timer();
   });
 
   const handleChange = event => {

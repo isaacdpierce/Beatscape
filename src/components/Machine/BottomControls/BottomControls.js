@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../Button';
+import LinkButton from '../LinkButton';
 import MasterVolume from '../MasterControls/MasterVolume';
 import Fader from '../MasterControls/Fader';
 
@@ -10,10 +10,9 @@ const BottomControls = ({ handleDrawer }) => {
     <section className='controls-bottom'>
       <MasterVolume />
       <Fader />
-      <Button
+      <LinkButton
         className='button-soundscapes'
         text='Soundscapes'
-        type='controls'
         handleClick={handleDrawer}
       />
     </section>

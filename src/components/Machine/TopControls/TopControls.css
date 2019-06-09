@@ -3,6 +3,11 @@
   width: 100%;
   display: flex;
   justify-content: space-evenly;
+  align-items: center;
+}
+
+.buttons-container {
+  height: 2rem;
 }
 
 .controls-top {
@@ -15,16 +20,21 @@
 
 .headphones {
   margin: 0;
+  /* padding-top: 1rem; */
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
 }
 .headphones::after {
   content: '?';
   font-size: 12px;
   display: block;
   text-align: center;
-  transform: translateY(-33px);
+  transform: translateY(-30px);
 }
 
 .headphones__img {
+  display: block;
   height: 30px;
 }
 

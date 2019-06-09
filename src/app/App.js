@@ -13,13 +13,28 @@ import './App.css';
 
 function App() {
   const [masterVolume, setMasterVolume] = useState(500);
+  const [isAnimated, setIsAnimated] = useState(false);
+  const [track1Volume, setTrack1Volume] = useState(500);
   console.log('The Master Volume is set in App.js to: ' + masterVolume);
 
   const changeMasterVolume = newVol => {
     setMasterVolume(newVol);
   };
+
+  const toggleAnimation = () => {
+    setIsAnimated(!isAnimated);
+  };
+
   return (
-    <MachineProvider value={{ STORE, masterVolume, changeMasterVolume }}>
+    <MachineProvider
+      value={{
+        STORE,
+        masterVolume,
+        changeMasterVolume,
+        isAnimated,
+        toggleAnimation,
+      }}
+    >
       <div className='App'>
         <Header />
         <main>

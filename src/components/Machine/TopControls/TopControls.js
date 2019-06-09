@@ -1,9 +1,10 @@
 import React from 'react';
-import { Route, NavLink } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import AnimateButton from '../AnimateButtons/AnimateButton';
 import StopAnimateButton from '../AnimateButtons/StopAnimateButton';
+import LinkButton from '../LinkButton';
 import Tooltip from '../../themes/Tooltip/Tooltip';
-import Button from '../Button';
+
 import headphones from '../../../assets/images/headphones.png';
 
 import './TopControls.css';
@@ -12,9 +13,7 @@ const TopControls = () => {
   return (
     <section className='controls-top'>
       <div className='buttons-container'>
-        <NavLink to='/'>
-          <Button text='Play' type='controls' />
-        </NavLink>
+        <LinkButton to='/' text='Play' type='controls' />
         <figure className='headphones'>
           <img
             className='headphones__img'
@@ -22,6 +21,7 @@ const TopControls = () => {
             alt='Wear headphones'
           />
         </figure>
+
         <Tooltip size='small'>
           <p>Wear headphones for 3D soundscape</p>
         </Tooltip>
