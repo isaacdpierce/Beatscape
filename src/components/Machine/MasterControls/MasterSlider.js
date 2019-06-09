@@ -7,11 +7,15 @@ const MasterSlider = ({
   type,
   modifier,
   showValue = true,
-  changeMasterVolume,
+  handleChange,
   masterVolume,
 }) => {
   const levelRef = useRef();
-  const getlevel = () => levelRef.current.value;
+
+  // useEffect(() => {
+  //   isAnimated && animateTracks();
+  // });
+  const getLevel = () => levelRef.current.value;
 
   return (
     <div className={modifier ? `slider__${modifier}` : 'slider'}>
@@ -34,7 +38,7 @@ const MasterSlider = ({
       </label>
 
       <input
-        onChange={() => changeMasterVolume(getlevel())}
+        onChange={() => handleChange(getLevel)}
         type='range'
         ref={levelRef}
         value={masterVolume}

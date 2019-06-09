@@ -13,14 +13,16 @@ import './App.css';
 
 function App() {
   const [masterVolume, setMasterVolume] = useState(500);
+  const [masterFader, setMasterFader] = useState(500);
   const [isAnimated, setIsAnimated] = useState(false);
-  const [track1Volume, setTrack1Volume] = useState(500);
-  console.log('The Master Volume is set in App.js to: ' + masterVolume);
 
   const changeMasterVolume = newVol => {
     setMasterVolume(newVol);
   };
 
+  const changeMasterFader = newFade => {
+    setMasterFader(newFade);
+  };
   const toggleAnimation = () => {
     setIsAnimated(!isAnimated);
   };
@@ -39,7 +41,6 @@ function App() {
         <Header />
         <main>
           <Route exact path='/' component={Machine} />
-          <Route exact path='/animated' component={Machine} />
           <Route exact path='/about' component={About} />
           <Route exact path='/guide' component={Guide} />
         </main>

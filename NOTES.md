@@ -1,11 +1,11 @@
 # NOTES
 
-## install styled components and deal with button -> a issue
+~~## install styled components and deal with button -> a issue~~
 
-## Create context
+~~_## Create context_~~
 
-- set master volume that controls numbers in animated setting
-- Create a base timer that all tracks will sync to
+~~- set master volume that controls numbers in animated setting~~
+## Create a base timer that all tracks will sync to
 
 ## Create useReducer for each track input range
 

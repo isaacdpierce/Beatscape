@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import LinkButton from '../LinkButton';
+import MachineContext from '../../../context/MachineContext';
 
 const AnimateButton = () => {
-  return <LinkButton to='/animated' text='Animate' />;
+  const { toggleAnimation, isAnimated } = useContext(MachineContext);
+  return (
+    <>
+      <LinkButton
+        text={isAnimated ? 'Stop animation' : 'Animate'}
+        handleClick={toggleAnimation}
+      />
+    </>
+  );
 };
 
 export default AnimateButton;

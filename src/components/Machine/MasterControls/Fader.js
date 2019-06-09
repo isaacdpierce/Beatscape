@@ -1,9 +1,19 @@
-import React from 'react';
-import Slider from '../Tracks/Slider';
+import React, { useContext } from 'react';
+import MasterSlider from './MasterSlider';
+import MachineContext from '../../../context/MachineContext';
 import './MasterSlider.css';
 
 const Fader = () => {
-  return <Slider type='Fader' modifier='master' />;
+  const { changeMasterFader, masterFader } = useContext(MachineContext);
+  // TODO Make master fader function
+
+  return (
+    <MasterSlider
+      type='Fader'
+      modifier='master'
+      handleChange={changeMasterFader}
+    />
+  );
 };
 
 export default Fader;
