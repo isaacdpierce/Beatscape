@@ -8,9 +8,8 @@ const MasterVolume = () => {
   return (
     <MasterSlider
       type='Master Volume'
-      modifier='master'
       handleChange={changeMasterVolume}
-      masterVolume={masterVolume}
+      value={masterVolume}
     />
   );
 };

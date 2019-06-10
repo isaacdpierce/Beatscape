@@ -20,14 +20,12 @@ const ControlsButton = styled.button`
   }
 `;
 
-const LinkButton = ({ to, text, handleClick }) => {
+const Button = ({ text, handleClick }) => {
   return (
     <>
-      <ControlsButton to={to} onClick={handleClick} value={Text}>
-        {text}
-      </ControlsButton>
+      <ControlsButton onClick={handleClick}>{text}</ControlsButton>
     </>
   );
 };
 
-export default LinkButton;
+export default Button;

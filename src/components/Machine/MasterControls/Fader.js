@@ -5,13 +5,12 @@ import './MasterSlider.css';
 
 const Fader = () => {
   const { changeMasterFader, masterFader } = useContext(MachineContext);
-  // TODO Make master fader function
 
   return (
     <MasterSlider
       type='Fader'
-      modifier='master'
       handleChange={changeMasterFader}
+      value={masterFader}
     />
   );
 };

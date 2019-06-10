@@ -1,5 +1,5 @@
 import React from 'react';
-import LinkButton from '../LinkButton';
+import LinkButton from '../Buttons/Button';
 import MasterVolume from '../MasterControls/MasterVolume';
 import Fader from '../MasterControls/Fader';
 

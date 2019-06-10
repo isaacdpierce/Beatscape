@@ -10,8 +10,6 @@ const Slider = ({ type, nextLevel }) => {
   const [next, setNext] = useState(nextLevel);
   const levelRef = useRef();
 
-  console.log(`MasterVolume in ATrack is ${masterVolume}`);
-
   const animateTracks = () => {
     setTimeout(() => {
       if (value > masterVolume) {

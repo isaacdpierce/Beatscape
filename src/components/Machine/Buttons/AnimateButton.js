@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import LinkButton from '../LinkButton';
+import LinkButton from './Button';
 import MachineContext from '../../../context/MachineContext';
 
 const AnimateButton = () => {
@@ -7,7 +7,7 @@ const AnimateButton = () => {
   return (
     <>
       <LinkButton
-        text={isAnimated ? 'Stop animation' : 'Animate'}
+        text={isAnimated ? 'Stop animate' : 'Animate'}
         handleClick={toggleAnimation}
       />
     </>

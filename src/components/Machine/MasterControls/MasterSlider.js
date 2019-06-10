@@ -5,43 +5,28 @@ import './MasterSlider.css';
 
 const MasterSlider = ({
   type,
-  modifier,
   showValue = true,
   handleChange,
   masterVolume,
+  value,
 }) => {
   const levelRef = useRef();
 
-  // useEffect(() => {
-  //   isAnimated && animateTracks();
-  // });
   const getLevel = () => levelRef.current.value;
 
   return (
-    <div className={modifier ? `slider__${modifier}` : 'slider'}>
+    <div className='slider__master'>
       <label htmlFor='kicks'>
-        {showValue && (
-          <span
-            className={
-              modifier ? `slider__value--${modifier}` : 'slider__value'
-            }
-          >
-            {masterVolume}
-          </span>
-        )}
+        {showValue && <span className='slider__value--master'>{value}</span>}
 
-        <span
-          className={modifier ? `slider__label--${modifier}` : 'slider__label'}
-        >
-          {type}
-        </span>
+        <span className='slider__label--master'>{type}</span>
       </label>
 
       <input
-        onChange={() => handleChange(getLevel)}
+        onChange={() => handleChange(getLevel())}
         type='range'
         ref={levelRef}
-        value={masterVolume}
+        value={value}
         id='start'
         name={type}
         min='0'

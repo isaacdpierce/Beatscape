@@ -1,6 +1,6 @@
 import React from 'react';
-import AnimateButton from '../AnimateButtons/AnimateButton';
-import LinkButton from '../LinkButton';
+import AnimateButton from '../Buttons/AnimateButton';
+import PlayButton from '../Buttons/PlayButton';
 import Tooltip from '../../themes/Tooltip/Tooltip';
 
 import headphones from '../../../assets/images/headphones.png';
@@ -11,7 +11,7 @@ const TopControls = () => {
   return (
     <section className='controls-top'>
       <div className='buttons-container'>
-        <LinkButton text='Play' />
+        <PlayButton />
         <figure className='headphones'>
           <img
             className='headphones__img'

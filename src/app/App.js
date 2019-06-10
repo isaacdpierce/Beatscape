@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import About from '../routes/About/About';
 import Guide from '../routes/Guide/Guide';
@@ -9,22 +9,49 @@ import STORE from '../context/STORE';
 
 import { MachineProvider } from '../context/MachineContext';
 
-import './App.css';
+import AppTheme from './AppTheme.js';
 
 function App() {
+  const initialBackgroundLevel = 75;
+
   const [masterVolume, setMasterVolume] = useState(500);
   const [masterFader, setMasterFader] = useState(500);
   const [isAnimated, setIsAnimated] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [backgroundLevel, setBackgroundLevel] = useState(
+    initialBackgroundLevel
+  );
 
   const changeMasterVolume = newVol => {
     setMasterVolume(newVol);
   };
 
   const changeMasterFader = newFade => {
+    console.log('Master Fader is set to' + masterFader);
+
     setMasterFader(newFade);
   };
   const toggleAnimation = () => {
     setIsAnimated(!isAnimated);
+    setIsPlaying(false);
+  };
+
+  const playTracks = () => {
+    const bassBoost = masterVolume / 100;
+    setTimeout(() => {
+      setBackgroundLevel(initialBackgroundLevel + bassBoost);
+    }, 500);
+    setBackgroundLevel(initialBackgroundLevel);
+    return () => clearTimeout(playTracks);
+  };
+
+  useEffect(() => {
+    isPlaying && playTracks();
+  });
+
+  const togglePlay = () => {
+    setIsAnimated(false);
+    setIsPlaying(!isPlaying);
   };
 
   return (
@@ -35,9 +62,13 @@ function App() {
         changeMasterVolume,
         isAnimated,
         toggleAnimation,
+        isPlaying,
+        togglePlay,
+        masterFader,
+        changeMasterFader,
       }}
     >
-      <div className='App'>
+      <AppTheme className='App' backgroundLevel={backgroundLevel}>
         <Header />
         <main>
           <Route exact path='/' component={Machine} />
@@ -45,7 +76,7 @@ function App() {
           <Route exact path='/guide' component={Guide} />
         </main>
         <Footer />
-      </div>
+      </AppTheme>
     </MachineProvider>
   );
 }
