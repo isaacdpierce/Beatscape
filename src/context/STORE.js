@@ -5,7 +5,7 @@ const STORE = {
       description:
         'The heavy drum that keeps the pace of the song moving forward.',
       animate: true,
-      src: '../assets/audio/Dusty Road/kick.mp3',
+      url: 'assets/audio/dusty-road/kick.mp3',
     },
     { type: 'Snare', description: 'Light drum', animate: true },
     {

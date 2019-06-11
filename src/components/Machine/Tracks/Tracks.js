@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import Slider from './Slider';
 import './Tracks.css';
-import MachineContext from '../../../context/MachineContext';
-import { getRandomInteger } from '../../../assets/helpers/helpers';
+import MachineContext from 'context/MachineContext';
+import { getRandomInteger } from 'assets/helpers/helpers';
 
 const Tracks = () => {
   const { STORE, masterVolume } = useContext(MachineContext);
@@ -11,7 +11,7 @@ const Tracks = () => {
   return (
     <section className='tracks'>
       {tracks.map((track, i) => {
-        const { type, min, max, step, animate, src } = track;
+        const { type, min, max, step, animate, url } = track;
         return (
           <Slider
             key={i}
@@ -21,7 +21,7 @@ const Tracks = () => {
             type={type}
             animate={animate}
             nextLevel={getRandomInteger(0, masterVolume)}
-            src={src}
+            src={url}
           />
         );
       })}

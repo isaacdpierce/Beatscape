@@ -1,9 +1,9 @@
 import React from 'react';
-import AnimateButton from '../Buttons/AnimateButton';
-import PlayButton from '../Buttons/PlayButton';
-import Tooltip from '../../themes/Tooltip/Tooltip';
+import AnimateButton from 'components/Machine/Buttons/AnimateButton';
+import PlayButton from 'components/Machine/Buttons/PlayButton';
+import Tooltip from 'components/themes/Tooltip/Tooltip';
 
-import headphones from '../../../assets/images/headphones.png';
+import headphones from 'assets/images/headphones.png';
 
 import './TopControls.css';
 

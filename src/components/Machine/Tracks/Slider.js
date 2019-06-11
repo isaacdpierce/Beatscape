@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import { getRandomInteger } from '../../../assets/helpers/helpers';
-import MachineContext from '../../../context/MachineContext';
-
+import { getRandomInteger } from 'assets/helpers/helpers';
+import MachineContext from 'context/MachineContext';
+import kick from 'assets/audio/dusty-road/kick.mp3';
 import './Slider.css';
 
 const Slider = ({
@@ -11,7 +11,7 @@ const Slider = ({
   max = 1000,
   step = 1,
   animate,
-  src,
+  url,
 }) => {
   const initialValue = (max + min) / 2;
   const { masterVolume, isAnimated, changeFrequency } = useContext(
@@ -65,9 +65,7 @@ const Slider = ({
         max={max}
         step={getRandomInteger(1, 5)}
       />
-      <audio>
-        <source src={src} type='audio/mp3' />
-      </audio>
+      <audio src={url} controls autoPlay />
     </div>
   );
 };

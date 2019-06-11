@@ -1,7 +1,7 @@
 import React from 'react';
-import LinkButton from '../Buttons/Button';
-import MasterVolume from '../MasterControls/MasterVolume';
-import Fader from '../MasterControls/Fader';
+import LinkButton from 'components/Machine/Buttons/Button';
+import MasterVolume from 'components/Machine/MasterControls/MasterVolume';
+import Fader from 'components/Machine/MasterControls/Fader';
 
 import './BottomControls.css';
 

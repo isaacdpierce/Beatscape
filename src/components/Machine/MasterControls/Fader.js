@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import MasterSlider from './MasterSlider';
-import MachineContext from '../../../context/MachineContext';
+import MachineContext from 'context/MachineContext';
 import './MasterSlider.css';
 
 const Fader = () => {
