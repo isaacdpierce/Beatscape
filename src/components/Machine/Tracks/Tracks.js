@@ -11,11 +11,15 @@ const Tracks = () => {
   return (
     <section className='tracks'>
       {tracks.map((track, i) => {
-        const { type } = track;
+        const { type, min, max, step, animate } = track;
         return (
           <Slider
             key={i}
+            min={min}
+            max={max}
+            step={step}
             type={type}
+            animate={animate}
             nextLevel={getRandomInteger(0, masterVolume)}
           />
         );

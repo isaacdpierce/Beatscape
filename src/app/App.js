@@ -8,6 +8,7 @@ import Footer from '../components/Footer/Footer';
 import STORE from '../context/STORE';
 
 import { MachineProvider } from '../context/MachineContext';
+import Oscillator from '../components/Oscillator/Oscillator';
 
 import AppTheme from './AppTheme.js';
 
@@ -16,6 +17,7 @@ function App() {
 
   const [masterVolume, setMasterVolume] = useState(500);
   const [masterFader, setMasterFader] = useState(500);
+  const [frequency, setFrequency] = useState(40);
   const [isAnimated, setIsAnimated] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [backgroundLevel, setBackgroundLevel] = useState(
@@ -47,11 +49,15 @@ function App() {
 
   useEffect(() => {
     isPlaying && playTracks();
-  });
+  }, [isPlaying]);
 
   const togglePlay = () => {
     setIsAnimated(false);
     setIsPlaying(!isPlaying);
+  };
+
+  const changeFrequency = value => {
+    setFrequency(value);
   };
 
   return (
@@ -66,6 +72,7 @@ function App() {
         togglePlay,
         masterFader,
         changeMasterFader,
+        changeFrequency,
       }}
     >
       <AppTheme className='App' backgroundLevel={backgroundLevel}>
@@ -74,6 +81,7 @@ function App() {
           <Route exact path='/' component={Machine} />
           <Route exact path='/about' component={About} />
           <Route exact path='/guide' component={Guide} />
+          <Oscillator frequency={frequency} type={'sine'} />
         </main>
         <Footer />
       </AppTheme>

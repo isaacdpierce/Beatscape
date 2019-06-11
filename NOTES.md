@@ -1,10 +1,9 @@
 # NOTES
 
-~~## install styled components and deal with button -> a issue~~
+## Create Slider Style theme styled components
 
-~~_## Create context_~~
+## Create Oscillator slider
 
-~~- set master volume that controls numbers in animated setting~~
 ## Create a base timer that all tracks will sync to
 
 ## Create useReducer for each track input range

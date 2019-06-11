@@ -4,9 +4,19 @@ import MachineContext from '../../../context/MachineContext';
 
 import './Slider.css';
 
-const Slider = ({ type, nextLevel }) => {
-  const { masterVolume, isAnimated } = useContext(MachineContext);
-  const [value, setValue] = useState(500);
+const Slider = ({
+  type,
+  nextLevel,
+  min = 0,
+  max = 1000,
+  step = 1,
+  animate,
+}) => {
+  const initialValue = (max + min) / 2;
+  const { masterVolume, isAnimated, changeFrequency } = useContext(
+    MachineContext
+  );
+  const [value, setValue] = useState(initialValue);
   const [next, setNext] = useState(nextLevel);
   const levelRef = useRef();
 
@@ -27,11 +37,14 @@ const Slider = ({ type, nextLevel }) => {
   };
 
   useEffect(() => {
-    isAnimated && animateTracks();
+    if (isAnimated && animate) {
+      animateTracks();
+    }
   });
 
   const handleChange = event => {
     setValue(levelRef.current.value);
+    type === 'Binaural' && changeFrequency(value);
   };
 
   return (
@@ -47,8 +60,8 @@ const Slider = ({ type, nextLevel }) => {
         value={value}
         id={type}
         name={type}
-        min='0'
-        max='1000'
+        min={min}
+        max={max}
         step={getRandomInteger(1, 5)}
       />
     </div>
