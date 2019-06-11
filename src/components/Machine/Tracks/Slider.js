@@ -11,6 +11,7 @@ const Slider = ({
   max = 1000,
   step = 1,
   animate,
+  src,
 }) => {
   const initialValue = (max + min) / 2;
   const { masterVolume, isAnimated, changeFrequency } = useContext(
@@ -64,6 +65,9 @@ const Slider = ({
         max={max}
         step={getRandomInteger(1, 5)}
       />
+      <audio>
+        <source src={src} type='audio/mp3' />
+      </audio>
     </div>
   );
 };
