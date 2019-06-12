@@ -1,7 +1,5 @@
 import { Howl, Howler } from 'howler';
 
-import kick from 'assets/audio/dusty-road/kick.mp3';
-
 const STORE = {
   tracks: [
     {
