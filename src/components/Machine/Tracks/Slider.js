@@ -4,7 +4,6 @@ import {
   getRandomFloat,
   roundCorrect,
 } from 'assets/helpers/helpers';
-import Audio from './Audio';
 import MachineContext from 'context/MachineContext';
 import './Slider.css';
 
