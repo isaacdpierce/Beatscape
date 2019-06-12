@@ -1,11 +1,15 @@
+import { Howl, Howler } from 'howler';
+
+import kick from 'assets/audio/dusty-road/kick.mp3';
+
 const STORE = {
   tracks: [
     {
-      type: 'Kick',
+      type: 'kick',
       description:
         'The heavy drum that keeps the pace of the song moving forward.',
       animate: true,
-      url: 'assets/audio/dusty-road/kick.mp3',
+      url: '',
     },
     { type: 'Snare', description: 'Light drum', animate: true },
     {
@@ -37,7 +41,7 @@ const STORE = {
       type: 'Binaural',
       min: 0,
       max: 1,
-      step: 0.1,
+      step: 0.01,
       description: '40hz, 50hz, 60hz',
       animate: false,
     },

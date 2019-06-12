@@ -4,9 +4,13 @@ import {
   getRandomFloat,
   roundCorrect,
 } from 'assets/helpers/helpers';
+import Audio from './Audio';
 import MachineContext from 'context/MachineContext';
-import kick from 'assets/audio/dusty-road/kick.mp3';
 import './Slider.css';
+
+import kick from 'assets/audio/dusty-road/kick.mp3';
+
+import { Howl, Howler } from 'howler';
 
 const Slider = ({
   type,
@@ -17,16 +21,14 @@ const Slider = ({
   animate,
   url,
   changeSineVolume,
+  changeVolume,
 }) => {
-  const initialValue = (max + min) / 2;
-  const { masterVolume, isAnimated } = useContext(MachineContext);
+  const initialValue = type === 'binaural' ? 0.05 : (max + min) / 2;
+  const { masterVolume, isAnimated, isPlaying } = useContext(MachineContext);
   const [value, setValue] = useState(initialValue);
   const [next, setNext] = useState(nextLevel);
-  const [volume, setVolume] = useState(undefined);
 
   const levelRef = useRef();
-
-  console.log(value);
 
   const animateTracks = () => {
     setTimeout(() => {
@@ -52,7 +54,7 @@ const Slider = ({
 
   const handleChange = event => {
     setValue(levelRef.current.value);
-
+    changeVolume(value);
     type === 'Binaural' && changeSineVolume(value);
   };
 
@@ -73,7 +75,6 @@ const Slider = ({
         max={max}
         step={step}
       />
-      <audio src={url} controls autoPlay />
     </div>
   );
 };
