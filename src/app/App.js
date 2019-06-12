@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
+import { Howl, Howler } from 'howler';
 import About from 'routes/About/About';
 import Guide from 'routes/Guide/Guide';
 import Machine from 'components/Machine/Machine';
@@ -8,29 +9,30 @@ import Footer from 'components/Footer/Footer';
 import STORE from 'context/STORE';
 
 import { MachineProvider } from 'context/MachineContext';
-import Oscillator from 'components/Oscillator/Oscillator';
+
+import kick from 'assets/audio/dusty-road/kick.mp3';
 
 import AppTheme from './AppTheme.js';
 
 function App() {
   const initialBackgroundLevel = 75;
 
-  const [masterVolume, setMasterVolume] = useState(500);
-  const [masterFader, setMasterFader] = useState(500);
-  const [frequency, setFrequency] = useState(40);
+  const [masterVolume, setMasterVolume] = useState(1);
+  const [masterFader, setMasterFader] = useState(0.5);
+
   const [isAnimated, setIsAnimated] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const [backgroundLevel, setBackgroundLevel] = useState(
     initialBackgroundLevel
   );
+
+  console.log(`Master Vol in App.js: ${masterVolume}`);
 
   const changeMasterVolume = newVol => {
     setMasterVolume(newVol);
   };
 
   const changeMasterFader = newFade => {
-    console.log('Master Fader is set to' + masterFader);
-
     setMasterFader(newFade);
   };
   const toggleAnimation = () => {
@@ -39,26 +41,27 @@ function App() {
   };
 
   const playTracks = () => {
-    const bassBoost = masterVolume / 100;
-    setTimeout(() => {
-      setBackgroundLevel(initialBackgroundLevel + bassBoost);
-    }, 500);
-    setBackgroundLevel(initialBackgroundLevel);
-    return () => clearTimeout(playTracks);
+    console.log('Tracks Playing!');
   };
-
-  useEffect(() => {
-    isPlaying && playTracks();
-  }, [isPlaying]);
 
   const togglePlay = () => {
     setIsAnimated(false);
     setIsPlaying(!isPlaying);
   };
 
-  const changeFrequency = value => {
-    setFrequency(value);
-  };
+  useEffect(() => {
+    isPlaying && playTracks();
+  }, [isPlaying]);
+
+  const sound = new Howl({
+    src: [kick],
+    autoplay: true,
+    loop: true,
+    volume: 0.5,
+    onend: function() {
+      console.log('Finished!');
+    },
+  });
 
   return (
     <MachineProvider
@@ -72,7 +75,6 @@ function App() {
         togglePlay,
         masterFader,
         changeMasterFader,
-        changeFrequency,
       }}
     >
       <AppTheme className='App' backgroundLevel={backgroundLevel}>
@@ -81,7 +83,6 @@ function App() {
           <Route exact path='/' component={Machine} />
           <Route exact path='/about' component={About} />
           <Route exact path='/guide' component={Guide} />
-          <Oscillator frequency={frequency} type={'sine'} />
         </main>
         <Footer />
       </AppTheme>

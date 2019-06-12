@@ -1,5 +1,14 @@
 # NOTES
 
+## consider removing master volume - let master volume be controlled by device
+
+## Create volume controller for binaural
+
+        - set volume controller in slider??
+        - eventually create a volume reducer for all sliders
+
+## Create reducer for tracks
+
 ## Create Slider Style theme styled components
 
 ## Create Oscillator slider

@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import { getRandomInteger } from 'assets/helpers/helpers';
+import {
+  getRandomInteger,
+  getRandomFloat,
+  roundCorrect,
+} from 'assets/helpers/helpers';
 import MachineContext from 'context/MachineContext';
 import kick from 'assets/audio/dusty-road/kick.mp3';
 import './Slider.css';
@@ -7,33 +11,36 @@ import './Slider.css';
 const Slider = ({
   type,
   nextLevel,
-  min = 0,
-  max = 1000,
-  step = 1,
+  min = 0.0,
+  max = 1.0,
+  step = 0.01,
   animate,
   url,
+  changeSineVolume,
 }) => {
   const initialValue = (max + min) / 2;
-  const { masterVolume, isAnimated, changeFrequency } = useContext(
-    MachineContext
-  );
+  const { masterVolume, isAnimated } = useContext(MachineContext);
   const [value, setValue] = useState(initialValue);
   const [next, setNext] = useState(nextLevel);
+  const [volume, setVolume] = useState(undefined);
+
   const levelRef = useRef();
+
+  console.log(value);
 
   const animateTracks = () => {
     setTimeout(() => {
       if (value > masterVolume) {
-        setValue(masterVolume - 1);
+        setValue(masterVolume - 0.01);
       } else if (value > next) {
-        setValue(value - 1);
+        setValue(roundCorrect(value - 0.01, 2));
       } else if (value < next) {
-        setValue(value + 1);
+        setValue(roundCorrect(value + 0.01, 2));
       } else if (value === next) {
-        const newNum = getRandomInteger(0, masterVolume);
+        const newNum = getRandomFloat(0, masterVolume);
         setNext(newNum);
       }
-    }, getRandomInteger(100, 1000));
+    }, getRandomInteger(1000, 10000));
     return () => clearTimeout(animateTracks);
   };
 
@@ -45,7 +52,8 @@ const Slider = ({
 
   const handleChange = event => {
     setValue(levelRef.current.value);
-    type === 'Binaural' && changeFrequency(value);
+
+    type === 'Binaural' && changeSineVolume(value);
   };
 
   return (
@@ -58,12 +66,12 @@ const Slider = ({
         onChange={handleChange}
         type='range'
         ref={levelRef}
-        value={value}
+        value={value > masterVolume ? masterVolume : value}
         id={type}
         name={type}
         min={min}
         max={max}
-        step={getRandomInteger(1, 5)}
+        step={step}
       />
       <audio src={url} controls autoPlay />
     </div>

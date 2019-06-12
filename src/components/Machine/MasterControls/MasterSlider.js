@@ -4,10 +4,13 @@ import { useRef } from 'react';
 import './MasterSlider.css';
 
 const MasterSlider = ({
-  type,
+  name,
   showValue = true,
   handleChange,
   masterVolume,
+  min = 0,
+  max = 1,
+  step = 0.01,
   value,
 }) => {
   const levelRef = useRef();
@@ -19,7 +22,7 @@ const MasterSlider = ({
       <label htmlFor='kicks'>
         {showValue && <span className='slider__value--master'>{value}</span>}
 
-        <span className='slider__label--master'>{type}</span>
+        <span className='slider__label--master'>{name}</span>
       </label>
 
       <input
@@ -27,11 +30,10 @@ const MasterSlider = ({
         type='range'
         ref={levelRef}
         value={value}
-        id='start'
-        name={type}
-        min='0'
-        max='1000'
-        step='1'
+        name={name}
+        min={min}
+        max={max}
+        step={step}
       />
     </div>
   );

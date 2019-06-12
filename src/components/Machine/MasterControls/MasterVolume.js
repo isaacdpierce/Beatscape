@@ -7,7 +7,7 @@ const MasterVolume = () => {
   const { changeMasterVolume, masterVolume } = useContext(MachineContext);
   return (
     <MasterSlider
-      type='Master Volume'
+      name='Master Volume'
       handleChange={changeMasterVolume}
       value={masterVolume}
     />

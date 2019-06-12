@@ -14,7 +14,7 @@ const STORE = {
       animate: true,
     },
     { type: 'Cymbal', description: 'Crash', animate: true },
-    { type: 'Accessory', description: 'Cowbells, triangles,animate: true,' },
+    { type: 'Accessory', description: 'Cowbells, triangles', animate: true },
     { type: 'Melody', description: 'Lalalalalalala', animate: true },
     { type: 'Harmony', description: 'Dumdumdumdumdeedah', animate: true },
     {
@@ -35,9 +35,9 @@ const STORE = {
     },
     {
       type: 'Binaural',
-      min: 20,
-      max: 100,
-      step: 1,
+      min: 0,
+      max: 1,
+      step: 0.1,
       description: '40hz, 50hz, 60hz',
       animate: false,
     },
