@@ -9,7 +9,6 @@ export default ({ frequency = 60, type = 'sine', volume } = {}) => {
   const [oscillator, setOscillator] = useState(undefined);
 
   const { audioContext } = useContext(useAudioContext);
-  console.log(`SineVolume in Oscillator is: ${volume}`);
 
   useEffect(() => {
     const oscillator = audioContext.createOscillator();
