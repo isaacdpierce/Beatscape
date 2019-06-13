@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Slider from './Slider';
-import Kick from './Audio/Kick/Kick';
 
 import MachineContext from 'context/MachineContext';
 import { getRandomFloat } from 'assets/helpers/helpers';
@@ -11,17 +10,8 @@ import './Tracks.css';
 const Tracks = () => {
   const { STORE, masterVolume, isPlaying } = useContext(MachineContext);
   const [frequency, setFrequency] = useState(60);
-  const [sineVolume, setSineVolume] = useState(0.1);
-  const [volume, setVolume] = useState(0.5);
+  const [sineVolume, setSineVolume] = useState(0.2);
   const { tracks } = STORE;
-
-  const playTracks = () => {
-    console.log('Tracks Playing!');
-  };
-
-  useEffect(() => {
-    isPlaying && playTracks();
-  }, [isPlaying]);
 
   // TODO Move this to new component for adjusting frequency
   // const changeFrequency = value => {
@@ -32,15 +22,10 @@ const Tracks = () => {
     setSineVolume(value);
   };
 
-  const changeVolume = value => {
-    setVolume(value);
-  };
-
   return (
     <section className='tracks'>
-      {/* <Kick /> */}
       {tracks.map((track, i) => {
-        const { type, min, max, step, animate, sound } = track;
+        const { type, min, max, step, animate, sound, id } = track;
 
         return (
           <Slider
@@ -52,7 +37,6 @@ const Tracks = () => {
             animate={animate}
             nextLevel={getRandomFloat(0, masterVolume)}
             changeSineVolume={changeSineVolume}
-            changeVolume={changeVolume}
             sound={sound}
           />
         );

@@ -8,7 +8,8 @@ const SliderTheme = styled.div`
   height: 50px;
   position: relative;
 
-  &&__label {
+  .slider-label {
+    color: #666;
     display: inline - block;
     transform: translate(5px, -9px);
     color: var(--main - font - color - dark);
@@ -18,7 +19,7 @@ const SliderTheme = styled.div`
     font-weight: 300;
   }
 
-  &&__value {
+  .slider-value {
     display: block;
     font-size: 10px;
     transform: rotate(90deg) translate(160px, 170px);

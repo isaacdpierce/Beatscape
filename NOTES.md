@@ -1,5 +1,10 @@
 # NOTES
 
+## Binaural not showing up
+  
+        - Check if volume can be affected with Slider component state
+        - can it be imported into Store and set as the sound source?
+  
 ## consider removing master volume - let master volume be controlled by device
 
 ## Create volume controller for binaural

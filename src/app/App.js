@@ -24,7 +24,9 @@ function App() {
     initialBackgroundLevel
   );
 
-  console.log(`Master Vol in App.js: ${masterVolume}`);
+  useEffect(() => {
+    isAnimated ? setIsPlaying(true) : setIsPlaying(false);
+  }, [isAnimated]);
 
   const changeMasterVolume = newVol => {
     setMasterVolume(newVol);
@@ -35,7 +37,6 @@ function App() {
   };
   const toggleAnimation = () => {
     setIsAnimated(!isAnimated);
-    setIsPlaying(false);
   };
 
   const togglePlay = () => {

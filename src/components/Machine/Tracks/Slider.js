@@ -5,18 +5,23 @@ import {
   roundCorrect,
 } from 'assets/helpers/helpers';
 import MachineContext from 'context/MachineContext';
-import './Slider.css';
+
+import SliderTheme from './SliderTheme';
+
+import { animateTracks } from 'assets/Animations/Animations';
+
+// TODO set isPlaying to true when isAnimated
 
 const Slider = ({
   type,
   nextLevel,
-  min = 0.0,
+  min = 0,
   max = 1.0,
   step = 0.01,
   animate,
-  sound,
+  sound = null,
   changeSineVolume,
-  changeVolume,
+  id,
 }) => {
   const initialValue = type === 'binaural' ? 0.05 : (max + min) / 2;
   const { masterVolume, isAnimated, isPlaying } = useContext(MachineContext);
@@ -24,50 +29,36 @@ const Slider = ({
   const [next, setNext] = useState(nextLevel);
 
   const levelRef = useRef();
-  console.log(sound);
+
+  console.log(sound.state());
+  console.log(value);
 
   useEffect(() => {
-    console.log(`isPlaying in Slider useEffect is set to: ${isPlaying} `);
-    console.log('Type is' + type + 'sound is ' + sound);
-
-    isPlaying && sound.play();
-
-    return () => sound.mute(true);
+    isPlaying ? sound.play() : sound.pause();
   }, [isPlaying]);
 
-  const animateTracks = () => {
-    setTimeout(() => {
-      if (value > masterVolume) {
-        setValue(masterVolume - 0.01);
-      } else if (value > next) {
-        setValue(roundCorrect(value - 0.01, 2));
-      } else if (value < next) {
-        setValue(roundCorrect(value + 0.01, 2));
-      } else if (value === next) {
-        const newNum = getRandomFloat(0, masterVolume);
-        setNext(newNum);
-      }
-    }, getRandomInteger(1000, 10000));
-    return () => clearTimeout(animateTracks);
-  };
+  useEffect(() => {
+    console.log(`volume in Slider useEffect is set to: ${value}`);
+    sound.volume(value);
+  }, [value]);
 
   useEffect(() => {
     if (isAnimated && animate) {
-      animateTracks();
+      animateTracks(value, masterVolume, next, setValue, setNext);
+      sound.volume(value);
     }
   });
 
   const handleChange = event => {
     setValue(levelRef.current.value);
-    changeVolume(value);
     type === 'Binaural' && changeSineVolume(value);
   };
 
   return (
-    <div className='slider'>
+    <SliderTheme className='slider'>
       <label htmlFor='kicks'>
-        <span className='slider__value'>{value}</span>
-        <span className='slider__label'>{type}</span>
+        <span className='slider-value'>{value}</span>
+        <span className='slider-label'>{type}</span>
       </label>
       <input
         onChange={handleChange}
@@ -80,7 +71,7 @@ const Slider = ({
         max={max}
         step={step}
       />
-    </div>
+    </SliderTheme>
   );
 };
 

@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
+import React from 'App/node_modules/react';
+import ReactDOM from 'App/node_modules/react-dom';
+import { BrowserRouter as Router } from 'App/node_modules/react-router-dom';
 import App from './App';
 
 it('renders without crashing', () => {
