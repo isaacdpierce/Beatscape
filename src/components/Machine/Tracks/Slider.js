@@ -7,10 +7,6 @@ import {
 import MachineContext from 'context/MachineContext';
 import './Slider.css';
 
-import kick from 'assets/audio/dusty-road/kick.mp3';
-
-import { Howl, Howler } from 'howler';
-
 const Slider = ({
   type,
   nextLevel,
@@ -18,7 +14,7 @@ const Slider = ({
   max = 1.0,
   step = 0.01,
   animate,
-  url,
+  sound,
   changeSineVolume,
   changeVolume,
 }) => {
@@ -28,6 +24,16 @@ const Slider = ({
   const [next, setNext] = useState(nextLevel);
 
   const levelRef = useRef();
+  console.log(sound);
+
+  useEffect(() => {
+    console.log(`isPlaying in Slider useEffect is set to: ${isPlaying} `);
+    console.log('Type is' + type + 'sound is ' + sound);
+
+    isPlaying && sound.play();
+
+    return () => sound.mute(true);
+  }, [isPlaying]);
 
   const animateTracks = () => {
     setTimeout(() => {
