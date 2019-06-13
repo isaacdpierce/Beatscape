@@ -147,33 +147,17 @@ const STORE = {
         volume: 0.5,
       }),
     },
-    // {
-    // id: 12,
-    //   type: 'Binaural',
-    //   min: 0,
-    //   max: 1,
-    //   step: 0.01,
-    //   description: '40hz, 50hz, 60hz',
-    //   animate: false,
-    //   sound: Oscillator,
-    // },
+    {
+      id: 12,
+      type: 'Binaural',
+      min: 0,
+      max: 1,
+      step: 0.01,
+      description: '40hz, 50hz, 60hz',
+      animate: false,
+      sound: Oscillator,
+    },
   ],
 };
 
 export default STORE;
-
-// const track_2 =
-// const track_3 =
-// const track_4 =
-// const track_5 =
-// const track_6 =
-// const track_7 =
-// const track_8 =
-
-// const track_9 =
-
-// const track_10 =
-
-// const track_11 =
-
-// const track_12 =

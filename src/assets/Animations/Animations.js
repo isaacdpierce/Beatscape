@@ -4,16 +4,14 @@ import {
   roundCorrect,
 } from 'assets/helpers/helpers';
 
-export const animateTracks = (value, masterVolume, next, setValue, setNext) => {
+export const animateTracks = (value, min, max, next, setValue, setNext) => {
   setTimeout(() => {
-    if (value > masterVolume) {
-      setValue(masterVolume - 0.01);
-    } else if (value > next) {
+    if (value > next) {
       setValue(roundCorrect(value - 0.01, 2));
     } else if (value < next) {
       setValue(roundCorrect(value + 0.01, 2));
     } else if (value === next) {
-      const newNum = getRandomFloat(0, masterVolume);
+      const newNum = getRandomFloat(min, max);
       setNext(roundCorrect(newNum - 0.01, 2));
     }
   }, getRandomInteger(100, 1000));

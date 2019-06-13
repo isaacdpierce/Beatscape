@@ -19,33 +19,34 @@ const Slider = ({
   max = 1.0,
   step = 0.01,
   animate,
-  sound = null,
+  sound,
   changeSineVolume,
   id,
 }) => {
-  const initialValue = type === 'binaural' ? 0.05 : (max + min) / 2;
+  const initialValue = type === 'Binaural' ? 0.05 : (max + min) / 2;
   const { masterVolume, isAnimated, isPlaying } = useContext(MachineContext);
   const [value, setValue] = useState(initialValue);
   const [next, setNext] = useState(nextLevel);
 
   const levelRef = useRef();
 
-  console.log(sound.state());
   console.log(value);
 
   useEffect(() => {
-    isPlaying ? sound.play() : sound.pause();
+    if (type !== 'Binaural') {
+      isPlaying ? sound.play() : sound.pause();
+    }
   }, [isPlaying]);
 
   useEffect(() => {
-    console.log(`volume in Slider useEffect is set to: ${value}`);
-    sound.volume(value);
+    if (type !== 'Binaural') {
+      sound.volume(value);
+    }
   }, [value]);
 
   useEffect(() => {
     if (isAnimated && animate) {
-      animateTracks(value, masterVolume, next, setValue, setNext);
-      sound.volume(value);
+      animateTracks(value, min, max, next, setValue, setNext);
     }
   });
 
@@ -64,7 +65,7 @@ const Slider = ({
         onChange={handleChange}
         type='range'
         ref={levelRef}
-        value={value > masterVolume ? masterVolume : value}
+        value={value}
         id={type}
         name={type}
         min={min}

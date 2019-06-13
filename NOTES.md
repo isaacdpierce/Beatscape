@@ -16,3 +16,9 @@
 
         - Create a base timer that all tracks will sync to
         - Volume fades in and out as tracks transition
+
+
+## FIX 
+
+        - When switching from play to animate after having made adjustments it gets NaN on some number values
+        - possible: number inputs need to change their source for initial value
