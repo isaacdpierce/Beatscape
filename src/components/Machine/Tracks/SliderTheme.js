@@ -9,10 +9,9 @@ const SliderTheme = styled.div`
   position: relative;
 
   .slider-label {
-    color: #666;
-    display: inline - block;
+    display: inline-block;
     transform: translate(5px, -9px);
-    color: var(--main - font - color - dark);
+    color: var(--main-font-color-dark);
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 0.5rem;
