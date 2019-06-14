@@ -11,6 +11,7 @@
 # production
 /build
 now.json
+jsonconfig.json
 
 # misc
 .DS_Store

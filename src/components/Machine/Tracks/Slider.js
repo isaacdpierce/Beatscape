@@ -23,8 +23,10 @@ const Slider = ({
   changeSineVolume,
   id,
 }) => {
+  // First animation will always generate a number less than half
+  // because of initial value
   const initialValue = type === 'Binaural' ? 0.05 : (max + min) / 2;
-  const { masterVolume, isAnimated, isPlaying } = useContext(MachineContext);
+  const { isAnimated, isPlaying } = useContext(MachineContext);
   const [value, setValue] = useState(initialValue);
   const [next, setNext] = useState(nextLevel);
 

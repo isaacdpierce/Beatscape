@@ -15,7 +15,7 @@ import AppTheme from './AppTheme.js';
 function App() {
   const initialBackgroundLevel = 75;
 
-  const [masterVolume, setMasterVolume] = useState(1);
+  const [masterVolume, setMasterVolume] = useState(0.5);
   const [masterFader, setMasterFader] = useState(0.5);
 
   const [isAnimated, setIsAnimated] = useState(false);
