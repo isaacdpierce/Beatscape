@@ -25,7 +25,7 @@ const Tracks = () => {
   return (
     <section className='tracks'>
       {tracks.map((track, i) => {
-        const { type, min, max, step, animate, sound, id } = track;
+        const { type, min, max, step, animate, sound } = track;
 
         return (
           <Slider
@@ -35,7 +35,6 @@ const Tracks = () => {
             step={step}
             type={type}
             animate={animate}
-            nextLevel={getRandomFloat(0, masterVolume)}
             changeSineVolume={changeSineVolume}
             sound={sound}
           />

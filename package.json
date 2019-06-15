@@ -7,6 +7,7 @@
     "normalize.css": "^8.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-rotary-knob": "^1.1.5",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "styled-components": "^4.3.1"
@@ -15,10 +16,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "now ./build",
-    "postdeploy": "now --target production -A ./build/now.json"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"

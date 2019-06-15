@@ -1,9 +1,15 @@
 # NOTES
 
-## Binaural not showing up
-  
-        - Check if volume can be affected with Slider component state
-        - can it be imported into Store and set as the sound source?
+## TROUBLESHOOT
+
+        - how to get/set id on Howl
+        - not loading build in netlify or now
+        - pause restarts track in build mode
+        - test is not accepting the AudioContext
+
+## Friday June 14th
+
+        - build fader controller for each track
   
 ## consider removing master volume - let master volume be controlled by device
 

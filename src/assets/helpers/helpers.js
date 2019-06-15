@@ -22,6 +22,10 @@ function roundCorrect(num, precision = 2) {
   return Math.round((num + c) * p) / p;
 }
 
+export const getNextLevel = (min, max) => {
+  return getRandomFloat(min, max);
+};
+
 // Custom hook - Use instead of setInterval() for animations
 // got from https://overreacted.io/making-setinterval-declarative-with-react-hooks/
 

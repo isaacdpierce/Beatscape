@@ -2,6 +2,7 @@ import React from 'react';
 import { useRef } from 'react';
 
 import './MasterSlider.css';
+// ! Get control of Howler master Howler.volume(0.5);
 
 const MasterSlider = ({
   name,

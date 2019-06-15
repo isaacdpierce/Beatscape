@@ -1,15 +1,7 @@
+// ! Make import export file for all tracks
+// ! Will eventaully be the server call
 import { Howl, Howler } from 'howler';
-import kick from 'assets/audio/dusty-road/kick.mp3';
-import bass from 'assets/audio/dusty-road/bass.mp3';
-import atmospheric from 'assets/audio/dusty-road/atmospheric.mp3';
-import chords from 'assets/audio/dusty-road/chords.mp3';
-import cymbals from 'assets/audio/dusty-road/cymbals.mp3';
-import harmony from 'assets/audio/dusty-road/harmony.mp3';
-import instrument from 'assets/audio/dusty-road/instrument.mp3';
-import melody from 'assets/audio/dusty-road/melody.mp3';
-import piano from 'assets/audio/dusty-road/piano.mp3';
-import snare from 'assets/audio/dusty-road/snare.mp3';
-import sprites from 'assets/audio/dusty-road/sprites.mp3';
+import soundList from './soundList';
 import Oscillator from 'components/Oscillator/Oscillator';
 
 const STORE = {
@@ -21,7 +13,7 @@ const STORE = {
         'The heavy drum that keeps the pace of the song moving forward.',
       animate: true,
       sound: new Howl({
-        src: [kick],
+        src: [soundList[0]],
         autoplay: false,
         loop: true,
         volume: 0.5,
@@ -33,7 +25,7 @@ const STORE = {
       description: 'Light drum',
       animate: true,
       sound: new Howl({
-        src: [snare],
+        src: [soundList[1]],
         autoplay: false,
         loop: true,
         volume: 0.5,
@@ -45,7 +37,7 @@ const STORE = {
       description: 'Hand drums, tom toms and garbage cans',
       animate: true,
       sound: new Howl({
-        src: [bass],
+        src: [soundList[2]],
         autoplay: false,
         loop: true,
         volume: 1,
@@ -57,7 +49,7 @@ const STORE = {
       description: 'Crash',
       animate: true,
       sound: new Howl({
-        src: [cymbals],
+        src: [soundList[3]],
         autoplay: false,
         loop: true,
         volume: 0.5,
@@ -69,7 +61,7 @@ const STORE = {
       description: 'Cowbells, triangles',
       animate: true,
       sound: new Howl({
-        src: [piano],
+        src: [soundList[4]],
         autoplay: false,
         loop: true,
         volume: 0.5,
@@ -81,7 +73,7 @@ const STORE = {
       description: 'Lalalalalalala',
       animate: true,
       sound: new Howl({
-        src: [chords],
+        src: [soundList[5]],
         autoplay: false,
         loop: true,
         volume: 0.5,
@@ -93,7 +85,7 @@ const STORE = {
       description: 'Dumdumdumdumdeedah',
       animate: true,
       sound: new Howl({
-        src: [harmony],
+        src: [soundList[6]],
         autoplay: false,
         loop: true,
         volume: 0.5,
@@ -105,7 +97,7 @@ const STORE = {
       description: 'Piano, sax, banjo, kazoo',
       animate: true,
       sound: new Howl({
-        src: [instrument],
+        src: [soundList[7]],
         autoplay: false,
         loop: true,
         volume: 0.5,
@@ -117,7 +109,7 @@ const STORE = {
       description: 'Baselines, Synthlines',
       animate: true,
       sound: new Howl({
-        src: [melody],
+        src: [soundList[8]],
         autoplay: false,
         loop: true,
         volume: 0.5,
@@ -129,7 +121,7 @@ const STORE = {
       description: 'Cracklings, white noise, rainfall',
       animate: true,
       sound: new Howl({
-        src: [atmospheric],
+        src: [soundList[9]],
         autoplay: false,
         loop: true,
         volume: 0.5,
@@ -141,7 +133,7 @@ const STORE = {
       description: 'Infrequent sound chunks - blahdiddyblahblah',
       animate: true,
       sound: new Howl({
-        src: [sprites],
+        src: [soundList[10]],
         autoplay: false,
         loop: true,
         volume: 0.5,

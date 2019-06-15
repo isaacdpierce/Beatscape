@@ -10,15 +10,19 @@ export default ({ frequency = 60, type = 'sine', volume } = {}) => {
 
   const { audioContext } = useContext(useAudioContext);
 
+  function dBFSToGain(dbfs) {
+    return Math.pow(10, dbfs / 20);
+  }
+
   useEffect(() => {
     const oscillator = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
 
+    gainNode.connect(audioContext.destination);
     gainNode.gain.value = volume;
+
     oscillator.frequency.value = frequency;
     oscillator.type = type;
-
-    gainNode.connect(audioContext.destination);
 
     oscillator.start();
     oscillator.connect(gainNode);

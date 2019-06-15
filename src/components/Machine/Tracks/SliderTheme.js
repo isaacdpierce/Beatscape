@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-const SliderTheme = styled.div`
+export const SliderTheme = styled.div`
   display: flex;
   flex-direction: column;
-  transform: rotate(-90deg) translate(-140px, -12px);
+  transform: rotate(-90deg);
   width: 10px;
   height: 50px;
   position: relative;
@@ -26,7 +26,7 @@ const SliderTheme = styled.div`
   }
 
   input {
-    width: 300px;
+    width: 350px;
   }
 
   @media only screen and(max-width: 850px) {
@@ -36,4 +36,12 @@ const SliderTheme = styled.div`
   }
 `;
 
-export default SliderTheme;
+export const sliderContainer = {
+  marginRight: '10px',
+  transform: 'translate(-10px, 150px)',
+};
+
+export const StyledKnob = {
+  transform: 'translate(-6px, 40px) ',
+  filter: 'brightness(70%)',
+};
