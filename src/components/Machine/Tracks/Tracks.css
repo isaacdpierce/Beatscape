@@ -3,12 +3,8 @@
   grid-row: 2 / span 1;
   background: var(--machine-color-light);
   border: 1px solid var(--machine-border-dark);
-  padding: 2rem;
+  padding-left: 2rem;
   margin: 0;
-
-  width: 780px;
-  height: 570px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;

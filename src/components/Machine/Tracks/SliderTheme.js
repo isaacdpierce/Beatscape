@@ -5,7 +5,6 @@ export const SliderTheme = styled.div`
   flex-direction: column;
   transform: rotate(-90deg);
   width: 10px;
-  height: 50px;
   position: relative;
 
   .slider-label {
