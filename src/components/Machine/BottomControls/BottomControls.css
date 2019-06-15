@@ -1,7 +1,7 @@
 .controls-bottom {
   grid-column: 1 / -1;
   grid-row: 3 / span 1;
-  /* height: 150px; */
+  padding-top: 2rem;
   width: 100%;
 
   display: flex;

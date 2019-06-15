@@ -5,7 +5,7 @@ import {
 } from 'assets/helpers/helpers';
 
 export const animateVolume = (value, min, max, next, setValue, setNext) => {
-  setTimeout(() => {
+  let volumeLoop = setTimeout(() => {
     if (value > next) {
       setValue(roundCorrect(value - 0.01, 2));
     } else if (value < next) {
@@ -14,20 +14,27 @@ export const animateVolume = (value, min, max, next, setValue, setNext) => {
       const newNum = getRandomFloat(min, max);
       setNext(roundCorrect(newNum - 0.01, 2));
     }
-  }, getRandomInteger(10000, 100000));
-  return () => clearTimeout(animateVolume);
+  }, getRandomFloat(1000, 10000));
+  return () => clearTimeout(volumeLoop);
 };
 
-export const animateFader = (value, min, max, next, setValue, setNext) => {
-  setTimeout(() => {
-    if (value > next) {
-      setValue(roundCorrect(value - 0.01, 2));
-    } else if (value < next) {
-      setValue(roundCorrect(value + 0.01, 2));
-    } else if (value === next) {
-      const newNum = getRandomFloat(min, max);
-      setNext(roundCorrect(newNum - 0.01, 2));
+export const animateKnob = (
+  knobValue,
+  knobMin,
+  knobMax,
+  knobNext,
+  setKnobValue,
+  setKnobNext
+) => {
+  let knobLoop = setTimeout(() => {
+    if (knobValue > knobNext) {
+      setKnobValue(roundCorrect(knobValue - 0.01, 2));
+    } else if (knobValue < knobNext) {
+      setKnobValue(roundCorrect(knobValue + 0.01, 2));
+    } else if (knobValue === knobNext) {
+      const newNum = getRandomFloat(knobMax, knobMin);
+      setKnobNext(roundCorrect(newNum - 0.01, 2));
     }
-  }, getRandomInteger(100, 1000));
-  return () => clearTimeout(animateVolume);
+  }, getRandomFloat(100, 1000));
+  return () => clearTimeout(knobLoop);
 };

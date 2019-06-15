@@ -1,18 +1,14 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import styled from 'styled-components';
 import {
-  getRandomInteger,
   getRandomFloat,
   roundCorrect,
-  getNextLevel,
+  getRandomInteger,
 } from 'assets/helpers/helpers';
 import MachineContext from 'context/MachineContext';
-import { Knob } from 'react-rotary-knob';
-import KnobSkin from 'components/Machine/BottomControls/Knobs/Knobskin';
+import FaderKnob from './FaderKnob';
 
 import { SliderTheme, StyledKnob, sliderContainer } from './SliderTheme';
-
-import { animateVolume } from 'assets/Animations/Animations';
+import { animateVolume, animateKnob } from 'assets/Animations/Animations';
 
 // TODO set isPlaying to true when isAnimated
 
@@ -31,23 +27,7 @@ const Slider = ({
   const [value, setValue] = useState(initialValue);
   const [next, setNext] = useState(getRandomFloat(min, max));
 
-  console.log(`next level of ${type} is  + ${next}`);
-
-  //Knob Controls
-  const [knobValue, setKnobValue] = useState(0);
-
-  // const knobMin = 1
-  // const knobMax = -1
-
   const levelRef = useRef();
-
-  console.log(knobValue);
-
-  useEffect(() => {
-    if (type !== 'Binaural') {
-      sound.stereo(knobValue);
-    }
-  }, [knobValue]);
 
   useEffect(() => {
     if (type !== 'Binaural') {
@@ -64,18 +44,12 @@ const Slider = ({
   useEffect(() => {
     if (isAnimated && animate) {
       animateVolume(value, min, max, next, setValue, setNext);
-      // animateKnob(knobValue, knobMin, knobMax, next, setKnobValue, setNext);
-      console.log(animateVolume);
     }
   });
 
   const handleSliderChange = event => {
     setValue(parseFloat(levelRef.current.value));
     type === 'Binaural' && changeSineVolume(value);
-  };
-
-  const handleKnobChange = val => {
-    setKnobValue(roundCorrect(val));
   };
 
   return (
@@ -98,16 +72,7 @@ const Slider = ({
         />
       </SliderTheme>
 
-      <Knob
-        style={StyledKnob}
-        min={1}
-        max={-1}
-        step={0.1}
-        value={knobValue}
-        onChange={handleKnobChange}
-        unlockDistance={0}
-        skin={KnobSkin}
-      />
+      <FaderKnob animate={animate} type={type} sound={sound} />
     </div>
   );
 };
