@@ -14,7 +14,7 @@ export const animateVolume = (value, min, max, next, setValue, setNext) => {
       const newNum = getRandomFloat(min, max);
       setNext(roundCorrect(newNum - 0.01, 2));
     }
-  }, getRandomFloat(1000, 10000));
+  }, getRandomFloat(100, 1000));
   return () => clearTimeout(volumeLoop);
 };
 
@@ -35,6 +35,6 @@ export const animateKnob = (
       const newNum = getRandomFloat(knobMax, knobMin);
       setKnobNext(roundCorrect(newNum - 0.01, 2));
     }
-  }, getRandomFloat(100, 1000));
+  }, 0);
   return () => clearTimeout(knobLoop);
 };
