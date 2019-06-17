@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Slider from './Slider';
 
-import MachineContext from 'context/MachineContext';
+import MachineContext from 'Context/MachineContext';
 import Oscillator from 'Components/Oscillator/Oscillator';
 
 import './Tracks.css';

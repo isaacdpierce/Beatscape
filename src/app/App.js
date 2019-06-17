@@ -6,9 +6,9 @@ import Guide from 'Routes/Guide/Guide';
 import Machine from 'Components/Machine/Machine';
 import Header from 'Components/Header/Header';
 import Footer from 'Components/Footer/Footer';
-import STORE from 'context/STORE';
+import STORE from 'Context/STORE';
 
-import { MachineProvider } from 'context/MachineContext';
+import { MachineProvider } from 'Context/MachineContext';
 
 import AppTheme from './AppTheme.js';
 

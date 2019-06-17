@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import MachineContext from 'context/MachineContext';
+import MachineContext from 'Context/MachineContext';
 import {
   getRandomFloat,
   roundCorrect,

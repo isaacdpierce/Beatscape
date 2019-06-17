@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 
-import useAudioContext from 'context/useAudioContext';
+import useAudioContext from 'Context/useAudioContext';
 
 // TODO create context variable for volume
 // TODO Create UI controller for volume control or frequency

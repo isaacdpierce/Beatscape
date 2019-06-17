@@ -4,7 +4,7 @@ import {
   roundCorrect,
   getRandomInteger,
 } from 'assets/helpers/helpers';
-import MachineContext from 'context/MachineContext';
+import MachineContext from 'Context/MachineContext';
 import FaderKnob from './FaderKnob';
 
 import { SliderTheme, StyledKnob, sliderContainer } from './SliderTheme';
