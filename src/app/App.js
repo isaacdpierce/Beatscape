@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 
-import About from 'routes/About/About';
-import Guide from 'routes/Guide/Guide';
+import About from 'Routes/About/About';
+import Guide from 'Routes/Guide/Guide';
 import Machine from 'Components/Machine/Machine';
 import Header from 'Components/Header/Header';
 import Footer from 'Components/Footer/Footer';
