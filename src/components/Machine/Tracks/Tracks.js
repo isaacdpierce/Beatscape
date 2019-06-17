@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from 'react';
 import Slider from './Slider';
 
 import MachineContext from 'context/MachineContext';
-import { getRandomFloat } from 'assets/helpers/helpers';
 import Oscillator from 'components/Oscillator/Oscillator';
 
 import './Tracks.css';
