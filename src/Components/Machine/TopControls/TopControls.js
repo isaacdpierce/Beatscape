@@ -3,7 +3,7 @@ import AnimateButton from 'Components/Machine/Buttons/AnimateButton';
 import PlayButton from 'Components/Machine/Buttons/PlayButton';
 import Tooltip from 'Components/themes/Tooltip/Tooltip';
 
-import headphones from 'assets/images/headphones.png';
+import headphones from 'Assets/images/headphones.png';
 
 import './TopControls.css';
 

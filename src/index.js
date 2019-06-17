@@ -5,7 +5,7 @@ import './index.css';
 import App from 'App/App';
 import * as serviceWorker from './serviceWorker';
 
-import './assets/variables/variables.css';
+import 'Assets/variables/variables.css';
 
 ReactDOM.render(
   <Router>

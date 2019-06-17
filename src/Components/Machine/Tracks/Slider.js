@@ -3,12 +3,12 @@ import {
   getRandomFloat,
   roundCorrect,
   getRandomInteger,
-} from 'assets/helpers/helpers';
+} from 'Assets/helpers/helpers';
 import MachineContext from 'Context/MachineContext';
 import FaderKnob from './FaderKnob';
 
 import { SliderTheme, StyledKnob, sliderContainer } from './SliderTheme';
-import { animateVolume, animateKnob } from 'assets/Animations/Animations';
+import { animateVolume, animateKnob } from 'Assets/Animations/Animations';
 
 // TODO set isPlaying to true when isAnimated
 
