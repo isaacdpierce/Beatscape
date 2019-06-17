@@ -2,7 +2,7 @@
 // ! Will eventaully be the server call
 import { Howl, Howler } from 'howler';
 import soundList from './soundList';
-import Oscillator from 'components/Oscillator/Oscillator';
+import Oscillator from 'Components/Oscillator/Oscillator';
 
 const STORE = {
   tracks: [

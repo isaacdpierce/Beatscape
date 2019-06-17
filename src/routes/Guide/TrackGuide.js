@@ -1,6 +1,6 @@
 import React from 'react';
 
-import arrow from '../../assets/images/icon-arrow.png';
+import arrow from 'assets/images/icon-arrow.png';
 
 const TrackGuide = ({ tracks, id }) => {
   const { type, description } = tracks[id];

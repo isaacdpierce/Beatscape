@@ -1,7 +1,7 @@
 import React from 'react';
-import AnimateButton from 'components/Machine/Buttons/AnimateButton';
-import PlayButton from 'components/Machine/Buttons/PlayButton';
-import Tooltip from 'components/themes/Tooltip/Tooltip';
+import AnimateButton from 'Components/Machine/Buttons/AnimateButton';
+import PlayButton from 'Components/Machine/Buttons/PlayButton';
+import Tooltip from 'Components/themes/Tooltip/Tooltip';
 
 import headphones from 'assets/images/headphones.png';
 

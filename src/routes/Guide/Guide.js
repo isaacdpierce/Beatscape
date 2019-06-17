@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import TextBlock from '../../components/themes/TextBlock/TextBlock';
+import TextBlock from 'Components/themes/TextBlock/TextBlock';
 import TrackGuide from './TrackGuide';
 
-import MachineContext from '../../context/MachineContext';
+import MachineContext from 'context/MachineContext';
 
 const Guide = () => {
   const { STORE } = useContext(MachineContext);

@@ -7,9 +7,9 @@ import {
 } from 'assets/helpers/helpers';
 
 import { Knob } from 'react-rotary-knob';
-import KnobSkin from 'components/Machine/BottomControls/Knobs/Knobskin';
+import KnobSkin from 'Components/Machine/BottomControls/Knobs/Knobskin';
 import { StyledKnob } from './SliderTheme';
-
+// client / src / Assets / Animations / Animations.js
 import { animateKnob } from 'assets/Animations/Animations';
 
 const FaderKnob = ({ animate, type, sound }) => {

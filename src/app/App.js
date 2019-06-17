@@ -3,9 +3,9 @@ import { Route } from 'react-router-dom';
 
 import About from 'routes/About/About';
 import Guide from 'routes/Guide/Guide';
-import Machine from 'components/Machine/Machine';
-import Header from 'components/Header/Header';
-import Footer from 'components/Footer/Footer';
+import Machine from 'Components/Machine/Machine';
+import Header from 'Components/Header/Header';
+import Footer from 'Components/Footer/Footer';
 import STORE from 'context/STORE';
 
 import { MachineProvider } from 'context/MachineContext';
