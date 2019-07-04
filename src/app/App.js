@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
+import axios from 'axios';
 
 import About from 'Routes/About/About';
 import Guide from 'Routes/Guide/Guide';
@@ -13,16 +14,36 @@ import { MachineProvider } from 'Context/MachineContext';
 import AppTheme from './AppTheme.js';
 
 function App() {
-  const initialBackgroundLevel = 75;
-
+  const initialUrl = 'http://localhost:8000/api/soundscapes/1';
   const [masterVolume, setMasterVolume] = useState(0.5);
   const [masterFader, setMasterFader] = useState(0.5);
-
   const [isAnimated, setIsAnimated] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [backgroundLevel, setBackgroundLevel] = useState(
-    initialBackgroundLevel
-  );
+  const [data, setData] = useState([]);
+  const [url, setUrl] = useState(initialUrl);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsError(false);
+      setIsLoading(true);
+
+      try {
+        const result = await axios(url);
+
+        setData(result.data);
+      } catch (error) {
+        setIsError(true);
+      }
+
+      setIsLoading(false);
+    };
+
+    fetchData();
+  }, [url]);
+
+  console.log(data);
 
   useEffect(() => {
     isAnimated ? setIsPlaying(true) : setIsPlaying(false);
@@ -56,10 +77,16 @@ function App() {
         togglePlay,
         masterFader,
         changeMasterFader,
+        data,
+        setData,
+        url,
+        setUrl,
       }}
     >
-      <AppTheme className='App' backgroundLevel={backgroundLevel}>
-        <Header />
+      <AppTheme className='App'>
+        {/* // TODO Put loader in popup component // Style error msg  */}
+        {isError && <div>Something went wrong... try another selection.</div>}
+        {isLoading ? <h1>...Loading</h1> : <Header />}
         <main>
           <Route exact path='/' component={Machine} />
           <Route exact path='/about' component={About} />

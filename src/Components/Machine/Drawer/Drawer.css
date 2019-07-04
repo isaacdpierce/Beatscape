@@ -1,11 +1,15 @@
+.drawer,
+.drawer-col {
+  display: flex;
+  justify-content: space-around;
+}
+
 .drawer {
   grid-column: 1 / -1;
   grid-row: 3 / span 1;
-  padding-top: 1rem;
-  display: flex;
-  height: 75%;
+  padding: 1rem 0;
 
-  justify-content: space-around;
+  height: 75%;
   background-color: black;
   width: 95%;
 
@@ -33,8 +37,22 @@
   border-bottom: 2px solid var(--machine-color-shadow-light);
 }
 
-.drawer > div > h3 {
+.drawer-col {
+  flex-direction: column;
+}
+
+.drawer > div > button {
+  padding: 0.5rem;
+  display: block;
+  border: none;
   text-transform: uppercase;
+  background: inherit;
   font-size: 0.8rem;
+  color: var(--yellow-font-color-dark);
+}
+
+.drawer > div > button:focus,
+.drawer > div > button:hover {
+  outline: none;
   color: var(--yellow-font-color-light);
 }

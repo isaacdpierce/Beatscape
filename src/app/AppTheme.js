@@ -9,7 +9,7 @@ const AppTheme = styled.div`
   background: radial-gradient(
     circle,
     var(--main-bg-color-light) 0%,
-    var(--main-bg-color-dark) ${props => props.backgroundLevel}%
+    var(--main-bg-color-dark) 75%
   );
   z-index: -10;
 

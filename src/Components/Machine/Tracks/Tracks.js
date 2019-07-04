@@ -1,13 +1,12 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import Slider from './Slider';
-
 import MachineContext from 'Context/MachineContext';
 import Oscillator from 'Components/Oscillator/Oscillator';
 
 import './Tracks.css';
 
 const Tracks = () => {
-  const { STORE, masterVolume, isPlaying } = useContext(MachineContext);
+  const { STORE, isPlaying } = useContext(MachineContext);
   const [frequency, setFrequency] = useState(60);
   const [sineVolume, setSineVolume] = useState(0.2);
   const { tracks } = STORE;

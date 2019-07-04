@@ -1,7 +1,4 @@
-// ! Make import export file for all tracks
-// ! Will eventaully be the server call
-import { Howl, Howler } from 'howler';
-import soundList from './soundList';
+import stems from './soundList';
 import Oscillator from 'Components/Oscillator/Oscillator';
 
 const STORE = {
@@ -12,132 +9,77 @@ const STORE = {
       description:
         'The heavy drum that keeps the pace of the song moving forward.',
       animate: true,
-      sound: new Howl({
-        src: [soundList[0]],
-        autoplay: false,
-        loop: true,
-        volume: 0.5,
-      }),
+      sound: stems[0],
     },
     {
       id: 2,
       type: 'Snare',
       description: 'Light drum',
       animate: true,
-      sound: new Howl({
-        src: [soundList[1]],
-        autoplay: false,
-        loop: true,
-        volume: 0.5,
-      }),
+      sound: stems[1],
     },
     {
       id: 3,
       type: 'Percussion',
       description: 'Hand drums, tom toms and garbage cans',
       animate: true,
-      sound: new Howl({
-        src: [soundList[2]],
-        autoplay: false,
-        loop: true,
-        volume: 1,
-      }),
+      sound: stems[2],
     },
     {
       id: 4,
       type: 'Cymbals',
       description: 'Crash',
       animate: true,
-      sound: new Howl({
-        src: [soundList[3]],
-        autoplay: false,
-        loop: true,
-        volume: 0.5,
-      }),
+      sound: stems[3],
     },
     {
       id: 5,
       type: 'Accessory',
       description: 'Cowbells, triangles',
       animate: true,
-      sound: new Howl({
-        src: [soundList[4]],
-        autoplay: false,
-        loop: true,
-        volume: 0.5,
-      }),
+      sound: stems[4],
     },
     {
       id: 6,
       type: 'Melody',
       description: 'Lalalalalalala',
       animate: true,
-      sound: new Howl({
-        src: [soundList[5]],
-        autoplay: false,
-        loop: true,
-        volume: 0.5,
-      }),
+      sound: stems[5],
     },
     {
       id: 7,
       type: 'Harmony',
       description: 'Dumdumdumdumdeedah',
       animate: true,
-      sound: new Howl({
-        src: [soundList[6]],
-        autoplay: false,
-        loop: true,
-        volume: 0.5,
-      }),
+      sound: stems[6],
     },
     {
       id: 8,
       type: 'Instrument',
       description: 'Piano, sax, banjo, kazoo',
       animate: true,
-      sound: new Howl({
-        src: [soundList[7]],
-        autoplay: false,
-        loop: true,
-        volume: 0.5,
-      }),
+      sound: stems[7],
     },
     {
       id: 9,
-      type: 'Soundscape',
+      type: 'Atmosphere',
       description: 'Baselines, Synthlines',
       animate: true,
-      sound: new Howl({
-        src: [soundList[8]],
-        autoplay: false,
-        loop: true,
-        volume: 0.5,
-      }),
+      sound: stems[8],
     },
     {
       id: 10,
-      type: 'Texture',
+      type: 'Environment',
       description: 'Cracklings, white noise, rainfall',
       animate: true,
-      sound: new Howl({
-        src: [soundList[9]],
-        autoplay: false,
-        loop: true,
-        volume: 0.5,
-      }),
+      sound: stems[9],
     },
     {
       id: 11,
       type: 'Sprites',
       description: 'Infrequent sound chunks - blahdiddyblahblah',
       animate: true,
-      sound: new Howl({
-        src: [soundList[10]],
-        autoplay: false,
-        loop: true,
-        volume: 0.5,
-      }),
+      sound: stems[10],
     },
     {
       id: 12,

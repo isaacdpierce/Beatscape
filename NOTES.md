@@ -1,15 +1,21 @@
 # NOTES
 
+## NEW
+
+- Load data into howls - src = amazon url from db
+
+- Add login admin panel for adding new soundscapes, environments and sprites.
+        - refer to CH. 17 - Restful APIs - in Node/Postgres section
+
+- Add list area that shows all available soundscapes, environments and sprites.
+        - When adding a new soundscapes etc it updates th UI automatically
+
 ## TROUBLESHOOT
 
-        - how to get/set id on Howl
-        - not loading build in netlify or now
-        - pause restarts track in build mode
         - test is not accepting the AudioContext
 
-## Friday June 14th
+## // TODO change to react-sound library - more control
 
-        - build fader controller for each track
   
 ## consider removing master volume - let master volume be controlled by device
 
@@ -23,29 +29,3 @@
         - Create a base timer that all tracks will sync to
         - Volume fades in and out as tracks transition
 
-## FIX
-
-        - When switching from play to animate after having made adjustments it gets NaN on some number values
-        - possible: number inputs need to change their source for initial value
-
-Starter test file - failing because of audioContext
-
-App.test.js
-
-        ```js
-        import React from 'react';
-        import ReactDOM from 'react-dom';
-        import { BrowserRouter as Router } from 'react-router-dom';
-        import App from './App';
-
-        it('renders without crashing', () => {
-        const div = document.createElement('div');
-        ReactDOM.render(
-        <Router>
-        <App />
-        </Router>,
-        div
-        );
-        ReactDOM.unmountComponentAtNode(div);
-        });
-        ```

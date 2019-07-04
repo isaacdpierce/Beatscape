@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import MachineContext from 'Context/MachineContext';
 
 const Drawer = ({ drawerStyle }) => {
+  const { setUrl } = useContext(MachineContext);
   return (
     <>
       <section className='drawer' style={drawerStyle}>
-        <div>
-          <h3>Tokyo Rain</h3>
-          <h3>New York Hustle</h3>
-          <h3>Dusty Road</h3>
+        <div className='drawer-col'>
+          <button>New York Hustle</button>
+          <button>Tokyo Rain</button>
+          <button>Dusty Road</button>
         </div>
-        <div>
-          <h3>Secret Forest</h3>
-          <h3>Sunset Saunter</h3>
-          <h3>Beach Bounce</h3>
+        <div className='drawer-col'>
+          <button
+            type='button'
+            onClick={() => setUrl(`http://localhost:8000/api/sprites`)}
+          >
+            Secret Forest
+          </button>
+          <button>Sunset Saunter</button>
+          <button>Beach Bounce</button>
         </div>
       </section>
     </>

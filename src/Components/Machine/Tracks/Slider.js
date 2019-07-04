@@ -1,14 +1,10 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import {
-  getRandomFloat,
-  roundCorrect,
-  getRandomInteger,
-} from 'Assets/helpers/helpers';
+import { getRandomFloat } from 'Assets/helpers/helpers';
 import MachineContext from 'Context/MachineContext';
 import FaderKnob from './FaderKnob';
 
 import { SliderTheme, StyledKnob, sliderContainer } from './SliderTheme';
-import { animateVolume, animateKnob } from 'Assets/Animations/Animations';
+import { animateVolume, animateKnob } from 'Assets/animations/animations';
 
 // TODO set isPlaying to true when isAnimated
 
@@ -20,7 +16,6 @@ const Slider = ({
   animate,
   sound,
   changeSineVolume,
-  id,
 }) => {
   const initialValue = type === 'Binaural' ? 0.05 : (max + min) / 2;
   const { isAnimated, isPlaying } = useContext(MachineContext);

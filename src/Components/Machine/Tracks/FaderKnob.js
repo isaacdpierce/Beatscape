@@ -10,7 +10,7 @@ import { Knob } from 'react-rotary-knob';
 import KnobSkin from 'Components/Machine/BottomControls/Knobs/Knobskin';
 import { StyledKnob } from './SliderTheme';
 // client / src / Assets / Animations / Animations.js
-import { animateKnob } from 'Assets/Animations/Animations';
+import { animateKnob } from 'Assets/animations/animations';
 
 const FaderKnob = ({ animate, type, sound }) => {
   // These are set opposite to make left and right on round knob
@@ -20,10 +20,6 @@ const FaderKnob = ({ animate, type, sound }) => {
   const { isAnimated, isPlaying } = useContext(MachineContext);
   const [knobValue, setKnobValue] = useState(0);
   const [knobNext, setKnobNext] = useState(getRandomFloat(knobMax, knobMin));
-
-  console.log(
-    `Current ${type} value is ${knobValue} next number is ${knobNext}`
-  );
 
   useEffect(() => {
     if (type !== 'Binaural') {
