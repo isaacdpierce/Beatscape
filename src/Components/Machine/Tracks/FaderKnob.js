@@ -12,17 +12,19 @@ import { StyledKnob } from './SliderTheme';
 // client / src / Assets / Animations / Animations.js
 import { animateKnob } from 'Assets/animations/animations';
 
-const FaderKnob = ({ animate, type, sound }) => {
+const FaderKnob = ({ animate, type, sound, changeSineFrequency }) => {
   // These are set opposite to make left and right on round knob
-  const knobMin = 1;
-  const knobMax = -1;
+  const knobMin = type === 'Binaural' ? 30 : 1;
+  const knobMax = type === 'Binaural' ? 100 : -1;
 
   const { isAnimated, isPlaying } = useContext(MachineContext);
   const [knobValue, setKnobValue] = useState(0);
   const [knobNext, setKnobNext] = useState(getRandomFloat(knobMax, knobMin));
 
   useEffect(() => {
-    if (type !== 'Binaural') {
+    if (type === 'Binaural') {
+      changeSineFrequency(roundCorrect(knobValue));
+    } else {
       sound.stereo(knobValue);
     }
   }, [knobValue]);
@@ -46,8 +48,8 @@ const FaderKnob = ({ animate, type, sound }) => {
 
   return (
     <Knob
-      min={1}
-      max={-1}
+      min={knobMin}
+      max={knobMax}
       step={0.01}
       value={knobValue}
       onChange={handleKnobChange}

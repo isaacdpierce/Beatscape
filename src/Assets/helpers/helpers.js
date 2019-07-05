@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Howl, Howler } from 'howler';
 
 const getRandomInteger = (min, max) => {
   min = Math.ceil(min);
@@ -22,8 +23,97 @@ function roundCorrect(num, precision = 2) {
   return Math.round((num + c) * p) / p;
 }
 
-export const getNextLevel = (min, max) => {
+const getNextLevel = (min, max) => {
   return getRandomFloat(min, max);
+};
+
+const makeSoundList = stems => {
+  return stems.map(stem => {
+    const { urls } = stem;
+    return new Howl({
+      src: urls[0],
+      autoplay: false,
+      loop: true,
+      volume: 0.5,
+    });
+  });
+};
+
+const makeTrackList = (sounds, Oscillator) => {
+  return [
+    {
+      id: 1,
+      type: 'Kick',
+      animate: true,
+      sound: sounds[0],
+    },
+    {
+      id: 2,
+      type: 'Snare',
+      animate: true,
+      sound: sounds[1],
+    },
+    {
+      id: 3,
+      type: 'Percussion',
+      animate: true,
+      sound: sounds[2],
+    },
+    {
+      id: 4,
+      type: 'Cymbals',
+      animate: true,
+      sound: sounds[3],
+    },
+    {
+      id: 5,
+      type: 'Accessory',
+      animate: true,
+      sound: sounds[4],
+    },
+    {
+      id: 6,
+      type: 'Melody',
+      animate: true,
+      sound: sounds[5],
+    },
+    {
+      id: 7,
+      type: 'Harmony',
+      animate: true,
+      sound: sounds[6],
+    },
+    {
+      id: 8,
+      type: 'Instrument',
+      animate: true,
+      sound: sounds[7],
+    },
+    {
+      id: 9,
+      type: 'Atmosphere',
+      animate: true,
+      sound: sounds[8],
+    },
+    {
+      id: 10,
+      type: 'Environment',
+      animate: true,
+      sound: sounds[9],
+    },
+    {
+      id: 11,
+      type: 'Sprites',
+      animate: true,
+      sound: sounds[10],
+    },
+    {
+      id: 12,
+      type: 'Binaural',
+      animate: false,
+      sound: Oscillator,
+    },
+  ];
 };
 
 // Custom hook - Use instead of setInterval() for animations
@@ -49,4 +139,12 @@ const useInterval = (callback, delay) => {
   }, [delay]);
 };
 
-export { getRandomInteger, getRandomFloat, useInterval, roundCorrect };
+export {
+  getRandomInteger,
+  getRandomFloat,
+  useInterval,
+  getNextLevel,
+  roundCorrect,
+  makeTrackList,
+  makeSoundList,
+};

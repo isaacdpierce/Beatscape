@@ -1,20 +1,40 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Slider from './Slider';
 import MachineContext from 'Context/MachineContext';
+
+import { makeTrackList, makeSoundList } from 'Assets/helpers/helpers';
 import Oscillator from 'Components/Oscillator/Oscillator';
 
 import './Tracks.css';
 
 const Tracks = () => {
-  const { STORE, isPlaying } = useContext(MachineContext);
-  const [frequency, setFrequency] = useState(60);
+  const { data, isPlaying } = useContext(MachineContext);
+  const [sineFrequency, setSineFrequency] = useState(60);
   const [sineVolume, setSineVolume] = useState(0.2);
-  const { tracks } = STORE;
+  const [sounds, setSounds] = useState(undefined);
+  const [tracks, setTracks] = useState(undefined);
 
   // TODO Move this to new component for adjusting frequency
-  // const changeFrequency = value => {
-  //   setFrequency(value);
-  // };
+  const changeSineFrequency = value => {
+    setSineFrequency(value);
+  };
+
+  console.log('Sine Freq is ' + sineFrequency);
+
+  useEffect(() => {
+    if (data) {
+      const { stems } = data.soundscape_tracks;
+      const soundList = makeSoundList(stems);
+      setSounds(soundList);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (sounds) {
+      const trackList = makeTrackList(sounds, Oscillator);
+      setTracks(trackList);
+    }
+  }, [sounds]);
 
   const changeSineVolume = value => {
     setSineVolume(value);
@@ -22,24 +42,27 @@ const Tracks = () => {
 
   return (
     <section className='tracks'>
-      {tracks.map((track, i) => {
-        const { type, min, max, step, animate, sound } = track;
+      {tracks &&
+        tracks.map((track, i) => {
+          const { type, animate, sound } = track;
 
-        return (
-          <Slider
-            key={i}
-            min={min}
-            max={max}
-            step={step}
-            type={type}
-            animate={animate}
-            changeSineVolume={changeSineVolume}
-            sound={sound}
-          />
-        );
-      })}
+          return (
+            <Slider
+              key={i}
+              type={type}
+              animate={animate}
+              changeSineVolume={changeSineVolume}
+              changeSineFrequency={changeSineFrequency}
+              sound={sound}
+            />
+          );
+        })}
       {isPlaying && (
-        <Oscillator frequency={frequency} type={'sine'} volume={sineVolume} />
+        <Oscillator
+          frequency={sineFrequency}
+          type={'sine'}
+          volume={sineVolume}
+        />
       )}
     </section>
   );

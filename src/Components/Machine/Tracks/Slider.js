@@ -6,18 +6,11 @@ import FaderKnob from './FaderKnob';
 import { SliderTheme, StyledKnob, sliderContainer } from './SliderTheme';
 import { animateVolume, animateKnob } from 'Assets/animations/animations';
 
-// TODO set isPlaying to true when isAnimated
-
-const Slider = ({
-  type,
-  min = 0,
-  max = 1.0,
-  step = 0.01,
-  animate,
-  sound,
-  changeSineVolume,
-}) => {
-  const initialValue = type === 'Binaural' ? 0.05 : (max + min) / 2;
+const Slider = ({ type, animate, sound, changeSineVolume, changeSineFrequency }) => {
+  const min = 0;
+  const max = 1.0;
+  const step = 0.01;
+  const initialValue = type === 'Binaural' ? 0.05 : 0.5;
   const { isAnimated, isPlaying } = useContext(MachineContext);
   const [value, setValue] = useState(initialValue);
   const [next, setNext] = useState(getRandomFloat(min, max));
@@ -67,7 +60,12 @@ const Slider = ({
         />
       </SliderTheme>
 
-      <FaderKnob animate={animate} type={type} sound={sound} />
+      <FaderKnob
+        animate={animate}
+        type={type}
+        sound={sound}
+        changeSineFrequency={changeSineFrequency}
+      />
     </div>
   );
 };

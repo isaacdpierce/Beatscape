@@ -84,9 +84,6 @@ const STORE = {
     {
       id: 12,
       type: 'Binaural',
-      min: 0,
-      max: 1,
-      step: 0.01,
       description: '40hz, 50hz, 60hz',
       animate: false,
       sound: Oscillator,
