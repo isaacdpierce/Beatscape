@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import axios from 'axios';
+import { Howl, Howler } from 'howler';
 
 import About from 'Routes/About/About';
 import Guide from 'Routes/Guide/Guide';
@@ -19,7 +20,7 @@ function App() {
   const [masterFader, setMasterFader] = useState(0.5);
   const [isAnimated, setIsAnimated] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(undefined);
   const [url, setUrl] = useState(initialUrl);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -42,8 +43,6 @@ function App() {
 
     fetchData();
   }, [url]);
-
-  console.log(data);
 
   useEffect(() => {
     isAnimated ? setIsPlaying(true) : setIsPlaying(false);
