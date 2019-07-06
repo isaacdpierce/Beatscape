@@ -9,8 +9,8 @@ import './Tracks.css';
 
 const Tracks = () => {
   const { data, isPlaying } = useContext(MachineContext);
-  const [sineFrequency, setSineFrequency] = useState(60);
-  const [sineVolume, setSineVolume] = useState(0.2);
+  const [sineFrequency, setSineFrequency] = useState(0);
+  const [sineVolume, setSineVolume] = useState(0.05);
   const [sounds, setSounds] = useState(undefined);
   const [tracks, setTracks] = useState(undefined);
 
@@ -18,8 +18,6 @@ const Tracks = () => {
   const changeSineFrequency = value => {
     setSineFrequency(value);
   };
-
-  console.log('Sine Freq is ' + sineFrequency);
 
   useEffect(() => {
     if (data) {

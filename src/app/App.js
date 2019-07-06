@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import axios from 'axios';
-import { Howl, Howler } from 'howler';
+import styled from 'styled-components';
 
 import About from 'Routes/About/About';
 import Guide from 'Routes/Guide/Guide';
@@ -26,7 +26,10 @@ function App() {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
+    console.log(url);
+
     const fetchData = async () => {
+      setIsPlaying(false);
       setIsError(false);
       setIsLoading(true);
 
@@ -39,6 +42,7 @@ function App() {
       }
 
       setIsLoading(false);
+      setIsPlaying(true);
     };
 
     fetchData();
@@ -85,7 +89,8 @@ function App() {
       <AppTheme className='App'>
         {/* // TODO Put loader in popup component // Style error msg  */}
         {isError && <div>Something went wrong... try another selection.</div>}
-        {isLoading ? <h1>...Loading</h1> : <Header />}
+        {isLoading && <h1>...Loading</h1>}
+        <Header />
         <main>
           <Route exact path='/' component={Machine} />
           <Route exact path='/about' component={About} />

@@ -18,12 +18,12 @@ const FaderKnob = ({ animate, type, sound, changeSineFrequency }) => {
   const knobMax = type === 'Binaural' ? 100 : -1;
 
   const { isAnimated, isPlaying } = useContext(MachineContext);
-  const [knobValue, setKnobValue] = useState(0);
+  const [knobValue, setKnobValue] = useState(type === 'Binaural' ? 65 : 0);
   const [knobNext, setKnobNext] = useState(getRandomFloat(knobMax, knobMin));
 
   useEffect(() => {
     if (type === 'Binaural') {
-      changeSineFrequency(roundCorrect(knobValue));
+      changeSineFrequency(roundCorrect(knobValue, 0));
     } else {
       sound.stereo(knobValue);
     }

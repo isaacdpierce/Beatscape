@@ -7,14 +7,19 @@ const Drawer = ({ drawerStyle }) => {
     <>
       <section className='drawer' style={drawerStyle}>
         <div className='drawer-col'>
-          <button>New York Hustle</button>
+          <button
+            type='submit'
+            onClick={() => setUrl(`http://localhost:8000/api/soundscapes/1`)}
+          >
+            New York Hustle
+          </button>
           <button>Tokyo Rain</button>
           <button>Dusty Road</button>
         </div>
         <div className='drawer-col'>
           <button
-            type='button'
-            onClick={() => setUrl(`http://localhost:8000/api/sprites`)}
+            type='submit'
+            onClick={() => setUrl(`http://localhost:8000/api/soundscapes/2`)}
           >
             Secret Forest
           </button>
