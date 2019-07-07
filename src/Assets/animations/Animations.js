@@ -1,8 +1,4 @@
-import {
-  getRandomFloat,
-  getRandomInteger,
-  roundCorrect,
-} from 'Assets/helpers/helpers';
+import { getRandomFloat, roundCorrect } from 'Assets/helpers/helpers';
 
 export const animateVolume = (value, min, max, next, setValue, setNext) => {
   let volumeLoop = setTimeout(() => {

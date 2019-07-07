@@ -1,10 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import MachineContext from 'Context/MachineContext';
-import {
-  getRandomFloat,
-  roundCorrect,
-  getRandomInteger,
-} from 'Assets/helpers/helpers';
+import { getRandomFloat, roundCorrect } from 'Assets/helpers/helpers';
 
 import { Knob } from 'react-rotary-knob';
 import KnobSkin from 'Components/Machine/BottomControls/Knobs/Knobskin';
@@ -17,7 +13,7 @@ const FaderKnob = ({ animate, type, sound, changeSineFrequency }) => {
   const knobMin = type === 'Binaural' ? 30 : 1;
   const knobMax = type === 'Binaural' ? 100 : -1;
 
-  const { isAnimated, isPlaying } = useContext(MachineContext);
+  const { isAnimated } = useContext(MachineContext);
   const [knobValue, setKnobValue] = useState(type === 'Binaural' ? 65 : 0);
   const [knobNext, setKnobNext] = useState(getRandomFloat(knobMax, knobMin));
 
@@ -27,7 +23,7 @@ const FaderKnob = ({ animate, type, sound, changeSineFrequency }) => {
     } else {
       sound.stereo(knobValue);
     }
-  }, [knobValue]);
+  }, [knobValue, changeSineFrequency, type, sound]);
 
   useEffect(() => {
     if (isAnimated && animate) {
@@ -40,7 +36,16 @@ const FaderKnob = ({ animate, type, sound, changeSineFrequency }) => {
         setKnobNext
       );
     }
-  });
+  }, [
+    knobValue,
+    knobMin,
+    knobMax,
+    knobNext,
+    setKnobValue,
+    setKnobNext,
+    animate,
+    isAnimated,
+  ]);
 
   const handleKnobChange = val => {
     setKnobValue(roundCorrect(val));

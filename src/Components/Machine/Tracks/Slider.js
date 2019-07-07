@@ -3,10 +3,16 @@ import { getRandomFloat } from 'Assets/helpers/helpers';
 import MachineContext from 'Context/MachineContext';
 import FaderKnob from './FaderKnob';
 
-import { SliderTheme, StyledKnob, sliderContainer } from './SliderTheme';
-import { animateVolume, animateKnob } from 'Assets/animations/animations';
+import { SliderTheme, sliderContainer } from './SliderTheme';
+import { animateVolume } from 'Assets/animations/animations';
 
-const Slider = ({ type, animate, sound, changeSineVolume, changeSineFrequency }) => {
+const Slider = ({
+  type,
+  animate,
+  sound,
+  changeSineVolume,
+  changeSineFrequency,
+}) => {
   const min = 0;
   const max = 1.0;
   const step = 0.01;
@@ -21,19 +27,19 @@ const Slider = ({ type, animate, sound, changeSineVolume, changeSineFrequency })
     if (type !== 'Binaural') {
       isPlaying ? sound.play() : sound.pause();
     }
-  }, [isPlaying]);
+  }, [isPlaying, sound, type]);
 
   useEffect(() => {
     if (type !== 'Binaural') {
       sound.volume(value);
     }
-  }, [value]);
+  }, [value, sound, type]);
 
   useEffect(() => {
     if (isAnimated && animate) {
       animateVolume(value, min, max, next, setValue, setNext);
     }
-  });
+  }, [isAnimated, animate, value, min, max, next, setValue, setNext]);
 
   const handleSliderChange = event => {
     setValue(parseFloat(levelRef.current.value));

@@ -28,11 +28,12 @@ export const SliderTheme = styled.div`
     width: 350px;
   }
 
-  @media only screen and(max-width: 850px) {
-    transform: rotate(0deg) translateX(-150px);
+  /* @media only screen and(max-width: 850px) {
+    flex-direction: row;
+    transform: rotate(90deg) translate(-150px);
     height: 10px;
-    width: 50px;
-  }
+    width: 500px;
+  } */
 `;
 
 export const sliderContainer = {

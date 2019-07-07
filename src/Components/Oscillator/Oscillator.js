@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import { useEffect, useContext, useState } from 'react';
 
 import useAudioContext from 'Context/useAudioContext';
 
@@ -9,10 +9,6 @@ export default ({ frequency = 60, type = 'sine', volume } = {}) => {
   const [oscillator, setOscillator] = useState(undefined);
 
   const { audioContext } = useContext(useAudioContext);
-
-  function dBFSToGain(dbfs) {
-    return Math.pow(10, dbfs / 20);
-  }
 
   useEffect(() => {
     const oscillator = audioContext.createOscillator();
@@ -34,13 +30,13 @@ export default ({ frequency = 60, type = 'sine', volume } = {}) => {
       oscillator.disconnect();
       gainNode.disconnect();
     };
-  }, [volume]);
+  }, [volume, audioContext, frequency, type]);
 
   useEffect(() => {
     if (oscillator) {
       oscillator.frequency.value = frequency;
     }
-  }, [frequency]); // only trigger this effect when frequency changes
+  }, [frequency, oscillator]); // only trigger this effect when frequency changes
 
   return null;
 };

@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import axios from 'axios';
-import styled from 'styled-components';
 
 import About from 'Routes/About/About';
 import Guide from 'Routes/Guide/Guide';
 import Machine from 'Components/Machine/Machine';
 import Header from 'Components/Header/Header';
 import Footer from 'Components/Footer/Footer';
-import STORE from 'Context/STORE';
 
 import { MachineProvider } from 'Context/MachineContext';
 
@@ -26,7 +24,7 @@ function App() {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    console.log(url);
+    let mounted = true;
 
     const fetchData = async () => {
       setIsPlaying(false);
@@ -35,17 +33,20 @@ function App() {
 
       try {
         const result = await axios(url);
-
-        setData(result.data);
+        if (mounted) {
+          setData(result.data);
+        }
       } catch (error) {
         setIsError(true);
       }
 
       setIsLoading(false);
-      setIsPlaying(true);
     };
 
     fetchData();
+    return () => {
+      mounted = false;
+    };
   }, [url]);
 
   useEffect(() => {
@@ -71,7 +72,6 @@ function App() {
   return (
     <MachineProvider
       value={{
-        STORE,
         masterVolume,
         changeMasterVolume,
         isAnimated,

@@ -1,45 +1,59 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Slider from './Slider';
 import MachineContext from 'Context/MachineContext';
+import { Howl } from 'howler';
 
-import { makeTrackList, makeSoundList } from 'Assets/helpers/helpers';
+import { useTrackList } from 'Assets/hooks/useTrackList';
 import Oscillator from 'Components/Oscillator/Oscillator';
 
 import './Tracks.css';
 
 const Tracks = () => {
-  const { data, isPlaying } = useContext(MachineContext);
+  const { data, isPlaying, isAnimated } = useContext(MachineContext);
   const [sineFrequency, setSineFrequency] = useState(0);
   const [sineVolume, setSineVolume] = useState(0.05);
   const [sounds, setSounds] = useState(undefined);
   const [tracks, setTracks] = useState(undefined);
 
-  // TODO Move this to new component for adjusting frequency
-  const changeSineFrequency = value => {
-    setSineFrequency(value);
-  };
+  const trackList = useTrackList(sounds, Oscillator);
 
   useEffect(() => {
     if (data) {
       const { stems } = data.soundscape_tracks;
-      const soundList = makeSoundList(stems);
+      const soundList = stems.map(stem => {
+        const { urls } = stem;
+        return new Howl({
+          src: urls[0],
+          autoplay: false,
+          loop: true,
+          volume: 0.5,
+        });
+      });
       setSounds(soundList);
     }
   }, [data]);
 
   useEffect(() => {
     if (sounds) {
-      const trackList = makeTrackList(sounds, Oscillator);
       setTracks(trackList);
     }
-  }, [sounds]);
+  }, [sounds, trackList]);
 
   const changeSineVolume = value => {
     setSineVolume(value);
   };
 
+  const changeSineFrequency = value => {
+    setSineFrequency(value);
+  };
+
   return (
-    <section className='tracks'>
+    <section className={isAnimated ? 'tracks animated' : 'tracks'}>
+      {isAnimated && (
+        <section className='animatedCover'>
+          <p>Tracks Animated - Click stop animate to change levels</p>
+        </section>
+      )}
       {tracks &&
         tracks.map((track, i) => {
           const { type, animate, sound } = track;
