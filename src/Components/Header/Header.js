@@ -9,17 +9,18 @@ const Header = () => {
       <NavLink to='/'>
         <h1 className='logo'>Beatscape</h1>
       </NavLink>
-      <nav>
+      <nav aria-label='Main Navigation'>
         <ul className='nav-links'>
           {links.map((link, i) => (
-            <NavLink
-              exact
-              key={i}
-              to={link === 'home' ? '/' : `/${link.split(' ').join('-')}`}
-              activeClassName='selected-link'
-            >
-              {link}
-            </NavLink>
+            <li key={i}>
+              <NavLink
+                exact
+                to={link === 'home' ? '/' : `/${link.split(' ').join('-')}`}
+                activeClassName='selected-link'
+              >
+                {link}
+              </NavLink>
+            </li>
           ))}
         </ul>
       </nav>

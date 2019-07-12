@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
 import MachineContext from 'Context/MachineContext';
 import { Howl } from 'howler';
-import { useTrackList } from 'Assets/hooks/useTrackList';
 import Oscillator from 'Components/Oscillator/Oscillator';
+import trackTypes from 'Assets/audio/trackTypes';
 import Loader from 'Components/Loader/Loader';
 import Slider from './Slider';
 
@@ -12,33 +12,29 @@ const Tracks = () => {
   const { data, isPlaying, isAnimated, isLoading } = useContext(MachineContext);
   const [sineFrequency, setSineFrequency] = useState(0);
   const [sineVolume, setSineVolume] = useState(0.05);
-  const [sounds, setSounds] = useState(undefined);
   const [tracks, setTracks] = useState(undefined);
-
-  const trackList = useTrackList(sounds, data, Oscillator);
 
   useEffect(() => {
     if (data) {
       const { stems } = data;
+      const trackList = stems.map((stem, index) => {
+        const { stemName, animate, urls } = stem;
 
-      const soundList = stems.map(stem => {
-        const { urls } = stem;
-        return new Howl({
-          src: urls[0],
-          autoplay: false,
-          loop: true,
-          volume: 0.5,
-        });
+        return {
+          id: index + 1,
+          stemName,
+          animate,
+          sound: new Howl({
+            src: urls[0],
+            autoplay: false,
+            loop: true,
+            volume: 0.5,
+          }),
+        };
       });
-      setSounds(soundList);
-    }
-  }, [data]);
-
-  useEffect(() => {
-    if (sounds) {
       setTracks(trackList);
     }
-  }, [sounds, trackList]);
+  }, [data]);
 
   const changeSineVolume = value => {
     setSineVolume(value);
@@ -56,21 +52,29 @@ const Tracks = () => {
           <p>Tracks Animated - Click stop animate to change levels</p>
         </section>
       )}
-      {tracks &&
-        tracks.map((track, i) => {
-          const { type, animate, sound } = track;
+      {tracks
+        ? tracks.map((track, i) => {
+            const { stemName, animate, sound } = track;
 
-          return (
+            return (
+              <Slider key={i} type={stemName} animate={animate} sound={sound} />
+            );
+          })
+        : trackTypes.map((track, index) => (
             <Slider
-              key={i}
-              type={type}
-              animate={animate}
+              key={index}
+              type={track}
               changeSineVolume={changeSineVolume}
               changeSineFrequency={changeSineFrequency}
-              sound={sound}
             />
-          );
-        })}
+          ))}
+      <Slider
+        type='Binaural'
+        animate={false}
+        changeSineVolume={changeSineVolume}
+        changeSineFrequency={changeSineFrequency}
+        sound={Oscillator}
+      />
       {isPlaying && (
         <Oscillator frequency={sineFrequency} type='sine' volume={sineVolume} />
       )}

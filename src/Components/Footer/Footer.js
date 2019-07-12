@@ -10,17 +10,18 @@ const Footer = () => {
       <div className='copyright'>
         <p>Sound design by Michael Jacques &copy;2019 </p>
 
-        <nav>
+        <nav aria-label='Personal Links'>
           <ul className='nav-links'>
             {links.map((link, i) => (
-              <NavLink
-                key={i}
-                to={`/${link}`}
-                className='footer'
-                activeClassName='selected-link'
-              >
-                {link}
-              </NavLink>
+              <li key={i}>
+                <NavLink
+                  to={`/${link}`}
+                  className='footer'
+                  activeClassName='selected-link'
+                >
+                  {link}
+                </NavLink>
+              </li>
             ))}
           </ul>
         </nav>

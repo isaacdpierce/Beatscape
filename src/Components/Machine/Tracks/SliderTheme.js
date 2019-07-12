@@ -9,7 +9,7 @@ export const SliderTheme = styled.div`
 
   .slider-label {
     display: inline-block;
-    transform: translate(5px, -9px);
+    transform: translate(5px, 5px);
     color: var(--main-font-color-dark);
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -20,7 +20,7 @@ export const SliderTheme = styled.div`
   .slider-value {
     display: block;
     font-size: 10px;
-    transform: rotate(90deg) translate(160px, 170px);
+    transform: rotate(90deg) translate(195px, 170px);
     width: 300px;
   }
 
@@ -42,6 +42,6 @@ export const sliderContainer = {
 };
 
 export const StyledKnob = {
-  transform: 'translate(-6px, 40px) ',
+  transform: 'translate(-6px, 20px) ',
   filter: 'brightness(70%)',
 };

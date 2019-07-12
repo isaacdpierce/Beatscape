@@ -25,14 +25,14 @@ const Slider = ({
   const levelRef = useRef();
 
   useEffect(() => {
-    if (type !== 'Binaural') {
+    if (sound && type !== 'Binaural') {
       // eslint-disable-next-line no-unused-expressions
       isPlaying ? sound.play() : sound.pause();
     }
   }, [isPlaying, sound, type]);
 
   useEffect(() => {
-    if (type !== 'Binaural') {
+    if (sound && type !== 'Binaural') {
       sound.volume(value);
     }
   }, [value, sound, type]);
@@ -43,7 +43,7 @@ const Slider = ({
     }
   }, [isAnimated, animate, value, min, max, next, setValue, setNext]);
 
-  const handleSliderChange = event => {
+  const handleSliderChange = () => {
     setValue(parseFloat(levelRef.current.value));
     if (type === 'Binaural') {
       changeSineVolume(value);
@@ -56,18 +56,18 @@ const Slider = ({
         <label htmlFor={type}>
           <span className='slider-value'>{value}</span>
           <span className='slider-label'>{type}</span>
+          <input
+            onChange={handleSliderChange}
+            type='range'
+            ref={levelRef}
+            value={value}
+            id={type}
+            name={type}
+            min={min}
+            max={max}
+            step={step}
+          />
         </label>
-        <input
-          onChange={handleSliderChange}
-          type='range'
-          ref={levelRef}
-          value={value}
-          id={type}
-          name={type}
-          min={min}
-          max={max}
-          step={step}
-        />
       </SliderTheme>
 
       <FaderKnob
@@ -82,10 +82,10 @@ const Slider = ({
 
 Slider.propTypes = {
   type: PropTypes.string.isRequired,
-  animate: PropTypes.bool.isRequired,
+  animate: PropTypes.bool,
   sound: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-  changeSineVolume: PropTypes.func.isRequired,
-  changeSineFrequency: PropTypes.func.isRequired,
+  changeSineVolume: PropTypes.func,
+  changeSineFrequency: PropTypes.func,
 };
 
 export default Slider;

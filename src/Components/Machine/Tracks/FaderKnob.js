@@ -18,12 +18,18 @@ const FaderKnob = ({ animate, type, sound, changeSineFrequency }) => {
   const [knobNext, setKnobNext] = useState(getRandomFloat(knobMax, knobMin));
 
   useEffect(() => {
-    if (type === 'Binaural') {
-      changeSineFrequency(roundCorrect(knobValue, 0));
-    } else {
+    if (sound && type !== 'Binaural') {
       sound.stereo(knobValue);
+    } else {
+      changeSineFrequency(roundCorrect(knobValue, 0));
     }
-  }, [knobValue, changeSineFrequency, type, sound]);
+  }, [knobValue, type, sound, changeSineFrequency]);
+
+  // useEffect(() => {
+  //   if (type === 'Binaural') {
+
+  //   }
+  // }, [type, changeSineFrequency, knobValue]);
 
   useEffect(() => {
     if (isAnimated && animate) {
@@ -66,10 +72,10 @@ const FaderKnob = ({ animate, type, sound, changeSineFrequency }) => {
 };
 
 FaderKnob.propTypes = {
-  animate: PropTypes.bool.isRequired,
+  animate: PropTypes.bool,
   type: PropTypes.string.isRequired,
   sound: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
-  changeSineFrequency: PropTypes.func.isRequired,
+  changeSineFrequency: PropTypes.func,
 };
 
 export default FaderKnob;
