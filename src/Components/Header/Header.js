@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
-  const links = ['home', 'about', 'guide', 'signup', 'login'];
+  const links = ['home', 'about', 'guide', 'coming soon'];
   return (
     <header className='App-header'>
       <NavLink to='/'>
@@ -11,18 +11,16 @@ const Header = () => {
       </NavLink>
       <nav>
         <ul className='nav-links'>
-          {links.map((link, i) => {
-            return (
-              <NavLink
-                exact
-                key={i}
-                to={link === 'home' ? '/' : '/' + link}
-                activeClassName='selected-link'
-              >
-                {link}
-              </NavLink>
-            );
-          })}
+          {links.map((link, i) => (
+            <NavLink
+              exact
+              key={i}
+              to={link === 'home' ? '/' : `/${link.split(' ').join('-')}`}
+              activeClassName='selected-link'
+            >
+              {link}
+            </NavLink>
+          ))}
         </ul>
       </nav>
     </header>

@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
+import PropTypes from 'prop-types';
 import MachineContext from 'Context/MachineContext';
 import { getRandomFloat, roundCorrect } from 'Assets/helpers/helpers';
 
 import { Knob } from 'react-rotary-knob';
 import KnobSkin from 'Components/Machine/BottomControls/Knobs/Knobskin';
+import { animateKnob } from 'Assets/animations/Animations';
 import { StyledKnob } from './SliderTheme';
-// client / src / Assets / Animations / Animations.js
-import { animateKnob } from 'Assets/animations/animations';
 
 const FaderKnob = ({ animate, type, sound, changeSineFrequency }) => {
   // These are set opposite to make left and right on round knob
@@ -63,6 +63,13 @@ const FaderKnob = ({ animate, type, sound, changeSineFrequency }) => {
       style={StyledKnob}
     />
   );
+};
+
+FaderKnob.propTypes = {
+  animate: PropTypes.bool.isRequired,
+  type: PropTypes.string.isRequired,
+  sound: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  changeSineFrequency: PropTypes.func.isRequired,
 };
 
 export default FaderKnob;

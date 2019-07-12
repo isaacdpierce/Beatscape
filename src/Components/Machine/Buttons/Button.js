@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const ControlsButton = styled.button`
@@ -26,6 +27,11 @@ const Button = ({ text, handleClick }) => {
       <ControlsButton onClick={handleClick}>{text}</ControlsButton>
     </>
   );
+};
+
+Button.propTypes = {
+  text: PropTypes.string.isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default Button;

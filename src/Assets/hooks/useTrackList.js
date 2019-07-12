@@ -5,7 +5,6 @@ const useTrackList = (sounds, Oscillator) => {
 
   useEffect(() => {
     if (sounds) {
-      console.log(sounds);
       setTrackList([
         {
           id: 1,
@@ -82,7 +81,6 @@ const useTrackList = (sounds, Oscillator) => {
       ]);
     }
   }, [sounds, Oscillator]);
-  console.log('TrackList in STORE', trackList);
   return trackList;
 };
 

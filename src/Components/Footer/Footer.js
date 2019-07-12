@@ -12,18 +12,16 @@ const Footer = () => {
 
         <nav>
           <ul className='nav-links'>
-            {links.map((link, i) => {
-              return (
-                <NavLink
-                  key={i}
-                  to={`/${link}`}
-                  className='footer'
-                  activeClassName='selected-link'
-                >
-                  {link}
-                </NavLink>
-              );
-            })}
+            {links.map((link, i) => (
+              <NavLink
+                key={i}
+                to={`/${link}`}
+                className='footer'
+                activeClassName='selected-link'
+              >
+                {link}
+              </NavLink>
+            ))}
           </ul>
         </nav>
 

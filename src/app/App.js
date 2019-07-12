@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import axios from 'axios';
-
 import About from 'Routes/About/About';
 import Guide from 'Routes/Guide/Guide';
+import ComingSoon from 'Routes/ComingSoon/ComingSoon';
 import Machine from 'Components/Machine/Machine';
 import Header from 'Components/Header/Header';
 import Footer from 'Components/Footer/Footer';
@@ -23,13 +23,15 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
+  console.log(data);
+
   useEffect(() => {
     let mounted = true;
 
     const fetchData = async () => {
+      setIsLoading(true);
       setIsPlaying(false);
       setIsError(false);
-      setIsLoading(true);
 
       try {
         const result = await axios(url);
@@ -50,6 +52,7 @@ function App() {
   }, [url]);
 
   useEffect(() => {
+    // eslint-disable-next-line no-unused-expressions
     isAnimated ? setIsPlaying(true) : setIsPlaying(false);
   }, [isAnimated]);
 
@@ -77,6 +80,7 @@ function App() {
         isAnimated,
         toggleAnimation,
         isPlaying,
+        isLoading,
         togglePlay,
         masterFader,
         changeMasterFader,
@@ -89,12 +93,12 @@ function App() {
       <AppTheme className='App'>
         {/* // TODO Put loader in popup component // Style error msg  */}
         {isError && <div>Something went wrong... try another selection.</div>}
-        {isLoading && <h1>...Loading</h1>}
         <Header />
         <main>
           <Route exact path='/' component={Machine} />
           <Route exact path='/about' component={About} />
           <Route exact path='/guide' component={Guide} />
+          <Route exact path='/coming-soon' component={ComingSoon} />
         </main>
         <Footer />
       </AppTheme>

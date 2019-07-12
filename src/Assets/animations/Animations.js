@@ -1,7 +1,7 @@
 import { getRandomFloat, roundCorrect } from 'Assets/helpers/helpers';
 
 export const animateVolume = (value, min, max, next, setValue, setNext) => {
-  let volumeLoop = setTimeout(() => {
+  const volumeLoop = setTimeout(() => {
     if (value > next) {
       setValue(roundCorrect(value - 0.01, 2));
     } else if (value < next) {
@@ -22,7 +22,7 @@ export const animateKnob = (
   setKnobValue,
   setKnobNext
 ) => {
-  let knobLoop = setTimeout(() => {
+  const knobLoop = setTimeout(() => {
     if (knobValue > knobNext) {
       setKnobValue(roundCorrect(knobValue - 0.01, 2));
     } else if (knobValue < knobNext) {

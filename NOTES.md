@@ -2,7 +2,12 @@
 
 ## NEW
 
+- in Drawer.js  // TODO - Get Soundscape name and url from DB - Then use map to create buttons with names and urls
+- FIX Loader styles
+- FIX frequency and volume static  
+
 - add track label accordian for 3 different tracks
+- fix roundCorrect helper function - precision--
 - Put loader in popup component // Style error msg
 - remove Howl.js and add react-sound
 - refactor context to single state object

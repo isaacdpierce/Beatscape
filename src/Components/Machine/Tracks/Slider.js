@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
+import PropTypes from 'prop-types';
+
 import { getRandomFloat } from 'Assets/helpers/helpers';
 import MachineContext from 'Context/MachineContext';
+import { animateVolume } from 'Assets/animations/Animations';
 import FaderKnob from './FaderKnob';
-
 import { SliderTheme, sliderContainer } from './SliderTheme';
-import { animateVolume } from 'Assets/animations/animations';
 
 const Slider = ({
   type,
@@ -25,6 +26,7 @@ const Slider = ({
 
   useEffect(() => {
     if (type !== 'Binaural') {
+      // eslint-disable-next-line no-unused-expressions
       isPlaying ? sound.play() : sound.pause();
     }
   }, [isPlaying, sound, type]);
@@ -43,13 +45,15 @@ const Slider = ({
 
   const handleSliderChange = event => {
     setValue(parseFloat(levelRef.current.value));
-    type === 'Binaural' && changeSineVolume(value);
+    if (type === 'Binaural') {
+      changeSineVolume(value);
+    }
   };
 
   return (
     <div style={sliderContainer}>
       <SliderTheme className='slider'>
-        <label htmlFor='kicks'>
+        <label htmlFor={type}>
           <span className='slider-value'>{value}</span>
           <span className='slider-label'>{type}</span>
         </label>
@@ -74,6 +78,14 @@ const Slider = ({
       />
     </div>
   );
+};
+
+Slider.propTypes = {
+  type: PropTypes.string.isRequired,
+  animate: PropTypes.bool.isRequired,
+  sound: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  changeSineVolume: PropTypes.func.isRequired,
+  changeSineFrequency: PropTypes.func.isRequired,
 };
 
 export default Slider;

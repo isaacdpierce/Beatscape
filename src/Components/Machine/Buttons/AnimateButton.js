@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import LinkButton from './Button';
 import MachineContext from 'Context/MachineContext';
+import LinkButton from './Button';
 
 const AnimateButton = () => {
   const { toggleAnimation, isAnimated } = useContext(MachineContext);

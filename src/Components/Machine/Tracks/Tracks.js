@@ -1,15 +1,15 @@
 import React, { useContext, useState, useEffect } from 'react';
-import Slider from './Slider';
 import MachineContext from 'Context/MachineContext';
 import { Howl } from 'howler';
-
 import { useTrackList } from 'Assets/hooks/useTrackList';
 import Oscillator from 'Components/Oscillator/Oscillator';
+import Loader from 'Components/Loader/Loader';
+import Slider from './Slider';
 
 import './Tracks.css';
 
 const Tracks = () => {
-  const { data, isPlaying, isAnimated } = useContext(MachineContext);
+  const { data, isPlaying, isAnimated, isLoading } = useContext(MachineContext);
   const [sineFrequency, setSineFrequency] = useState(0);
   const [sineVolume, setSineVolume] = useState(0.05);
   const [sounds, setSounds] = useState(undefined);
@@ -19,7 +19,7 @@ const Tracks = () => {
 
   useEffect(() => {
     if (data) {
-      const { stems } = data.soundscape_tracks;
+      const { stems } = data;
       const soundList = stems.map(stem => {
         const { urls } = stem;
         return new Howl({
@@ -49,6 +49,7 @@ const Tracks = () => {
 
   return (
     <section className={isAnimated ? 'tracks animated' : 'tracks'}>
+      <Loader />
       {isAnimated && (
         <section className='animatedCover'>
           <p>Tracks Animated - Click stop animate to change levels</p>
@@ -70,11 +71,7 @@ const Tracks = () => {
           );
         })}
       {isPlaying && (
-        <Oscillator
-          frequency={sineFrequency}
-          type={'sine'}
-          volume={sineVolume}
-        />
+        <Oscillator frequency={sineFrequency} type='sine' volume={sineVolume} />
       )}
     </section>
   );
