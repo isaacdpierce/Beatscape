@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-const useTrackList = (sounds, Oscillator) => {
+const useTrackList = (sounds, data, Oscillator) => {
   const [trackList, setTrackList] = useState(undefined);
-
+  console.log(data);
   useEffect(() => {
     if (sounds) {
       setTrackList([

@@ -15,11 +15,12 @@ const Tracks = () => {
   const [sounds, setSounds] = useState(undefined);
   const [tracks, setTracks] = useState(undefined);
 
-  const trackList = useTrackList(sounds, Oscillator);
+  const trackList = useTrackList(sounds, data, Oscillator);
 
   useEffect(() => {
     if (data) {
       const { stems } = data;
+
       const soundList = stems.map(stem => {
         const { urls } = stem;
         return new Howl({
@@ -49,7 +50,7 @@ const Tracks = () => {
 
   return (
     <section className={isAnimated ? 'tracks animated' : 'tracks'}>
-      <Loader />
+      {/* <Loader /> */}
       {isAnimated && (
         <section className='animatedCover'>
           <p>Tracks Animated - Click stop animate to change levels</p>
