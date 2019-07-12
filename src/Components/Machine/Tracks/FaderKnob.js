@@ -2,11 +2,15 @@ import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import MachineContext from 'Context/MachineContext';
 import { getRandomFloat, roundCorrect } from 'Assets/helpers/helpers';
-
 import { Knob } from 'react-rotary-knob';
 import KnobSkin from 'Components/Machine/BottomControls/Knobs/Knobskin';
 import { animateKnob } from 'Assets/animations/Animations';
-import { StyledKnob } from './SliderTheme';
+import Tooltip from 'Components/themes/Tooltip/Tooltip';
+
+const knobStyle = {
+  transform: 'translateY(20px) ',
+  filter: 'brightness(70%)',
+};
 
 const FaderKnob = ({ animate, type, sound, changeSineFrequency }) => {
   // These are set opposite to make left and right on round knob
@@ -24,12 +28,6 @@ const FaderKnob = ({ animate, type, sound, changeSineFrequency }) => {
       changeSineFrequency(roundCorrect(knobValue, 0));
     }
   }, [knobValue, type, sound, changeSineFrequency]);
-
-  // useEffect(() => {
-  //   if (type === 'Binaural') {
-
-  //   }
-  // }, [type, changeSineFrequency, knobValue]);
 
   useEffect(() => {
     if (isAnimated && animate) {
@@ -57,17 +55,21 @@ const FaderKnob = ({ animate, type, sound, changeSineFrequency }) => {
     setKnobValue(roundCorrect(val));
   };
 
+  const handleMouseOver = () => console.log('hover');
+
   return (
-    <Knob
-      min={knobMin}
-      max={knobMax}
-      step={0.01}
-      value={knobValue}
-      onChange={handleKnobChange}
-      unlockDistance={0}
-      skin={KnobSkin}
-      style={StyledKnob}
-    />
+    <div onMouseOver={handleMouseOver} onFocus={handleMouseOver}>
+      <Knob
+        min={knobMin}
+        max={knobMax}
+        step={0.01}
+        value={knobValue}
+        onChange={handleKnobChange}
+        unlockDistance={0}
+        skin={KnobSkin}
+        style={knobStyle}
+      />
+    </div>
   );
 };
 

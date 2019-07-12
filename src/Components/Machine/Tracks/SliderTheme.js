@@ -40,8 +40,3 @@ export const sliderContainer = {
   marginRight: '10px',
   transform: 'translate(-10px, 150px)',
 };
-
-export const StyledKnob = {
-  transform: 'translate(-6px, 20px) ',
-  filter: 'brightness(70%)',
-};
