@@ -30,11 +30,6 @@
   
 ## consider removing master volume - let master volume be controlled by device
 
-## Create frequency controller for binaural
-
-        - set volume controller in slider??
-        - eventually create a volume reducer for all sliders
-
 ## Create a base timer that all tracks will sync to
 
         - Create a base timer that all tracks will sync to

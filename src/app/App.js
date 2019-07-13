@@ -13,7 +13,7 @@ import { MachineProvider } from 'Context/MachineContext';
 import AppTheme from './AppTheme.js';
 
 function App() {
-  const initialUrl = 'http://localhost:8000/api/soundscapes/2';
+  const initialUrl = 'http://localhost:8000/api/soundscapes/1';
   const [masterVolume, setMasterVolume] = useState(0.5);
   const [masterFader, setMasterFader] = useState(0.5);
   const [isAnimated, setIsAnimated] = useState(false);
@@ -22,6 +22,10 @@ function App() {
   const [url, setUrl] = useState(initialUrl);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   useEffect(() => {
     let mounted = true;

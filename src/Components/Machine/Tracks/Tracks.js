@@ -18,14 +18,14 @@ const Tracks = () => {
     if (data) {
       const { stems } = data;
       const trackList = stems.map((stem, index) => {
-        const { stemName, animate, urls } = stem;
+        const { stemName, animate, sources } = stem;
 
         return {
           id: index + 1,
           stemName,
           animate,
           sound: new Howl({
-            src: urls[0],
+            src: sources[0],
             autoplay: false,
             loop: true,
             volume: 0.5,
