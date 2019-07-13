@@ -7,56 +7,33 @@ import ComingSoon from 'Routes/ComingSoon/ComingSoon';
 import Machine from 'Components/Machine/Machine';
 import Header from 'Components/Header/Header';
 import Footer from 'Components/Footer/Footer';
+import { useBeatscapeApi } from 'Assets/hooks/hooks';
 
 import { MachineProvider } from 'Context/MachineContext';
 
 import AppTheme from './AppTheme.js';
 
 function App() {
-  const initialUrl = 'http://localhost:8000/api/soundscapes/1';
   const [masterVolume, setMasterVolume] = useState(0.5);
   const [masterFader, setMasterFader] = useState(0.5);
-  const [isAnimated, setIsAnimated] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [data, setData] = useState(undefined);
-  const [url, setUrl] = useState(initialUrl);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+
+  const [
+    { data, isLoading, isError, isPlaying, isAnimated },
+    setUrl,
+    setIsPlaying,
+    setIsAnimated,
+  ] = useBeatscapeApi('http://localhost:8000/api/soundscapes/1');
 
   useEffect(() => {
-    console.log(data);
+    if (data) {
+      console.log(data);
+    }
   }, [data]);
-
-  useEffect(() => {
-    let mounted = true;
-
-    const fetchData = async () => {
-      setIsLoading(true);
-      setIsPlaying(false);
-      setIsError(false);
-
-      try {
-        const result = await axios(url);
-        if (mounted) {
-          setData(result.data);
-        }
-      } catch (error) {
-        setIsError(true);
-      }
-
-      setIsLoading(false);
-    };
-
-    fetchData();
-    return () => {
-      mounted = false;
-    };
-  }, [url]);
 
   useEffect(() => {
     // eslint-disable-next-line no-unused-expressions
     isAnimated ? setIsPlaying(true) : setIsPlaying(false);
-  }, [isAnimated]);
+  }, [isAnimated, setIsPlaying]);
 
   const changeMasterVolume = newVol => {
     setMasterVolume(newVol);
@@ -87,8 +64,6 @@ function App() {
         masterFader,
         changeMasterFader,
         data,
-        setData,
-        url,
         setUrl,
       }}
     >
