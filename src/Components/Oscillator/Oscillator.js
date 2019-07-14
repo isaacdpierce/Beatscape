@@ -4,6 +4,7 @@ import useAudioContext from 'Context/useAudioContext';
 
 export default ({ frequency, type = 'sine', volume } = {}) => {
   const [oscillator, setOscillator] = useState(undefined);
+  const [vol, setVol] = useState(undefined);
 
   const { audioContext } = useContext(useAudioContext);
 
@@ -20,6 +21,7 @@ export default ({ frequency, type = 'sine', volume } = {}) => {
     osc.start();
     osc.connect(gainNode);
 
+    setVol(gainNode);
     setOscillator(osc);
 
     return () => {
@@ -27,13 +29,20 @@ export default ({ frequency, type = 'sine', volume } = {}) => {
       osc.disconnect();
       gainNode.disconnect();
     };
-  }, [volume, audioContext, frequency, type]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  // useEffect(() => {
-  //   if (oscillator) {
-  //     oscillator.frequency.value = frequency;
-  //   }
-  // }, [frequency, oscillator]); // only trigger this effect when frequency changes
+  useEffect(() => {
+    if (oscillator) {
+      oscillator.frequency.value = frequency;
+    }
+  }, [frequency, oscillator]); // only trigger this effect when frequency changes
+
+  useEffect(() => {
+    if (vol) {
+      vol.gain.value = volume;
+    }
+  }, [vol, volume]); // only trigger this effect when volume changes
 
   return null;
 };
