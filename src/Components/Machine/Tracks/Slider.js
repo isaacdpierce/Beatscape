@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { getRandomFloat } from 'Assets/helpers/helpers';
+import { getRandomFloat, roundCorrect } from 'Assets/helpers/helpers';
 import MachineContext from 'Context/MachineContext';
 import { animateVolume } from 'Assets/animations/Animations';
 import FaderKnob from './FaderKnob';
@@ -11,6 +11,7 @@ const Slider = ({
   type,
   animate,
   sound,
+  changeVolume,
   changeSineVolume,
   changeSineFrequency,
 }) => {
@@ -44,9 +45,13 @@ const Slider = ({
   }, [isAnimated, animate, value, min, max, next, setValue, setNext]);
 
   const handleSliderChange = () => {
+    console.log(type);
+
     setValue(parseFloat(levelRef.current.value));
     if (type === 'Binaural') {
       changeSineVolume(value);
+    } else {
+      changeVolume(value);
     }
   };
 
@@ -84,6 +89,7 @@ Slider.propTypes = {
   type: PropTypes.string.isRequired,
   animate: PropTypes.bool,
   sound: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  changeVolume: PropTypes.func,
   changeSineVolume: PropTypes.func,
   changeSineFrequency: PropTypes.func,
 };

@@ -10,6 +10,7 @@ import './Tracks.css';
 
 const Tracks = () => {
   const { data, isPlaying, isAnimated, isLoading } = useContext(MachineContext);
+  const [volume, setVolume] = useState(0.5);
   const [sineFrequency, setSineFrequency] = useState(0);
   const [sineVolume, setSineVolume] = useState(0.05);
   const [tracks, setTracks] = useState(undefined);
@@ -36,6 +37,10 @@ const Tracks = () => {
     }
   }, [data]);
 
+  const changeVolume = value => {
+    setVolume(value);
+  };
+
   const changeSineVolume = value => {
     setSineVolume(value);
   };
@@ -57,13 +62,22 @@ const Tracks = () => {
             const { stemName, animate, sound } = track;
 
             return (
-              <Slider key={i} type={stemName} animate={animate} sound={sound} />
+              <>
+                <Slider
+                  key={i}
+                  type={stemName}
+                  animate={animate}
+                  sound={sound}
+                  changeVolume={changeVolume}
+                />
+              </>
             );
           })
         : trackTypes.map((track, index) => (
             <Slider
               key={index}
               type={track}
+              changeVolume={changeVolume}
               changeSineVolume={changeSineVolume}
               changeSineFrequency={changeSineFrequency}
             />

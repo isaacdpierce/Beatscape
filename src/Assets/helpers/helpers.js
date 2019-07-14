@@ -12,15 +12,16 @@ function getRandomFloat(min, max, prec = 2) {
   );
 }
 
-function roundCorrect(num, precision = 2) {
-  // half epsilon to correct edge cases.
-  const c = 0.5 * Number.EPSILON * num;
-  //	let p = Math.pow(10, precision); //slow
-  let p = 1;
-  // eslint-disable-next-line no-plusplus
-  while (precision-- > 0) p *= 10;
-  if (num < 0) p *= -1;
-  return Math.round((num + c) * p) / p;
+function roundCorrect(num) {
+  return parseFloat(num.toFixed(2));
+  // // half epsilon to correct edge cases.
+  // const c = 0.5 * Number.EPSILON * num;
+  // //	let p = Math.pow(10, precision); //slow
+  // let p = 1;
+  // // eslint-disable-next-line no-plusplus
+  // while (precision-- > 0) p *= 10;
+  // if (num < 0) p *= -1;
+  // return Math.round((num + c) * p) / p;
 }
 
 const getNextLevel = (min, max) => getRandomFloat(min, max);
@@ -42,7 +43,7 @@ const useInterval = (callback, delay) => {
       savedCallback.current();
     }
     if (delay !== null) {
-      let id = setInterval(tick, delay);
+      const id = setInterval(tick, delay);
       return () => clearInterval(id);
     }
   }, [delay]);
