@@ -12,23 +12,14 @@ function getRandomFloat(min, max, prec = 2) {
   );
 }
 
-function roundCorrect(num) {
-  return parseFloat(num.toFixed(2));
-  // // half epsilon to correct edge cases.
-  // const c = 0.5 * Number.EPSILON * num;
-  // //	let p = Math.pow(10, precision); //slow
-  // let p = 1;
-  // // eslint-disable-next-line no-plusplus
-  // while (precision-- > 0) p *= 10;
-  // if (num < 0) p *= -1;
-  // return Math.round((num + c) * p) / p;
+function roundCorrect(num, precision = 2) {
+  return parseFloat(num.toFixed(precision));
 }
 
 const getNextLevel = (min, max) => getRandomFloat(min, max);
 
 // Custom hook - Use instead of setInterval() for animations
 // got from https://overreacted.io/making-setinterval-declarative-with-react-hooks/
-
 const useInterval = (callback, delay) => {
   const savedCallback = useRef();
 

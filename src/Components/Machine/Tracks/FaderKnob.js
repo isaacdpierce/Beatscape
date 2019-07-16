@@ -12,7 +12,13 @@ const knobStyle = {
   filter: 'brightness(70%)',
 };
 
-const FaderKnob = ({ animate, type, sound, changeSineFrequency }) => {
+const FaderKnob = ({
+  animate,
+  type,
+  sound,
+  changeSineFrequency,
+  changeStereo,
+}) => {
   // These are set opposite to make left and right on round knob
   const knobMin = type === 'Binaural' ? 30 : 1;
   const knobMax = type === 'Binaural' ? 100 : -1;
@@ -21,13 +27,12 @@ const FaderKnob = ({ animate, type, sound, changeSineFrequency }) => {
   const [knobValue, setKnobValue] = useState(type === 'Binaural' ? 65 : 0);
   const [knobNext, setKnobNext] = useState(getRandomFloat(knobMax, knobMin));
 
-  useEffect(() => {
-    if (sound && type !== 'Binaural') {
-      sound.stereo(knobValue);
-    } else {
-      changeSineFrequency(roundCorrect(knobValue, 0));
-    }
-  }, [knobValue, type, sound, changeSineFrequency]);
+  // useEffect(() => {
+  //   if (sound && type !== 'Binaural') {
+  //     tereo(knobValue);
+  //   } else {
+  //   }
+  // }, [knobValue, type, sound, changeSineFrequency]);
 
   useEffect(() => {
     if (isAnimated && animate) {
@@ -53,6 +58,11 @@ const FaderKnob = ({ animate, type, sound, changeSineFrequency }) => {
 
   const handleKnobChange = val => {
     setKnobValue(roundCorrect(val));
+    if (sound && type !== 'Binaural') {
+      changeStereo(roundCorrect(knobValue));
+    } else {
+      changeSineFrequency(roundCorrect(knobValue, 0));
+    }
   };
 
   const handleMouseOver = () => console.log('hover');
@@ -76,7 +86,7 @@ const FaderKnob = ({ animate, type, sound, changeSineFrequency }) => {
 FaderKnob.propTypes = {
   animate: PropTypes.bool,
   type: PropTypes.string.isRequired,
-  sound: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  sound: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   changeSineFrequency: PropTypes.func,
 };
 

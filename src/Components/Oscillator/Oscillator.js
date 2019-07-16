@@ -1,7 +1,5 @@
 import { useEffect, useContext, useState } from 'react';
-
 import useAudioContext from 'Context/useAudioContext';
-import { roundCorrect } from 'Assets/helpers/helpers';
 
 export default ({ frequency, type = 'sine', volume } = {}) => {
   const [oscillator, setOscillator] = useState(undefined);
@@ -42,7 +40,6 @@ export default ({ frequency, type = 'sine', volume } = {}) => {
   useEffect(() => {
     if (vol) {
       vol.gain.value = volume;
-      console.log(`Volume in Osc.js is ${volume}`);
     }
   }, [vol, volume]); // only trigger this effect when volume changes
 

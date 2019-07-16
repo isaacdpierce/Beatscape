@@ -12,6 +12,7 @@ const Slider = ({
   animate,
   sound,
   changeVolume,
+  changeStereo,
   changeSineVolume,
   changeSineFrequency,
 }) => {
@@ -25,18 +26,18 @@ const Slider = ({
 
   const levelRef = useRef();
 
-  useEffect(() => {
-    if (sound && type !== 'Binaural') {
-      // eslint-disable-next-line no-unused-expressions
-      isPlaying ? sound.play() : sound.pause();
-    }
-  }, [isPlaying, sound, type]);
+  // useEffect(() => {
+  //   if (sound && type !== 'Binaural') {
+  //     // eslint-disable-next-line no-unused-expressions
+  //     isPlaying ? sound.play() : sound.pause();
+  //   }
+  // }, [isPlaying, sound, type]);
 
-  useEffect(() => {
-    if (sound && type !== 'Binaural') {
-      sound.volume(value);
-    }
-  }, [value, sound, type]);
+  // useEffect(() => {
+  //   if (sound && type !== 'Binaural') {
+  //     sound.volume(value);
+  //   }
+  // }, [value, sound, type]);
 
   useEffect(() => {
     if (isAnimated && animate) {
@@ -80,6 +81,7 @@ const Slider = ({
         type={type}
         sound={sound}
         changeSineFrequency={changeSineFrequency}
+        changeStereo={changeStereo}
       />
     </div>
   );
@@ -88,10 +90,11 @@ const Slider = ({
 Slider.propTypes = {
   type: PropTypes.string.isRequired,
   animate: PropTypes.bool,
-  sound: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  sound: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   changeVolume: PropTypes.func,
   changeSineVolume: PropTypes.func,
   changeSineFrequency: PropTypes.func,
+  changeStereo: PropTypes.func,
 };
 
 export default Slider;

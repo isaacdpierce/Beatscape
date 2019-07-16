@@ -1,9 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
 import MachineContext from 'Context/MachineContext';
-import { Howl } from 'howler';
+import useAudioContext from 'Context/useAudioContext';
 import Oscillator from 'Components/Oscillator/Oscillator';
 import trackTypes from 'Assets/audio/trackTypes';
 import Loader from 'Components/Loader/Loader';
+import Audio from './Audio';
 import Slider from './Slider';
 
 import './Tracks.css';
@@ -11,9 +12,12 @@ import './Tracks.css';
 const Tracks = () => {
   const { data, isPlaying, isAnimated, isLoading } = useContext(MachineContext);
   const [volume, setVolume] = useState(0.5);
-  const [sineFrequency, setSineFrequency] = useState(0);
+  const [stereo, setStereo] = useState(1);
+  const [sineFrequency, setSineFrequency] = useState(60);
   const [sineVolume, setSineVolume] = useState(0.05);
   const [tracks, setTracks] = useState(undefined);
+
+  const { audioContext } = useContext(useAudioContext);
 
   useEffect(() => {
     if (data) {
@@ -25,12 +29,7 @@ const Tracks = () => {
           id: index + 1,
           stemName,
           animate,
-          sound: new Howl({
-            src: sources[0],
-            autoplay: false,
-            loop: true,
-            volume: 0.5,
-          }),
+          sound: sources[0],
         };
       });
       setTracks(trackList);
@@ -39,6 +38,10 @@ const Tracks = () => {
 
   const changeVolume = value => {
     setVolume(value);
+  };
+
+  const changeStereo = value => {
+    setStereo(value);
   };
 
   const changeSineVolume = value => {
@@ -58,28 +61,40 @@ const Tracks = () => {
         </section>
       )}
       {tracks
-        ? tracks.map((track, i) => {
+        ? tracks.map((track, index) => {
             const { stemName, animate, sound } = track;
 
             return (
               <>
+                <Audio
+                  audioContext={audioContext}
+                  key={index + 10}
+                  pan={stereo}
+                  sound={sound}
+                  volume={volume}
+                  type={stemName}
+                  isPlaying={isPlaying}
+                />
+
                 <Slider
-                  key={i}
+                  key={index}
                   type={stemName}
                   animate={animate}
                   sound={sound}
                   changeVolume={changeVolume}
+                  changeStereo={changeStereo}
                 />
               </>
             );
           })
         : trackTypes.map((track, index) => (
             <Slider
-              key={index}
+              key={index + 100}
               type={track}
               changeVolume={changeVolume}
               changeSineVolume={changeSineVolume}
               changeSineFrequency={changeSineFrequency}
+              changeStereo={changeStereo}
             />
           ))}
       <Slider
@@ -89,9 +104,12 @@ const Tracks = () => {
         changeSineFrequency={changeSineFrequency}
         sound={Oscillator}
       />
-      {isPlaying && (
-        <Oscillator frequency={sineFrequency} type='sine' volume={sineVolume} />
-      )}
+      <Oscillator
+        frequency={sineFrequency}
+        type='sine'
+        volume={sineVolume}
+        isPlaying={isPlaying}
+      />
     </section>
   );
 };
