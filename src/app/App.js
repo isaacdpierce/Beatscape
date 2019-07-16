@@ -21,7 +21,7 @@ function App() {
     setUrl,
     setIsPlaying,
     setIsAnimated,
-  ] = useBeatscapeApi('http://localhost:8000/api/soundscapes/2');
+  ] = useBeatscapeApi('http://localhost:8000/api/soundscapes/1');
 
   useEffect(() => {
     if (data) {

@@ -2,9 +2,14 @@
 
 ## AUDIO POSSIBILITIES
 
-- need to be able to sync playback to single audio context
-- get it playing with autoplay 
-- see if it auto syncs to audio context 
+
+- Why is audio volume being adjusted for all?
+- Create a separate Audio Context for Oscillator?
+~~- need to be able to sync playback to single audio context~~
+~~- get it playing with autoplay ~~
+- see if it auto syncs to audio context
+
+- get audio through server?
 
 - create [environments,  setEnvironments] [sprites, setSprites] state in Audio.js
       - filter (environments) && (spites) out of data 
