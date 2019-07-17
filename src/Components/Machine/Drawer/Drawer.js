@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import DrawerButton from 'Components/Machine/Buttons/DrawerButton';
 
+import StyledDrawer from './StyledDrawer';
 // TODO - Get Soundscape name and url from DB - Then use map to create buttons with names and urls
 const Drawer = ({ drawerStyle }) => (
   <>
-    <section className='drawer' style={drawerStyle}>
+    <StyledDrawer style={drawerStyle}>
       <div className='drawer-col'>
         <DrawerButton source='http://localhost:8000/api/soundscapes/1'>
           New York Hustle
@@ -21,7 +21,7 @@ const Drawer = ({ drawerStyle }) => (
         <DrawerButton>Sunset Saunter</DrawerButton>
         <DrawerButton>Beach Bounce</DrawerButton>
       </div>
-    </section>
+    </StyledDrawer>
   </>
 );
 

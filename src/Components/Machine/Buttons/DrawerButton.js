@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MachineContext from 'Context/MachineContext';
 import styled from 'styled-components';
 
-const StyledButton = styled.div`
+const StyledButton = styled.button`
   padding: 0.5rem;
   display: block;
   border: none;

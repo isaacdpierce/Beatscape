@@ -2,6 +2,7 @@
 
 ## NEW
 
+- FIX -- StyledDrawer is making odd spacing at bottom of machine
 - in Drawer.js  // TODO - Get Soundscape name and url from DB - Then use map to create buttons with names and urls
 - FIX Loader styles
 - FIX frequency and volume static  

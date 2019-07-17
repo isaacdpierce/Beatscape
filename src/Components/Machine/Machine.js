@@ -4,7 +4,7 @@ import Drawer from './Drawer/Drawer';
 import Tracks from './Tracks/Tracks';
 import BottomControls from './BottomControls/BottomControls';
 
-import './Drawer/Drawer.css';
+import './Drawer/StyledDrawer.js';
 import './Machine.css';
 
 const drawerOpen = {

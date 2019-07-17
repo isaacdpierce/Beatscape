@@ -1,21 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import LinkButton from 'Components/Machine/Buttons/Button';
-import MasterVolume from 'Components/Machine/BottomControls/MasterControls/MasterVolume';
-import Fader from 'Components/Machine/BottomControls/MasterControls/MasterFader';
-
-import './BottomControls.css';
+import StyledBottomControls from './StyledBottomControls.js';
 
 const BottomControls = ({ handleDrawer }) => (
-  <section className='controls-bottom'>
-    <MasterVolume />
-    <Fader />
+  <StyledBottomControls>
     <LinkButton
       className='button-soundscapes'
       text='Soundscapes'
       handleClick={handleDrawer}
     />
-  </section>
+  </StyledBottomControls>
 );
 
 BottomControls.propTypes = {

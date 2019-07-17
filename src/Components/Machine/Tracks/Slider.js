@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import PropTypes from 'prop-types';
-
 import { getRandomFloat } from 'Assets/helpers/helpers';
 import MachineContext from 'Context/MachineContext';
 import { animateVolume } from 'Assets/animations/Animations';
-import FaderKnob from './FaderKnob';
+import FaderKnob from './Knobs/FaderKnob';
 import { SliderTheme, sliderContainer } from './SliderTheme';
 
 const Slider = ({

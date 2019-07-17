@@ -1,23 +1,23 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import './Footer.css';
+import StyledFooter from './StyledFooter.js';
 
 const Footer = () => {
   const links = ['contact', 'about us', 'youtube', 'soundcloud'];
   return (
-    <footer>
+    <StyledFooter>
       <div className='copyright'>
         <p>Sound design by Michael Jacques &copy;2019 </p>
 
         <nav aria-label='Personal Links'>
-          <ul className='nav-links'>
+          <ul className='nav__links'>
             {links.map((link, i) => (
               <li key={i}>
                 <NavLink
                   to={`/${link}`}
                   className='footer'
-                  activeClassName='selected-link'
+                  activeClassName='selected'
                 >
                   {link}
                 </NavLink>
@@ -28,7 +28,7 @@ const Footer = () => {
 
         <p>Web app created by Isaac Pierce &copy;2019 </p>
       </div>
-    </footer>
+    </StyledFooter>
   );
 };
 
