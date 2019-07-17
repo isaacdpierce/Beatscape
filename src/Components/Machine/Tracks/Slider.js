@@ -4,7 +4,7 @@ import { getRandomFloat } from 'Assets/helpers/helpers';
 import MachineContext from 'Context/MachineContext';
 import { animateVolume } from 'Assets/animations/Animations';
 import FaderKnob from './Knobs/FaderKnob';
-import { SliderTheme, sliderContainer } from './SliderTheme';
+import { StyledSlider, SliderContainer } from './StyledSlider';
 
 const Slider = ({
   type,
@@ -50,12 +50,13 @@ const Slider = ({
   };
 
   return (
-    <div style={sliderContainer}>
-      <SliderTheme className='slider'>
+    <SliderContainer>
+      <StyledSlider>
         <label htmlFor={type}>
-          <span className='slider-value'>{value}</span>
-          <span className='slider-label'>{type}</span>
+          <span className='slider__value'>{value}</span>
+          <span className='slider__label'>{type}</span>
           <input
+            aria-label={`Controls volume of ${type} track`}
             onChange={handleSliderChange}
             type='range'
             ref={levelRef}
@@ -67,15 +68,16 @@ const Slider = ({
             step={step}
           />
         </label>
-      </SliderTheme>
+      </StyledSlider>
 
       <FaderKnob
+        aria-label={`Controls stereo panning of ${type} track`}
         animate={animate}
         type={type}
         sound={sound}
         changeSineFrequency={changeSineFrequency}
       />
-    </div>
+    </SliderContainer>
   );
 };
 

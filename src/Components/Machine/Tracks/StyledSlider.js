@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-export const SliderTheme = styled.div`
+export const StyledSlider = styled.div`
   display: flex;
   flex-direction: column;
   transform: rotate(-90deg);
   width: 10px;
   position: relative;
 
-  .slider-label {
+  .slider__label {
     display: inline-block;
     transform: translate(5px, 5px);
     color: var(--main-font-color-dark);
@@ -17,7 +17,7 @@ export const SliderTheme = styled.div`
     font-weight: 300;
   }
 
-  .slider-value {
+  .slider__value {
     display: block;
     font-size: 10px;
     transform: rotate(90deg) translate(195px, 170px);
@@ -36,7 +36,7 @@ export const SliderTheme = styled.div`
   } */
 `;
 
-export const sliderContainer = {
-  marginRight: '10px',
-  transform: 'translate(-10px, 150px)',
-};
+export const SliderContainer = styled.section`
+  margin-right: 10px;
+  transform: translate(-10px, 150px);
+`;

@@ -6,7 +6,7 @@ import trackTypes from 'Assets/audio/trackTypes';
 import Loader from 'Components/Loader/Loader';
 import Slider from './Slider';
 
-import './Tracks.css';
+import StyledTracks from './StyledTracks.js';
 
 const Tracks = () => {
   const { data, isPlaying, isAnimated, isLoading } = useContext(MachineContext);
@@ -46,10 +46,10 @@ const Tracks = () => {
   };
 
   return (
-    <section className={isAnimated ? 'tracks animated' : 'tracks'}>
+    <StyledTracks className={isAnimated && 'animated'}>
       {/* <Loader /> */}
       {isAnimated && (
-        <section className='animatedCover'>
+        <section className='animatedCover animate'>
           <p>Tracks Animated - Click stop animate to change levels</p>
         </section>
       )}
@@ -79,7 +79,7 @@ const Tracks = () => {
       {isPlaying && (
         <Oscillator frequency={sineFrequency} type='sine' volume={sineVolume} />
       )}
-    </section>
+    </StyledTracks>
   );
 };
 
