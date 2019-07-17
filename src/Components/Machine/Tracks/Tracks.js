@@ -19,7 +19,7 @@ const Tracks = () => {
       const { stems } = data;
       const trackList = stems.map((stem, index) => {
         const { stemName, animate, sources } = stem;
-        console.log(sources);
+        console.log(Howl);
 
         return {
           id: index + 1,

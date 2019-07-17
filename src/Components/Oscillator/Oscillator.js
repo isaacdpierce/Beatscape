@@ -27,13 +27,14 @@ export default ({ frequency, type = 'sine', volume } = {}) => {
       osc.disconnect();
       gainNode.disconnect();
     };
-  }, [volume, audioContext, frequency, type]);
+    // eslint-disable-next-line
+  }, []);
 
-  // useEffect(() => {
-  //   if (oscillator) {
-  //     oscillator.frequency.value = frequency;
-  //   }
-  // }, [frequency, oscillator]); // only trigger this effect when frequency changes
+  useEffect(() => {
+    if (oscillator) {
+      oscillator.frequency.value = frequency;
+    }
+  }, [frequency, oscillator]); // only trigger this effect when frequency changes
 
   return null;
 };
