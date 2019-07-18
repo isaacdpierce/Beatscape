@@ -5,7 +5,7 @@ import Tracks from './Tracks/Tracks';
 import BottomControls from './BottomControls/BottomControls';
 
 import './Drawer/StyledDrawer.js';
-import './Machine.css';
+import StyledMachine from './StyledMachine.js';
 
 const drawerOpen = {
   transform: 'translateY(0%)',
@@ -22,12 +22,12 @@ const Machine = () => {
   };
 
   return (
-    <section className='machine'>
+    <StyledMachine>
       <TopControls />
       <Tracks />
       <BottomControls handleDrawer={handleDrawer} />
       <Drawer drawerStyle={drawer ? drawerClose : drawerOpen} />
-    </section>
+    </StyledMachine>
   );
 };
 

@@ -1,4 +1,6 @@
-.machine {
+import styled from 'styled-components';
+
+const StyledMachine = styled.section`
   background: var(--machine-color-dark);
   border-top: 2px solid var(--machine-color-shadow);
   border-left: 2px solid var(--machine-color-shadow);
@@ -9,17 +11,19 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: 9rem 2fr 1fr;
-}
 
-@media only screen and (max-width: 1100px) {
-  .machine {
-    min-width: 800px;
+  @media only screen and (max-width: 1100px) {
+    .machine {
+      min-width: 800px;
+    }
   }
-}
-@media only screen and (max-width: 850px) {
-  .machine {
-    min-width: 490px;
-    min-height: 1000px;
-    margin-bottom: 5rem;
+  @media only screen and (max-width: 850px) {
+    .machine {
+      min-width: 490px;
+      min-height: 1000px;
+      margin-bottom: 5rem;
+    }
   }
-}
+`;
+
+export default StyledMachine;

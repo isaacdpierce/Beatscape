@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './TextBlock.css';
+import StyledTextBlock from './StyledTextBlock.js';
 
 const TextBlock = ({ children }) => (
-  <section className='text-block'>{children}</section>
+  <StyledTextBlock>{children}</StyledTextBlock>
 );
 
 TextBlock.propTypes = {
