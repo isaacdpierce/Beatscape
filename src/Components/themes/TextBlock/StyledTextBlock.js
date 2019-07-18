@@ -7,6 +7,10 @@ const StyledTextBlock = styled.section`
   text-shadow: 1px 1px 2px black;
   border-radius: 6px;
 
+  li {
+    margin-bottom: 1rem;
+  }
+
   .personal-link {
     color: rgb(255, 81, 0);
     text-align: center;
@@ -17,8 +21,10 @@ const StyledTextBlock = styled.section`
     color: rgb(255, 102, 31);
   }
 
-  li {
-    margin-bottom: 1rem;
+  .icon-arrow {
+    height: 20px;
+    padding-right: 0.5rem;
+    transform: translateY(2px);
   }
 `;
 

@@ -6,7 +6,6 @@ import StyledTooltip from './StyledTooltip.js';
 const Tooltip = ({ children }) => (
   <StyledTooltip className='tooltip'>{children}</StyledTooltip>
 );
-
 Tooltip.propTypes = {
   children: PropTypes.object.isRequired,
 };

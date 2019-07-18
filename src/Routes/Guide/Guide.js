@@ -1,21 +1,7 @@
 import React from 'react';
 import TextBlock from 'Components/themes/TextBlock/TextBlock';
 import TrackGuide from './TrackGuide';
-
-const tracks = [
-  { type: 'kick', description: '' },
-  { type: 'snare', description: '' },
-  { type: 'percussion', description: '' },
-  { type: 'cymbals', description: '' },
-  { type: 'accessory', description: '' },
-  { type: 'melody', description: '' },
-  { type: 'harmony', description: '' },
-  { type: 'instrument', description: '' },
-  { type: 'atmosphere', description: '' },
-  { type: 'environment', description: '' },
-  { type: 'sprites', description: '' },
-  { type: 'oscillator', description: '' },
-];
+import trackList from './trackList';
 
 const Guide = () => (
   <TextBlock>
@@ -32,7 +18,7 @@ const Guide = () => (
 
     <h4>Tracks defined</h4>
     <ul style={{ marginBottom: '2rem' }}>
-      {tracks.map((track, i) => (
+      {trackList.map((track, i) => (
         <TrackGuide key={i} type={track.type} description={track.description} />
       ))}
     </ul>

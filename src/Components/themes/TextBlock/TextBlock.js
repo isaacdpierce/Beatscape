@@ -8,7 +8,11 @@ const TextBlock = ({ children }) => (
 );
 
 TextBlock.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.array,
+    PropTypes.object,
+  ]),
 };
 
 export default TextBlock;

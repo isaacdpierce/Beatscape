@@ -1,7 +1,5 @@
 import React from 'react';
 import TextBlock from 'Components/themes/TextBlock/TextBlock';
-
-import './About.css';
 import arrow from 'Assets/images/icon-arrow.png';
 
 const About = () => (
