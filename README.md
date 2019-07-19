@@ -36,6 +36,6 @@ With Beatscape you control every level of the track. If you don't like a certain
 
 ## Us
 
-The sound designs for Beatscape are done by the right honorable -- the very irreverent Michael Jaques of The Woodsman Sound Co.
+The sound designs for Beatscape are done by Michael Jaques of The Woodsman Sound Co.
 
-The web designs and code composition are done by the dishonorable and very irrelevant Isaac Pierce of The Lockstone Web Agency.
+The web designs and code composition are done by Isaac Pierce of The Lockstone Web Agency.
