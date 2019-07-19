@@ -1,5 +1,5 @@
 import React from 'react';
-import TextBlock from 'Components/themes/TextBlock/TextBlock';
+import TextBlock from 'Assets/themes/TextBlock/TextBlock';
 import TrackGuide from './TrackGuide';
 import trackList from './trackList';
 

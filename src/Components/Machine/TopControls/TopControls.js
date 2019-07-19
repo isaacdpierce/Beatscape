@@ -1,7 +1,7 @@
 import React from 'react';
 import AnimateButton from 'Components/Machine/Buttons/AnimateButton';
 import PlayButton from 'Components/Machine/Buttons/PlayButton';
-import Tooltip from 'Components/themes/Tooltip/Tooltip';
+import Tooltip from 'Assets/themes/Tooltip/Tooltip';
 import headphones from 'Assets/images/headphones.png';
 import StyledTopControls from './StyledTopControls.js';
 
