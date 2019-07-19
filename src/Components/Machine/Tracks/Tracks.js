@@ -4,15 +4,13 @@ import useAudioContext from 'Context/useAudioContext';
 import Oscillator from 'Components/Oscillator/Oscillator';
 import trackTypes from 'Assets/audio/trackTypes';
 import Loader from 'Components/Loader/Loader';
-import Audio from './Audio';
+
 import Slider from './Slider';
 
 import './Tracks.css';
 
 const Tracks = () => {
   const { data, isPlaying, isAnimated, isLoading } = useContext(MachineContext);
-  const [volume, setVolume] = useState(0.5);
-  const [stereo, setStereo] = useState(0);
   const [sineFrequency, setSineFrequency] = useState(60);
   const [sineVolume, setSineVolume] = useState(0.05);
   const [tracks, setTracks] = useState(undefined);
@@ -34,14 +32,6 @@ const Tracks = () => {
     }
   }, [data]);
 
-  const changeVolume = value => {
-    setVolume(value);
-  };
-
-  const changeStereo = value => {
-    setStereo(value);
-  };
-
   const changeSineVolume = value => {
     setSineVolume(value);
   };
@@ -52,7 +42,7 @@ const Tracks = () => {
 
   return (
     <section className={isAnimated ? 'tracks animated' : 'tracks'}>
-      {/* <Loader /> */}
+      {/* isLoading && <Loader /> */}
       {isAnimated && (
         <section className='animatedCover'>
           <p>Tracks Animated - Click stop animate to change levels</p>
@@ -61,25 +51,13 @@ const Tracks = () => {
       {tracks
         ? tracks.map((track, index) => {
             const { stemName, animate, sound } = track;
-
             return (
               <>
-                <Audio
-                  key={index + 100}
-                  pan={stereo}
-                  sound={sound}
-                  volume={volume}
-                  type={stemName}
-                  isPlaying={isPlaying}
-                />
-
                 <Slider
                   key={index}
                   type={stemName}
                   animate={animate}
                   sound={sound}
-                  changeVolume={changeVolume}
-                  changeStereo={changeStereo}
                 />
               </>
             );
@@ -88,10 +66,8 @@ const Tracks = () => {
             <Slider
               key={index + 100}
               type={track}
-              changeVolume={changeVolume}
               changeSineVolume={changeSineVolume}
               changeSineFrequency={changeSineFrequency}
-              changeStereo={changeStereo}
             />
           ))}
       <Slider

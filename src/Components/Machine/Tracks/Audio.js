@@ -8,9 +8,6 @@ export default ({ pan, sound, volume, type } = {}) => {
   const [vol, setVol] = useState(undefined);
   const [stereo, setStereo] = useState(undefined);
 
-  // delete this once audio playing is debugged
-  const [audio, setAudio] = useState(0);
-
   const { audioContext } = useContext(useAudioContext);
 
   useEffect(() => {
@@ -32,7 +29,6 @@ export default ({ pan, sound, volume, type } = {}) => {
       const gainNode = audioContext.createGain();
       const panNode = audioContext.createStereoPanner();
 
-      setAudio(source.mediaElement);
       setVol(gainNode);
       setStereo(panNode);
 
@@ -56,16 +52,16 @@ export default ({ pan, sound, volume, type } = {}) => {
   useEffect(() => {
     if (stereo) {
       stereo.pan.value = pan;
-      // console.log(`Pan in ${type} is ${pan}`);
+      console.log(`Pan in ${type} is ${pan}`);
     }
-  }, [audio, pan, stereo, type]); // only trigger this effect when pan changes
+  }, [pan, stereo, type]);
 
   useEffect(() => {
     if (vol) {
       vol.gain.value = volume;
-      // console.log(`Volume in ${type} is ${volume}`);
+      console.log(`Volume in ${type} is ${volume}`);
     }
-  }, [type, vol, volume]); // only trigger this effect when volume changes
+  }, [type, vol, volume]);
 
   useEffect(() => {
     if (!isPlaying) {
@@ -79,8 +75,7 @@ export default ({ pan, sound, volume, type } = {}) => {
         // setOffset();
       });
     }
-  }, [audioContext, isPlaying]); // only trigger this effect when volume changes
-
+  }, [audioContext, isPlaying]);
   return null;
 };
 

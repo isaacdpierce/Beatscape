@@ -27,13 +27,6 @@ const FaderKnob = ({
   const [knobValue, setKnobValue] = useState(type === 'Binaural' ? 65 : 0);
   const [knobNext, setKnobNext] = useState(getRandomFloat(knobMax, knobMin));
 
-  // useEffect(() => {
-  //   if (sound && type !== 'Binaural') {
-  //     tereo(knobValue);
-  //   } else {
-  //   }
-  // }, [knobValue, type, sound, changeSineFrequency]);
-
   useEffect(() => {
     if (isAnimated && animate) {
       animateKnob(
@@ -65,10 +58,8 @@ const FaderKnob = ({
     }
   };
 
-  const handleMouseOver = () => console.log('hover');
-
   return (
-    <div onMouseOver={handleMouseOver} onFocus={handleMouseOver}>
+    <div>
       <Knob
         min={knobMin}
         max={knobMax}
