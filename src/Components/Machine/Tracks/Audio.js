@@ -45,21 +45,20 @@ export default ({ pan, sound, volume, type } = {}) => {
         gainNode.disconnect();
       };
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [audioContext]);
 
   useEffect(() => {
     if (stereo) {
       stereo.pan.value = pan;
-      console.log(`Pan in ${type} is ${pan}`);
+      // console.log(`Pan in ${type} is ${pan}`);
     }
   }, [pan, stereo, type]);
 
   useEffect(() => {
     if (vol) {
       vol.gain.value = volume;
-      console.log(`Volume in ${type} is ${volume}`);
+      // console.log(`Volume in ${type} is ${volume}`);
     }
   }, [type, vol, volume]);
 

@@ -8,7 +8,6 @@ import FaderKnob from './FaderKnob';
 import { SliderTheme, sliderContainer } from './SliderTheme';
 import Audio from './Audio';
 
-// ? Why is animation not working?
 const Slider = ({
   type,
   animate,
@@ -23,15 +22,9 @@ const Slider = ({
   const { isAnimated, isPlaying } = useContext(MachineContext);
   const [value, setValue] = useState(initialValue);
   const [next, setNext] = useState(getRandomFloat(min, max));
-  const [volume, setVolume] = useState(0.5);
   const [stereo, setStereo] = useState(0);
 
   const levelRef = useRef();
-
-  useEffect(() => {
-    // console.log(volume);
-    console.log(levelRef);
-  }, [volume]);
 
   useEffect(() => {
     if (isAnimated && animate) {
@@ -40,14 +33,10 @@ const Slider = ({
   }, [isAnimated, animate, value, min, max, next, setValue, setNext]);
 
   const handleSliderChange = () => {
-    setValue(parseFloat(levelRef.current.value));
-    console.log(value);
-
     if (type === 'Binaural') {
       changeSineVolume(value);
-    } else {
-      setVolume(value);
     }
+    setValue(parseFloat(levelRef.current.value));
   };
 
   const changeStereo = val => {
@@ -60,7 +49,7 @@ const Slider = ({
         <Audio
           pan={stereo}
           sound={sound}
-          volume={volume}
+          volume={value}
           type={type}
           isPlaying={isPlaying}
         />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import PropTypes from 'prop-types';
 import MachineContext from 'Context/MachineContext';
 import { getRandomFloat, roundCorrect } from 'Assets/helpers/helpers';
@@ -27,6 +27,17 @@ const FaderKnob = ({
   const [knobValue, setKnobValue] = useState(type === 'Binaural' ? 65 : 0);
   const [knobNext, setKnobNext] = useState(getRandomFloat(knobMax, knobMin));
 
+  const levelRef = useRef();
+
+  useEffect(() => {
+    if (sound) {
+      if (type === 'Binaural') {
+        changeSineFrequency(roundCorrect(knobValue, 0));
+      }
+      changeStereo(roundCorrect(knobValue));
+    }
+  }, [knobValue, changeStereo, sound, type, changeSineFrequency]);
+
   useEffect(() => {
     if (isAnimated && animate) {
       animateKnob(
@@ -49,18 +60,23 @@ const FaderKnob = ({
     isAnimated,
   ]);
 
-  const handleKnobChange = val => {
-    setKnobValue(roundCorrect(val));
-    if (sound && type !== 'Binaural') {
-      changeStereo(roundCorrect(knobValue));
-    } else {
-      changeSineFrequency(roundCorrect(knobValue, 0));
-    }
+  //  const handleSliderChange = () => {
+  //   setValue(parseFloat(levelRef.current.value));
+
+  //   if (type === 'Binaural') {
+  //     changeSineVolume(value);
+  //   }
+  //   setVolume(value);
+  // };
+
+  const handleKnobChange = () => {
+    setKnobValue(levelRef.current.value);
   };
 
   return (
     <div>
       <Knob
+        ref={levelRef}
         min={knobMin}
         max={knobMax}
         step={0.01}
