@@ -12,12 +12,10 @@ import './Tracks.css';
 const Tracks = () => {
   const { data, isPlaying, isAnimated, isLoading } = useContext(MachineContext);
   const [volume, setVolume] = useState(0.5);
-  const [stereo, setStereo] = useState(1);
+  const [stereo, setStereo] = useState(0);
   const [sineFrequency, setSineFrequency] = useState(60);
   const [sineVolume, setSineVolume] = useState(0.05);
   const [tracks, setTracks] = useState(undefined);
-
-  const { audioContext } = useContext(useAudioContext);
 
   useEffect(() => {
     if (data) {
@@ -67,8 +65,7 @@ const Tracks = () => {
             return (
               <>
                 <Audio
-                  audioContext={audioContext}
-                  key={index + 10}
+                  key={index + 100}
                   pan={stereo}
                   sound={sound}
                   volume={volume}
