@@ -90,7 +90,7 @@ const Slider = ({
 Slider.propTypes = {
   type: PropTypes.string.isRequired,
   animate: PropTypes.bool,
-  sound: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+  sound: PropTypes.string,
   changeSineVolume: PropTypes.func,
   changeSineFrequency: PropTypes.func,
 };

@@ -22,11 +22,12 @@ export default ({ pan, sound, volume, type } = {}) => {
         audioHTML.crossOrigin = 'anonymous';
         audioHTML.autoplay = true;
         audioHTML.loop = true;
+        audioHTML.preload = true;
         return audioHTML;
       };
       setAudio(makeHTMLAudio(sound));
     }
-  }, [audioContext, sound]);
+  }, [audioContext, sound, type]);
 
   useEffect(() => {
     if (audio) {
@@ -55,6 +56,14 @@ export default ({ pan, sound, volume, type } = {}) => {
   }, [audio]);
 
   useEffect(() => {
+    if (isPlaying && audio) {
+      console.log(audio.duration);
+      console.log(audio.currentTime);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [audio, isPlaying]);
+
+  useEffect(() => {
     if (stereo) {
       stereo.pan.value = pan;
       // console.log(`Pan in ${type} is ${pan}`);
@@ -76,30 +85,11 @@ export default ({ pan, sound, volume, type } = {}) => {
       });
     }
     if (isPlaying) {
-      audioContext.resume().then(function() {
-        console.log(audio);
-        console.log(audioContext.currentTime);
-      });
+      audioContext.resume().then(function() {});
     }
   }, [audio, audioContext, isPlaying]);
   return null;
 };
-
-// TODO - set audio.currentTime to match audioContext.currentTime
-// useEffect(() => {
-//   // const ctxTime = audioContext.currentTime;
-
-//   if (audio) {
-//     if (audio.currentTime < audioContext.currentTime) {
-//       audioContext.close();
-//     } else {
-//       audio.currentTime = audioContext.currentTime;
-//     }
-
-//     console.log(audio.currentTime);
-//     console.log(`AudioContext time is ${audioContext.currentTime}`);
-//   }
-// }, [audio, audioContext, audioContext.currentTime]);
 
 // const [environments, setEnvironment] = useState(undefined);
 // const [sprites, setSprites] = useState(undefined);

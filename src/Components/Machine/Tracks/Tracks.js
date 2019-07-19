@@ -73,7 +73,6 @@ const Tracks = () => {
         animate={false}
         changeSineVolume={changeSineVolume}
         changeSineFrequency={changeSineFrequency}
-        sound={Oscillator}
       />
       <Oscillator
         frequency={sineFrequency}
