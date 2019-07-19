@@ -22,9 +22,10 @@ const FaderKnob = ({
   // These are set opposite to make left and right on round knob
   const knobMin = type === 'Binaural' ? 30 : 1;
   const knobMax = type === 'Binaural' ? 100 : -1;
+  const inititalValue = type === 'Binaural' ? 65 : 0;
 
   const { isAnimated } = useContext(MachineContext);
-  const [knobValue, setKnobValue] = useState(type === 'Binaural' ? 65 : 0);
+  const [knobValue, setKnobValue] = useState(inititalValue);
   const [knobNext, setKnobNext] = useState(getRandomFloat(knobMax, knobMin));
 
   const levelRef = useRef();
@@ -32,9 +33,9 @@ const FaderKnob = ({
   useEffect(() => {
     if (sound) {
       if (type === 'Binaural') {
-        changeSineFrequency(roundCorrect(knobValue, 0));
+        changeSineFrequency(knobValue);
       }
-      changeStereo(roundCorrect(knobValue));
+      changeStereo(knobValue);
     }
   }, [knobValue, changeStereo, sound, type, changeSineFrequency]);
 
@@ -60,33 +61,18 @@ const FaderKnob = ({
     isAnimated,
   ]);
 
-  //  const handleSliderChange = () => {
-  //   setValue(parseFloat(levelRef.current.value));
-
-  //   if (type === 'Binaural') {
-  //     changeSineVolume(value);
-  //   }
-  //   setVolume(value);
-  // };
-
-  const handleKnobChange = () => {
-    setKnobValue(levelRef.current.value);
-  };
-
   return (
-    <div>
-      <Knob
-        ref={levelRef}
-        min={knobMin}
-        max={knobMax}
-        step={0.01}
-        value={knobValue}
-        onChange={handleKnobChange}
-        unlockDistance={0}
-        skin={KnobSkin}
-        style={knobStyle}
-      />
-    </div>
+    <Knob
+      ref={levelRef}
+      min={knobMin}
+      max={knobMax}
+      step={0.01}
+      value={knobValue}
+      onChange={e => setKnobValue(roundCorrect(e))}
+      unlockDistance={0}
+      skin={KnobSkin}
+      style={knobStyle}
+    />
   );
 };
 
@@ -95,6 +81,7 @@ FaderKnob.propTypes = {
   type: PropTypes.string.isRequired,
   sound: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   changeSineFrequency: PropTypes.func,
+  changeStereo: PropTypes.func,
 };
 
 export default FaderKnob;

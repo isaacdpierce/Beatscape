@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { getRandomFloat, roundCorrect } from 'Assets/helpers/helpers';
+import { getRandomFloat } from 'Assets/helpers/helpers';
 import MachineContext from 'Context/MachineContext';
 import { animateVolume } from 'Assets/animations/Animations';
 import FaderKnob from './FaderKnob';
@@ -27,15 +27,18 @@ const Slider = ({
   const levelRef = useRef();
 
   useEffect(() => {
+    if (type === 'Binaural') {
+      changeSineVolume(value);
+    }
+  }, [changeSineVolume, type, value]);
+
+  useEffect(() => {
     if (isAnimated && animate) {
       animateVolume(value, min, max, next, setValue, setNext);
     }
   }, [isAnimated, animate, value, min, max, next, setValue, setNext]);
 
   const handleSliderChange = () => {
-    if (type === 'Binaural') {
-      changeSineVolume(value);
-    }
     setValue(parseFloat(levelRef.current.value));
   };
 

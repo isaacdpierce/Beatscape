@@ -32,12 +32,12 @@ const Tracks = () => {
     }
   }, [data]);
 
-  const changeSineVolume = value => {
-    setSineVolume(value);
+  const changeSineVolume = val => {
+    setSineVolume(val);
   };
 
-  const changeSineFrequency = value => {
-    setSineFrequency(value);
+  const changeSineFrequency = val => {
+    setSineFrequency(val);
   };
 
   return (
@@ -52,14 +52,12 @@ const Tracks = () => {
         ? tracks.map((track, index) => {
             const { stemName, animate, sound } = track;
             return (
-              <>
-                <Slider
-                  key={index}
-                  type={stemName}
-                  animate={animate}
-                  sound={sound}
-                />
-              </>
+              <Slider
+                key={index}
+                type={stemName}
+                animate={animate}
+                sound={sound}
+              />
             );
           })
         : trackTypes.map((track, index) => (

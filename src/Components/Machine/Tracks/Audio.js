@@ -6,26 +6,31 @@ import useAudioContext from 'Context/useAudioContext';
 export default ({ pan, sound, volume, type } = {}) => {
   const { isPlaying, data } = useContext(MachineContext);
   const [vol, setVol] = useState(undefined);
-  const [stereo, setStereo] = useState(undefined);
+  const [stereo, setStereo] = useState(0);
+  const [audio, setAudio] = useState(undefined);
 
   const { audioContext } = useContext(useAudioContext);
 
   useEffect(() => {
-    if (audioContext) {
-      const makeHTMLAudio = file => {
+    if (audioContext && sound) {
+      const makeHTMLAudio = url => {
         const audioHTML = new Audio();
-        if (!file) {
+        if (!url) {
           return null;
         }
-        audioHTML.src = file;
+        audioHTML.src = url;
         audioHTML.crossOrigin = 'anonymous';
         audioHTML.autoplay = true;
+        audioHTML.loop = true;
         return audioHTML;
       };
+      setAudio(makeHTMLAudio(sound));
+    }
+  }, [audioContext, sound]);
 
-      const source = audioContext.createMediaElementSource(
-        makeHTMLAudio(sound)
-      );
+  useEffect(() => {
+    if (audio) {
+      const source = audioContext.createMediaElementSource(audio);
       const gainNode = audioContext.createGain();
       const panNode = audioContext.createStereoPanner();
 
@@ -45,8 +50,9 @@ export default ({ pan, sound, volume, type } = {}) => {
         gainNode.disconnect();
       };
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [audioContext]);
+  }, [audio]);
 
   useEffect(() => {
     if (stereo) {
@@ -63,7 +69,7 @@ export default ({ pan, sound, volume, type } = {}) => {
   }, [type, vol, volume]);
 
   useEffect(() => {
-    if (!isPlaying) {
+    if (!isPlaying && audio) {
       audioContext.suspend().then(function() {
         // console.log(audioContext.state, audioContext.currentTime);
         // setOffset(audioContext.currentTime);
@@ -71,10 +77,11 @@ export default ({ pan, sound, volume, type } = {}) => {
     }
     if (isPlaying) {
       audioContext.resume().then(function() {
-        // setOffset();
+        console.log(audio);
+        console.log(audioContext.currentTime);
       });
     }
-  }, [audioContext, isPlaying]);
+  }, [audio, audioContext, isPlaying]);
   return null;
 };
 
