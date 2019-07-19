@@ -5,6 +5,7 @@ import MachineContext from 'Context/MachineContext';
 import { animateVolume } from 'Assets/animations/Animations';
 import FaderKnob from './Knobs/FaderKnob';
 import { StyledSlider, SliderContainer } from './StyledSlider';
+import Audio from './Audio';
 
 const Slider = ({
   type,
@@ -20,21 +21,15 @@ const Slider = ({
   const { isAnimated, isPlaying } = useContext(MachineContext);
   const [value, setValue] = useState(initialValue);
   const [next, setNext] = useState(getRandomFloat(min, max));
+  const [stereo, setStereo] = useState(0);
 
   const levelRef = useRef();
 
   useEffect(() => {
-    if (sound && type !== 'Binaural') {
-      // eslint-disable-next-line no-unused-expressions
-      isPlaying ? sound.play() : sound.pause();
+    if (type === 'Binaural') {
+      changeSineVolume(value);
     }
-  }, [isPlaying, sound, type]);
-
-  useEffect(() => {
-    if (sound && type !== 'Binaural') {
-      sound.volume(value);
-    }
-  }, [value, sound, type]);
+  }, [changeSineVolume, type, value]);
 
   useEffect(() => {
     if (isAnimated && animate) {
@@ -44,13 +39,24 @@ const Slider = ({
 
   const handleSliderChange = () => {
     setValue(parseFloat(levelRef.current.value));
-    if (type === 'Binaural') {
-      changeSineVolume(value);
-    }
+  };
+
+  const changeStereo = val => {
+    setStereo(val);
   };
 
   return (
     <SliderContainer>
+      {sound && (
+        <Audio
+          pan={stereo}
+          sound={sound}
+          volume={value}
+          type={type}
+          isPlaying={isPlaying}
+        />
+      )}
+
       <StyledSlider>
         <label htmlFor={type}>
           <span className='slider__value'>{value}</span>
@@ -76,6 +82,7 @@ const Slider = ({
         type={type}
         sound={sound}
         changeSineFrequency={changeSineFrequency}
+        changeStereo={changeStereo}
       />
     </SliderContainer>
   );
@@ -84,7 +91,7 @@ const Slider = ({
 Slider.propTypes = {
   type: PropTypes.string.isRequired,
   animate: PropTypes.bool,
-  sound: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  sound: PropTypes.string,
   changeSineVolume: PropTypes.func,
   changeSineFrequency: PropTypes.func,
 };

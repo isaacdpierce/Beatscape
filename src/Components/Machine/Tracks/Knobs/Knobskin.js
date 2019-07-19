@@ -67,21 +67,15 @@ export default {
   updateAttributes: [
     {
       element: '#s5labeltext text tspan',
-      content: (props, value) => {
-        return value.toFixed(0);
-      },
+      content: (props, value) => value.toFixed(0),
       attrs: [
         {
           name: 'text-anchor',
-          value: (props, value) => {
-            return 'middle';
-          },
+          value: (props, value) => 'middle',
         },
         {
           name: 'x',
-          value: (props, value) => {
-            return '21';
-          },
+          value: (props, value) => '21',
         },
       ],
     },

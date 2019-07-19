@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import PropTypes from 'prop-types';
 import MachineContext from 'Context/MachineContext';
 import { getRandomFloat, roundCorrect } from 'Assets/helpers/helpers';
@@ -11,21 +11,30 @@ const knobStyle = {
   filter: 'brightness(70%)',
 };
 
-const FaderKnob = ({ animate, type, sound, changeSineFrequency }) => {
+const FaderKnob = ({
+  animate,
+  type,
+  sound,
+  changeSineFrequency,
+  changeStereo,
+}) => {
+  // These are set opposite to make left and right on round knob
   const knobMin = type === 'Binaural' ? 30 : 1;
   const knobMax = type === 'Binaural' ? 100 : -1;
+  const inititalValue = type === 'Binaural' ? 65 : 0;
 
   const { isAnimated } = useContext(MachineContext);
-  const [knobValue, setKnobValue] = useState(type === 'Binaural' ? 65 : 0);
+  const [knobValue, setKnobValue] = useState(inititalValue);
   const [knobNext, setKnobNext] = useState(getRandomFloat(knobMax, knobMin));
 
   useEffect(() => {
-    if (sound && type !== 'Binaural') {
-      sound.stereo(knobValue);
-    } else {
-      changeSineFrequency(roundCorrect(knobValue, 0));
+    if (sound) {
+      if (type === 'Binaural') {
+        changeSineFrequency(knobValue);
+      }
+      changeStereo(knobValue);
     }
-  }, [knobValue, type, sound, changeSineFrequency]);
+  }, [knobValue, changeStereo, sound, type, changeSineFrequency]);
 
   useEffect(() => {
     if (isAnimated && animate) {
@@ -49,17 +58,13 @@ const FaderKnob = ({ animate, type, sound, changeSineFrequency }) => {
     isAnimated,
   ]);
 
-  const handleKnobChange = val => {
-    setKnobValue(roundCorrect(val));
-  };
-
   return (
     <Knob
       min={knobMin}
       max={knobMax}
       step={0.01}
       value={knobValue}
-      onChange={handleKnobChange}
+      onChange={e => setKnobValue(roundCorrect(e))}
       unlockDistance={0}
       skin={KnobSkin}
       style={knobStyle}
@@ -70,8 +75,9 @@ const FaderKnob = ({ animate, type, sound, changeSineFrequency }) => {
 FaderKnob.propTypes = {
   animate: PropTypes.bool,
   type: PropTypes.string.isRequired,
-  sound: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  sound: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
   changeSineFrequency: PropTypes.func,
+  changeStereo: PropTypes.func,
 };
 
 export default FaderKnob;

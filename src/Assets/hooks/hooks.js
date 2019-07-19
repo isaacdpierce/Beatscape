@@ -14,7 +14,6 @@ export const useBeatscapeApi = initialUrl => {
     const fetchData = async () => {
       setIsError(false);
       setIsLoading(true);
-      console.log(url);
 
       try {
         const result = await axios(url);

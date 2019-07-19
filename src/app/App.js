@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Route } from 'react-router-dom';
-import axios from 'axios';
 import About from 'Routes/About/About';
 import Guide from 'Routes/Guide/Guide';
 import ComingSoon from 'Routes/ComingSoon/ComingSoon';
