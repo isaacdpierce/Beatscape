@@ -29,4 +29,5 @@ yarn-debug.log*
 yarn-error.log*
 
 
-./NOTES.md
+notes.md
+filesystem.md
