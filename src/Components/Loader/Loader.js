@@ -13,13 +13,13 @@ const spin = keyframes`
 
 const StyledLoader = styled.div`
   position: absolute;
-  top: 75%;
-  left: 45%;
+  top: -32%;
+  left: 43%;
 
   border: 10px solid rgba(31, 96, 143, 0.084);
   border-radius: 50%;
-  border-top: 10px groove var(--brand-color-1);
-  border-bottom: 10px groove var(--brand-color-2);
+  border-top: 10px groove var(--main-bg-color-light);
+  border-bottom: 10px groove var(--main-bg-color-light);
   width: 120px;
   height: 120px;
   animation: ${spin} 2s linear infinite;

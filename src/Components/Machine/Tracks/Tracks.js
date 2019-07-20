@@ -4,13 +4,16 @@ import useAudioContext from 'Context/useAudioContext';
 import Oscillator from 'Components/Oscillator/Oscillator';
 import trackTypes from 'Assets/audio/trackTypes';
 import Loader from 'Components/Loader/Loader';
-
+import Error from 'Components/Error/Error';
 import Slider from './Slider';
+import { TrackCover, errorColor } from './TrackCover';
 
 import StyledTracks from './StyledTracks.js';
 
 const Tracks = () => {
-  const { data, isPlaying, isAnimated, isLoading } = useContext(MachineContext);
+  const { data, isPlaying, isAnimated, isLoading, isError } = useContext(
+    MachineContext
+  );
   const [sineFrequency, setSineFrequency] = useState(60);
   const [sineVolume, setSineVolume] = useState(0.05);
   const [tracks, setTracks] = useState(undefined);
@@ -42,11 +45,18 @@ const Tracks = () => {
 
   return (
     <StyledTracks className={isAnimated && 'animated'}>
-      {/* <Loader /> */}
+      {isLoading && <Loader />}
+      {isError && (
+        <TrackCover>
+          <p style={errorColor}>
+            Something went wrong... try another selection.
+          </p>
+        </TrackCover>
+      )}
       {isAnimated && (
-        <section className='animatedCover animate'>
+        <TrackCover>
           <p>Tracks Animated - Click stop animate to change levels</p>
-        </section>
+        </TrackCover>
       )}
       {tracks
         ? tracks.map((track, index) => {

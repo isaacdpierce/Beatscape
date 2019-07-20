@@ -67,8 +67,6 @@ function App() {
       }}
     >
       <AppTheme className='App'>
-        {/* // TODO Put loader in popup component // Style error msg  */}
-        {isError && <div>Something went wrong... try another selection.</div>}
         <Header />
         <main>
           <Route exact path='/' component={Machine} />
