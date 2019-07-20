@@ -7,11 +7,9 @@ const StyledDrawer = styled.section`
     justify-content: space-around;
   }
 
-  //! FIX -- This is making odd spacing at bottom of machine
   grid-column: 1 / -1;
   grid-row: 3 / span 1;
-  padding: 2.6rem 0;
-  height: 75%;
+  padding: 0.6rem 0;
 
   background-color: black;
   width: 95%;
@@ -21,7 +19,6 @@ const StyledDrawer = styled.section`
   box-shadow: 0 0px 3px 0 var(--machine-color-shadow);
   position: relative;
   left: 2.5%;
-  bottom: -4.9rem;
   transition: all 0.6s ease-in-out;
   z-index: -1;
 

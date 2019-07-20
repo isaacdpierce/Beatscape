@@ -7,10 +7,9 @@ const StyledMachine = styled.section`
   border-right: 2px solid var(--machine-color-shadow);
   border-radius: 6px;
   min-width: 1040px;
-  padding-bottom: 2rem;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 9rem 2fr 1fr;
+  grid-template-rows: 9rem minmax(auto, 23rem) auto;
 
   @media only screen and (max-width: 1100px) {
     .machine {
