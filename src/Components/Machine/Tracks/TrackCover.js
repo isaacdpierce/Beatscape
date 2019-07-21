@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const TrackCover = styled.section`
-  padding-top: 10px;
+  padding-top: 1rem;
   position: absolute;
   top: 0;
   left: 0;
@@ -18,7 +18,7 @@ export const TrackCover = styled.section`
     color: var(--main-brown);
     margin: 0;
     font-weight: 100;
-    font-size: 20px;
+    font-size: 2rem;
     text-shadow: 0px 0px 3px black;
   }
 `;

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const StyledTextBlock = styled.section`
   width: 50vw;
-  padding: 1rem 2rem;
+  padding: 2rem 7rem;
   background: rgba(0, 0, 0, 0.406);
   text-shadow: 1px 1px 2px black;
   border-radius: 6px;
@@ -15,15 +15,14 @@ const StyledTextBlock = styled.section`
     color: rgb(255, 81, 0);
     text-align: center;
     transition: color 0.2s ease-in-out;
-  }
-
-  .personal-link:hover {
-    color: rgb(255, 102, 31);
+    :hover {
+      color: rgb(255, 102, 31);
+    }
   }
 
   .icon-arrow {
-    height: 20px;
-    padding-right: 0.5rem;
+    height: 2rem;
+    padding-right: 1.5rem;
     transform: translateY(2px);
   }
 `;

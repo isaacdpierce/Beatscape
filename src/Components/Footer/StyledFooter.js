@@ -6,7 +6,7 @@ const StyledFooter = styled.footer`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding-bottom: 47.5px;
+  padding-bottom: 4.8rem;
 
   .nav__links {
     padding: 0;
@@ -18,7 +18,7 @@ const StyledFooter = styled.footer`
     margin: 0;
     font-weight: 100;
     text-transform: uppercase;
-    text-shadow: 0 0 6px var(black);
+    text-shadow: 0 0 3px black;
     align-self: flex-end;
   }
 
@@ -27,13 +27,12 @@ const StyledFooter = styled.footer`
     height: 100%;
     padding-bottom: 0.1rem;
   }
-
   .nav__links a {
-    font-size: 16px;
+    font-size: calc(0.9rem + (26 - 16) * ((100vw - 300px) / (1600 - 300)));
   }
 
   .nav__links li:not(:last-child) {
-    padding-right: 23.8px;
+    padding-right: 2.4rem;
   }
 
   .selected {
@@ -43,14 +42,20 @@ const StyledFooter = styled.footer`
   .copyright {
     display: flex;
     justify-content: space-between;
-    padding: 0 47.5px;
+    padding: 0 4.7rem;
     width: 100%;
   }
 
   .copyright p {
     margin: 0;
     color: rgb(76, 96, 114);
-    font-size: 16px;
+    font-size: 1.6rem;
+  }
+
+  @media only screen and (max-width: 650px) {
+    .nav__links a {
+      font-size: 1.3rem;
+    }
   }
 `;
 

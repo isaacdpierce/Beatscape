@@ -9,7 +9,7 @@ const StyledDrawerButton = styled.button`
   border: none;
   text-transform: uppercase;
   background: inherit;
-  font-size: 0.8rem;
+  font-size: 2rem;
   color: var(--yellow-font-color-dark);
   :focus,
   :hover {

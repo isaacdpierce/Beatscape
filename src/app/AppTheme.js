@@ -4,7 +4,7 @@ const AppTheme = styled.div`
   width: 100vw;
   display: grid;
   grid-template-columns: repeat(16, 1fr);
-  grid-template-rows: minmax(60px, 6vw) 1fr 18vw;
+  grid-template-rows: minmax(6rem, 6vw) 1fr 18vw;
   grid-gap: 0.5rem;
   background: radial-gradient(
     circle,
@@ -16,7 +16,7 @@ const AppTheme = styled.div`
   main {
     grid-column: 1 / -1;
     grid-row: 2 / -2;
-    padding: 47.5px;
+    padding: 4.7rem;
     display: flex;
     justify-content: center;
     align-items: center;

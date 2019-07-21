@@ -4,12 +4,12 @@ export const StyledSlider = styled.div`
   display: flex;
   flex-direction: column;
   transform: rotate(-90deg);
-  width: 10px;
+  width: 1rem;
   position: relative;
 
   .slider__label {
     display: inline-block;
-    transform: translate(5px, 5px);
+    transform: translate(0.5rem, 1.3rem);
     color: var(--main-font-color-dark);
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -19,13 +19,13 @@ export const StyledSlider = styled.div`
 
   .slider__value {
     display: block;
-    font-size: 10px;
-    transform: rotate(90deg) translate(195px, 170px);
-    width: 300px;
+    font-size: 1rem;
+    transform: rotate(90deg) translate(21.5rem, 17rem);
+    width: 30rem;
   }
 
   input {
-    width: 340px;
+    width: 34rem;
   }
 
   @media (max-width: 850px) {
@@ -36,8 +36,8 @@ export const StyledSlider = styled.div`
     .slider__label {
       transform: none;
       display: grid;
-      grid-column-gap: 23.5px;
-      grid-row-gap: 250px;
+      grid-column-gap: 2.3rem;
+      grid-row-gap: 25rem;
     }
 
     .slider__value {
@@ -46,15 +46,15 @@ export const StyledSlider = styled.div`
     }
 
     input {
-      margin: 23.5px 0;
+      margin: 2.3rem 0;
       width: 60vw;
     }
   }
 `;
 
 export const SliderContainer = styled.section`
-  margin-right: 10px;
-  transform: translate(-10px, 150px);
+  margin-right: 1rem;
+  transform: translate(-1rem, 15rem);
 
   @media (max-width: 850px) {
     margin-right: 0;

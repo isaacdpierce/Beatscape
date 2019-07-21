@@ -18,26 +18,26 @@ const StyledTopControls = styled.section.attrs({
   }
 
   .buttons-container {
-    height: 47.5px;
+    height: 4.7rem;
   }
 
   .headphones {
     margin: 0;
     display: grid;
     place-items: center;
-    padding-top: 47.5px;
+    padding-top: 4.7rem;
   }
   .headphones::after {
     content: '?';
-    font-size: 12px;
+    font-size: 1.2rem;
     display: block;
     text-align: center;
-    transform: translateY(-30px);
+    transform: translateY(-2rem);
   }
 
   .headphones__img {
     display: block;
-    height: 30px;
+    height: 3rem;
   }
 
   .headphones:hover {

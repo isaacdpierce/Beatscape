@@ -11,7 +11,7 @@ const StyledDrawer = styled.section.attrs({
 
   grid-column: 1 / -1;
   grid-row: 3 / span 1;
-  padding: 15px 0;
+  padding: 1.5rem 0;
 
   background-color: black;
   width: 95%;
@@ -30,9 +30,9 @@ const StyledDrawer = styled.section.attrs({
     border-radius: 3px;
     display: block;
     position: absolute;
-    bottom: -10px;
+    bottom: -1rem;
     width: 105%;
-    height: 10px;
+    height: 1rem;
     border-left: 2px solid var(--machine-color-shadow-light);
     border-right: 2px solid var(--machine-color-shadow-light);
     border-bottom: 2px solid var(--machine-color-shadow-light);

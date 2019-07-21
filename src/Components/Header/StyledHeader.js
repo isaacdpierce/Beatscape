@@ -9,7 +9,7 @@ const StyledHeader = styled.header`
   justify-content: space-between;
   grid-column: 1 / -1;
   grid-row: 1 / span 1;
-  padding: 0 47px;
+  padding: 0 4.7rem;
   align-items: flex-end;
 
   .logo,
@@ -33,17 +33,21 @@ const StyledHeader = styled.header`
     display: flex;
     justify-content: space-between;
   }
-
   .nav__links a {
-    font-size: 16px;
+    font-size: calc(0.9rem + (26 - 16) * ((100vw - 300px) / (1600 - 300)));
   }
 
   .nav__links li:not(:last-child) {
-    padding-right: 23.8px;
+    padding-right: 2.9rem;
   }
 
   .selected {
     color: var(--yellow-link-color-active);
+  }
+  @media only screen and (max-width: 650px) {
+    .nav__links a {
+      font-size: 1.3rem;
+    }
   }
 `;
 
