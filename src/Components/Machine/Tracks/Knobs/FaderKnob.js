@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import MachineContext from 'Context/MachineContext';
 import { getRandomFloat, roundCorrect } from 'Assets/helpers/helpers';
@@ -7,8 +7,8 @@ import { animateKnob } from 'Assets/animations/Animations';
 import KnobSkin from './Knobskin';
 
 const knobStyle = {
-  transform: 'translateY(20px) ',
   filter: 'brightness(70%)',
+  margin: '1rem auto 0',
 };
 
 const FaderKnob = ({
@@ -18,13 +18,12 @@ const FaderKnob = ({
   changeSineFrequency,
   changeStereo,
 }) => {
-  // These are set opposite to make left and right on round knob
   const knobMin = type === 'Binaural' ? 30 : 1;
   const knobMax = type === 'Binaural' ? 100 : -1;
-  const inititalValue = type === 'Binaural' ? 65 : 0;
+  const initialValue = type === 'Binaural' ? 65 : 0;
 
   const { isAnimated } = useContext(MachineContext);
-  const [knobValue, setKnobValue] = useState(inititalValue);
+  const [knobValue, setKnobValue] = useState(initialValue);
   const [knobNext, setKnobNext] = useState(getRandomFloat(knobMax, knobMin));
 
   useEffect(() => {

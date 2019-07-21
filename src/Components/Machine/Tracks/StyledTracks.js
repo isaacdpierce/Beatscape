@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const StyledTracks = styled.section`
   grid-column: 2 / -2;
+  justify-self: center;
   grid-row: 2 / span 1;
   background: var(--machine-color-light);
   border: 1px solid var(--machine-border-dark);
@@ -18,15 +19,9 @@ const StyledTracks = styled.section`
   }
 
   @media only screen and (max-width: 850px) {
-    height: 780px;
-    width: 600px;
-    flex-direction: column;
-  }
-
-  @media only screen and (max-width: 380px) {
-    .slider input {
-      width: 370px;
-    }
+    display: grid;
+    /* grid-row-gap: 2rem; */
+    padding: 3rem;
   }
 `;
 

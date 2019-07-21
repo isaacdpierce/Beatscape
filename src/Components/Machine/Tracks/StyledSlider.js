@@ -25,18 +25,39 @@ export const StyledSlider = styled.div`
   }
 
   input {
-    width: 350px;
+    width: 340px;
   }
 
-  /* @media only screen and(max-width: 850px) {
-    flex-direction: row;
-    transform: rotate(90deg) translate(-150px);
-    height: 10px;
-    width: 500px;
-  } */
+  @media (max-width: 850px) {
+    display: block;
+    transform: none;
+    width: 100%;
+
+    .slider__label {
+      transform: none;
+      display: grid;
+      grid-column-gap: 1rem;
+      grid-row-gap: 5rem;
+    }
+
+    .slider__value {
+      display: inline;
+      transform: none;
+    }
+
+    input {
+      margin: 1rem 0;
+      width: 60vw;
+    }
+  }
 `;
 
 export const SliderContainer = styled.section`
   margin-right: 10px;
   transform: translate(-10px, 150px);
+
+  @media (max-width: 850px) {
+    margin-right: 0;
+    transform: none;
+  }
 `;

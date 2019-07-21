@@ -1,10 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
 import MachineContext from 'Context/MachineContext';
-import useAudioContext from 'Context/useAudioContext';
-import Oscillator from 'Components/Oscillator/Oscillator';
+import Oscillator from 'Components/Machine/Tracks/Oscillator/Oscillator';
 import trackTypes from 'Assets/audio/trackTypes';
 import Loader from 'Components/Loader/Loader';
-import Error from 'Components/Error/Error';
 import Slider from './Slider';
 import { TrackCover, errorColor } from './TrackCover';
 

@@ -24,12 +24,6 @@ function App() {
   ] = useBeatscapeApi('http://localhost:8000/api/soundscapes/1');
 
   useEffect(() => {
-    if (data) {
-      console.log(data);
-    }
-  }, [data]);
-
-  useEffect(() => {
     // eslint-disable-next-line no-unused-expressions
     isAnimated ? setIsPlaying(true) : setIsPlaying(false);
   }, [isAnimated, setIsPlaying]);
@@ -57,6 +51,7 @@ function App() {
         changeMasterVolume,
         isAnimated,
         toggleAnimation,
+        isError,
         isPlaying,
         isLoading,
         togglePlay,

@@ -9,19 +9,17 @@ const StyledMachine = styled.section`
   min-width: 1040px;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 9rem minmax(auto, 23rem) auto;
+  grid-template-rows: 7.5rem minmax(auto, 22.5rem) auto;
 
   @media only screen and (max-width: 1100px) {
-    .machine {
-      min-width: 800px;
-    }
+    min-width: 800px;
   }
+
   @media only screen and (max-width: 850px) {
-    .machine {
-      min-width: 490px;
-      min-height: 1000px;
-      margin-bottom: 5rem;
-    }
+    grid-template-rows: 9rem 1fr auto;
+
+    min-width: 490px;
+    min-height: 1000px;
   }
 `;
 
