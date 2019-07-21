@@ -165,5 +165,5 @@ input[type='range']:focus::-ms-fill-upper {
 
 strong {
   font-weight: 300;
-  font-size: 0.9rem;
+  font-size: 10px;
 }

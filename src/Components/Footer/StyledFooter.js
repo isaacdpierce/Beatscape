@@ -6,7 +6,7 @@ const StyledFooter = styled.footer`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding-bottom: 2rem;
+  padding-bottom: 47.5px;
 
   .nav__links {
     padding: 0;
@@ -33,7 +33,7 @@ const StyledFooter = styled.footer`
   }
 
   .nav__links li:not(:last-child) {
-    padding-right: 1rem;
+    padding-right: 23.8px;
   }
 
   .selected {
@@ -43,14 +43,14 @@ const StyledFooter = styled.footer`
   .copyright {
     display: flex;
     justify-content: space-between;
-    padding: 0 2rem;
+    padding: 0 47.5px;
     width: 100%;
   }
 
   .copyright p {
     margin: 0;
     color: rgb(76, 96, 114);
-    font-size: 0.7rem;
+    font-size: 16px;
   }
 `;
 

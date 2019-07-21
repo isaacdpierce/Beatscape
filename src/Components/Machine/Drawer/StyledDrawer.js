@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-const StyledDrawer = styled.section`
+const StyledDrawer = styled.section.attrs({
+  className: 'drawer',
+})`
   &,
   .drawer-col {
     display: flex;
@@ -9,7 +11,7 @@ const StyledDrawer = styled.section`
 
   grid-column: 1 / -1;
   grid-row: 3 / span 1;
-  padding: 0.6rem 0;
+  padding: 15px 0;
 
   background-color: black;
   width: 95%;

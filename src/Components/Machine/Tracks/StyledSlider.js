@@ -13,7 +13,7 @@ export const StyledSlider = styled.div`
     color: var(--main-font-color-dark);
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-size: 0.5rem;
+    font-size: 12px;
     font-weight: 300;
   }
 
@@ -36,8 +36,8 @@ export const StyledSlider = styled.div`
     .slider__label {
       transform: none;
       display: grid;
-      grid-column-gap: 1rem;
-      grid-row-gap: 5rem;
+      grid-column-gap: 23.5px;
+      grid-row-gap: 250px;
     }
 
     .slider__value {
@@ -46,7 +46,7 @@ export const StyledSlider = styled.div`
     }
 
     input {
-      margin: 1rem 0;
+      margin: 23.5px 0;
       width: 60vw;
     }
   }

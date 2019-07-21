@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MachineContext from 'Context/MachineContext';
 import styled from 'styled-components';
 
-const StyledButton = styled.button`
+const StyledDrawerButton = styled.button`
   padding: 0.5rem;
   display: block;
   border: none;
@@ -22,9 +22,9 @@ const DrawerButton = ({ children, source }) => {
   const { setUrl } = useContext(MachineContext);
 
   return (
-    <StyledButton type='submit' onClick={() => setUrl(source)}>
+    <StyledDrawerButton type='submit' onClick={() => setUrl(source)}>
       {children}
-    </StyledButton>
+    </StyledDrawerButton>
   );
 };
 

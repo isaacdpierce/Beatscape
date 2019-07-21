@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-const StyledTopControls = styled.section`
+const StyledTopControls = styled.section.attrs({
+  className: 'topControls',
+})`
   grid-column: 1 / -1;
   grid-row: 1 / span 1;
   height: 100%;
@@ -16,15 +18,14 @@ const StyledTopControls = styled.section`
   }
 
   .buttons-container {
-    height: 2rem;
+    height: 47.5px;
   }
 
   .headphones {
     margin: 0;
-    /* padding-top: 1rem; */
-    display: flex;
-    flex-direction: column;
-    padding-top: 1rem;
+    display: grid;
+    place-items: center;
+    padding-top: 47.5px;
   }
   .headphones::after {
     content: '?';

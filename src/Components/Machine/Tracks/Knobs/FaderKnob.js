@@ -8,7 +8,7 @@ import KnobSkin from './Knobskin';
 
 const knobStyle = {
   filter: 'brightness(70%)',
-  margin: '1rem auto 0',
+  margin: '23.5px auto 0',
 };
 
 const FaderKnob = ({
