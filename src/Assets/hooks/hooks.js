@@ -7,11 +7,11 @@ export const useBeatscapeApi = initialUrl => {
   const [url, setUrl] = useState(initialUrl);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [isAnimated, setIsAnimated] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsPlaying(false);
       setIsError(false);
       setIsLoading(true);
 
@@ -29,10 +29,5 @@ export const useBeatscapeApi = initialUrl => {
     fetchData();
   }, [url]);
 
-  return [
-    { data, isLoading, isError, isPlaying, isAnimated },
-    setUrl,
-    setIsPlaying,
-    setIsAnimated,
-  ];
+  return [{ data, isLoading, isError, isPlaying }, setUrl, setIsPlaying];
 };

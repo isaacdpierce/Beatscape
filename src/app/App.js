@@ -13,14 +13,12 @@ import { MachineProvider } from 'Context/MachineContext';
 import AppTheme from './AppTheme.js';
 
 function App() {
-  const [masterVolume, setMasterVolume] = useState(0.5);
-  const [masterFader, setMasterFader] = useState(0.5);
+  const [isAnimated, setIsAnimated] = useState(false);
 
   const [
-    { data, isLoading, isError, isPlaying, isAnimated },
+    { data, isLoading, isError, isPlaying },
     setUrl,
     setIsPlaying,
-    setIsAnimated,
   ] = useBeatscapeApi('http://localhost:8000/api/soundscapes/1');
 
   useEffect(() => {
@@ -28,13 +26,6 @@ function App() {
     isAnimated ? setIsPlaying(true) : setIsPlaying(false);
   }, [isAnimated, setIsPlaying]);
 
-  const changeMasterVolume = newVol => {
-    setMasterVolume(newVol);
-  };
-
-  const changeMasterFader = newFade => {
-    setMasterFader(newFade);
-  };
   const toggleAnimation = () => {
     setIsAnimated(!isAnimated);
   };
@@ -47,16 +38,12 @@ function App() {
   return (
     <MachineProvider
       value={{
-        masterVolume,
-        changeMasterVolume,
         isAnimated,
         toggleAnimation,
         isError,
         isPlaying,
         isLoading,
         togglePlay,
-        masterFader,
-        changeMasterFader,
         data,
         setUrl,
       }}
