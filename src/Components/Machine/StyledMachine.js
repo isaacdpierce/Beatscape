@@ -1,25 +1,27 @@
 import styled from 'styled-components';
 
-const StyledMachine = styled.section`
+const StyledMachine = styled.section.attrs({
+  className: 'machine',
+})`
   background: var(--machine-color-dark);
   border-top: 2px solid var(--machine-color-shadow);
   border-left: 2px solid var(--machine-color-shadow);
   border-right: 2px solid var(--machine-color-shadow);
   border-radius: 6px;
-  min-width: 1040px;
+  min-width: 100rem;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 7.5rem minmax(auto, 22.5rem) auto;
+  grid-template-rows: 18rem minmax(auto, 56rem) 18rem;
 
   @media only screen and (max-width: 1100px) {
-    min-width: 800px;
+    min-width: 80rem;
   }
 
   @media only screen and (max-width: 850px) {
-    grid-template-rows: 9rem 1fr auto;
+    grid-template-rows: 21rem 1fr auto;
 
-    min-width: 490px;
-    min-height: 1000px;
+    min-width: 49rem;
+    min-height: 100rem;
   }
 `;
 

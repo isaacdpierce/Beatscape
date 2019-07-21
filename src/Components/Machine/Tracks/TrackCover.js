@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const TrackCover = styled.section`
-  padding-top: 10px;
+  padding-top: 1rem;
   position: absolute;
   top: 0;
   left: 0;
@@ -10,7 +10,6 @@ export const TrackCover = styled.section`
   text-align: center;
   color: transparent;
   background-color: transparent;
-
   background-color: rgba(0, 0, 0, 0.392);
   z-index: 999;
 
@@ -19,7 +18,7 @@ export const TrackCover = styled.section`
     color: var(--main-brown);
     margin: 0;
     font-weight: 100;
-    font-size: 0.75rem;
+    font-size: 2rem;
     text-shadow: 0px 0px 3px black;
   }
 `;

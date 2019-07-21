@@ -3,10 +3,11 @@ import styled from 'styled-components';
 const StyledTracks = styled.section`
   grid-column: 2 / -2;
   justify-self: center;
+  min-height: 52rem;
   grid-row: 2 / span 1;
   background: var(--machine-color-light);
   border: 1px solid var(--machine-border-dark);
-  padding: 0 0.5rem 0 2rem;
+  padding: 0 1.1rem 0 4.7rem;
   margin: 0;
   display: flex;
   align-items: center;
@@ -20,8 +21,7 @@ const StyledTracks = styled.section`
 
   @media only screen and (max-width: 850px) {
     display: grid;
-    /* grid-row-gap: 2rem; */
-    padding: 3rem;
+    padding: 5.2rem;
   }
 `;
 
