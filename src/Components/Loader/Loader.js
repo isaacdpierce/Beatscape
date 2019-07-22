@@ -5,7 +5,14 @@ const spin = keyframes`
   from {
     transform: rotate(0deg);
   }
-
+  to {
+    transform: rotate(360deg);
+  }
+`;
+const swing = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
   to {
     transform: rotate(360deg);
   }
@@ -13,7 +20,7 @@ const spin = keyframes`
 
 const StyledLoader = styled.div`
   position: absolute;
-  top: -32%;
+  top: 5rem;
   left: 43%;
 
   border: 10px solid rgba(31, 96, 143, 0.084);

@@ -10,7 +10,7 @@ import { useBeatscapeApi } from 'Assets/hooks/hooks';
 
 import { MachineProvider } from 'Context/MachineContext';
 
-import AppTheme from './AppTheme.js';
+import AppTheme from './AppTheme';
 
 function App() {
   const [isAnimated, setIsAnimated] = useState(false);

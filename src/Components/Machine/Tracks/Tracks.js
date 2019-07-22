@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from 'react';
 import MachineContext from 'Context/MachineContext';
 import Oscillator from 'Components/Machine/Tracks/Oscillator/Oscillator';
 import trackTypes from 'Assets/audio/trackTypes';
-import Loader from 'Components/Loader/Loader';
 import Slider from './Slider';
 import { TrackCover, errorColor } from './TrackCover';
 
@@ -43,7 +42,6 @@ const Tracks = () => {
 
   return (
     <StyledTracks className={isAnimated && 'animated'}>
-      {isLoading && <Loader />}
       {isError && (
         <TrackCover>
           <p style={errorColor}>
