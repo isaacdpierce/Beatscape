@@ -16,6 +16,17 @@ function roundCorrect(num, precision = 2) {
   return parseFloat(num.toFixed(precision));
 }
 
+const makeTracks = audio =>
+  audio.map((stem, index) => {
+    const { stemName, animate, sources } = stem;
+    return {
+      id: index + 1,
+      stemName,
+      animate,
+      sound: sources[0],
+    };
+  });
+
 const getNextLevel = (min, max) => getRandomFloat(min, max);
 
 // Custom hook - Use instead of setInterval() for animations
@@ -46,4 +57,5 @@ export {
   useInterval,
   getNextLevel,
   roundCorrect,
+  makeTracks,
 };

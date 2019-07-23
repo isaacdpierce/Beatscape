@@ -6,7 +6,7 @@ import ComingSoon from 'Routes/ComingSoon/ComingSoon';
 import Machine from 'Components/Machine/Machine';
 import Header from 'Components/Header/Header';
 import Footer from 'Components/Footer/Footer';
-import { useBeatscapeApi } from 'Assets/hooks/hooks';
+import { useBeatscapeApi } from 'Assets/hooks/useBeatscapeApi';
 
 import { MachineProvider } from 'Context/MachineContext';
 

@@ -27,6 +27,8 @@ const FaderKnob = ({
 
   useEffect(() => {
     if (type === 'Binaural') {
+      console.log(type);
+
       changeSineFrequency(knobValue);
     }
     if (sound) {

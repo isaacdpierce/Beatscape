@@ -11,12 +11,6 @@ const InfoDisplay = () => {
   const [name, setName] = useState('');
 
   useEffect(() => {
-    if (data) {
-      console.log(data);
-    }
-  }, [data]);
-
-  useEffect(() => {
     if (!data || isError) {
       setMessage(`Something went wrong... try another selection`);
     } else {

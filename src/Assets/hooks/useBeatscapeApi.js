@@ -1,4 +1,3 @@
-// TODO Complete and import to App.js
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -17,7 +16,6 @@ export const useBeatscapeApi = initialUrl => {
 
       try {
         const result = await axios(url);
-
         setData(result.data);
       } catch (error) {
         setIsError(true);
