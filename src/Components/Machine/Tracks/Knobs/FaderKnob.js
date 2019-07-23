@@ -27,14 +27,13 @@ const FaderKnob = ({
 
   useEffect(() => {
     if (type === 'Binaural') {
-      console.log(type);
-
       changeSineFrequency(knobValue);
     }
     if (sound) {
       changeStereo(knobValue);
     }
-  }, [knobValue, changeStereo, sound, type, changeSineFrequency]);
+    // eslint-disable-next-line
+  }, [knobValue]);
 
   useEffect(() => {
     if (isAnimated && animate) {

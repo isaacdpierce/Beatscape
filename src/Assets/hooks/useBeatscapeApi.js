@@ -27,5 +27,9 @@ export const useBeatscapeApi = initialUrl => {
     fetchData();
   }, [url]);
 
-  return [{ data, isLoading, isError, isPlaying }, setUrl, setIsPlaying];
+  return [
+    { data, isLoading, isError, setIsError, isPlaying },
+    setUrl,
+    setIsPlaying,
+  ];
 };
