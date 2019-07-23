@@ -10,15 +10,32 @@ const spin = keyframes`
   }
 `;
 const swing = keyframes`
-  from {
-    transform: rotate(0deg);
+  0% {
+    transform: translateX(220%);
+     background-color: var(--loader-dark);
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    background-color: var(--loader-light);
+  }
+  100% {
+  transform: translateX(-120%);
+  background-color: var(--loader-dark);
   }
 `;
 
-const StyledLoader = styled.div`
+const StyledSwingLoader = styled.div.attrs({
+  className: 'loader',
+})`
+  width: 50%;
+  height: 1.5rem;
+  position: absolute;
+  left: 0;
+  top: 2px;
+  background-color: var(--loader-color-light);
+  animation: ${swing} 2s alternate ease-in-out infinite 2s;
+`;
+
+const StyledSpinLoader = styled.div`
   position: absolute;
   top: 5rem;
   left: 43%;
@@ -33,6 +50,5 @@ const StyledLoader = styled.div`
   z-index: 99;
 `;
 
-const Loader = () => <StyledLoader />;
-
-export default Loader;
+export const SwingLoader = () => <StyledSwingLoader />;
+export const SpinLoader = () => <StyledSpinLoader />;

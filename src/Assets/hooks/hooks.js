@@ -11,9 +11,9 @@ export const useBeatscapeApi = initialUrl => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       setIsPlaying(false);
       setIsError(false);
-      setIsLoading(true);
 
       try {
         const result = await axios(url);

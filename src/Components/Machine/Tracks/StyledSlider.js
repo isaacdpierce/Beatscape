@@ -20,7 +20,7 @@ export const StyledSlider = styled.div`
   .slider__value {
     display: block;
     font-size: 1rem;
-    transform: rotate(90deg) translate(21.5rem, 17rem);
+    transform: rotate(90deg) translate(20.7rem, 17rem);
     width: 30rem;
   }
 

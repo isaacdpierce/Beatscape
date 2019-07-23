@@ -4,7 +4,7 @@ const StyledTopControls = styled.section.attrs({
   className: 'topControls',
 })`
   grid-column: 1 / -1;
-  grid-row: 1 / span 1;
+  grid-row: 2 / span 1;
   height: 100%;
   flex-direction: column;
   align-items: center;

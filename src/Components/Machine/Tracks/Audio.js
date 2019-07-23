@@ -4,7 +4,7 @@ import MachineContext from 'Context/MachineContext';
 import useAudioContext from 'Context/useAudioContext';
 
 export default ({ pan, sound, volume, type } = {}) => {
-  const { isPlaying, data } = useContext(MachineContext);
+  const { isPlaying } = useContext(MachineContext);
   const [vol, setVol] = useState(undefined);
   const [stereo, setStereo] = useState(0);
   const [audio, setAudio] = useState(undefined);
@@ -56,36 +56,25 @@ export default ({ pan, sound, volume, type } = {}) => {
   }, [audio]);
 
   useEffect(() => {
-    if (isPlaying && audio) {
-      console.log(audio.duration);
-      console.log(audio.currentTime);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [audio, isPlaying]);
-
-  useEffect(() => {
     if (stereo) {
       stereo.pan.value = pan;
-      // console.log(`Pan in ${type} is ${pan}`);
     }
   }, [pan, stereo, type]);
 
   useEffect(() => {
     if (vol) {
       vol.gain.value = volume;
-      // console.log(`Volume in ${type} is ${volume}`);
     }
   }, [type, vol, volume]);
 
   useEffect(() => {
     if (!isPlaying && audio) {
-      audioContext.suspend().then(function() {
+      audioContext.suspend().then(() => {
         // console.log(audioContext.state, audioContext.currentTime);
-        // setOffset(audioContext.currentTime);
       });
     }
     if (isPlaying) {
-      audioContext.resume().then(function() {});
+      audioContext.resume().then(() => {});
     }
   }, [audio, audioContext, isPlaying]);
   return null;

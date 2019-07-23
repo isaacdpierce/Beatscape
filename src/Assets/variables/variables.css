@@ -2,18 +2,17 @@
   --main-bg-color-dark: #0e171f;
   --main-bg-color-light: #5a8ab5;
   --main-brown: rgb(150, 118, 70);
+  --brand-yellow: rgb(148, 141, 96);
+  --brand-yellow-light: rgb(228, 210, 108);
+  --brand-yellow-dark: rgb(136, 126, 70);
 
   /* fonts */
   --main-font-color: rgb(232, 232, 232);
   --main-font-color-light: rgb(255, 255, 255);
   --main-font-color-dark: rgb(182, 181, 181);
-  --yellow-font-color: rgb(148, 141, 96);
-  --yellow-font-color-light: rgb(228, 210, 108);
-  --yellow-font-color-dark: rgb(140, 129, 64);
 
   --yellow-link-color-active: rgb(174, 141, 59);
   --yellow-link-color-hover: rgb(220, 179, 77);
-
   --yellow-header-color: rgb(203, 164, 57);
 
   /* machine */
@@ -23,6 +22,12 @@
   --machine-border-light: rgb(33, 33, 33);
   --machine-color-shadow: rgba(93, 135, 172, 0.563);
   --machine-color-shadow-light: rgba(125, 174, 216, 0.317);
+
+  /* display */
+
+  --loader-light: rgba(255, 217, 0, 0.372);
+  --loader-dark: rgba(77, 66, 12, 0.16);
+  --error: rgb(157, 40, 19);
 
   /* buttons */
 

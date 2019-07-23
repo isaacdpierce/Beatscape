@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import InfoDisplay from 'Components/Machine/InfoDisplay/InfoDisplay';
 import TopControls from './TopControls/TopControls';
 import Drawer from './Drawer/Drawer';
 import Tracks from './Tracks/Tracks';
@@ -23,6 +24,7 @@ const Machine = () => {
 
   return (
     <StyledMachine>
+      <InfoDisplay />
       <TopControls />
       <Tracks />
       <BottomControls handleDrawer={handleDrawer} />

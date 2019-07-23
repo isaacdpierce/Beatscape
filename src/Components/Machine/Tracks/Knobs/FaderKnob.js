@@ -10,7 +10,6 @@ const knobStyle = {
   filter: 'brightness(70%)',
   margin: '1rem auto 0',
 };
-
 const FaderKnob = ({
   animate,
   type,
@@ -27,10 +26,10 @@ const FaderKnob = ({
   const [knobNext, setKnobNext] = useState(getRandomFloat(knobMax, knobMin));
 
   useEffect(() => {
+    if (type === 'Binaural') {
+      changeSineFrequency(knobValue);
+    }
     if (sound) {
-      if (type === 'Binaural') {
-        changeSineFrequency(knobValue);
-      }
       changeStereo(knobValue);
     }
   }, [knobValue, changeStereo, sound, type, changeSineFrequency]);

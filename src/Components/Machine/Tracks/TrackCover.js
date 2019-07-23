@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const TrackCover = styled.section`
+const TrackCover = styled.section`
   padding-top: 1rem;
   position: absolute;
   top: 0;
@@ -23,6 +23,4 @@ export const TrackCover = styled.section`
   }
 `;
 
-export const errorColor = {
-  color: 'FireBrick',
-};
+export default TrackCover;

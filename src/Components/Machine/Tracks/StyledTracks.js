@@ -4,7 +4,7 @@ const StyledTracks = styled.section`
   grid-column: 2 / -2;
   justify-self: center;
   min-height: 52rem;
-  grid-row: 2 / span 1;
+  grid-row: 3 / span 1;
   background: var(--machine-color-light);
   border: 1px solid var(--machine-border-dark);
   padding: 0 1.1rem 0 4.7rem;

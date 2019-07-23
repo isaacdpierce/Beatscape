@@ -10,11 +10,11 @@ const StyledDrawerButton = styled.button`
   text-transform: uppercase;
   background: inherit;
   font-size: 2rem;
-  color: var(--yellow-font-color-dark);
+  color: var(--brand-yellow-dark);
   :focus,
   :hover {
     outline: none;
-    color: var(--yellow-font-color-light);
+    color: var(--brand-yellow-light);
   }
 `;
 

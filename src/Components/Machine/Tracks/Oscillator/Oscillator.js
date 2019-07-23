@@ -1,7 +1,7 @@
 import { useEffect, useContext, useState } from 'react';
 import useAudioContext from 'Context/useAudioContext';
 
-export default ({ frequency, type = 'sine', volume } = {}) => {
+export default ({ frequency, type, volume, isPlaying } = {}) => {
   const [oscillator, setOscillator] = useState(undefined);
   const [vol, setVol] = useState(undefined);
 
@@ -35,13 +35,24 @@ export default ({ frequency, type = 'sine', volume } = {}) => {
     if (oscillator) {
       oscillator.frequency.value = frequency;
     }
-  }, [frequency, oscillator]); // only trigger this effect when frequency changes
+  }, [frequency, oscillator]);
 
   useEffect(() => {
     if (vol) {
       vol.gain.value = volume;
     }
-  }, [vol, volume]); // only trigger this effect when volume changes
+  }, [vol, volume]);
+
+  useEffect(() => {
+    if (!isPlaying) {
+      audioContext.suspend().then(() => {
+        // console.log(audioContext.state, audioContext.currentTime);
+      });
+    }
+    if (isPlaying) {
+      audioContext.resume().then(() => {});
+    }
+  }, [audioContext, isPlaying]);
 
   return null;
 };

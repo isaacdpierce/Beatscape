@@ -10,7 +10,7 @@ const StyledDrawer = styled.section.attrs({
   }
 
   grid-column: 1 / -1;
-  grid-row: 3 / span 1;
+  grid-row: 4 / span 1;
   padding: 1.5rem 0;
 
   background-color: black;

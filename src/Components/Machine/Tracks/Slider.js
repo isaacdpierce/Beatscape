@@ -58,6 +58,14 @@ const Slider = ({
       )}
 
       <StyledSlider>
+        {/* <Input
+          type={type}
+          value={value}
+          handleSliderChange={handleSliderChange}
+          min={min}
+          max={max}
+          step={step}
+        /> */}
         <label htmlFor={type}>
           <span className='slider__value'>{value}</span>
           <span className='slider__label'>{type}</span>
