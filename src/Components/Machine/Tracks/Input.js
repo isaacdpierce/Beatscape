@@ -1,12 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const Input = ({ type, value, handleSliderChange, min, max, step }) => {
-  const [val, setVal] = useState(undefined);
+const Input = ({ type, changeValue }) => {
+  const min = 0;
+  const max = 1.0;
+  const step = 0.01;
+  const [value, setValue] = useState(undefined);
   const levelRef = useRef();
+
+  console.log(value);
 
   useEffect(() => {
     if (levelRef) {
-      setVal(levelRef.current.value);
+      setValue(parseFloat(levelRef.current.value));
     }
   }, [levelRef]);
 
@@ -16,7 +21,7 @@ const Input = ({ type, value, handleSliderChange, min, max, step }) => {
       <span className='slider__label'>{type}</span>
       <input
         aria-label={`Controls volume of ${type} track`}
-        onChange={handleSliderChange(val)}
+        onChange={() => changeValue(value)}
         type='range'
         ref={levelRef}
         value={value}

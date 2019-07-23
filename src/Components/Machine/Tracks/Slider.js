@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { getRandomFloat } from 'Assets/helpers/helpers';
+import { getRandomFloat, roundCorrect } from 'Assets/helpers/helpers';
 import MachineContext from 'Context/MachineContext';
 import { animateVolume } from 'Assets/animations/Animations';
+import Input from './Input';
 import FaderKnob from './Knobs/FaderKnob';
 import { StyledSlider, SliderContainer } from './StyledSlider';
 import Audio from './Audio';
@@ -17,9 +18,8 @@ const Slider = ({
   const min = 0;
   const max = 1.0;
   const step = 0.01;
-  const initialValue = type === 'Binaural' ? 0.05 : 0.5;
   const { isAnimated, isPlaying } = useContext(MachineContext);
-  const [value, setValue] = useState(initialValue);
+  const [value, setValue] = useState(type === 'Binaural' ? 0.05 : 0.5);
   const [next, setNext] = useState(getRandomFloat(min, max));
   const [stereo, setStereo] = useState(0);
 
@@ -35,10 +35,12 @@ const Slider = ({
     if (isAnimated && animate) {
       animateVolume(value, min, max, next, setValue, setNext);
     }
-  }, [isAnimated, animate, value, min, max, next, setValue, setNext]);
+  }, [isAnimated, animate, value, next, setValue, setNext]);
 
-  const handleSliderChange = () => {
-    setValue(parseFloat(levelRef.current.value));
+  const changeValue = val => {
+    if (val) {
+      setValue(val);
+    }
   };
 
   const changeStereo = val => {
@@ -58,15 +60,8 @@ const Slider = ({
       )}
 
       <StyledSlider>
-        {/* <Input
-          type={type}
-          value={value}
-          handleSliderChange={handleSliderChange}
-          min={min}
-          max={max}
-          step={step}
-        /> */}
-        <label htmlFor={type}>
+        <Input type={type} value={value} changeValue={changeValue} />
+        {/* <label htmlFor={type}>
           <span className='slider__value'>{value}</span>
           <span className='slider__label'>{type}</span>
           <input
@@ -81,7 +76,7 @@ const Slider = ({
             max={max}
             step={step}
           />
-        </label>
+        </label> */}
       </StyledSlider>
 
       <FaderKnob
