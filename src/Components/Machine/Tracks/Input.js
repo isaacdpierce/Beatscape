@@ -1,19 +1,20 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
 
-const Input = ({ type, changeValue }) => {
-  const min = 0;
-  const max = 1.0;
-  const step = 0.01;
-  const [value, setValue] = useState(undefined);
+const Input = ({ type, changeValue, min, max, step, initialValue, value }) => {
+  const [val, setVal] = useState(initialValue);
   const levelRef = useRef();
 
-  console.log(value);
-
   useEffect(() => {
-    if (levelRef) {
-      setValue(parseFloat(levelRef.current.value));
+    if (val) {
+      changeValue(val);
     }
-  }, [levelRef]);
+    // eslint-disable-next-line
+  }, [val]);
+
+  const handleChange = useCallback(() => {
+    setVal(parseFloat(levelRef.current.value));
+  }, []);
 
   return (
     <label htmlFor={type}>
@@ -21,7 +22,7 @@ const Input = ({ type, changeValue }) => {
       <span className='slider__label'>{type}</span>
       <input
         aria-label={`Controls volume of ${type} track`}
-        onChange={() => changeValue(value)}
+        onChange={handleChange}
         type='range'
         ref={levelRef}
         value={value}
@@ -33,6 +34,16 @@ const Input = ({ type, changeValue }) => {
       />
     </label>
   );
+};
+
+Input.propTypes = {
+  type: PropTypes.string.isRequired,
+  step: PropTypes.number.isRequired,
+  min: PropTypes.number.isRequired,
+  max: PropTypes.number.isRequired,
+  initialValue: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+  changeValue: PropTypes.func.isRequired,
 };
 
 export default Input;
