@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-const StyledTracks = styled.section`
+const StyledTracks = styled.section.attrs({
+  className: 'tracks',
+})`
   grid-column: 2 / -2;
   justify-self: center;
   min-height: 52rem;

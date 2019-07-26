@@ -1,5 +1,17 @@
 import styled from 'styled-components';
 
+export const SliderContainer = styled.section.attrs({
+  className: 'slider',
+})`
+  margin-right: 1rem;
+  transform: translate(-1rem, 15rem);
+
+  @media (max-width: 850px) {
+    margin-right: 0;
+    transform: none;
+  }
+`;
+
 export const StyledSlider = styled.div`
   display: flex;
   flex-direction: column;
@@ -49,15 +61,5 @@ export const StyledSlider = styled.div`
       margin: 2.3rem 0;
       width: 60vw;
     }
-  }
-`;
-
-export const SliderContainer = styled.section`
-  margin-right: 1rem;
-  transform: translate(-1rem, 15rem);
-
-  @media (max-width: 850px) {
-    margin-right: 0;
-    transform: none;
   }
 `;

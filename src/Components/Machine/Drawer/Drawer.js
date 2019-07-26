@@ -8,18 +8,35 @@ const Drawer = ({ drawerStyle }) => (
   <>
     <StyledDrawer style={drawerStyle}>
       <div className='drawer-col'>
+        <h5>Choose your music</h5>
         <DrawerButton source='http://localhost:8000/api/soundscapes/1'>
-          New York Hustle
+          Tough
         </DrawerButton>
-        <DrawerButton>Tokyo Rain</DrawerButton>
-        <DrawerButton>Dusty Road</DrawerButton>
+        <DrawerButton source='http://localhost:8000/api/soundscapes/2'>
+          Focused
+        </DrawerButton>
       </div>
       <div className='drawer-col'>
-        <DrawerButton source='http://localhost:8000/api/soundscapes/2'>
-          Secret Forest
+        <h5>Choose your scene</h5>
+        {/* TODO Set GET environments and sprites based on category */}
+        <DrawerButton source='http://localhost:8000/api/scene_category/1'>
+          City
         </DrawerButton>
-        <DrawerButton>Sunset Saunter</DrawerButton>
-        <DrawerButton>Beach Bounce</DrawerButton>
+        <DrawerButton source='http://localhost:8000/api/scene_category/2'>
+          New York
+        </DrawerButton>
+        <DrawerButton source='http://localhost:8000/api/scene_category/3'>
+          Tokyo
+        </DrawerButton>
+        <DrawerButton source='http://localhost:8000/api/scene_category/5'>
+          Forest
+        </DrawerButton>
+        <DrawerButton source='http://localhost:8000/api/scene_category/6'>
+          Desert
+        </DrawerButton>
+        <DrawerButton source='http://localhost:8000/api/scene_category/2'>
+          Ocean
+        </DrawerButton>
       </div>
     </StyledDrawer>
   </>

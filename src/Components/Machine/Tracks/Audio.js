@@ -77,28 +77,10 @@ export default ({ pan, sound, volume, type } = {}) => {
       });
     }
     if (isPlaying) {
-      audioContext.resume().then(() => {});
+      audioContext.resume().then(() => {
+        // console.log(audioContext.state, audioContext.currentTime);
+      });
     }
   }, [audio, audioContext, isPlaying]);
   return null;
 };
-
-// const [environments, setEnvironment] = useState(undefined);
-// const [sprites, setSprites] = useState(undefined);
-// Pseudo code to get Sprites and environments as separate state
-// Because they will update often - they need a separate creation function
-// useEffect(() => {
-//   if (data) {
-//     console.log(data);
-
-//     const { stems } = data;
-//     stems.map(stem => {
-//       if (stem.stemName === 'environments') {
-//         setEnvironment(stems.sources[0]);
-//       }
-//       if (stems.stemName === 'sprites') {
-//         setSprites(stems.sources[0]);
-//       }
-//     });
-//   }
-// }, [data]);
