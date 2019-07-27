@@ -21,11 +21,11 @@ function App() {
     setIsPlaying,
   ] = useBeatscapeApi('http://localhost:8000/api/soundscapes/1');
 
-  useEffect(() => {
-    if (data) {
-      console.log(data);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data) {
+  //     console.log(data);
+  //   }
+  // }, [data]);
 
   useEffect(() => {
     isAnimated ? setIsPlaying(true) : setIsPlaying(false);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { getRandomFloat } from 'Assets/helpers/helpers';
+import { getRandomFloat, setSliderValue } from 'Assets/helpers/helpers';
 import MachineContext from 'Context/MachineContext';
 import { animateVolume } from 'Assets/animations/Animations';
 import Input from './Input';
@@ -18,7 +18,7 @@ const Slider = ({
   const min = 0;
   const max = 1.0;
   const step = 0.01;
-  const initialValue = type === 'Binaural' ? 0.05 : 0.5;
+  const initialValue = setSliderValue(type);
   const { isAnimated, isPlaying } = useContext(MachineContext);
   const [value, setValue] = useState(initialValue);
   const [next, setNext] = useState(getRandomFloat(min, max));

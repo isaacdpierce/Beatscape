@@ -11,8 +11,10 @@ const StyledDrawer = styled.section.attrs({
   }
 
   grid-column: 1 / -1;
-  grid-row: 4 / span 1;
-  padding: 1.5rem 0;
+  grid-row: 1 / -1;
+  align-self: end;
+
+  padding: 3.5rem 0;
   background-color: black;
   width: 95%;
   border-left: 6px solid var(--machine-border-dark);
@@ -46,6 +48,7 @@ const StyledDrawer = styled.section.attrs({
 
   .drawer-col {
     flex-direction: column;
+    justify-content: flex-start;
   }
 `;
 

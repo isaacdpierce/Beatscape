@@ -6,15 +6,19 @@ const getRandomInteger = (num1, num2) => {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
-function getRandomFloat(min, max, prec = 2) {
-  return parseFloat(
-    Math.min(min + Math.random() * (max - min), max).toFixed(prec)
-  );
-}
+const getRandomFloat = (min, max, prec = 2) =>
+  parseFloat(Math.min(min + Math.random() * (max - min), max).toFixed(prec));
 
-function roundCorrect(num, precision = 2) {
-  return parseFloat(num.toFixed(precision));
-}
+const roundCorrect = (num, precision = 2) => parseFloat(num.toFixed(precision));
+
+const getNextLevel = (min, max) => getRandomFloat(min, max);
+
+const getSource = sources => {
+  if (sources.length > 0) {
+    return sources[getRandomInteger(0, sources.length)];
+  }
+  return null;
+};
 
 const makeTracks = audio =>
   audio.map((stem, index) => {
@@ -23,11 +27,19 @@ const makeTracks = audio =>
       id: index + 1,
       stemName,
       animate,
-      sound: sources[0],
+      sound: getSource(sources),
     };
   });
 
-const getNextLevel = (min, max) => getRandomFloat(min, max);
+const setSliderValue = type => {
+  if (type === 'Binaural') {
+    return 0.05;
+  }
+  if (type === 'sprites' || type === 'environment') {
+    return 0.25;
+  }
+  return 0.5;
+};
 
 // Custom hook - Use instead of setInterval() for animations
 // got from https://overreacted.io/making-setinterval-declarative-with-react-hooks/
@@ -58,4 +70,5 @@ export {
   getNextLevel,
   roundCorrect,
   makeTracks,
+  setSliderValue,
 };

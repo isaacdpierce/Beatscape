@@ -25,7 +25,6 @@ const StyledTopControls = styled.section.attrs({
     margin: 0;
     display: grid;
     place-items: center;
-    padding-top: 3rem;
   }
   .headphones::after {
     content: '?';
