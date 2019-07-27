@@ -16,6 +16,7 @@ export const useBeatscapeApi = initialUrl => {
 
       try {
         const result = await axios(url);
+        console.log(url);
         setData(result.data);
       } catch (error) {
         alert(error);
@@ -32,5 +33,8 @@ export const useBeatscapeApi = initialUrl => {
     { data, isLoading, isError, setIsError, isPlaying },
     setUrl,
     setIsPlaying,
+    setIsError,
   ];
 };
+
+export default useBeatscapeApi;

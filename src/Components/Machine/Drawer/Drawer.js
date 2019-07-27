@@ -9,7 +9,7 @@ const Drawer = ({ drawerStyle }) => {
   const musicButtons = soundscapeData.music.map((song, index) => {
     const { url, name } = song;
     return (
-      <DrawerButton key={index} source={url}>
+      <DrawerButton key={index} source={url} fetchType='music'>
         {name}
       </DrawerButton>
     );
@@ -17,7 +17,7 @@ const Drawer = ({ drawerStyle }) => {
   const sceneButtons = soundscapeData.scenes.map((scene, index) => {
     const { url, category } = scene;
     return (
-      <DrawerButton key={index} source={url}>
+      <DrawerButton key={index} source={url} fetchType='scene'>
         {category}
       </DrawerButton>
     );

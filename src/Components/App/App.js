@@ -6,7 +6,8 @@ import ComingSoon from 'Routes/ComingSoon/ComingSoon';
 import Machine from 'Components/Machine/Machine';
 import Header from 'Components/Header/Header';
 import Footer from 'Components/Footer/Footer';
-import { useBeatscapeApi } from 'Assets/hooks/useBeatscapeApi';
+import useBeatscapeApi from 'Assets/hooks/useBeatscapeApi';
+import useSceneApi from 'Assets/hooks/useSceneApi';
 
 import { MachineProvider } from 'Context/MachineContext';
 
@@ -19,13 +20,24 @@ function App() {
     { data, isLoading, isError, isPlaying },
     setUrl,
     setIsPlaying,
-  ] = useBeatscapeApi('http://localhost:8000/api/soundscapes/');
+    setIsError,
+  ] = useBeatscapeApi('http://localhost:8000/api/soundscapes/1');
+
+  const [{ isSceneError, sceneData }, setSceneUrl] = useSceneApi(
+    'http://localhost:8000/api/scene_category/1'
+  );
 
   // useEffect(() => {
   //   if (data) {
   //     console.log(data);
   //   }
   // }, [data]);
+
+  useEffect(() => {
+    if (isSceneError) {
+      setIsError(true);
+    }
+  }, [isSceneError, setIsError, setSceneUrl, setUrl]);
 
   useEffect(() => {
     isAnimated ? setIsPlaying(true) : setIsPlaying(false);
@@ -51,6 +63,8 @@ function App() {
         isLoading,
         data,
         setUrl,
+        sceneData,
+        setSceneUrl,
       }}
     >
       <AppTheme className='App'>
