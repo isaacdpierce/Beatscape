@@ -19,7 +19,7 @@ function App() {
     { data, isLoading, isError, isPlaying },
     setUrl,
     setIsPlaying,
-  ] = useBeatscapeApi('http://localhost:8000/api/soundscapes/1');
+  ] = useBeatscapeApi('http://localhost:8000/api/soundscapes/');
 
   // useEffect(() => {
   //   if (data) {

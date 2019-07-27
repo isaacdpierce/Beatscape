@@ -70,5 +70,6 @@ export {
   getNextLevel,
   roundCorrect,
   makeTracks,
+  getSource,
   setSliderValue,
 };
