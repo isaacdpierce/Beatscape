@@ -23,21 +23,26 @@ function App() {
     setIsError,
   ] = useBeatscapeApi('http://localhost:8000/api/soundscapes/1');
 
-  const [{ isSceneError, sceneData }, setSceneUrl] = useSceneApi(
-    'http://localhost:8000/api/scene_category/1'
+  const [
+    { isSceneError, spriteData, environmentData },
+    setSpriteUrl,
+    setEnvironmentUrl,
+  ] = useSceneApi(
+    'http://localhost:8000/api/sprites/1',
+    'http://localhost:8000/api/environments/1'
   );
 
   // useEffect(() => {
-  //   if (data) {
-  //     console.log(data);
+  //   if (sceneData) {
+  //     console.log(sceneData);
   //   }
-  // }, [data]);
+  // }, []);
 
   useEffect(() => {
     if (isSceneError) {
       setIsError(true);
     }
-  }, [isSceneError, setIsError, setSceneUrl, setUrl]);
+  }, [isSceneError, setIsError, setUrl]);
 
   useEffect(() => {
     isAnimated ? setIsPlaying(true) : setIsPlaying(false);
@@ -63,8 +68,10 @@ function App() {
         isLoading,
         data,
         setUrl,
-        sceneData,
-        setSceneUrl,
+        spriteData,
+        setSpriteUrl,
+        environmentData,
+        setEnvironmentUrl,
       }}
     >
       <AppTheme className='App'>

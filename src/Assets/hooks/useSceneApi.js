@@ -1,35 +1,53 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const useSceneApi = initialUrl => {
-  const [sceneData, setSceneData] = useState(undefined);
-  const [sceneUrl, setSceneUrl] = useState(initialUrl);
+const useSceneApi = (initialSpriteUrl, initialEnvironmentUrl) => {
+  const [spriteData, setSpriteData] = useState(undefined);
+  const [environmentData, setEnvironmentData] = useState(undefined);
+  const [spriteUrl, setSpriteUrl] = useState(initialSpriteUrl);
+  const [environmentUrl, setEnvironmentUrl] = useState(initialEnvironmentUrl);
   const [isSceneError, setIsSceneError] = useState(false);
 
   useEffect(() => {
-    const fetchSceneData = async () => {
+    const fetchSpriteData = async () => {
       setIsSceneError(false);
-
       try {
-        console.log(sceneUrl);
-        const result = await axios(sceneUrl);
+        const result = await axios(spriteUrl);
 
-        setSceneData(result.data);
+        setSpriteData(result.data);
+        console.log(result.data);
       } catch (error) {
         setIsSceneError(true);
       }
     };
 
-    fetchSceneData();
-  }, [sceneUrl]);
+    fetchSpriteData();
+  }, [spriteUrl]);
+
+  useEffect(() => {
+    const fetchEnvironmentData = async () => {
+      setIsSceneError(false);
+      try {
+        const result = await axios(environmentUrl);
+
+        setEnvironmentData(result.data);
+        console.log(result.data);
+      } catch (error) {
+        setIsSceneError(true);
+      }
+    };
+
+    fetchEnvironmentData();
+  }, [environmentUrl]);
 
   return [
     {
       isSceneError,
-      setIsSceneError,
-      sceneData,
+      spriteData,
+      environmentData,
     },
-    setSceneUrl,
+    setSpriteUrl,
+    setEnvironmentUrl,
   ];
 };
 

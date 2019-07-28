@@ -18,15 +18,24 @@ const StyledDrawerButton = styled.button`
   }
 `;
 
-const DrawerButton = ({ children, source, fetchType }) => {
-  const { setUrl, setSceneUrl } = useContext(MachineContext);
+const DrawerButton = ({
+  children,
+  source,
+  fetchType,
+  spriteUrl,
+  environmentUrl,
+}) => {
+  const { setUrl, setSpriteUrl, setEnvironmentUrl } = useContext(
+    MachineContext
+  );
 
   const handleClick = () => {
     if (fetchType === 'music') {
       setUrl(source);
     }
     if (fetchType === 'scene') {
-      setSceneUrl(source);
+      setSpriteUrl(spriteUrl);
+      setEnvironmentUrl(environmentUrl);
     }
   };
 
