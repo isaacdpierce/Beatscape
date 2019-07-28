@@ -21,8 +21,8 @@ const Drawer = ({ drawerStyle }) => {
         key={index}
         source={url}
         fetchType='scene'
-        sprite_url={spriteUrl}
-        environment_url={environmentUrl}
+        spriteUrl={spriteUrl}
+        environmentUrl={environmentUrl}
       >
         {category}
       </DrawerButton>

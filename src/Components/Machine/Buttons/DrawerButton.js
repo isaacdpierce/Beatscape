@@ -34,6 +34,8 @@ const DrawerButton = ({
       setUrl(source);
     }
     if (fetchType === 'scene') {
+      console.log(spriteUrl);
+
       setSpriteUrl(spriteUrl);
       setEnvironmentUrl(environmentUrl);
     }
