@@ -1,10 +1,18 @@
 import { useEffect, useContext, useState } from 'react';
 import MachineContext from 'Context/MachineContext';
+import { getRandomIndex } from 'Assets/helpers/helpers';
 
 import useAudioContext from 'Context/useAudioContext';
 
 export default ({ pan, sound, volume, type } = {}) => {
-  const { isPlaying, setIsError } = useContext(MachineContext);
+  const {
+    isPlaying,
+    setIsError,
+    spriteData,
+    environmentData,
+    setSpriteUrl,
+    setEnvironmentUrl,
+  } = useContext(MachineContext);
   const [vol, setVol] = useState(undefined);
   const [stereo, setStereo] = useState(0);
   const [audio, setAudio] = useState(undefined);
@@ -26,11 +34,37 @@ export default ({ pan, sound, volume, type } = {}) => {
         // Set loop to false if either environment or sprite
         audioHTML.loop = type !== 'environment' && type !== 'sprites';
         audioHTML.preload = true;
+
         return audioHTML;
       };
       setAudio(makeHTMLAudio(sound));
     }
   }, [audioContext, setIsError, sound, type]);
+
+  useEffect(() => {
+    if (audio) {
+      audio.onended = () => {
+        if (type === 'sprites') {
+          console.log(`${audio.src} ended`);
+          const spriteStem = spriteData[getRandomIndex(spriteData)].sprite_url;
+          setSpriteUrl(spriteStem);
+        }
+        if (type === 'environment') {
+          console.log(`${audio.src} ended`);
+          const environmentStem =
+            environmentData[getRandomIndex(environmentData)].environment_url;
+          setEnvironmentUrl(environmentStem);
+        }
+      };
+    }
+  }, [
+    audio,
+    environmentData,
+    setEnvironmentUrl,
+    setSpriteUrl,
+    spriteData,
+    type,
+  ]);
 
   useEffect(() => {
     if (audio) {

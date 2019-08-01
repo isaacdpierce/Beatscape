@@ -2,14 +2,22 @@ import React, { useContext, useState, useEffect } from 'react';
 import MachineContext from 'Context/MachineContext';
 import Oscillator from 'Components/Machine/Tracks/Oscillator/Oscillator';
 import useEmptySliders from 'Assets/hooks/useEmptySliders';
-import { makeTracks } from 'Assets/helpers/helpers';
+import { makeTracks, getRandomIndex } from 'Assets/helpers/helpers';
 import Slider from './Slider';
 import TrackCover from './TrackCover';
 import StyledTracks from './StyledTracks.js';
 
 const Tracks = () => {
-  const { data, isPlaying, isAnimated } = useContext(MachineContext);
+  const {
+    data,
+    isPlaying,
+    isAnimated,
+    spriteData,
+    environmentData,
+  } = useContext(MachineContext);
   const [tracks, setTracks] = useState(undefined);
+  const [spriteTrack, setSpriteTrack] = useState(undefined);
+  const [environmentTrack, setEnvironmentTrack] = useState(undefined);
   const [musicSliders, setMusicSliders] = useState(useEmptySliders);
   const [sineVolume, setSineVolume] = useState(0.05);
   const [sineFrequency, setSineFrequency] = useState(60);
@@ -21,6 +29,23 @@ const Tracks = () => {
       setTracks(trackList);
     }
   }, [data]);
+
+  useEffect(() => {
+    if (spriteData) {
+      const spriteStem = spriteData[getRandomIndex(spriteData)].sprite_url;
+      setSpriteTrack(spriteStem);
+    }
+    // eslint-disable-next-line
+  }, [spriteData]);
+
+  useEffect(() => {
+    if (environmentData) {
+      const environmentStem =
+        environmentData[getRandomIndex(environmentData)].environment_url;
+      setEnvironmentTrack(environmentStem);
+    }
+    // eslint-disable-next-line
+  }, [environmentData]);
 
   useEffect(() => {
     if (tracks) {
@@ -46,6 +71,8 @@ const Tracks = () => {
     <StyledTracks className={isAnimated && 'animated'}>
       {isAnimated && <TrackCover />}
       {musicSliders}
+      <Slider type='sprites' animate sound={spriteTrack} />
+      <Slider type='environment' animate={false} sound={environmentTrack} />
       <Slider
         type='Binaural'
         animate={false}

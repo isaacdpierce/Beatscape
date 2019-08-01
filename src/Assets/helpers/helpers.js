@@ -31,6 +31,8 @@ const makeTracks = audio =>
     };
   });
 
+const getRandomIndex = sourceArray => getRandomInteger(0, sourceArray.length);
+
 const setSliderValue = type => {
   if (type === 'Binaural') {
     return 0.05;
@@ -72,4 +74,5 @@ export {
   makeTracks,
   getSource,
   setSliderValue,
+  getRandomIndex,
 };

@@ -9,13 +9,13 @@ const useSceneApi = (initialSpriteUrl, initialEnvironmentUrl) => {
   const [isSceneError, setIsSceneError] = useState(false);
 
   useEffect(() => {
+    console.log(`${spriteUrl} playing`);
     const fetchSpriteData = async () => {
       setIsSceneError(false);
       try {
         const result = await axios(spriteUrl);
 
         setSpriteData(result.data);
-        console.log(result.data);
       } catch (error) {
         setIsSceneError(true);
       }
@@ -25,13 +25,13 @@ const useSceneApi = (initialSpriteUrl, initialEnvironmentUrl) => {
   }, [spriteUrl]);
 
   useEffect(() => {
+    console.log(`${environmentUrl} playing`);
+
     const fetchEnvironmentData = async () => {
       setIsSceneError(false);
       try {
         const result = await axios(environmentUrl);
-
         setEnvironmentData(result.data);
-        console.log(result.data);
       } catch (error) {
         setIsSceneError(true);
       }
