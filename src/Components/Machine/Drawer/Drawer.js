@@ -37,7 +37,6 @@ const Drawer = ({ drawerStyle }) => {
         </div>
         <div className='drawer-col'>
           <h5>Choose your scene</h5>
-          {/* TODO Set GET environments and sprites based on category */}
           {sceneButtons}
         </div>
       </StyledDrawer>

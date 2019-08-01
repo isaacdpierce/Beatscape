@@ -32,7 +32,7 @@ const InfoDisplay = () => {
   useEffect(() => {
     if (!isError && !isLoading) {
       if (!isPlaying) {
-        setMessage(<span>{name} is loaded and ready to play</span>);
+        setMessage(<span>'{name}' is loaded and ready to play</span>);
       } else if (isAnimated) {
         setMessage(<span>Click stop animate to change levels</span>);
       } else {
