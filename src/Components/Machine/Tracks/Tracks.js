@@ -14,6 +14,8 @@ const Tracks = () => {
     isAnimated,
     spriteData,
     environmentData,
+    setIsError,
+    setErrorMsg,
   } = useContext(MachineContext);
   const [tracks, setTracks] = useState(undefined);
   const [spriteTrack, setSpriteTrack] = useState(undefined);
@@ -31,7 +33,10 @@ const Tracks = () => {
   }, [data]);
 
   useEffect(() => {
-    if (spriteData) {
+    if (!spriteData.sprite_url) {
+      setIsError(true);
+      setErrorMsg('Could not get scene data for this selection.');
+    } else {
       const spriteStem = spriteData[getRandomIndex(spriteData)].sprite_url;
       setSpriteTrack(spriteStem);
     }
@@ -39,13 +44,16 @@ const Tracks = () => {
   }, [spriteData]);
 
   useEffect(() => {
-    if (environmentData) {
+    if (!environmentData.environment_url) {
+      setIsError(true);
+      setErrorMsg('Could not get scene data for this selection.');
+    } else {
       const environmentStem =
         environmentData[getRandomIndex(environmentData)].environment_url;
       setEnvironmentTrack(environmentStem);
     }
     // eslint-disable-next-line
-  }, [environmentData]);
+   }, [environmentData]);
 
   useEffect(() => {
     if (tracks) {

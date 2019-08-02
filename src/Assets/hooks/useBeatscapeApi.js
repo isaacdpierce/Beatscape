@@ -5,21 +5,20 @@ export const useBeatscapeApi = initialUrl => {
   const [data, setData] = useState(undefined);
   const [url, setUrl] = useState(initialUrl);
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [isMusicError, setIsMusicError] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       setIsPlaying(false);
-      setIsError(false);
+      setIsMusicError(false);
 
       try {
         const result = await axios(url);
         setData(result.data);
       } catch (error) {
-        alert(error);
-        setIsError(true);
+        setIsMusicError(true);
       }
 
       setIsLoading(false);
@@ -28,12 +27,7 @@ export const useBeatscapeApi = initialUrl => {
     fetchData();
   }, [url]);
 
-  return [
-    { data, isLoading, isError, setIsError, isPlaying },
-    setUrl,
-    setIsPlaying,
-    setIsError,
-  ];
+  return [{ data, isLoading, isMusicError, isPlaying }, setUrl, setIsPlaying];
 };
 
 export default useBeatscapeApi;

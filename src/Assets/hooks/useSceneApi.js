@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const useSceneApi = (initialSpriteUrl, initialEnvironmentUrl) => {
-  const [spriteData, setSpriteData] = useState(undefined);
-  const [environmentData, setEnvironmentData] = useState(undefined);
+  const [spriteData, setSpriteData] = useState([]);
+  const [environmentData, setEnvironmentData] = useState([]);
   const [spriteUrl, setSpriteUrl] = useState(initialSpriteUrl);
   const [environmentUrl, setEnvironmentUrl] = useState(initialEnvironmentUrl);
   const [isSceneError, setIsSceneError] = useState(false);

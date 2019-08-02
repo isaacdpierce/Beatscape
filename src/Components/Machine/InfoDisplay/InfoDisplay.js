@@ -4,19 +4,24 @@ import MachineContext from 'Context/MachineContext';
 import { StyledDisplayInfoWrapper, StyledInfoDisplay } from './StyledDisplay';
 
 const InfoDisplay = () => {
-  const { isError, isLoading, isAnimated, isPlaying, data } = useContext(
-    MachineContext
-  );
+  const {
+    isError,
+    errorMsg,
+    isLoading,
+    isAnimated,
+    isPlaying,
+    data,
+  } = useContext(MachineContext);
   const [message, setMessage] = useState(undefined);
   const [name, setName] = useState('');
 
   useEffect(() => {
     if (!data || isError) {
-      setMessage(`Something went wrong... try another selection`);
+      setMessage(errorMsg);
     } else {
       setName(data.soundscape_name);
     }
-  }, [data, isError]);
+  }, [data, errorMsg, isError]);
 
   useEffect(() => {
     if (isLoading) {

@@ -15,12 +15,13 @@ import AppTheme from './AppTheme';
 
 function App() {
   const [isAnimated, setIsAnimated] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+  const [isError, setIsError] = useState(false);
 
   const [
-    { data, isLoading, isError, isPlaying },
+    { data, isLoading, isMusicError, isPlaying },
     setUrl,
     setIsPlaying,
-    setIsError,
   ] = useBeatscapeApi('http://localhost:8000/api/soundscapes/1');
 
   const [
@@ -32,21 +33,25 @@ function App() {
     'http://localhost:8000/api/environments/1'
   );
 
-  // useEffect(() => {
-  //   if (sceneData) {
-  //     console.log(sceneData);
-  //   }
-  // }, []);
-
   useEffect(() => {
     if (isSceneError) {
       setIsError(true);
+      setErrorMsg('There was a problem loading your scene sounds.');
     }
-  }, [isSceneError, setIsError, setUrl]);
+    // eslint-disable-next-line
+ }, [isSceneError]);
+
+  useEffect(() => {
+    if (isMusicError) {
+      setIsError(true);
+      setErrorMsg('There was a problem loading your music files.');
+    }
+  }, [isMusicError]);
 
   useEffect(() => {
     isAnimated ? setIsPlaying(true) : setIsPlaying(false);
-  }, [isAnimated, setIsPlaying]);
+    // eslint-disable-next-line
+  }, [isAnimated, isPlaying]);
 
   const toggleAnimation = () => {
     setIsAnimated(!isAnimated);
@@ -62,7 +67,6 @@ function App() {
       value={{
         isAnimated,
         toggleAnimation,
-        isError,
         isPlaying,
         togglePlay,
         isLoading,
@@ -72,6 +76,10 @@ function App() {
         setSpriteUrl,
         environmentData,
         setEnvironmentUrl,
+        isError,
+        setIsError,
+        errorMsg,
+        setErrorMsg,
       }}
     >
       <AppTheme className='App'>
