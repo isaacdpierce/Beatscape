@@ -10,18 +10,18 @@ const InfoDisplay = () => {
     isLoading,
     isAnimated,
     isPlaying,
-    data,
+    musicData,
   } = useContext(MachineContext);
   const [message, setMessage] = useState(undefined);
   const [name, setName] = useState('');
 
   useEffect(() => {
-    if (!data || isError) {
+    if (!musicData || isError) {
       setMessage(errorMsg);
     } else {
-      setName(data.soundscape_name);
+      setName(musicData.soundscape_name);
     }
-  }, [data, errorMsg, isError]);
+  }, [musicData, errorMsg, isError]);
 
   useEffect(() => {
     if (isLoading) {

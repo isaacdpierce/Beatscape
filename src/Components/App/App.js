@@ -19,7 +19,7 @@ function App() {
   const [isError, setIsError] = useState(false);
 
   const [
-    { data, isLoading, isMusicError, isPlaying },
+    { musicData, isLoading, isMusicError, isPlaying },
     setUrl,
     setIsPlaying,
   ] = useBeatscapeApi('http://localhost:8000/api/soundscapes/1');
@@ -46,31 +46,24 @@ function App() {
       setIsError(true);
       setErrorMsg('There was a problem loading your music files.');
     }
+    // eslint-disable-next-line
   }, [isMusicError]);
 
   useEffect(() => {
     isAnimated ? setIsPlaying(true) : setIsPlaying(false);
     // eslint-disable-next-line
-  }, [isAnimated, isPlaying]);
+  }, [isAnimated]);
 
-  const toggleAnimation = () => {
-    setIsAnimated(!isAnimated);
-  };
-
-  const togglePlay = () => {
-    setIsAnimated(false);
-    setIsPlaying(!isPlaying);
-  };
 
   return (
     <MachineProvider
       value={{
         isAnimated,
-        toggleAnimation,
+        setIsAnimated,
         isPlaying,
-        togglePlay,
+        setIsPlaying,
         isLoading,
-        data,
+        musicData,
         setUrl,
         spriteData,
         setSpriteUrl,

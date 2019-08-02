@@ -35,9 +35,6 @@ export default ({ pan, sound, volume, type } = {}) => {
 
   useEffect(() => {
     if (audio) {
-      if (type === 'sprites') {
-        console.log(`${audio.src} started`);
-      }
       audio.onended = () => {
         if (type === 'sprites') {
           console.log(`${audio.src} ended`);

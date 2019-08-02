@@ -9,13 +9,13 @@ import StyledTracks from './StyledTracks.js';
 
 const Tracks = () => {
   const {
-    data,
+    musicData,
     isPlaying,
     isAnimated,
     spriteData,
-    environmentData,
     setIsError,
     setErrorMsg,
+    environmentData,
   } = useContext(MachineContext);
   const [tracks, setTracks] = useState(undefined);
   const [spriteTrack, setSpriteTrack] = useState(undefined);
@@ -25,35 +25,50 @@ const Tracks = () => {
   const [sineFrequency, setSineFrequency] = useState(60);
 
   useEffect(() => {
-    if (data) {
-      const { stems } = data;
+    if (musicData) {
+      const { stems } = musicData;
       const trackList = makeTracks(stems);
       setTracks(trackList);
     }
-  }, [data]);
+  }, [musicData]);
 
   useEffect(() => {
-    if (!spriteData.sprite_url) {
-      setIsError(true);
-      setErrorMsg('Could not get scene data for this selection.');
-    } else {
-      const spriteStem = spriteData[getRandomIndex(spriteData)].sprite_url;
+    if (spriteData) {
+      if (spriteData.length === 0) {
+        setIsError(true);
+        setErrorMsg(`Couldn't load sprites.`);
+      }
+      const spritesArray = spriteData.map(sprite => sprite.sprite_url);
+      const spriteStem = spritesArray[getRandomIndex(spritesArray)];
+
       setSpriteTrack(spriteStem);
     }
+    return () => {
+      setIsError(false);
+      setErrorMsg('');
+    };
     // eslint-disable-next-line
   }, [spriteData]);
 
   useEffect(() => {
-    if (!environmentData.environment_url) {
-      setIsError(true);
-      setErrorMsg('Could not get scene data for this selection.');
-    } else {
+    if (environmentData) {
+      if (environmentData.length === 0) {
+        setIsError(true);
+        setErrorMsg(`Couldn't load environments.`);
+      }
+      const environmentsArray = environmentData.map(
+        environment => environment.environment_url
+      );
       const environmentStem =
-        environmentData[getRandomIndex(environmentData)].environment_url;
+        environmentsArray[getRandomIndex(environmentsArray)];
       setEnvironmentTrack(environmentStem);
     }
+    return () => {
+      setIsError(false);
+      setErrorMsg('');
+    };
     // eslint-disable-next-line
-   }, [environmentData]);
+  }, [environmentData]);
 
   useEffect(() => {
     if (tracks) {
