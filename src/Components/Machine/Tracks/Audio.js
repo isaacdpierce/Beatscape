@@ -1,18 +1,26 @@
 import { useEffect, useContext, useState } from 'react';
 import MachineContext from 'Context/MachineContext';
-import { getRandomIndex } from 'Assets/helpers/helpers';
+import { getRandomIndex, getRandomInteger } from 'Assets/helpers/helpers';
 
 import useAudioContext from 'Context/useAudioContext';
 
+const useHTMLAudio = (sound, type) => {
+  const audioHTML = new Audio();
+
+  audioHTML.src = sound;
+  audioHTML.crossOrigin = 'anonymous';
+  audioHTML.autoplay = true;
+  // Set loop to false if either environment or sprite
+  audioHTML.loop = type !== 'environment' && type !== 'sprites';
+  audioHTML.preload = true;
+
+  return audioHTML;
+};
+
 export default ({ pan, sound, volume, type } = {}) => {
-  const {
-    isPlaying,
-    setIsError,
-    spriteData,
-    environmentData,
-    setSpriteUrl,
-    setEnvironmentUrl,
-  } = useContext(MachineContext);
+  const { isPlaying, setIsError, spriteData, environmentData } = useContext(
+    MachineContext
+  );
   const [vol, setVol] = useState(undefined);
   const [stereo, setStereo] = useState(0);
   const [audio, setAudio] = useState(undefined);
@@ -21,50 +29,33 @@ export default ({ pan, sound, volume, type } = {}) => {
 
   useEffect(() => {
     if (audioContext && sound) {
-      const makeHTMLAudio = url => {
-        const audioHTML = new Audio();
-        if (!url) {
-          setIsError(true);
-          return null;
-        }
-
-        audioHTML.src = url;
-        audioHTML.crossOrigin = 'anonymous';
-        audioHTML.autoplay = true;
-        // Set loop to false if either environment or sprite
-        audioHTML.loop = type !== 'environment' && type !== 'sprites';
-        audioHTML.preload = true;
-
-        return audioHTML;
-      };
-      setAudio(makeHTMLAudio(sound));
+      setAudio(useHTMLAudio(sound, type));
     }
-  }, [audioContext, setIsError, sound, type]);
+  }, [audioContext, sound, type]);
 
   useEffect(() => {
     if (audio) {
+      if (type === 'sprites') {
+        console.log(`${audio.src} started`);
+      }
       audio.onended = () => {
         if (type === 'sprites') {
           console.log(`${audio.src} ended`);
           const spriteStem = spriteData[getRandomIndex(spriteData)].sprite_url;
-          setSpriteUrl(spriteStem);
+          setTimeout(() => {
+            setAudio(useHTMLAudio(spriteStem, 'sprites'));
+          }, getRandomInteger(1000, 20000));
         }
-        if (type === 'environment') {
-          console.log(`${audio.src} ended`);
+        if (type === 'environments') {
           const environmentStem =
             environmentData[getRandomIndex(environmentData)].environment_url;
-          setEnvironmentUrl(environmentStem);
+          setTimeout(() => {
+            setAudio(useHTMLAudio(environmentStem, 'environments'));
+          }, getRandomInteger(1000, 20000));
         }
       };
     }
-  }, [
-    audio,
-    environmentData,
-    setEnvironmentUrl,
-    setSpriteUrl,
-    spriteData,
-    type,
-  ]);
+  }, [audio, environmentData, spriteData, type]);
 
   useEffect(() => {
     if (audio) {

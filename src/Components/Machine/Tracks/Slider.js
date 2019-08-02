@@ -14,6 +14,7 @@ const Slider = ({
   sound,
   changeSineVolume,
   changeSineFrequency,
+  setSpriteTrack,
 }) => {
   const min = 0;
   const max = 1.0;
