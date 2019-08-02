@@ -18,9 +18,7 @@ const useHTMLAudio = (sound, type) => {
 };
 
 export default ({ pan, sound, volume, type } = {}) => {
-  const { isPlaying, setIsError, spriteData, environmentData } = useContext(
-    MachineContext
-  );
+  const { isPlaying, spriteData, environmentData } = useContext(MachineContext);
   const [vol, setVol] = useState(undefined);
   const [stereo, setStereo] = useState(0);
   const [audio, setAudio] = useState(undefined);

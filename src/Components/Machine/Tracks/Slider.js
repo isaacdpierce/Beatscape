@@ -14,11 +14,10 @@ const Slider = ({
   sound,
   changeSineVolume,
   changeSineFrequency,
-  setSpriteTrack,
+  min = 0,
+  max = 1.0,
+  step = 0.01,
 }) => {
-  const min = 0;
-  const max = 1.0;
-  const step = 0.01;
   const initialValue = setSliderValue(type);
   const { isAnimated, isPlaying } = useContext(MachineContext);
   const [value, setValue] = useState(initialValue);
@@ -35,7 +34,7 @@ const Slider = ({
     if (isAnimated && animate) {
       animateVolume(value, min, max, next, setValue, setNext);
     }
-  }, [isAnimated, animate, value, next, setValue, setNext]);
+  }, [isAnimated, animate, value, next, setValue, setNext, min, max]);
 
   const changeValue = val => {
     if (val) {
@@ -90,6 +89,9 @@ Slider.propTypes = {
   sound: PropTypes.string,
   changeSineVolume: PropTypes.func,
   changeSineFrequency: PropTypes.func,
+  max: PropTypes.number,
+  min: PropTypes.number,
+  step: PropTypes.number,
 };
 
 export default Slider;

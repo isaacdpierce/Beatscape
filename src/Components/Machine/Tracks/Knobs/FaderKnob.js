@@ -20,7 +20,6 @@ const FaderKnob = ({
   const knobMin = type === 'Binaural' ? 30 : 1;
   const knobMax = type === 'Binaural' ? 100 : -1;
   const initialValue = type === 'Binaural' ? 65 : 0;
-
   const { isAnimated } = useContext(MachineContext);
   const [knobValue, setKnobValue] = useState(initialValue);
   const [knobNext, setKnobNext] = useState(getRandomFloat(knobMax, knobMin));
@@ -46,14 +45,12 @@ const FaderKnob = ({
         setKnobNext
       );
     }
-  }, [
+    // eslint-disable-next-line
+    }, [
     knobValue,
-    knobMin,
-    knobMax,
     knobNext,
     setKnobValue,
     setKnobNext,
-    animate,
     isAnimated,
   ]);
 

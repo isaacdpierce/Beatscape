@@ -7,9 +7,7 @@ const trackTypes = [
   'melody',
   'harmony',
   'instrument',
-  'atmosphere',
-  'sprites',
-  'environment',
+  'bass',
 ];
 
 export default trackTypes;
