@@ -94,7 +94,12 @@ const Tracks = () => {
     <StyledTracks className={isAnimated && 'animated'}>
       {isAnimated && <TrackCover />}
       {musicSliders}
-      <Slider type='sprites' animate sound={spriteTrack} max={0.5} />
+      <Slider
+        type='sprites'
+        animate
+        sound={spriteTrack}
+        animatedMaxVolume={0.5}
+      />
       <Slider type='environment' animate={false} sound={environmentTrack} />
       <Slider
         type='Binaural'

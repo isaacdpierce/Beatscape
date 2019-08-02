@@ -46,13 +46,7 @@ const FaderKnob = ({
       );
     }
     // eslint-disable-next-line
-    }, [
-    knobValue,
-    knobNext,
-    setKnobValue,
-    setKnobNext,
-    isAnimated,
-  ]);
+    }, [knobValue, knobNext, isAnimated ]);
 
   return (
     <Knob

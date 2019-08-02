@@ -11,6 +11,7 @@ import Audio from './Audio';
 const Slider = ({
   type,
   animate,
+  animatedMaxVolume = 1.0,
   sound,
   changeSineVolume,
   changeSineFrequency,
@@ -32,14 +33,13 @@ const Slider = ({
 
   useEffect(() => {
     if (isAnimated && animate) {
-      animateVolume(value, min, max, next, setValue, setNext);
+      animateVolume(value, min, animatedMaxVolume, next, setValue, setNext);
     }
-  }, [isAnimated, animate, value, next, setValue, setNext, min, max]);
+    // eslint-disable-next-line
+    }, [isAnimated, value, next]);
 
   const changeValue = val => {
-    if (val) {
-      setValue(val);
-    }
+    setValue(val);
   };
 
   const changeStereo = val => {
@@ -92,6 +92,7 @@ Slider.propTypes = {
   max: PropTypes.number,
   min: PropTypes.number,
   step: PropTypes.number,
+  animatedMaxVolume: PropTypes.number,
 };
 
 export default Slider;
