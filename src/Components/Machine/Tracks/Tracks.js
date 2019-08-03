@@ -34,39 +34,18 @@ const Tracks = () => {
 
   useEffect(() => {
     if (spriteData) {
-      if (spriteData.length === 0) {
-        setIsError(true);
-        setErrorMsg(`Couldn't load sprites.`);
-      }
-      const spritesArray = spriteData.map(sprite => sprite.sprite_url);
-      const spriteStem = spritesArray[getRandomIndex(spritesArray)];
-
+      const spriteStem = spriteData[getRandomIndex(spriteData)];
       setSpriteTrack(spriteStem);
     }
-    return () => {
-      setIsError(false);
-      setErrorMsg('');
-    };
     // eslint-disable-next-line
   }, [spriteData]);
 
   useEffect(() => {
     if (environmentData) {
-      if (environmentData.length === 0) {
-        setIsError(true);
-        setErrorMsg(`Couldn't load environments.`);
-      }
-      const environmentsArray = environmentData.map(
-        environment => environment.environment_url
-      );
-      const environmentStem =
-        environmentsArray[getRandomIndex(environmentsArray)];
+      const environmentStem = environmentData[getRandomIndex(environmentData)];
+
       setEnvironmentTrack(environmentStem);
     }
-    return () => {
-      setIsError(false);
-      setErrorMsg('');
-    };
     // eslint-disable-next-line
   }, [environmentData]);
 

@@ -9,7 +9,6 @@ const useHTMLAudio = (sound, type) => {
 
   audioHTML.src = sound;
   audioHTML.crossOrigin = 'anonymous';
-  audioHTML.autoplay = true;
   // Set loop to false if either environment or sprite
   audioHTML.loop = type !== 'environment' && type !== 'sprites';
   audioHTML.preload = true;
@@ -36,21 +35,21 @@ export default ({ pan, sound, volume, type } = {}) => {
       audio.onended = () => {
         if (type === 'sprites') {
           console.log(`${audio.src} ended`);
-          const spriteStem = spriteData[getRandomIndex(spriteData)].sprite_url;
+          const spriteStem = spriteData[getRandomIndex(spriteData)];
           setTimeout(() => {
             setAudio(useHTMLAudio(spriteStem, 'sprites'));
           }, getRandomInteger(1000, 20000));
         }
         if (type === 'environments') {
           const environmentStem =
-            environmentData[getRandomIndex(environmentData)].environment_url;
+            environmentData[getRandomIndex(environmentData)];
           setTimeout(() => {
             setAudio(useHTMLAudio(environmentStem, 'environments'));
           }, getRandomInteger(1000, 20000));
         }
       };
     }
-  }, [audio, environmentData, spriteData, type]);
+  }, [audio, environmentData, isPlaying, spriteData, type]);
 
   useEffect(() => {
     if (audio) {
@@ -93,12 +92,16 @@ export default ({ pan, sound, volume, type } = {}) => {
   useEffect(() => {
     if (!isPlaying && audio) {
       audioContext.suspend().then(() => {
+        audio.pause();
         // console.log(audioContext.state, audioContext.currentTime);
+        // console.log(`paused audio time = ${audio.currentTime}`);
       });
     }
     if (isPlaying) {
       audioContext.resume().then(() => {
+        audio.play();
         // console.log(audioContext.state, audioContext.currentTime);
+        // console.log(`play audio time = ${audio.currentTime}`);
       });
     }
   }, [audio, audioContext, isPlaying]);

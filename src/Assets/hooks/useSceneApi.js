@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const useSceneApi = (initialSpriteUrl, initialEnvironmentUrl) => {
-  const [spriteData, setSpriteData] = useState([]);
-  const [environmentData, setEnvironmentData] = useState([]);
+  const [spriteData, setSpriteData] = useState(undefined);
+  const [environmentData, setEnvironmentData] = useState(undefined);
   const [spriteUrl, setSpriteUrl] = useState(initialSpriteUrl);
   const [environmentUrl, setEnvironmentUrl] = useState(initialEnvironmentUrl);
   const [isSceneError, setIsSceneError] = useState(false);
@@ -13,7 +13,8 @@ const useSceneApi = (initialSpriteUrl, initialEnvironmentUrl) => {
       setIsSceneError(false);
       try {
         const result = await axios(spriteUrl);
-        setSpriteData(result.data);
+        const spritesArray = await result.data.map(sprite => sprite.sprite_url);
+        setSpriteData(spritesArray);
       } catch (error) {
         setIsSceneError(true);
       }
@@ -27,12 +28,14 @@ const useSceneApi = (initialSpriteUrl, initialEnvironmentUrl) => {
       setIsSceneError(false);
       try {
         const result = await axios(environmentUrl);
-        setEnvironmentData(result.data);
+        const environmentsArray = await result.data.map(
+          environment => environment.environment_url
+        );
+        setEnvironmentData(environmentsArray);
       } catch (error) {
         setIsSceneError(true);
       }
     };
-
     fetchEnvironmentData();
   }, [environmentUrl]);
 
