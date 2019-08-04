@@ -13,14 +13,6 @@ export default ({ pan, sound, volume, type } = {}) => {
   const [stereo, setStereo] = useState(0);
   const [audio, setAudio] = useState(undefined);
 
-  let calls = 0;
-  function iSuspectToBeLoopingInfititely() {
-    calls += 1;
-    if (calls > 100) {
-      debugger;
-    }
-  }
-
   useEffect(() => {
     if (awsAudio) {
       setAudio(awsAudio);
@@ -52,8 +44,6 @@ export default ({ pan, sound, volume, type } = {}) => {
       source.connect(gainNode);
       gainNode.connect(panNode);
       panNode.connect(audioContext.destination);
-
-      iSuspectToBeLoopingInfititely();
 
       source.start();
 
