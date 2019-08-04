@@ -34,11 +34,8 @@ const makeTracks = audio =>
 const getRandomIndex = sourceArray => getRandomInteger(0, sourceArray.length);
 
 const setSliderValue = type => {
-  if (type === 'Binaural') {
+  if (type === 'Binaural' || type === 'sprites' || type === 'environment') {
     return 0.05;
-  }
-  if (type === 'sprites' || type === 'environment') {
-    return 0.25;
   }
   return 0.5;
 };

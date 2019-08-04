@@ -12,14 +12,14 @@ const Tracks = () => {
     musicData,
     isPlaying,
     isAnimated,
-    spriteData,
+    spriteTrack,
+    environmentTrack,
     setIsError,
     setErrorMsg,
-    environmentData,
   } = useContext(MachineContext);
   const [tracks, setTracks] = useState(undefined);
-  const [spriteTrack, setSpriteTrack] = useState(undefined);
-  const [environmentTrack, setEnvironmentTrack] = useState(undefined);
+  // const [spriteTrack, setSpriteTrack] = useState(undefined);
+  // const [environmentTrack, setEnvironmentTrack] = useState(undefined);
   const [musicSliders, setMusicSliders] = useState(useEmptySliders);
   const [sineVolume, setSineVolume] = useState(0.05);
   const [sineFrequency, setSineFrequency] = useState(60);
@@ -32,22 +32,22 @@ const Tracks = () => {
     }
   }, [musicData]);
 
-  useEffect(() => {
-    if (spriteData) {
-      const spriteStem = spriteData[getRandomIndex(spriteData)];
-      setSpriteTrack(spriteStem);
-    }
-    // eslint-disable-next-line
-  }, [spriteData]);
+  // useEffect(() => {
+  //   if (spriteData) {
+  //     const spriteStem = spriteData[getRandomIndex(spriteData)];
+  //     setSpriteTrack(spriteStem);
+  //   }
+  //   // eslint-disable-next-line
+  // }, [spriteData]);
 
-  useEffect(() => {
-    if (environmentData) {
-      const environmentStem = environmentData[getRandomIndex(environmentData)];
+  // useEffect(() => {
+  //   if (environmentData) {
+  //     const environmentStem = environmentData[getRandomIndex(environmentData)];
 
-      setEnvironmentTrack(environmentStem);
-    }
-    // eslint-disable-next-line
-  }, [environmentData]);
+  //     setEnvironmentTrack(environmentStem);
+  //   }
+  //   // eslint-disable-next-line
+  // }, [environmentData]);
 
   useEffect(() => {
     if (tracks) {

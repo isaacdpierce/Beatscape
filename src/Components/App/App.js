@@ -25,9 +25,17 @@ function App() {
   ] = useBeatscapeApi('http://localhost:8000/api/soundscapes/1');
 
   const [
-    { isSceneError, spriteData, environmentData },
+    {
+      isSceneError,
+      spriteData,
+      spriteTrack,
+      environmentData,
+      environmentTrack,
+    },
     setSpriteUrl,
+    setSpriteTrack,
     setEnvironmentUrl,
+    setEnvironmentTrack,
   ] = useSceneApi(
     'http://localhost:8000/api/sprites/1',
     'http://localhost:8000/api/environments/1'
@@ -66,8 +74,12 @@ function App() {
         setIsLoading,
         musicData,
         setUrl,
+        spriteTrack,
+        setSpriteTrack,
         spriteData,
         setSpriteUrl,
+        environmentTrack,
+        setEnvironmentTrack,
         environmentData,
         setEnvironmentUrl,
         isError,

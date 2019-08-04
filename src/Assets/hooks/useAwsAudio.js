@@ -30,7 +30,7 @@ const useAwsAudio = () => {
           setAwsAudio(decodedSound);
         } catch (error) {
           setIsError(true);
-          setErrorMsg('There was a problem loading music files.');
+          setErrorMsg('There was a problem loading AWS audio files.');
         }
         setIsLoading(false);
       };
