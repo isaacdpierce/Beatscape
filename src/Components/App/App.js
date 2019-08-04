@@ -19,7 +19,7 @@ function App() {
   const [isError, setIsError] = useState(false);
 
   const [
-    { musicData, isLoading, isMusicError, isPlaying },
+    { musicData, isLoading, setIsLoading, isMusicError, isPlaying },
     setUrl,
     setIsPlaying,
   ] = useBeatscapeApi('http://localhost:8000/api/soundscapes/1');
@@ -63,6 +63,7 @@ function App() {
         isPlaying,
         setIsPlaying,
         isLoading,
+        setIsLoading,
         musicData,
         setUrl,
         spriteData,
