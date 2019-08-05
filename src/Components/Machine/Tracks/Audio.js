@@ -19,14 +19,13 @@ export default ({ pan, sound, volume, type } = {}) => {
   const [audio, setAudio] = useState(undefined);
 
   useEffect(() => {
-    awsIsLoading ? setIsLoading(true) : setIsLoading(true);
+    console.log(awsIsLoading);
+
     // eslint-disable-next-line
   }, [awsIsLoading]);
 
   useEffect(() => {
     if (audioContext && sound) {
-      console.log(sound);
-
       setAwsUrl(sound);
     }
     // eslint-disable-next-line
@@ -41,7 +40,7 @@ export default ({ pan, sound, volume, type } = {}) => {
 
   useEffect(() => {
     if (audio) {
-      console.log(`${audio} type is ${type}`);
+      console.log(audio);
 
       const source = audioContext.createBufferSource();
       source.buffer = audio;

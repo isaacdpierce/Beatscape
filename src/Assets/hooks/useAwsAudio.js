@@ -11,7 +11,7 @@ const useAwsAudio = () => {
   const [awsUrl, setAwsUrl] = useState(undefined);
 
   useEffect(() => {
-    if (audioContext && awsUrl) {
+    if (awsUrl) {
       const fetchSoundData = async () => {
         setAwsIsLoading(true);
         setIsAwsError(false);
@@ -38,7 +38,8 @@ const useAwsAudio = () => {
 
       fetchSoundData();
     }
-  }, [audioContext, awsUrl]);
+    // eslint-disable-next-line 
+  }, [awsUrl]);
 
   return [{ awsAudio, awsIsLoading, isAwsError, awsErrorMsg }, setAwsUrl];
 };
