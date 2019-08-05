@@ -25,13 +25,13 @@ const DrawerButton = ({
   spriteUrl,
   environmentUrl,
 }) => {
-  const { setUrl, setSpriteUrl, setEnvironmentUrl } = useContext(
+  const { setMusicUrl, setSpriteUrl, setEnvironmentUrl } = useContext(
     MachineContext
   );
 
   const handleClick = () => {
     if (fetchType === 'music') {
-      setUrl(source);
+      setMusicUrl(source);
     }
     if (fetchType === 'scene') {
       setSpriteUrl(spriteUrl);

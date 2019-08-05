@@ -2,56 +2,25 @@ import React, { useContext, useState, useEffect } from 'react';
 import MachineContext from 'Context/MachineContext';
 import Oscillator from 'Components/Machine/Tracks/Oscillator/Oscillator';
 import useEmptySliders from 'Assets/hooks/useEmptySliders';
-import { makeTracks, getRandomIndex } from 'Assets/helpers/helpers';
 import Slider from './Slider';
 import TrackCover from './TrackCover';
 import StyledTracks from './StyledTracks.js';
 
 const Tracks = () => {
   const {
-    musicData,
+    musicTracks,
     isPlaying,
     isAnimated,
     spriteTrack,
     environmentTrack,
-    setIsError,
-    setErrorMsg,
   } = useContext(MachineContext);
-  const [tracks, setTracks] = useState(undefined);
-  // const [spriteTrack, setSpriteTrack] = useState(undefined);
-  // const [environmentTrack, setEnvironmentTrack] = useState(undefined);
   const [musicSliders, setMusicSliders] = useState(useEmptySliders);
   const [sineVolume, setSineVolume] = useState(0.05);
   const [sineFrequency, setSineFrequency] = useState(60);
 
   useEffect(() => {
-    if (musicData) {
-      const { stems } = musicData;
-      const trackList = makeTracks(stems);
-      setTracks(trackList);
-    }
-  }, [musicData]);
-
-  // useEffect(() => {
-  //   if (spriteData) {
-  //     const spriteStem = spriteData[getRandomIndex(spriteData)];
-  //     setSpriteTrack(spriteStem);
-  //   }
-  //   // eslint-disable-next-line
-  // }, [spriteData]);
-
-  // useEffect(() => {
-  //   if (environmentData) {
-  //     const environmentStem = environmentData[getRandomIndex(environmentData)];
-
-  //     setEnvironmentTrack(environmentStem);
-  //   }
-  //   // eslint-disable-next-line
-  // }, [environmentData]);
-
-  useEffect(() => {
-    if (tracks) {
-      const audioList = tracks.map((track, index) => {
+    if (musicTracks) {
+      const audioList = musicTracks.map((track, index) => {
         const { stemName, animate, sound } = track;
         return (
           <Slider key={index} type={stemName} animate={animate} sound={sound} />
@@ -59,7 +28,7 @@ const Tracks = () => {
       });
       setMusicSliders(audioList);
     }
-  }, [tracks]);
+  }, [musicTracks]);
 
   const changeSineVolume = val => {
     setSineVolume(val);

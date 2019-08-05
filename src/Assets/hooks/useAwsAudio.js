@@ -1,19 +1,20 @@
 import { useState, useEffect, useContext } from 'react';
-import MachineContext from 'Context/MachineContext';
 import axios from 'axios';
 import useAudioContext from 'Context/useAudioContext';
 
 const useAwsAudio = () => {
-  const { setIsError, setErrorMsg, setIsLoading } = useContext(MachineContext);
   const { audioContext } = useContext(useAudioContext);
   const [awsAudio, setAwsAudio] = useState(undefined);
+  const [awsIsLoading, setAwsIsLoading] = useState(undefined);
+  const [isAwsError, setIsAwsError] = useState(undefined);
+  const [awsErrorMsg, setAwsErrorMsg] = useState(undefined);
   const [awsUrl, setAwsUrl] = useState(undefined);
 
   useEffect(() => {
     if (audioContext && awsUrl) {
       const fetchSoundData = async () => {
-        setIsLoading(true);
-        setIsError(false);
+        setAwsIsLoading(true);
+        setIsAwsError(false);
         try {
           const response = await axios({
             responseType: 'arraybuffer',
@@ -29,17 +30,17 @@ const useAwsAudio = () => {
 
           setAwsAudio(decodedSound);
         } catch (error) {
-          setIsError(true);
-          setErrorMsg('There was a problem loading AWS audio files.');
+          setIsAwsError(true);
+          setAwsErrorMsg('There was a problem loading audio data.');
         }
-        setIsLoading(false);
+        setAwsIsLoading(false);
       };
 
       fetchSoundData();
     }
-  }, [audioContext, awsUrl, setErrorMsg, setIsError, setIsLoading]);
+  }, [audioContext, awsUrl]);
 
-  return [{ awsAudio }, setAwsUrl];
+  return [{ awsAudio, awsIsLoading, isAwsError, awsErrorMsg }, setAwsUrl];
 };
 
 export default useAwsAudio;

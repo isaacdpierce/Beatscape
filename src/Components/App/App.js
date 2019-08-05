@@ -7,7 +7,6 @@ import Machine from 'Components/Machine/Machine';
 import Header from 'Components/Header/Header';
 import Footer from 'Components/Footer/Footer';
 import useBeatscapeApi from 'Assets/hooks/useBeatscapeApi';
-import useSceneApi from 'Assets/hooks/useSceneApi';
 
 import { MachineProvider } from 'Context/MachineContext';
 
@@ -15,53 +14,39 @@ import AppTheme from './AppTheme';
 
 function App() {
   const [isAnimated, setIsAnimated] = useState(false);
-  const [errorMsg, setErrorMsg] = useState('');
-  const [isError, setIsError] = useState(false);
-
-  const [
-    { musicData, isLoading, setIsLoading, isMusicError, isPlaying },
-    setUrl,
-    setIsPlaying,
-  ] = useBeatscapeApi('http://localhost:8000/api/soundscapes/1');
 
   const [
     {
-      isSceneError,
+      musicData,
+      musicTracks,
+      isLoading,
+      isError,
+      errorMsg,
+      isPlaying,
       spriteData,
       spriteTrack,
-      environmentData,
       environmentTrack,
+      environmentData,
     },
+    setIsLoading,
+    setIsError,
+    setErrorMsg,
+    setMusicUrl,
+    setIsPlaying,
     setSpriteUrl,
-    setSpriteTrack,
     setEnvironmentUrl,
+    setSpriteTrack,
     setEnvironmentTrack,
-  ] = useSceneApi(
+  ] = useBeatscapeApi(
+    'http://localhost:8000/api/soundscapes/1',
     'http://localhost:8000/api/sprites/1',
     'http://localhost:8000/api/environments/1'
   );
 
   useEffect(() => {
-    if (isSceneError) {
-      setIsError(true);
-      setErrorMsg('There was a problem loading your scene sounds.');
-    }
-    // eslint-disable-next-line
- }, [isSceneError]);
-
-  useEffect(() => {
-    if (isMusicError) {
-      setIsError(true);
-      setErrorMsg('There was a problem loading your music files.');
-    }
-    // eslint-disable-next-line
-  }, [isMusicError]);
-
-  useEffect(() => {
     isAnimated ? setIsPlaying(true) : setIsPlaying(false);
     // eslint-disable-next-line
   }, [isAnimated]);
-
 
   return (
     <MachineProvider
@@ -73,7 +58,8 @@ function App() {
         isLoading,
         setIsLoading,
         musicData,
-        setUrl,
+        musicTracks,
+        setMusicUrl,
         spriteTrack,
         setSpriteTrack,
         spriteData,

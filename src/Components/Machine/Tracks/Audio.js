@@ -1,33 +1,40 @@
 import { useEffect, useContext, useState } from 'react';
 import MachineContext from 'Context/MachineContext';
 import useAwsAudio from 'Assets/hooks/useAwsAudio';
-import { getRandomIndex, getRandomInteger } from 'Assets/helpers/helpers';
+import { getRandomInteger } from 'Assets/helpers/helpers';
 
 import useAudioContext from 'Context/useAudioContext';
 
 export default ({ pan, sound, volume, type } = {}) => {
   const { audioContext } = useContext(useAudioContext);
-  const [{ awsAudio }, setAwsUrl] = useAwsAudio();
-  const { isPlaying } = useContext(MachineContext);
+  const { isPlaying, setIsLoading, setIsError, setErrorMsg } = useContext(
+    MachineContext
+  );
+  const [
+    { awsAudio, awsIsLoading, isAwsError, awsErrorMsg },
+    setAwsUrl,
+  ] = useAwsAudio();
   const [vol, setVol] = useState(undefined);
   const [stereo, setStereo] = useState(0);
   const [audio, setAudio] = useState(undefined);
 
   useEffect(() => {
-    if (awsAudio) {
-      setAudio(awsAudio);
-    }
-    // eslint-disable-next-line
-  }, [awsAudio]);
-
-  useEffect(() => {
     if (audioContext && sound) {
-      // console.log(sound);
+      console.log(sound);
 
       setAwsUrl(sound);
     }
     // eslint-disable-next-line
   }, [sound]);
+
+  useEffect(() => {
+    if (awsAudio) {
+      // console.log(awsAudio);
+
+      setAudio(awsAudio);
+    }
+    // eslint-disable-next-line
+  }, [awsAudio]);
 
   useEffect(() => {
     if (audio) {
