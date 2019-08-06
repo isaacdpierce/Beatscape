@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
 import MachineContext from 'Context/MachineContext';
-import Oscillator from 'Components/Machine/Tracks/Oscillator/Oscillator';
 import useEmptySliders from 'Assets/hooks/useEmptySliders';
 import Slider from './Slider';
 import TrackCover from './TrackCover';

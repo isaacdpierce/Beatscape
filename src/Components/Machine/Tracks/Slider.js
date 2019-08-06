@@ -13,15 +13,13 @@ import Audio from './Audio';
 const Slider = ({
   type,
   animate,
-  animatedMaxVolume = 1.0,
+  animatedMaxVol = 1.0,
+  animatedMinVol = 0,
   sound,
-  min = 0,
-  max = 1.0,
-  step = 0.01,
 }) => {
   const sliderState = {
     value: setSliderValue(type),
-    next: getRandomFloat(min, max),
+    next: getRandomFloat(0, 1),
     stereo: 0,
     sineFrequency: 60,
   };
@@ -33,7 +31,7 @@ const Slider = ({
 
   useEffect(() => {
     if (isAnimated && animate) {
-      animateVolume(value, min, animatedMaxVolume, next, setState);
+      animateVolume(value, animatedMinVol, animatedMaxVol, next, setState);
     }
     // eslint-disable-next-line
     }, [isAnimated, value, next]);
@@ -73,9 +71,6 @@ const Slider = ({
       <StyledSlider>
         <Input
           type={type}
-          min={min}
-          max={max}
-          step={step}
           value={value}
           changeValue={changeValue}
           aria-label={`Controls volume of ${type} track`}
@@ -98,10 +93,8 @@ Slider.propTypes = {
   type: PropTypes.string.isRequired,
   animate: PropTypes.bool,
   sound: PropTypes.string,
-  max: PropTypes.number,
-  min: PropTypes.number,
-  step: PropTypes.number,
-  animatedMaxVolume: PropTypes.number,
+  animatedMaxVol: PropTypes.number,
+  animatedMinVol: PropTypes.number,
 };
 
 export default Slider;

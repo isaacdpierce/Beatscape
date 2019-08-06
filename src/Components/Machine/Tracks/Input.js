@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
-const Input = ({ type, changeValue, min, max, step, value }) => {
+const Input = ({ type, changeValue, value }) => {
   const levelRef = useRef();
 
   const handleChange = useCallback(() => {
@@ -20,9 +20,9 @@ const Input = ({ type, changeValue, min, max, step, value }) => {
         value={value}
         id={type}
         name={type}
-        min={min}
-        max={max}
-        step={step}
+        min={0}
+        max={1}
+        step={0.01}
       />
     </label>
   );
@@ -30,9 +30,6 @@ const Input = ({ type, changeValue, min, max, step, value }) => {
 
 Input.propTypes = {
   type: PropTypes.string.isRequired,
-  step: PropTypes.number.isRequired,
-  min: PropTypes.number.isRequired,
-  max: PropTypes.number.isRequired,
   value: PropTypes.number.isRequired,
   changeValue: PropTypes.func.isRequired,
 };
