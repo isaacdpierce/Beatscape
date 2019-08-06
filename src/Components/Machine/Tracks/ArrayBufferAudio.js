@@ -1,37 +1,53 @@
 import { useEffect, useContext, useState } from 'react';
 import MachineContext from 'Context/MachineContext';
-import { makeHTMLAudio, getNewAudio } from 'Assets/helpers/helpers';
+import useAwsAudio from 'Assets/hooks/useAwsAudio';
+import { getRandomInteger } from 'Assets/helpers/helpers';
 
 import useAudioContext from 'Context/useAudioContext';
 
 export default ({ pan, sound, volume, type } = {}) => {
   const { audioContext } = useContext(useAudioContext);
-  const { isPlaying, spriteData, environmentData } = useContext(MachineContext);
+  const { isPlaying, setIsLoading, setIsError, setErrorMsg } = useContext(
+    MachineContext
+  );
+  const [
+    { awsAudio, awsIsLoading, isAwsError, awsErrorMsg },
+    setAwsUrl,
+  ] = useAwsAudio();
   const [vol, setVol] = useState(undefined);
   const [stereo, setStereo] = useState(0);
   const [audio, setAudio] = useState(undefined);
 
   useEffect(() => {
+    console.log(awsIsLoading);
+
+    // eslint-disable-next-line
+  }, [awsIsLoading]);
+
+  useEffect(() => {
     if (sound) {
-      setAudio(makeHTMLAudio(sound, type));
+      setAwsUrl(sound);
     }
     // eslint-disable-next-line
   }, [sound]);
 
   useEffect(() => {
-    if (audio) {
-      audio.onended = () => {
-        const newAudio = getNewAudio(type, spriteData, environmentData);
-        setAudio(newAudio);
-      };
+    if (awsAudio) {
+      setAudio(awsAudio);
     }
     // eslint-disable-next-line
-  }, [audio]);
+  }, [awsAudio]);
 
   useEffect(() => {
     if (audio) {
-      const source = audioContext.createMediaElementSource(audio);
+      console.log(audio);
 
+      const source = audioContext.createBufferSource();
+      source.buffer = audio;
+      if (type !== 'sprites' || type !== 'environment') {
+        source.loop = true;
+      }
+     
       const gainNode = audioContext.createGain();
       const panNode = audioContext.createStereoPanner();
 
@@ -41,6 +57,8 @@ export default ({ pan, sound, volume, type } = {}) => {
       source.connect(gainNode);
       gainNode.connect(panNode);
       panNode.connect(audioContext.destination);
+
+      source.start();
 
       gainNode.gain.value = volume;
       panNode.pan.value = pan;
@@ -70,15 +88,12 @@ export default ({ pan, sound, volume, type } = {}) => {
   useEffect(() => {
     if (!isPlaying && audio) {
       audioContext.suspend().then(() => {
-        audio.pause();
         // console.log(audioContext.state, audioContext.currentTime);
         // console.log(`paused audio time = ${audio.currentTime}`);
       });
     }
     if (isPlaying) {
       audioContext.resume().then(() => {
-        audio.play();
-
         // console.log(audioContext.state, audioContext.currentTime);
         // console.log(`play audio time = ${audio.currentTime}`);
       });
@@ -87,3 +102,27 @@ export default ({ pan, sound, volume, type } = {}) => {
   }, [audio, isPlaying]);
   return null;
 };
+
+// useEffect(() => {
+//   if (awsAudio) {
+//     setAudio(awsAudio);
+//     audio.onended = () => {
+//       if (type === 'sprites') {
+//         console.log('sprite ended');
+
+//         const spriteStem = spriteData[getRandomIndex(spriteData)];
+//         setTimeout(() => {
+//           setAwsUrl(spriteStem);
+//         }, getRandomInteger(1000, 20000));
+//       }
+//       if (type === 'environments') {
+//         const environmentStem =
+//           environmentData[getRandomIndex(environmentData)];
+//         setTimeout(() => {
+//           setAwsUrl(environmentStem);
+//         }, getRandomInteger(1000, 20000));
+//       }
+//     };
+//   }
+//   // eslint-disable-next-line
+// }, [audio]);

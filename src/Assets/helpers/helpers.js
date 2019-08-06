@@ -1,5 +1,3 @@
-import { useEffect, useRef } from 'react';
-
 const getRandomInteger = (num1, num2) => {
   const min = Math.ceil(num1);
   const max = Math.floor(num2);
@@ -20,6 +18,8 @@ const getSource = sources => {
   return null;
 };
 
+const getRandomIndex = sourceArray => getRandomInteger(0, sourceArray.length);
+
 const makeTracks = audio =>
   audio.map((stem, index) => {
     const { stemName, animate, sources } = stem;
@@ -31,7 +31,30 @@ const makeTracks = audio =>
     };
   });
 
-const getRandomIndex = sourceArray => getRandomInteger(0, sourceArray.length);
+const makeHTMLAudio = (sound, type) => {
+  const audioHTML = new Audio();
+
+  audioHTML.src = sound;
+  audioHTML.crossOrigin = 'anonymous';
+  audioHTML.loop = type !== 'environment' && type !== 'sprites';
+  audioHTML.preload = true;
+
+  return audioHTML;
+};
+
+const getNewAudio = (type, spriteData, environmentData) => {
+  if (type === 'sprites') {
+    console.log('fetching new sprite');
+    const spriteStem = spriteData[getRandomIndex(spriteData)];
+
+    return makeHTMLAudio(spriteStem, 'sprites');
+  }
+  if (type === 'environments') {
+    console.log('fetching new environments');
+    const environmentStem = environmentData[getRandomIndex(environmentData)];
+    return makeHTMLAudio(environmentStem, 'environments');
+  }
+};
 
 const setSliderValue = type => {
   if (type === 'Binaural' || type === 'sprites' || type === 'environment') {
@@ -46,6 +69,8 @@ export {
   getNextLevel,
   roundCorrect,
   makeTracks,
+  makeHTMLAudio,
+  getNewAudio,
   getSource,
   setSliderValue,
   getRandomIndex,

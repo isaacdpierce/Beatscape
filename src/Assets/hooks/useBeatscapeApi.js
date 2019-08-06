@@ -32,10 +32,10 @@ export const useBeatscapeApi = (
           const result = await axios(musicUrl);
           console.log(result);
 
-          // setMusicData(result.data);
-          // const { stems } = result.data;
-          // const trackList = await makeTracks(stems);
-          // setMusicTracks(trackList);
+          setMusicData(result.data);
+          const { stems } = result.data;
+          const trackList = await makeTracks(stems);
+          setMusicTracks(trackList);
         } catch (error) {
           setIsError(true);
           setErrorMsg('There was a problem loading you music selection.');
