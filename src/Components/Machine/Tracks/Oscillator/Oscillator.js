@@ -7,6 +7,12 @@ export default ({ frequency, type, volume, isPlaying } = {}) => {
 
   const { audioContext } = useContext(useAudioContext);
 
+  // useEffect(() => {
+  //   if (volume) {
+  //     console.log(volume);
+  //   }
+  // }, [volume]);
+
   useEffect(() => {
     const osc = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
@@ -39,6 +45,7 @@ export default ({ frequency, type, volume, isPlaying } = {}) => {
 
   useEffect(() => {
     if (vol) {
+      console.log(vol.gain.value);
       vol.gain.value = volume;
     }
   }, [vol, volume]);
@@ -52,7 +59,8 @@ export default ({ frequency, type, volume, isPlaying } = {}) => {
     if (isPlaying) {
       audioContext.resume().then(() => {});
     }
-  }, [audioContext, isPlaying]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isPlaying]);
 
   return null;
 };

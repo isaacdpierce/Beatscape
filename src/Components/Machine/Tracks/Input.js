@@ -1,20 +1,12 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
-const Input = ({ type, changeValue, min, max, step, initialValue, value }) => {
-  const [val, setVal] = useState(initialValue);
+const Input = ({ type, changeValue, min, max, step, value }) => {
   const levelRef = useRef();
 
-  useEffect(() => {
-    if (val) {
-      changeValue(val);
-    }
-    // eslint-disable-next-line
-  }, [val]);
-
   const handleChange = useCallback(() => {
-    setVal(parseFloat(levelRef.current.value));
-  }, []);
+    changeValue(parseFloat(levelRef.current.value));
+  }, [changeValue, levelRef]);
 
   return (
     <label htmlFor={type}>
@@ -41,7 +33,6 @@ Input.propTypes = {
   step: PropTypes.number.isRequired,
   min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
-  initialValue: PropTypes.number.isRequired,
   value: PropTypes.number.isRequired,
   changeValue: PropTypes.func.isRequired,
 };

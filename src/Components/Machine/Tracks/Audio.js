@@ -1,19 +1,23 @@
-import { useEffect, useContext, useState } from 'react';
+import { useEffect, useContext, useReducer } from 'react';
 import MachineContext from 'Context/MachineContext';
+import reducer from 'Assets/reducers/reducer.js';
 import { makeHTMLAudio, getNewAudio } from 'Assets/helpers/helpers';
 
 import useAudioContext from 'Context/useAudioContext';
 
 export default ({ pan, sound, volume, type } = {}) => {
+  const audioState = {
+    vol: 0,
+    stereo: 0,
+    audio: undefined,
+  };
   const { audioContext } = useContext(useAudioContext);
   const { isPlaying, spriteData, environmentData } = useContext(MachineContext);
-  const [vol, setVol] = useState(undefined);
-  const [stereo, setStereo] = useState(0);
-  const [audio, setAudio] = useState(undefined);
+  const [{ vol, stereo, audio }, setState] = useReducer(reducer, audioState);
 
   useEffect(() => {
     if (sound) {
-      setAudio(makeHTMLAudio(sound, type));
+      setState({ audio: makeHTMLAudio(sound, type) });
     }
     // eslint-disable-next-line
   }, [sound]);
@@ -21,8 +25,10 @@ export default ({ pan, sound, volume, type } = {}) => {
   useEffect(() => {
     if (audio) {
       audio.onended = () => {
+        console.log(audio);
+
         const newAudio = getNewAudio(type, spriteData, environmentData);
-        setAudio(newAudio);
+        setState({ audio: newAudio });
       };
     }
     // eslint-disable-next-line
@@ -35,8 +41,8 @@ export default ({ pan, sound, volume, type } = {}) => {
       const gainNode = audioContext.createGain();
       const panNode = audioContext.createStereoPanner();
 
-      setVol(gainNode);
-      setStereo(panNode);
+      setState({ vol: gainNode });
+      setState({ stereo: panNode });
 
       source.connect(gainNode);
       gainNode.connect(panNode);
@@ -51,7 +57,6 @@ export default ({ pan, sound, volume, type } = {}) => {
         gainNode.disconnect();
       };
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [audio]);
 
@@ -78,7 +83,6 @@ export default ({ pan, sound, volume, type } = {}) => {
     if (isPlaying) {
       audioContext.resume().then(() => {
         audio.play();
-
         // console.log(audioContext.state, audioContext.currentTime);
         // console.log(`play audio time = ${audio.currentTime}`);
       });

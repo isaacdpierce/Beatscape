@@ -1,14 +1,14 @@
 import { getRandomFloat, roundCorrect } from 'Assets/helpers/helpers';
 
-export const animateVolume = (value, min, max, next, setValue, setNext) => {
+export const animateVolume = (value, min, max, next, setState) => {
   const volumeLoop = setTimeout(() => {
     if (value > next) {
-      setValue(roundCorrect(value - 0.01, 2));
+      setState({ value: roundCorrect(value - 0.01, 2) });
     } else if (value < next) {
-      setValue(roundCorrect(value + 0.01, 2));
+      setState({ value: roundCorrect(value + 0.01, 2) });
     } else if (value === next) {
       const newNum = getRandomFloat(min, max);
-      setNext(roundCorrect(newNum - 0.01, 2));
+      setState({ next: roundCorrect(newNum - 0.01, 2) });
     }
   }, getRandomFloat(100, 1000));
   return () => clearTimeout(volumeLoop);

@@ -7,16 +7,10 @@ import TrackCover from './TrackCover';
 import StyledTracks from './StyledTracks.js';
 
 const Tracks = () => {
-  const {
-    musicTracks,
-    isPlaying,
-    isAnimated,
-    spriteTrack,
-    environmentTrack,
-  } = useContext(MachineContext);
+  const { musicTracks, isAnimated, spriteTrack, environmentTrack } = useContext(
+    MachineContext
+  );
   const [musicSliders, setMusicSliders] = useState(useEmptySliders);
-  const [sineVolume, setSineVolume] = useState(0.05);
-  const [sineFrequency, setSineFrequency] = useState(60);
 
   useEffect(() => {
     if (musicTracks) {
@@ -30,14 +24,6 @@ const Tracks = () => {
     }
   }, [musicTracks]);
 
-  const changeSineVolume = val => {
-    setSineVolume(val);
-  };
-
-  const changeSineFrequency = val => {
-    setSineFrequency(val);
-  };
-
   return (
     <StyledTracks className={isAnimated && 'animated'}>
       {isAnimated && <TrackCover />}
@@ -49,18 +35,7 @@ const Tracks = () => {
         animatedMaxVolume={0.5}
       />
       <Slider type='environment' animate={false} sound={environmentTrack} />
-      <Slider
-        type='Binaural'
-        animate={false}
-        changeSineVolume={changeSineVolume}
-        changeSineFrequency={changeSineFrequency}
-      />
-      <Oscillator
-        frequency={sineFrequency}
-        type='sine'
-        volume={sineVolume}
-        isPlaying={isPlaying}
-      />
+      <Slider type='Binaural' animate={false} />
     </StyledTracks>
   );
 };
