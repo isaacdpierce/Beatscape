@@ -22,64 +22,75 @@ export const useBeatscapeApi = (
   const [environmentUrl, setEnvironmentUrl] = useState(initialEnvironmentUrl);
 
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      setIsPlaying(false);
-      setIsError(false);
+    if (musicUrl) {
+      const fetchData = async () => {
+        setIsLoading(true);
+        setIsPlaying(false);
+        setIsError(false);
 
-      try {
-        const result = await axios(musicUrl);
-        setMusicData(result.data);
-        const { stems } = result.data;
-        const trackList = await makeTracks(stems);
-        setMusicTracks(trackList);
-      } catch (error) {
-        setIsError(true);
-        setErrorMsg('There was a problem loading you music selection.');
-      }
+        try {
+          const result = await axios(musicUrl);
+          console.log(result);
 
-      setIsLoading(false);
-    };
+          // setMusicData(result.data);
+          // const { stems } = result.data;
+          // const trackList = await makeTracks(stems);
+          // setMusicTracks(trackList);
+        } catch (error) {
+          setIsError(true);
+          setErrorMsg('There was a problem loading you music selection.');
+        }
 
-    fetchData();
+        setIsLoading(false);
+      };
+
+      fetchData();
+    }
+    // eslint-disable-next-line
   }, [musicUrl]);
 
   useEffect(() => {
-    const fetchSpriteData = async () => {
-      setIsError(false);
-      try {
-        const result = await axios(spriteUrl);
-        const spritesArray = await result.data.map(sprite => sprite.sprite_url);
-        setSpriteData(spritesArray);
-        const spriteStem = await spritesArray[getRandomIndex(spritesArray)];
-        setSpriteTrack(spriteStem);
-      } catch (error) {
-        setIsError(true);
-      }
-    };
+    if (spriteUrl) {
+      const fetchSpriteData = async () => {
+        setIsError(false);
+        try {
+          const result = await axios(spriteUrl);
+          const spritesArray = await result.data.map(
+            sprite => sprite.sprite_url
+          );
+          setSpriteData(spritesArray);
+          const spriteStem = await spritesArray[getRandomIndex(spritesArray)];
+          setSpriteTrack(spriteStem);
+        } catch (error) {
+          setIsError(true);
+        }
+      };
 
-    fetchSpriteData();
+      fetchSpriteData();
+    }
     // eslint-disable-next-line
   }, [spriteUrl]);
 
   useEffect(() => {
-    const fetchEnvironmentData = async () => {
-      setIsError(false);
-      try {
-        const result = await axios(environmentUrl);
-        const environmentsArray = await result.data.map(
-          environment => environment.environment_url
-        );
-        setEnvironmentData(environmentsArray);
-        const environmentStem = await environmentsArray[
-          getRandomIndex(environmentsArray)
-        ];
-        setEnvironmentTrack(environmentStem);
-      } catch (error) {
-        setIsError(true);
-      }
-    };
-    fetchEnvironmentData();
+    if (environmentUrl) {
+      const fetchEnvironmentData = async () => {
+        setIsError(false);
+        try {
+          const result = await axios(environmentUrl);
+          const environmentsArray = await result.data.map(
+            environment => environment.environment_url
+          );
+          setEnvironmentData(environmentsArray);
+          const environmentStem = await environmentsArray[
+            getRandomIndex(environmentsArray)
+          ];
+          setEnvironmentTrack(environmentStem);
+        } catch (error) {
+          setIsError(true);
+        }
+      };
+      fetchEnvironmentData();
+    }
     // eslint-disable-next-line
   }, [environmentUrl]);
 

@@ -19,13 +19,7 @@ export default ({ pan, sound, volume, type } = {}) => {
   const [audio, setAudio] = useState(undefined);
 
   useEffect(() => {
-    console.log(awsIsLoading);
-
-    // eslint-disable-next-line
-  }, [awsIsLoading]);
-
-  useEffect(() => {
-    if (audioContext && sound) {
+    if (sound) {
       setAwsUrl(sound);
     }
     // eslint-disable-next-line
@@ -40,10 +34,14 @@ export default ({ pan, sound, volume, type } = {}) => {
 
   useEffect(() => {
     if (audio) {
-      console.log(audio);
+      // console.log(audio);
 
       const source = audioContext.createBufferSource();
       source.buffer = audio;
+      if (type !== 'sprites' || type !== 'environment') {
+        source.loop = true;
+      }
+
       const gainNode = audioContext.createGain();
       const panNode = audioContext.createStereoPanner();
 
