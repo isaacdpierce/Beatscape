@@ -33,7 +33,6 @@ const makeTracks = audio =>
 
 const makeHTMLAudio = (sound, type) => {
   const audioHTML = new Audio();
-
   audioHTML.src = sound;
   audioHTML.crossOrigin = 'anonymous';
   audioHTML.loop = type !== 'environment' && type !== 'sprites';
