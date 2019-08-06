@@ -15,11 +15,11 @@ const Drawer = ({ drawerStyle }) => {
     );
   });
   const sceneButtons = soundscapeData.scenes.map((scene, index) => {
-    const { url, category, spriteUrl, environmentUrl } = scene;
+    const { category, spriteUrl, environmentUrl } = scene;
     return (
       <DrawerButton
         key={index}
-        source={url}
+        category={category}
         fetchType='scene'
         spriteUrl={spriteUrl}
         environmentUrl={environmentUrl}

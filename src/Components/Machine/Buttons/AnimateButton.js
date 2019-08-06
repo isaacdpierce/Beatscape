@@ -3,10 +3,10 @@ import MachineContext from 'Context/MachineContext';
 import LinkButton from './Button';
 
 const AnimateButton = () => {
-  const { isAnimated, setIsAnimated } = useContext(MachineContext);
+  const { isAnimated, setState } = useContext(MachineContext);
 
   const toggleAnimation = () => {
-    setIsAnimated(!isAnimated);
+    setState({ isAnimated: !isAnimated });
   };
 
   return (

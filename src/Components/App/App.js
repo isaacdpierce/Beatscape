@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import About from 'Routes/About/About';
 import Guide from 'Routes/Guide/Guide';
@@ -13,8 +13,6 @@ import { MachineProvider } from 'Context/MachineContext';
 import AppTheme from './AppTheme';
 
 function App() {
-  const [isAnimated, setIsAnimated] = useState(false);
-
   const [
     {
       musicData,
@@ -23,55 +21,37 @@ function App() {
       isError,
       errorMsg,
       isPlaying,
+      isAnimated,
       spriteData,
       spriteTrack,
       environmentTrack,
       environmentData,
+      sceneType,
     },
-    setIsLoading,
-    setIsError,
-    setErrorMsg,
-    setMusicUrl,
-    setIsPlaying,
-    setSpriteUrl,
-    setEnvironmentUrl,
-    setSpriteTrack,
-    setEnvironmentTrack,
-  ] = useBeatscapeApi(
-    'http://localhost:8000/api/soundscapes/1',
-    'http://localhost:8000/api/sprites/1',
-    'http://localhost:8000/api/environments/1'
-  );
+    setState,
+  ] = useBeatscapeApi();
 
   useEffect(() => {
-    isAnimated ? setIsPlaying(true) : setIsPlaying(false);
+    isAnimated ? setState({ isPlaying: true }) : setState({ isPlaying: false });
     // eslint-disable-next-line
   }, [isAnimated]);
 
   return (
     <MachineProvider
       value={{
-        isAnimated,
-        setIsAnimated,
-        isPlaying,
-        setIsPlaying,
+        isError,
+        errorMsg,
         isLoading,
-        setIsLoading,
+        isAnimated,
+        isPlaying,
         musicData,
         musicTracks,
-        setMusicUrl,
         spriteTrack,
-        setSpriteTrack,
         spriteData,
-        setSpriteUrl,
         environmentTrack,
-        setEnvironmentTrack,
         environmentData,
-        setEnvironmentUrl,
-        isError,
-        setIsError,
-        errorMsg,
-        setErrorMsg,
+        sceneType,
+        setState,
       }}
     >
       <AppTheme className='App'>

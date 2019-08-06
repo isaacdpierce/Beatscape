@@ -11,6 +11,8 @@ const InfoDisplay = () => {
     isAnimated,
     isPlaying,
     musicData,
+    spriteData,
+    sceneType,
   } = useContext(MachineContext);
   const [message, setMessage] = useState(undefined);
   const [name, setName] = useState('');
@@ -37,14 +39,19 @@ const InfoDisplay = () => {
   useEffect(() => {
     if (!isError && !isLoading) {
       if (!isPlaying) {
-        setMessage(<span>'{name}' is loaded and ready to play</span>);
+        setMessage(
+          <span>
+            '{name} {sceneType}' is loaded and ready to play
+          </span>
+        );
       } else if (isAnimated) {
         setMessage(<span>Click stop animate to change levels</span>);
       } else {
         setMessage(<span>Now Playing: {name}</span>);
       }
     }
-  }, [isAnimated, isError, isLoading, isPlaying, name]);
+    // eslint-disable-next-line
+  }, [isAnimated, isError, isLoading, isPlaying]);
 
   return (
     <StyledDisplayInfoWrapper>

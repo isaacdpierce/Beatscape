@@ -20,22 +20,20 @@ const StyledDrawerButton = styled.button`
 
 const DrawerButton = ({
   children,
+  category,
   source,
   fetchType,
   spriteUrl,
   environmentUrl,
 }) => {
-  const { setMusicUrl, setSpriteUrl, setEnvironmentUrl } = useContext(
-    MachineContext
-  );
+  const { isPlaying, setState } = useContext(MachineContext);
 
   const handleClick = () => {
     if (fetchType === 'music') {
-      setMusicUrl(source);
+      setState({ musicUrl: source });
     }
     if (fetchType === 'scene') {
-      setSpriteUrl(spriteUrl);
-      setEnvironmentUrl(environmentUrl);
+      setState({ spriteUrl, environmentUrl, sceneType: category });
     }
   };
 
@@ -49,6 +47,9 @@ const DrawerButton = ({
 DrawerButton.propTypes = {
   children: PropTypes.string.isRequired,
   source: PropTypes.string,
+  fetchType: PropTypes.string.isRequired,
+  spriteUrl: PropTypes.string,
+  environmentUrl: PropTypes.string,
 };
 
 export default DrawerButton;

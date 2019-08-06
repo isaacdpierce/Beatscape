@@ -3,11 +3,11 @@ import MachineContext from 'Context/MachineContext';
 import LinkButton from './Button';
 
 const PlayButton = () => {
-  const { setIsPlaying, isPlaying, setIsAnimated } = useContext(MachineContext);
+  const { isPlaying, setState } = useContext(MachineContext);
 
   const togglePlay = () => {
-    setIsAnimated(false);
-    setIsPlaying(!isPlaying);
+    setState({ isAnimated: false });
+    setState({ isPlaying: !isPlaying });
   };
   return (
     <>
