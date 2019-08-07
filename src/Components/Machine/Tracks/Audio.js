@@ -28,8 +28,6 @@ export default ({ pan, sound, volume, type } = {}) => {
   useEffect(() => {
     if (audio) {
       audio.onended = () => {
-        console.log(audio);
-
         const newAudio = getNewAudio(type, spriteData, environmentData);
         setAudioState({ audio: newAudio });
       };

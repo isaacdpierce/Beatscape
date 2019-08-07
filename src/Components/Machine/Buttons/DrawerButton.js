@@ -33,8 +33,6 @@ const DrawerButton = ({
       setState({ musicUrl: source });
     }
     if (fetchType === 'scene') {
-      console.log('clicked');
-
       setState({ spriteUrl, environmentUrl, sceneType: category });
     }
   };

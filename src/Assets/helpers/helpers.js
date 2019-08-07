@@ -43,13 +43,11 @@ const makeHTMLAudio = (sound, type) => {
 
 const getNewAudio = (type, spriteData, environmentData) => {
   if (type === 'sprites') {
-    console.log('fetching new sprite');
     const spriteStem = spriteData[getRandomIndex(spriteData)];
 
     return makeHTMLAudio(spriteStem, 'sprites');
   }
   if (type === 'environments') {
-    console.log('fetching new environments');
     const environmentStem = environmentData[getRandomIndex(environmentData)];
     return makeHTMLAudio(environmentStem, 'environments');
   }
