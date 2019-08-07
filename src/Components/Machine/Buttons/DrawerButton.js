@@ -26,7 +26,7 @@ const DrawerButton = ({
   spriteUrl,
   environmentUrl,
 }) => {
-  const { isPlaying, setState } = useContext(MachineContext);
+  const { setState } = useContext(MachineContext);
 
   const handleClick = () => {
     if (fetchType === 'music') {
@@ -50,6 +50,7 @@ DrawerButton.propTypes = {
   fetchType: PropTypes.string.isRequired,
   spriteUrl: PropTypes.string,
   environmentUrl: PropTypes.string,
+  category: PropTypes.string,
 };
 
 export default DrawerButton;

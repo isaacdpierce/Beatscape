@@ -1,4 +1,4 @@
-import { useEffect, useState, useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import machineState from 'Assets/state/machineState';
 import reducer from 'Assets/reducers/reducer.js';
 import { makeTracks, getRandomIndex } from 'Assets/helpers/helpers';

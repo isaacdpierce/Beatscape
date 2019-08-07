@@ -1,7 +1,11 @@
-import React, { useState, useEffect, useContext, useReducer } from 'react';
+import React, { useEffect, useContext, useReducer } from 'react';
 import reducer from 'Assets/reducers/reducer.js';
 import PropTypes from 'prop-types';
-import { getRandomFloat, setSliderValue } from 'Assets/helpers/helpers';
+import {
+  getRandomFloat,
+  setSliderValue,
+  roundCorrect,
+} from 'Assets/helpers/helpers';
 import MachineContext from 'Context/MachineContext';
 import { animateVolume } from 'Assets/animations/Animations';
 import Oscillator from 'Components/Machine/Tracks/Oscillator/Oscillator';
@@ -23,29 +27,40 @@ const Slider = ({
     stereo: 0,
     sineFrequency: 60,
   };
-  const { isAnimated, isPlaying } = useContext(MachineContext);
-  const [{ value, next, stereo, sineFrequency }, setState] = useReducer(
+  const { state } = useContext(MachineContext);
+  const { isAnimated, isPlaying } = state;
+  const [{ value, next, stereo, sineFrequency }, setSliderState] = useReducer(
     reducer,
     sliderState
   );
 
   useEffect(() => {
     if (isAnimated && animate) {
-      animateVolume(value, animatedMinVol, animatedMaxVol, next, setState);
+      const volumeLoop = setTimeout(() => {
+        if (value > next) {
+          setSliderState({ value: roundCorrect(value - 0.01, 2) });
+        } else if (value < next) {
+          setSliderState({ value: roundCorrect(value + 0.01, 2) });
+        } else if (value === next) {
+          const newNum = getRandomFloat(animatedMinVol, animatedMaxVol);
+          setSliderState({ next: roundCorrect(newNum - 0.01, 2) });
+        }
+      }, getRandomFloat(100, 1000));
+      return () => clearTimeout(volumeLoop);
     }
     // eslint-disable-next-line
     }, [isAnimated, value, next]);
 
   const changeValue = val => {
-    setState({ value: val });
+    setSliderState({ value: val });
   };
 
   const changeStereo = val => {
-    setState({ stereo: val });
+    setSliderState({ stereo: val });
   };
 
   const changeSineFrequency = val => {
-    setState({ sineFrequency: val });
+    setSliderState({ sineFrequency: val });
   };
 
   return (

@@ -12,12 +12,16 @@ export default ({ pan, sound, volume, type } = {}) => {
     audio: undefined,
   };
   const { audioContext } = useContext(useAudioContext);
-  const { isPlaying, spriteData, environmentData } = useContext(MachineContext);
-  const [{ vol, stereo, audio }, setState] = useReducer(reducer, audioState);
+  const { state } = useContext(MachineContext);
+  const { isPlaying, spriteData, environmentData } = state;
+  const [{ vol, stereo, audio }, setAudioState] = useReducer(
+    reducer,
+    audioState
+  );
 
   useEffect(() => {
     if (sound) {
-      setState({ audio: makeHTMLAudio(sound, type) });
+      setAudioState({ audio: makeHTMLAudio(sound, type) });
     }
     // eslint-disable-next-line
   }, [sound]);
@@ -28,7 +32,7 @@ export default ({ pan, sound, volume, type } = {}) => {
         console.log(audio);
 
         const newAudio = getNewAudio(type, spriteData, environmentData);
-        setState({ audio: newAudio });
+        setAudioState({ audio: newAudio });
       };
     }
     // eslint-disable-next-line
@@ -41,8 +45,8 @@ export default ({ pan, sound, volume, type } = {}) => {
       const gainNode = audioContext.createGain();
       const panNode = audioContext.createStereoPanner();
 
-      setState({ vol: gainNode });
-      setState({ stereo: panNode });
+      setAudioState({ vol: gainNode });
+      setAudioState({ stereo: panNode });
 
       source.connect(gainNode);
       gainNode.connect(panNode);

@@ -4,6 +4,7 @@ import MachineContext from 'Context/MachineContext';
 import { StyledDisplayInfoWrapper, StyledInfoDisplay } from './StyledDisplay';
 
 const InfoDisplay = () => {
+  const { state } = useContext(MachineContext);
   const {
     isError,
     errorMsg,
@@ -11,9 +12,8 @@ const InfoDisplay = () => {
     isAnimated,
     isPlaying,
     musicData,
-    spriteData,
     sceneType,
-  } = useContext(MachineContext);
+  } = state;
   const [message, setMessage] = useState(undefined);
   const [name, setName] = useState('');
 
@@ -23,7 +23,7 @@ const InfoDisplay = () => {
     } else {
       setName(musicData.soundscape_name);
     }
-  }, [musicData, errorMsg, isError]);
+  }, [errorMsg, isError, musicData]);
 
   useEffect(() => {
     if (isLoading) {
@@ -47,7 +47,11 @@ const InfoDisplay = () => {
       } else if (isAnimated) {
         setMessage(<span>Click stop animate to change levels</span>);
       } else {
-        setMessage(<span>Now Playing: {name}</span>);
+        setMessage(
+          <span>
+            Now Playing: {name} {sceneType}
+          </span>
+        );
       }
     }
     // eslint-disable-next-line
