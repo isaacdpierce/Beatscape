@@ -7,7 +7,6 @@ import {
   roundCorrect,
 } from 'Assets/helpers/helpers';
 import MachineContext from 'Context/MachineContext';
-import { animateVolume } from 'Assets/animations/Animations';
 import Oscillator from 'Components/Machine/Tracks/Oscillator/Oscillator';
 import Input from './Input';
 import FaderKnob from './Knobs/FaderKnob';
