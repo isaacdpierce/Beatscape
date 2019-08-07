@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import MachineContext from 'Context/MachineContext';
 import { getRandomFloat, roundCorrect } from 'Assets/helpers/helpers';
 import { Knob } from 'react-rotary-knob';
-import { animateKnob } from 'Assets/animations/Animations';
 import KnobSkin from './Knobskin';
 
 const knobStyle = {
@@ -20,8 +19,7 @@ const FaderKnob = ({
   const knobMin = type === 'Binaural' ? 30 : 1;
   const knobMax = type === 'Binaural' ? 100 : -1;
   const initialValue = type === 'Binaural' ? 65 : 0;
-  const { state } = useContext(MachineContext);
-  const { isAnimated } = state;
+  const { isAnimated } = useContext(MachineContext);
   const [knobValue, setKnobValue] = useState(initialValue);
   const [knobNext, setKnobNext] = useState(getRandomFloat(knobMax, knobMin));
 
@@ -36,7 +34,7 @@ const FaderKnob = ({
   }, [knobValue]);
 
   useEffect(() => {
-    if (isAnimated && animate) {
+    if (isAnimated) {
       const knobLoop = setTimeout(() => {
         if (knobValue > knobNext) {
           setKnobValue(roundCorrect(knobValue - 0.01, 2));
@@ -50,7 +48,7 @@ const FaderKnob = ({
       return () => clearTimeout(knobLoop);
     }
     // eslint-disable-next-line
-  }, [knobValue, isAnimated]);
+  }, [knobValue, knobNext, isAnimated]);
 
   return (
     <Knob

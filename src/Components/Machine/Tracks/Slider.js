@@ -27,8 +27,7 @@ const Slider = ({
     stereo: 0,
     sineFrequency: 60,
   };
-  const { state } = useContext(MachineContext);
-  const { isAnimated, isPlaying } = state;
+  const { isAnimated, isPlaying } = useContext(MachineContext);
   const [{ value, next, stereo, sineFrequency }, setSliderState] = useReducer(
     reducer,
     sliderState

@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 import MachineContext from 'Context/MachineContext';
+import SetMachineContext from 'Context/SetMachineContext';
 import LinkButton from './Button';
 
 const PlayButton = () => {
-  const { state, setState } = useContext(MachineContext);
-  const { isPlaying } = state;
+  const { isPlaying } = useContext(MachineContext);
+  const setState = useContext(SetMachineContext);
 
   const togglePlay = () => {
-    setState({ isAnimated: false });
-    setState({ isPlaying: !isPlaying });
+    setState({ isAnimated: false, isPlaying: !isPlaying });
   };
   return (
     <>

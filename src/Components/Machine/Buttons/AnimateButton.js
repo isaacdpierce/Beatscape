@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import MachineContext from 'Context/MachineContext';
+import SetMachineContext from 'Context/SetMachineContext';
 import LinkButton from './Button';
 
 const AnimateButton = () => {
-  const { state, setState } = useContext(MachineContext);
-  const { isAnimated } = state;
+  const { isAnimated } = useContext(MachineContext);
+  const setState = useContext(SetMachineContext);
 
   const toggleAnimation = () => {
     setState({ isAnimated: !isAnimated });

@@ -12,6 +12,7 @@ import { makeTracks, getRandomIndex } from 'Assets/helpers/helpers';
 import axios from 'axios';
 
 import { MachineProvider } from 'Context/MachineContext';
+import { SetMachineProvider } from 'Context/SetMachineContext';
 
 import AppTheme from './AppTheme';
 
@@ -102,17 +103,19 @@ function App() {
   }, [environmentUrl]);
 
   return (
-    <MachineProvider value={{ state, setState }}>
-      <AppTheme className='App'>
-        <Header />
-        <main>
-          <Route exact path='/' component={Machine} />
-          <Route exact path='/about' component={About} />
-          <Route exact path='/guide' component={Guide} />
-          <Route exact path='/coming-soon' component={ComingSoon} />
-        </main>
-        <Footer />
-      </AppTheme>
+    <MachineProvider value={state}>
+      <SetMachineProvider value={setState}>
+        <AppTheme className='App'>
+          <Header />
+          <main>
+            <Route exact path='/' component={Machine} />
+            <Route exact path='/about' component={About} />
+            <Route exact path='/guide' component={Guide} />
+            <Route exact path='/coming-soon' component={ComingSoon} />
+          </main>
+          <Footer />
+        </AppTheme>
+      </SetMachineProvider>
     </MachineProvider>
   );
 }

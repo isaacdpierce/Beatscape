@@ -4,7 +4,7 @@ import MachineContext from 'Context/MachineContext';
 import { StyledDisplayInfoWrapper, StyledInfoDisplay } from './StyledDisplay';
 
 const InfoDisplay = () => {
-  const { state } = useContext(MachineContext);
+  const state = useContext(MachineContext);
   const {
     isError,
     errorMsg,

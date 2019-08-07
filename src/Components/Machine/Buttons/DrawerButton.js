@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import MachineContext from 'Context/MachineContext';
+import SetMachineContext from 'Context/SetMachineContext';
 import styled from 'styled-components';
 
 const StyledDrawerButton = styled.button`
@@ -26,7 +26,7 @@ const DrawerButton = ({
   spriteUrl,
   environmentUrl,
 }) => {
-  const { setState } = useContext(MachineContext);
+  const setState = useContext(SetMachineContext);
 
   const handleClick = () => {
     if (fetchType === 'music') {

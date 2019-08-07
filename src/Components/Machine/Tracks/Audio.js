@@ -12,8 +12,7 @@ export default ({ pan, sound, volume, type } = {}) => {
     audio: undefined,
   };
   const { audioContext } = useContext(useAudioContext);
-  const { state } = useContext(MachineContext);
-  const { isPlaying, spriteData, environmentData } = state;
+  const { isPlaying, spriteData, environmentData } = useContext(MachineContext);
   const [{ vol, stereo, audio }, setAudioState] = useReducer(
     reducer,
     audioState
