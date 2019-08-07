@@ -6,14 +6,11 @@ import trackList from './trackList';
 const Guide = () => (
   <TextBlock>
     <h4>Getting Started</h4>
-    <p>
-      First things first - click <strong>PLAY</strong>!
-    </p>
+    <p>First things first - click PLAY!</p>
     <p>
       The machine will load a default Soundscape when it first loads. To change
-      the default Soundscape click the <strong> SOUNDSCAPES </strong>
-      button at the bottom of the machine. A drawer will open with all your
-      possible journeys.
+      the default Soundscape click the SOUNDSCAPES button at the bottom of the
+      machine. A drawer will open with all your possible journeys.
     </p>
 
     <h4>Tracks defined</h4>
@@ -24,16 +21,15 @@ const Guide = () => (
     </ul>
 
     <h4>Modes</h4>
-    <strong>Play Mode</strong>
+    <h5>Play Mode</h5>
 
     <p>
       In play mode everything starts exactly how The Woodsman designed it to be.
-      Now you're in the driver's seat. Make adjustments to your hearts content.
-      Mute sounds or crank them up. Find the settings the suit your ear. Once
-      you find what you like hit the save button and add them to your lists.
+      Now you're in the driver's seat. Make adjustments to suit your ear. Mute
+      sounds or crank them up. Find the settings that will maximize your focus.
     </p>
 
-    <strong>Animate mode</strong>
+    <h5>Animate mode</h5>
     <p>
       Click the Animate button to begin your dynamic journey. Here the sounds
       will fluctuate beyond the original design. They remain within parameters

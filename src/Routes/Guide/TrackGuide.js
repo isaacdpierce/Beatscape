@@ -6,7 +6,8 @@ import arrow from 'Assets/images/icon-arrow.png';
 const TrackGuide = ({ type, description }) => (
   <li>
     <img className='icon-arrow' src={arrow} alt='' />
-    <strong>{`${type} - `}</strong>
+    <span className='list-label'>{`${type} - `}</span>
+
     {description}
   </li>
 );

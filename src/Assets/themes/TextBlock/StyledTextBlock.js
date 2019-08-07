@@ -20,6 +20,12 @@ const StyledTextBlock = styled.section`
     }
   }
 
+  h5,
+  .list-label {
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+
   .icon-arrow {
     height: 2rem;
     padding-right: 1.5rem;

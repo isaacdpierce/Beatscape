@@ -34,6 +34,7 @@ function App() {
           setState({ musicData: result.data });
           const { stems } = result.data;
           const trackList = await makeTracks(stems);
+
           setState({ musicTracks: trackList });
         } catch (error) {
           setState({
