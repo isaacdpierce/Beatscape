@@ -1,5 +1,5 @@
 import { useEffect, useContext, useState } from 'react';
-import useAudioContext from 'Context/useAudioContext';
+import useAudioContext from 'Assets/hooks/useAudioContext';
 
 export default ({ frequency, type, volume, isPlaying } = {}) => {
   const [oscillator, setOscillator] = useState(undefined);

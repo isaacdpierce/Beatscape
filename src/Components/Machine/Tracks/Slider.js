@@ -48,6 +48,7 @@ const Slider = ({
     }
     // eslint-disable-next-line
     }, [isAnimated, value, next]);
+    
 
   const changeValue = val => {
     setSliderState({ value: val });

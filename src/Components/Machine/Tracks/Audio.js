@@ -3,7 +3,7 @@ import MachineContext from 'Context/MachineContext';
 import reducer from 'Assets/reducers/reducer.js';
 import { makeHTMLAudio, getNewAudio } from 'Assets/helpers/helpers';
 
-import useAudioContext from 'Context/useAudioContext';
+import useAudioContext from 'Assets/hooks/useAudioContext';
 
 export default ({ pan, sound, volume, type } = {}) => {
   const audioState = {
