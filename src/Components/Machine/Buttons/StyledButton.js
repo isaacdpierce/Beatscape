@@ -13,9 +13,12 @@ const StyledButton = styled.button`
   padding: 0;
   border: 1px solid var(--machine-border-dark);
   transition: all 0.3s ease-in-out;
-  &:hover {
+  :hover {
     cursor: pointer;
     color: white;
+    background: var(--button-machine-hover);
+  }
+  :disabled {
     background: var(--button-machine-hover);
   }
 `;

@@ -70,7 +70,7 @@ export default ({ pan, sound, volume, type } = {}) => {
 
   useEffect(() => {
     if (audio) {
-      audio.addEventListener('loadeddata', event => {
+      audio.addEventListener('loadeddata', () => {
         setState({ isLoading: false });
       });
     }
