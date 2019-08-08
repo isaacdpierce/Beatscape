@@ -1,14 +1,15 @@
 import { useEffect, useContext, useReducer } from 'react';
 import MachineContext from 'Context/MachineContext';
+import SetMachineContext from 'Context/SetMachineContext';
 import reducer from 'Assets/reducers/reducer.js';
 import { makeHTMLAudio, getNewAudio } from 'Assets/helpers/helpers';
 import useAudioContext from 'Assets/hooks/useAudioContext';
 
 const getPanNode = audioCtx => {
-  if (audioCtx.createStereoPanner) {
-    return audioCtx.createStereoPanner();
+  if (!audioCtx.createStereoPanner) {
+    return audioCtx.createPanner();
   }
-  audioCtx.createPanner();
+  return audioCtx.createStereoPanner();
 };
 
 export default ({ pan, sound, volume, type } = {}) => {
@@ -19,6 +20,7 @@ export default ({ pan, sound, volume, type } = {}) => {
   };
   const { audioContext } = useContext(useAudioContext);
   const { isPlaying, spriteData, environmentData } = useContext(MachineContext);
+  const setState = useContext(SetMachineContext);
   const [{ vol, stereo, audio }, setAudioState] = useReducer(
     reducer,
     audioState
@@ -26,6 +28,7 @@ export default ({ pan, sound, volume, type } = {}) => {
 
   useEffect(() => {
     if (sound) {
+      setState({ isLoading: true });
       setAudioState({ audio: makeHTMLAudio(sound, type) });
     }
     // eslint-disable-next-line
@@ -64,6 +67,14 @@ export default ({ pan, sound, volume, type } = {}) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [audio]);
+
+  useEffect(() => {
+    if (audio) {
+      audio.addEventListener('loadeddata', event => {
+        setState({ isLoading: false });
+      });
+    }
+  }, [audio, setState]);
 
   useEffect(() => {
     if (stereo && audioContext.createStereoPanner) {

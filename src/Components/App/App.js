@@ -42,16 +42,16 @@ function App() {
           setState({ musicData: result.data });
           const { stems } = result.data;
           const trackList = await makeTracks(stems);
-
           setState({ musicTracks: trackList });
         } catch (error) {
+          console.log(error);
           setState({
             isError: true,
             errorMsg: 'There was a problem loading you music selection.',
           });
         }
 
-        setState({ isLoading: false });
+        // setState({ isLoading: false });
       };
 
       fetchData();
@@ -73,6 +73,7 @@ function App() {
           const spriteStem = await spritesArray[getRandomIndex(spritesArray)];
           setState({ spriteTrack: spriteStem });
         } catch (error) {
+          console.log(error);
           setState({
             isError: true,
             errorMsg: 'There was a problem loading you sprites selection.',
@@ -100,6 +101,7 @@ function App() {
           ];
           setState({ environmentTrack: environmentStem });
         } catch (error) {
+          console.log(error);
           setState({
             isError: true,
             errorMsg: 'There was a problem loading you environment selection.',

@@ -6,8 +6,9 @@ import TrackCover from './TrackCover';
 import StyledTracks from './StyledTracks.js';
 
 const Tracks = () => {
-  const state = useContext(MachineContext);
-  const { musicTracks, isAnimated, spriteTrack, environmentTrack } = state;
+  const { musicTracks, isAnimated, spriteTrack, environmentTrack } = useContext(
+    MachineContext
+  );
   const [musicSliders, setMusicSliders] = useState(useEmptySliders);
 
   useEffect(() => {

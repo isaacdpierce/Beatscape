@@ -33,17 +33,15 @@ export const StyledInfoDisplayWrapper = styled.section.attrs({
 
 export const StyledInfoDisplay = styled.div`
   display: flex;
+  width: 80%;
   justify-content: center;
   align-items: center;
-  text-align: center;
   border: 1px solid rgba(12, 12, 12);
   background-color: rgba(2, 2, 2);
-  overflow: hidden;
-  position: relative;
 
   span {
     color: var(--brand-yellow);
-    padding-top: 0.3rem;
+    padding-top: 2px;
     vertical-align: middle;
     font-size: 1.2rem;
     line-height: 1.6rem;
@@ -51,16 +49,12 @@ export const StyledInfoDisplay = styled.div`
     font-family: 'Orbitron', sans-serif;
     text-transform: uppercase;
     letter-spacing: 3px;
+  }
 
+  @media only screen and (max-width: 850px) {
+    min-height: 4rem;
     span {
-      padding: 0 7rem;
-    }
-
-    @media only screen and (max-width: 850px) {
-      min-height: 4rem;
-      span {
-        padding: 0.5rem;
-      }
+      padding: 0.5rem;
     }
   }
 

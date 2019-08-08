@@ -21,6 +21,7 @@ const Slider = ({
   sound,
   type,
 }) => {
+  const { audioContext } = useContext(useAudioContext);
   const sliderState = {
     value: setSliderValue(type),
     nextValue: getRandomFloat(0, 1),
@@ -32,7 +33,6 @@ const Slider = ({
     { value, nextValue, stereo, sineFrequency },
     setSliderState,
   ] = useReducer(reducer, sliderState);
-  const { audioContext } = useContext(useAudioContext);
 
   const audio = audioContext ? (
     <Audio
