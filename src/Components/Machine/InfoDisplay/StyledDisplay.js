@@ -17,7 +17,7 @@ const longSlide = keyframes`
     transform: translateX(-37rem);
   }
 `;
-export const StyledDisplayInfoWrapper = styled.section.attrs({
+export const StyledInfoDisplayWrapper = styled.section.attrs({
   className: 'infoDisplay',
 })`
   grid-column: 1 / -1;
@@ -25,16 +25,19 @@ export const StyledDisplayInfoWrapper = styled.section.attrs({
   display: flex;
   justify-content: center;
   align-items: flex-end;
+
+  @media only screen and (max-width: 650px) {
+    grid-column: 2 / -2;
+  }
 `;
 
 export const StyledInfoDisplay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  white-space: nowrap;
+  text-align: center;
   border: 1px solid rgba(12, 12, 12);
   background-color: rgba(2, 2, 2);
-  width: 60rem;
   overflow: hidden;
   position: relative;
 
@@ -48,11 +51,16 @@ export const StyledInfoDisplay = styled.div`
     font-family: 'Orbitron', sans-serif;
     text-transform: uppercase;
     letter-spacing: 3px;
-    will-change: transform;
 
     span {
       padding: 0 7rem;
-      will-change: transform;
+    }
+
+    @media only screen and (max-width: 850px) {
+      min-height: 4rem;
+      span {
+        padding: 0.5rem;
+      }
     }
   }
 

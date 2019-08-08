@@ -4,7 +4,7 @@ const StyledFooter = styled.footer`
   grid-column: 1 / -1;
   grid-row: 3 / span 1;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: flex-end;
   padding-bottom: 4.8rem;
 
@@ -14,7 +14,7 @@ const StyledFooter = styled.footer`
     display: flex;
     min-width: 20vw;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     margin: 0;
     font-weight: 100;
     text-transform: uppercase;
@@ -24,7 +24,6 @@ const StyledFooter = styled.footer`
 
   nav {
     display: flex;
-    height: 100%;
     padding-bottom: 0.1rem;
   }
   .nav__links a {
@@ -42,6 +41,7 @@ const StyledFooter = styled.footer`
   .copyright {
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
     padding: 0 4.7rem;
     width: 100%;
   }
@@ -55,6 +55,15 @@ const StyledFooter = styled.footer`
   @media only screen and (max-width: 650px) {
     .nav__links a {
       font-size: 1.3rem;
+    }
+    .copyright {
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0;
+      p {
+        margin-bottom: 2rem;
+      }
     }
   }
 `;

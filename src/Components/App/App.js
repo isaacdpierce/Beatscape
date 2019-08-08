@@ -8,7 +8,7 @@ import Header from 'Components/Header/Header';
 import Footer from 'Components/Footer/Footer';
 import machineState from 'Assets/state/machineState';
 import reducer from 'Assets/reducers/reducer.js';
-import { makeTracks, getRandomIndex } from 'Assets/helpers/helpers';
+import { makeTracks, getRandomIndex, isSafari } from 'Assets/helpers/helpers';
 import axios from 'axios';
 
 import { MachineProvider } from 'Context/MachineContext';
@@ -19,6 +19,14 @@ import AppTheme from './AppTheme';
 function App() {
   const [state, setState] = useReducer(reducer, machineState);
   const { isAnimated, musicUrl, spriteUrl, environmentUrl } = state;
+
+  useEffect(() => {
+    if (isSafari) {
+      alert(
+        "Beatscape currently doesn't work in Safari Browser. To enjoy this audio experience please switch to Google Chrome or Firefox."
+      );
+    }
+  }, []);
 
   useEffect(() => {
     isAnimated ? setState({ isPlaying: true }) : setState({ isPlaying: false });

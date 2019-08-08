@@ -34,7 +34,7 @@ const FaderKnob = ({
   }, [knobValue]);
 
   useEffect(() => {
-    if (isAnimated) {
+    if (isAnimated && animate) {
       const knobLoop = setTimeout(() => {
         if (knobValue > knobNext) {
           setKnobValue(roundCorrect(knobValue - 0.01, 2));

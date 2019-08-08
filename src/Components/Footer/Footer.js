@@ -3,14 +3,13 @@ import { NavLink } from 'react-router-dom';
 
 import StyledFooter from './StyledFooter.js';
 
-const Footer = () => {
-  const links = ['contact', 'about us', 'youtube', 'soundcloud'];
-  return (
-    <StyledFooter>
-      <div className='copyright'>
-        <p>Sound design by Michael Jacques &copy;2019 </p>
+const Footer = () => (
+  // const links = ['contact', 'about us', 'youtube', 'soundcloud'];
+  <StyledFooter>
+    <div className='copyright'>
+      <p>Sound design by Michael Jacques &copy;2019 </p>
 
-        <nav aria-label='Personal Links'>
+      {/* <nav aria-label='Personal Links'>
           <ul className='nav__links'>
             {links.map((link, i) => (
               <li key={i}>
@@ -24,12 +23,10 @@ const Footer = () => {
               </li>
             ))}
           </ul>
-        </nav>
+        </nav> */}
 
-        <p>Web app created by Isaac Pierce &copy;2019 </p>
-      </div>
-    </StyledFooter>
-  );
-};
-
+      <p>Web app created by Isaac Pierce &copy;2019 </p>
+    </div>
+  </StyledFooter>
+);
 export default Footer;

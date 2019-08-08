@@ -7,6 +7,7 @@ import {
   roundCorrect,
 } from 'Assets/helpers/helpers';
 import MachineContext from 'Context/MachineContext';
+import useAudioContext from 'Assets/hooks/useAudioContext';
 import Oscillator from 'Components/Machine/Tracks/Oscillator/Oscillator';
 import Input from './Input';
 import FaderKnob from './Knobs/FaderKnob';
@@ -14,40 +15,55 @@ import { StyledSlider, SliderContainer } from './StyledSlider';
 import Audio from './Audio';
 
 const Slider = ({
-  type,
   animate,
   animatedMaxVol = 1.0,
   animatedMinVol = 0,
   sound,
+  type,
 }) => {
   const sliderState = {
     value: setSliderValue(type),
-    next: getRandomFloat(0, 1),
+    nextValue: getRandomFloat(0, 1),
     stereo: 0,
     sineFrequency: 60,
   };
   const { isAnimated, isPlaying } = useContext(MachineContext);
-  const [{ value, next, stereo, sineFrequency }, setSliderState] = useReducer(
-    reducer,
-    sliderState
+  const [
+    { value, nextValue, stereo, sineFrequency },
+    setSliderState,
+  ] = useReducer(reducer, sliderState);
+  const { audioContext } = useContext(useAudioContext);
+
+  const audio = audioContext ? (
+    <Audio
+      type={type}
+      pan={stereo}
+      sound={sound}
+      volume={value}
+      isPlaying={isPlaying}
+    />
+  ) : (
+    alert(
+      'Sorry, but the Web Audio API is not supported by your browser. Please, consider upgrading to the latest version or downloading Google Chrome or Mozilla Firefox'
+    )
   );
 
   useEffect(() => {
     if (isAnimated && animate) {
       const volumeLoop = setTimeout(() => {
-        if (value > next) {
+        if (value > nextValue) {
           setSliderState({ value: roundCorrect(value - 0.01, 2) });
-        } else if (value < next) {
+        } else if (value < nextValue) {
           setSliderState({ value: roundCorrect(value + 0.01, 2) });
-        } else if (value === next) {
+        } else if (value === nextValue) {
           const newNum = getRandomFloat(animatedMinVol, animatedMaxVol);
-          setSliderState({ next: roundCorrect(newNum - 0.01, 2) });
+          setSliderState({ nextValue: roundCorrect(newNum - 0.01, 2) });
         }
       }, getRandomFloat(100, 1000));
       return () => clearTimeout(volumeLoop);
     }
     // eslint-disable-next-line
-    }, [isAnimated, value, next]);
+    }, [isAnimated, value, nextValue]);
     
 
   const changeValue = val => {
@@ -64,15 +80,7 @@ const Slider = ({
 
   return (
     <SliderContainer>
-      {sound && (
-        <Audio
-          type={type}
-          pan={stereo}
-          sound={sound}
-          volume={value}
-          isPlaying={isPlaying}
-        />
-      )}
+      {sound && audio}
       {type === 'Binaural' && (
         <Oscillator
           frequency={sineFrequency}

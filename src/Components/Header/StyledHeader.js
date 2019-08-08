@@ -15,7 +15,6 @@ const StyledHeader = styled.header`
   .logo,
   .nav__links {
     margin: 0;
-    font-weight: 100;
     text-transform: uppercase;
     text-shadow: 0 0 6px var(black);
     align-self: flex-end;
@@ -45,6 +44,9 @@ const StyledHeader = styled.header`
     color: var(--yellow-link-color-active);
   }
   @media only screen and (max-width: 650px) {
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
     .nav__links a {
       font-size: 1.3rem;
     }

@@ -60,6 +60,15 @@ const setSliderValue = type => {
   return 0.5;
 };
 
+const isSafari =
+  /constructor/i.test(window.HTMLElement) ||
+  (function(p) {
+    return p.toString() === '[object SafariRemoteNotification]';
+  })(
+    // eslint-disable-next-line
+    !window.safari || (typeof safari !== 'undefined' && safari.pushNotification)
+  );
+
 export {
   getRandomInteger,
   getRandomFloat,
@@ -71,4 +80,5 @@ export {
   getSource,
   setSliderValue,
   getRandomIndex,
+  isSafari,
 };

@@ -11,16 +11,15 @@ const StyledMachine = styled.section.attrs({
   min-width: 100rem;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 9rem 15rem minmax(auto, 56rem) 18rem;
+  grid-template-rows: 7rem 15rem minmax(auto, 56rem) 18rem;
 
   @media only screen and (max-width: 1100px) {
     min-width: 80rem;
   }
 
   @media only screen and (max-width: 850px) {
-    grid-template-rows: 21rem 1fr auto;
-
-    min-width: 49rem;
+    grid-template-rows: 9rem 12rem 1fr 12rem;
+    min-width: 35rem;
     min-height: 100rem;
   }
 `;

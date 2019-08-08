@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { SwingLoader } from 'Components/Loader/Loader';
 import MachineContext from 'Context/MachineContext';
-import { StyledDisplayInfoWrapper, StyledInfoDisplay } from './StyledDisplay';
+import { StyledInfoDisplayWrapper, StyledInfoDisplay } from './StyledDisplay';
 
 const InfoDisplay = () => {
   const {
@@ -38,38 +38,31 @@ const InfoDisplay = () => {
 
   useEffect(() => {
     if (!isError && !isLoading) {
-      if (!isPlaying) {
-        setMessage(
-          <span>
-            '{name} {sceneType}' is loaded and ready to play
-          </span>
-        );
-      } else {
+      if (isPlaying) {
         setMessage(
           <span>
             Now Playing: {name} {sceneType}
           </span>
         );
+      } else {
+        setMessage(
+          <span>
+            '{name} {sceneType}' is loaded and ready to play
+          </span>
+        );
       }
     }
     // eslint-disable-next-line
-  }, [isError, isLoading, isPlaying, name, sceneType]);
-
-  useEffect(() => {
-    if (isAnimated) {
-      setMessage(<span>Click stop animate to change levels</span>);
-    }
-    // eslint-disable-next-line
-  }, [isAnimated])
+  }, [ isError, isLoading, isPlaying ]);
 
   return (
-    <StyledDisplayInfoWrapper>
+    <StyledInfoDisplayWrapper>
       <StyledInfoDisplay>
         <span style={isError ? { color: 'var(--error)' } : null}>
           {message}
         </span>
       </StyledInfoDisplay>
-    </StyledDisplayInfoWrapper>
+    </StyledInfoDisplayWrapper>
   );
 };
 

@@ -2,8 +2,14 @@ import { useEffect, useContext, useReducer } from 'react';
 import MachineContext from 'Context/MachineContext';
 import reducer from 'Assets/reducers/reducer.js';
 import { makeHTMLAudio, getNewAudio } from 'Assets/helpers/helpers';
-
 import useAudioContext from 'Assets/hooks/useAudioContext';
+
+const getPanNode = audioCtx => {
+  if (audioCtx.createStereoPanner) {
+    return audioCtx.createStereoPanner();
+  }
+  audioCtx.createPanner();
+};
 
 export default ({ pan, sound, volume, type } = {}) => {
   const audioState = {
@@ -38,9 +44,8 @@ export default ({ pan, sound, volume, type } = {}) => {
   useEffect(() => {
     if (audio) {
       const source = audioContext.createMediaElementSource(audio);
-
       const gainNode = audioContext.createGain();
-      const panNode = audioContext.createStereoPanner();
+      const panNode = getPanNode(audioContext);
 
       setAudioState({ vol: gainNode });
       setAudioState({ stereo: panNode });
@@ -50,7 +55,6 @@ export default ({ pan, sound, volume, type } = {}) => {
       panNode.connect(audioContext.destination);
 
       gainNode.gain.value = volume;
-      panNode.pan.value = pan;
 
       return () => {
         source.disconnect();
@@ -62,9 +66,13 @@ export default ({ pan, sound, volume, type } = {}) => {
   }, [audio]);
 
   useEffect(() => {
-    if (stereo) {
+    if (stereo && audioContext.createStereoPanner) {
       stereo.pan.value = pan;
+    } else if (stereo && audioContext.createStereoPanner) {
+      stereo.panningModel = 'equalpower';
+      stereo.setPosition(pan, 0, 1 - Math.abs(pan));
     }
+    // eslint-disable-next-line
   }, [pan, stereo]);
 
   useEffect(() => {

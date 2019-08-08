@@ -22,6 +22,12 @@ const AppTheme = styled.div`
     align-items: center;
     z-index: 1; /* allows drawer to sit at -1 */
   }
+  @media only screen and (max-width: 650px) {
+    grid-template-rows: minmax(12rem, 6vw) 1fr 100vw;
+    main {
+      padding: 2rem 0;
+    }
+  }
 `;
 
 export default AppTheme;
