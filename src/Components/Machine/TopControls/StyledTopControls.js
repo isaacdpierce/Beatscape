@@ -6,7 +6,6 @@ const StyledTopControls = styled.section.attrs({
   grid-column: 1 / -1;
   grid-row: 2 / span 1;
   height: 100%;
-  flex-direction: column;
   align-items: center;
 
   &,
@@ -24,31 +23,38 @@ const StyledTopControls = styled.section.attrs({
   .headphones {
     margin: 0;
     display: grid;
+    grid-template-columns: 6rem;
+    grid-template-rows: 6rem;
     place-items: center;
+    padding-top: 2rem;
   }
   .headphones::after {
+    grid-column: 1 / -1;
+    grid-row: 1/ -1;
     content: '?';
     font-size: 1.2rem;
     display: block;
     text-align: center;
-    transform: translateY(-2rem);
   }
 
   .headphones__img {
+    grid-column: 1 / -1;
+    grid-row: 1/ -1;
+    grid-column: 1 / -1;
     display: block;
     height: 3rem;
   }
 
-  .headphones:hover {
+  .headphones__img:hover {
     filter: brightness(130%);
   }
 
-  .headphones:hover + .tooltip {
+  .headphones__img:hover + .tooltip {
     opacity: 1;
   }
 
-  .headphones:hover + .tooltip p {
-    color: white;
+  .headphones__img:hover + .tooltip p {
+    color: var(--main-font-color);
   }
 `;
 

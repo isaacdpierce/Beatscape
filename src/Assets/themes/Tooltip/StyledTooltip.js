@@ -6,8 +6,6 @@ const StyledToolTip = styled.div`
   border-radius: 6px;
   color: #fff;
   text-align: center;
-  position: absolute;
-  top: 31rem;
   z-index: 1;
   transition: opacity 0.5s ease-in-out;
   opacity: 0;
