@@ -20,6 +20,39 @@ const StyledTracks = styled.section.attrs({
   .animated {
     pointer-events: none;
   }
+  .volume-instructions {
+    position: absolute;
+    top: 5%;
+    left: 30%;
+    width: 30rem;
+  }
+
+  .stereo-instructions {
+    position: absolute;
+    bottom: -5rem;
+    left: 6rem;
+    width: 60rem;
+  }
+
+  .binaural-instructions {
+    position: absolute;
+    bottom: 1rem;
+    right: -19rem;
+    width: 21rem;
+  }
+  .soundscapes-instructions {
+    position: absolute;
+    bottom: -25rem;
+    left: 27rem;
+    width: 25rem;
+  }
+
+  .animate-instructions {
+    position: absolute;
+    top: -15rem;
+    right: -19rem;
+    width: 21rem;
+  }
 
   @media only screen and (max-width: 850px) {
     display: grid;

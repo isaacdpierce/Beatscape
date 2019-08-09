@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { SwingLoader } from 'Components/Loader/Loader';
 import MachineContext from 'Context/MachineContext';
+import SmallButton from 'Components/Machine/Buttons/SmallButton';
+import SetMachineContext from 'Context/SetMachineContext';
 import { StyledInfoDisplayWrapper, StyledInfoDisplay } from './StyledDisplay';
 
 const InfoDisplay = () => {
@@ -8,11 +10,12 @@ const InfoDisplay = () => {
     isError,
     errorMsg,
     isLoading,
-    isAnimated,
     isPlaying,
     musicData,
     sceneType,
+    showInstructions,
   } = useContext(MachineContext);
+  const setState = useContext(SetMachineContext);
 
   const [message, setMessage] = useState(undefined);
   const [name, setName] = useState('');
@@ -55,8 +58,23 @@ const InfoDisplay = () => {
     // eslint-disable-next-line
   }, [ isError, isLoading, isPlaying ]);
 
+  const handleInstructions = () => {
+    setState({ showInstructions: !showInstructions });
+    console.log(showInstructions);
+  };
+
+  const instructionButtonText = showInstructions
+    ? 'hide instructions'
+    : 'show instructions';
+
   return (
     <StyledInfoDisplayWrapper>
+      <SmallButton
+        handleClick={handleInstructions}
+        text={instructionButtonText}
+      >
+        {instructionButtonText}
+      </SmallButton>
       <StyledInfoDisplay>
         <span style={isError ? { color: 'var(--error)' } : null}>
           {message}

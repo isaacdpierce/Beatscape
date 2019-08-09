@@ -13,7 +13,6 @@ const StyledDrawer = styled.section.attrs({
   grid-column: 1 / -1;
   grid-row: 1 / -1;
   align-self: end;
-
   padding: 3.5rem 0;
   background-color: black;
   width: 95%;
@@ -49,6 +48,12 @@ const StyledDrawer = styled.section.attrs({
   .drawer-col {
     flex-direction: column;
     justify-content: flex-start;
+  }
+
+  .drawer-instructions {
+    position: absolute;
+    bottom: 5rem;
+    width: 21rem;
   }
 `;
 

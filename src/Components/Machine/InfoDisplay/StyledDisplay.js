@@ -18,20 +18,40 @@ const longSlide = keyframes`
   }
 `;
 export const StyledInfoDisplayWrapper = styled.section.attrs({
-  className: 'infoDisplay',
+  className: 'info-display__wrapper',
 })`
   grid-column: 1 / -1;
   grid-row: 1 / span 1;
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+
+  button {
+    background: var(--button-machine);
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    color: #999;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--machine-border-dark);
+    transition: all 0.3s ease-in-out;
+    margin-bottom: 1.5rem;
+    :hover {
+      cursor: pointer;
+      color: white;
+      background: var(--button-machine-hover);
+    }
+  }
 
   @media only screen and (max-width: 650px) {
     grid-column: 2 / -2;
   }
 `;
 
-export const StyledInfoDisplay = styled.div`
+export const StyledInfoDisplay = styled.div.attrs({
+  className: 'info-display',
+})`
   display: flex;
   width: 80%;
   justify-content: center;
