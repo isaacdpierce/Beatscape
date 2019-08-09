@@ -21,8 +21,8 @@ export const StyledSlider = styled.div`
 
   .slider__label {
     display: inline-block;
-    transform: translate(0.5rem, 1.3rem);
     color: var(--main-font-color-dark);
+    transform: translateY(6px);
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 12px;

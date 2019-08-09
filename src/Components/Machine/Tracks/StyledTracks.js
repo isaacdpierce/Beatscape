@@ -1,4 +1,21 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const moveRight = keyframes`
+  from {
+    transform: translateX(-300%);
+  }
+  to {
+    transform: translateX(0);
+  }
+`;
+const moveLeft = keyframes`
+  from {
+    transform: translateX(300%);
+  }
+  to {
+    transform: translateX(0);
+  }
+`;
 
 const StyledTracks = styled.section.attrs({
   className: 'tracks',
@@ -20,6 +37,7 @@ const StyledTracks = styled.section.attrs({
   .animated {
     pointer-events: none;
   }
+
   .volume-instructions {
     position: absolute;
     top: 5%;
@@ -34,12 +52,6 @@ const StyledTracks = styled.section.attrs({
     width: 60rem;
   }
 
-  .binaural-instructions {
-    position: absolute;
-    bottom: 1rem;
-    right: -19rem;
-    width: 21rem;
-  }
   .soundscapes-instructions {
     position: absolute;
     bottom: -25rem;
@@ -52,6 +64,33 @@ const StyledTracks = styled.section.attrs({
     top: -15rem;
     right: -19rem;
     width: 21rem;
+  }
+
+  .binaural-instructions {
+    position: absolute;
+    bottom: 1rem;
+    right: -19rem;
+    width: 21rem;
+  }
+
+  /* Right transitions */
+  .soundscapes-instructions,
+  .stereo-instructions,
+  .volume-instructions {
+    transform: translateX(-80vw);
+    transition: transform 1.5s ease-in-out;
+  }
+
+  .is_showing {
+    transform: translateX(0%) !important;
+    transition: transform 1s ease-in-out;
+  }
+
+  /* Left transitions */
+  .animate-instructions,
+  .binaural-instructions {
+    transform: translateX(50vw);
+    transition: transform 1.5s ease-in-out;
   }
 
   @media only screen and (max-width: 850px) {

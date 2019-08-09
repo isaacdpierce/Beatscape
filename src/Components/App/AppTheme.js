@@ -12,6 +12,7 @@ const AppTheme = styled.div`
     var(--main-bg-color-dark) 75%
   );
   z-index: -10;
+  overflow: hidden;
 
   main {
     grid-column: 1 / -1;

@@ -32,7 +32,7 @@ const Tracks = () => {
   return (
     <StyledTracks className={isAnimated && 'animated'}>
       {isAnimated && <TrackCover />}
-      {showInstructions && <MachineInstructions />}
+      <MachineInstructions />
       {musicSliders}
       <Slider type='sprites' animate sound={spriteTrack} animatedMaxVol={0.5} />
       <Slider type='environment' animate={false} sound={environmentTrack} />

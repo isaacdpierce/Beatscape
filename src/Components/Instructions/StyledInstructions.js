@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledInstructions = styled.div`
+const StyledInstructions = styled.section`
   position: absolute;
   text-align: center;
   font-size: 1.6rem;

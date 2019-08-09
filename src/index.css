@@ -66,7 +66,10 @@ li {
 }
 
 input[type='range'] {
+  background-color: transparent;
   -webkit-appearance: none;
+  height: 30px;
+  line-height: 30px;
 }
 
 input[type='range']:focus {
