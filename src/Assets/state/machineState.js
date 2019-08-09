@@ -3,7 +3,7 @@ const machineState = {
   isPlaying: false,
   isAnimated: false,
   isError: false,
-  showInstructions: true,
+  showInstructions: false,
   errorMsg: 'Something went wrong. Try another selection.',
   musicUrl: 'http://localhost:8000/api/soundscapes/1',
   musicData: undefined,
