@@ -19,7 +19,9 @@ export default ({ pan, sound, volume, type } = {}) => {
     audio: undefined,
   };
   const { audioContext } = useContext(useAudioContext);
-  const { isPlaying, spriteData, environmentData } = useContext(MachineContext);
+  const { isPlaying, spriteData, environmentData, musicTimer } = useContext(
+    MachineContext
+  );
   const setState = useContext(SetMachineContext);
   const [{ vol, stereo, audio }, setAudioState] = useReducer(
     reducer,
@@ -74,7 +76,8 @@ export default ({ pan, sound, volume, type } = {}) => {
         setState({ isLoading: false });
       });
     }
-  }, [audio, setState]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [audio, type]);
 
   useEffect(() => {
     if (stereo && audioContext.createStereoPanner) {
@@ -95,6 +98,12 @@ export default ({ pan, sound, volume, type } = {}) => {
   useEffect(() => {
     if (!isPlaying && audio) {
       audioContext.suspend().then(() => {
+        if (type === 'kick') {
+          setState({ musicTimer: audio.currentTime });
+        }
+        if (type !== 'sprites' && type !== 'environment') {
+          audio.currentTime = musicTimer;
+        }
         audio.pause();
         // console.log(audioContext.state, audioContext.currentTime);
         // console.log(`paused audio time = ${audio.currentTime}`);
@@ -102,9 +111,16 @@ export default ({ pan, sound, volume, type } = {}) => {
     }
     if (isPlaying) {
       audioContext.resume().then(() => {
+        if (type === 'kick') {
+          setState({ musicTimer: audio.currentTime });
+        }
+        if (type !== 'sprites' && type !== 'environment') {
+          audio.currentTime = musicTimer;
+        }
         audio.play();
         // console.log(audioContext.state, audioContext.currentTime);
-        // console.log(`play audio time = ${audio.currentTime}`);
+        console.log(`play audio time of ${type} is ${audio.currentTime}`);
+        console.log(musicTimer);
       });
     }
     // eslint-disable-next-line
