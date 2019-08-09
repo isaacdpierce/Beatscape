@@ -1,43 +1,43 @@
 const soundscapeData = {
   music: [
-    { name: 'Determined', url: 'http://localhost:8000/api/soundscapes/1' },
-    { name: 'Focused', url: 'http://localhost:8000/api/soundscapes/2' },
+    { name: 'Determined', url: '/api/soundscapes/1' },
+    { name: 'Focused', url: '/api/soundscapes/2' },
   ],
   scenes: [
     {
       category: 'City',
-      spriteUrl: 'http://localhost:8000/api/sprites/1',
-      environmentUrl: 'http://localhost:8000/api/environments/1',
+      spriteUrl: '/api/sprites/1',
+      environmentUrl: '/api/environments/1',
     },
     {
       category: 'New York',
-      spriteUrl: 'http://localhost:8000/api/sprites/2',
-      environmentUrl: 'http://localhost:8000/api/environments/2',
+      spriteUrl: '/api/sprites/2',
+      environmentUrl: '/api/environments/2',
     },
     {
       category: 'Tokyo',
-      spriteUrl: 'http://localhost:8000/api/sprites/3',
-      environmentUrl: 'http://localhost:8000/api/environments/3',
+      spriteUrl: '/api/sprites/3',
+      environmentUrl: '/api/environments/3',
     },
     {
       category: 'Forest',
-      spriteUrl: 'http://localhost:8000/api/sprites/4',
-      environmentUrl: 'http://localhost:8000/api/environments/4',
+      spriteUrl: '/api/sprites/4',
+      environmentUrl: '/api/environments/4',
     },
     {
       category: 'Desert',
-      spriteUrl: 'http://localhost:8000/api/sprites/6',
-      environmentUrl: 'http://localhost:8000/api/environments/6',
+      spriteUrl: '/api/sprites/6',
+      environmentUrl: '/api/environments/6',
     },
     {
       category: 'Winter Forest',
-      spriteUrl: 'http://localhost:8000/api/sprites/4',
-      environmentUrl: 'http://localhost:8000/api/environments/4',
+      spriteUrl: '/api/sprites/4',
+      environmentUrl: '/api/environments/4',
     },
     {
       category: 'Ocean',
-      spriteUrl: 'http://localhost:8000/api/sprites/4',
-      environmentUrl: 'http://localhost:8000/api/environments/4',
+      spriteUrl: '/api/sprites/4',
+      environmentUrl: '/api/environments/4',
     },
   ],
 };

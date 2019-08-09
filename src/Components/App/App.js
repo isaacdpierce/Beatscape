@@ -18,7 +18,7 @@ import AppTheme from './AppTheme';
 
 function App() {
   const [state, setState] = useReducer(reducer, machineState);
-  const { isAnimated, musicUrl, spriteUrl, environmentUrl } = state;
+  const { isAnimated, musicUrl, spriteUrl, environmentUrl, baseUrl } = state;
 
   useEffect(() => {
     if (isSafari) {
@@ -33,12 +33,16 @@ function App() {
     // eslint-disable-next-line
   }, [isAnimated]);
 
+  console.log(baseUrl);
+
   useEffect(() => {
     if (musicUrl) {
+      const url = `${baseUrl}${musicUrl}`;
+
       const fetchData = async () => {
         setState({ isLoading: true, isPlaying: false, isError: false });
         try {
-          const result = await axios(musicUrl);
+          const result = await axios(url);
           setState({ musicData: result.data });
           const { stems } = result.data;
           const trackList = await makeTracks(stems);
@@ -64,7 +68,7 @@ function App() {
       const fetchSpriteData = async () => {
         setState({ isError: false });
         try {
-          const result = await axios(spriteUrl);
+          const result = await axios(`${baseUrl}${spriteUrl}`);
 
           const spritesArray = await result.data.map(
             sprite => sprite.sprite_url
@@ -91,7 +95,7 @@ function App() {
       const fetchEnvironmentData = async () => {
         setState({ isError: false });
         try {
-          const result = await axios(environmentUrl);
+          const result = await axios(`${baseUrl}${environmentUrl}`);
           const environmentsArray = await result.data.map(
             environment => environment.environment_url
           );
