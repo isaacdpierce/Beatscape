@@ -16,7 +16,6 @@ const InfoDisplay = () => {
     showInstructions,
   } = useContext(MachineContext);
   const setState = useContext(SetMachineContext);
-
   const [message, setMessage] = useState(undefined);
   const [name, setName] = useState('');
 
@@ -60,12 +59,11 @@ const InfoDisplay = () => {
 
   const handleInstructions = () => {
     setState({ showInstructions: !showInstructions });
-    console.log(showInstructions);
   };
 
   const instructionButtonText = showInstructions
-    ? 'hide instructions'
-    : 'show instructions';
+    ? 'show instructions'
+    : 'hide instructions';
 
   return (
     <StyledInfoDisplayWrapper>

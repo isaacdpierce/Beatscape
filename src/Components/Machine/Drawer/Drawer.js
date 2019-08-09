@@ -34,7 +34,7 @@ const Drawer = ({ drawerStyle }) => {
   });
   return (
     <StyledDrawer style={drawerStyle}>
-      {showInstructions && (
+      {!showInstructions && (
         <Instructions
           className='drawer-instructions'
           text={instructionsText.drawer}

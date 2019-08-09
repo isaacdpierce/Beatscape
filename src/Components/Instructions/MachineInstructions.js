@@ -5,39 +5,34 @@ import instructionsText from 'Components/Instructions/instructionsText';
 
 const MachineInstructions = () => {
   const { showInstructions } = useContext(MachineContext);
+  const [instructions, setInstructions] = useState(undefined);
   const [showClass, setShowClass] = useState('');
 
   useEffect(() => {
-    if (showInstructions) {
-      setShowClass('is_showing');
-    } else {
-      setShowClass('');
-    }
+    const setupInstructions = () => {
+      if (showInstructions) {
+        setShowClass('is_showing');
+      } else {
+        setShowClass('');
+      }
+
+      const InstructionList = Object.keys(instructionsText).map(
+        (key, i) =>
+          key !== 'drawer' && (
+            <Instructions
+              key={i}
+              className={`${key}-instructions ${showClass}`}
+              text={instructionsText[key]}
+            />
+          )
+      );
+      setInstructions(InstructionList);
+    };
+    setupInstructions();
+    // eslint-disable-next-line
   }, [showInstructions]);
-  return (
-    <>
-      <Instructions
-        className={`animate-instructions ${showClass}`}
-        text={instructionsText.animate}
-      />
-      <Instructions
-        className={`volume-instructions ${showClass}`}
-        text={instructionsText.volume}
-      />
-      <Instructions
-        className={`stereo-instructions ${showClass}`}
-        text={instructionsText.stereo}
-      />
-      <Instructions
-        className={`binaural-instructions ${showClass}`}
-        text={instructionsText.binaural}
-      />
-      <Instructions
-        className={`soundscapes-instructions ${showClass}`}
-        text={instructionsText.soundscapes}
-      />
-    </>
-  );
+
+  return <>{instructions}</>;
 };
 
 export default MachineInstructions;

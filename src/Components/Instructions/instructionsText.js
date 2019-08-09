@@ -1,7 +1,7 @@
 const instructionsText = {
   animate: 'Click the ANIMATE button to automate the adjustment of the levels.',
   volume:
-    'Click and drag these small white knobs to adjust the volume of each track in the music composition',
+    'Click and drag these small white sliders to adjust the volume of each track in the music composition',
   stereo:
     'Click and rotate these round knobs to adjust the left to right stereo panning of each track.',
   binaural:
