@@ -1,7 +1,5 @@
 import { config } from 'config';
 
-console.log(config.url.API_URL);
-
 const machineState = {
   isLoading: false,
   isPlaying: false,

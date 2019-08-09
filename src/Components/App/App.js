@@ -33,8 +33,6 @@ function App() {
     // eslint-disable-next-line
   }, [isAnimated]);
 
-  console.log(baseUrl);
-
   useEffect(() => {
     if (musicUrl) {
       const url = `${baseUrl}${musicUrl}`;
@@ -65,10 +63,11 @@ function App() {
 
   useEffect(() => {
     if (spriteUrl) {
+      const url = `${baseUrl}${spriteUrl}`;
       const fetchSpriteData = async () => {
         setState({ isError: false });
         try {
-          const result = await axios(`${baseUrl}${spriteUrl}`);
+          const result = await axios(url);
 
           const spritesArray = await result.data.map(
             sprite => sprite.sprite_url
@@ -92,10 +91,11 @@ function App() {
 
   useEffect(() => {
     if (environmentUrl) {
+      const url = `${baseUrl}${environmentUrl}`;
       const fetchEnvironmentData = async () => {
         setState({ isError: false });
         try {
-          const result = await axios(`${baseUrl}${environmentUrl}`);
+          const result = await axios(url);
           const environmentsArray = await result.data.map(
             environment => environment.environment_url
           );
