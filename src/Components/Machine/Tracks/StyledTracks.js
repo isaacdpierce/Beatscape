@@ -78,7 +78,7 @@ const StyledTracks = styled.section.attrs({
   .stereo-instructions,
   .volume-instructions {
     transform: translateX(-80vw);
-    transition: transform 1.5s ease-in-out;
+    transition: transform 1.2s ease-in-out;
   }
 
   .is_showing {

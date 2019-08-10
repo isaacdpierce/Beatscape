@@ -2,19 +2,15 @@ import React, { useContext, useState, useEffect } from 'react';
 import MachineContext from 'Context/MachineContext';
 import useEmptySliders from 'Assets/hooks/useEmptySliders';
 import MachineInstructions from 'Components/Instructions/MachineInstructions';
-
+import SmallButton from 'Components/Machine/Buttons/SmallButton';
 import Slider from './Slider';
 import TrackCover from './TrackCover';
 import StyledTracks from './StyledTracks.js';
 
 const Tracks = () => {
-  const {
-    musicTracks,
-    isAnimated,
-    spriteTrack,
-    environmentTrack,
-    showInstructions,
-  } = useContext(MachineContext);
+  const { musicTracks, isAnimated, spriteTrack, environmentTrack } = useContext(
+    MachineContext
+  );
   const [musicSliders, setMusicSliders] = useState(useEmptySliders);
 
   useEffect(() => {
@@ -29,9 +25,19 @@ const Tracks = () => {
     }
   }, [musicTracks]);
 
+  const handleReset = () => {
+    console.log('clicked');
+  };
+
   return (
     <StyledTracks className={isAnimated && 'animated'}>
       {isAnimated && <TrackCover />}
+      <SmallButton
+        text='Reset Levels'
+        className='button__reset'
+        handleClick={handleReset}
+        aria-label='Resets all levels'
+      />
       <MachineInstructions />
       {musicSliders}
       <Slider type='sprites' animate sound={spriteTrack} animatedMaxVol={0.5} />
