@@ -9,6 +9,7 @@ import {
 import MachineContext from 'Context/MachineContext';
 import useAudioContext from 'Assets/hooks/useAudioContext';
 import Oscillator from 'Components/Machine/Tracks/Oscillator/Oscillator';
+import SmallButton from 'Components/Machine/Buttons/SmallButton';
 import Input from './Input';
 import FaderKnob from './Knobs/FaderKnob';
 import { StyledSlider, SliderContainer } from './StyledSlider';
@@ -33,6 +34,10 @@ const Slider = ({
     { value, nextValue, stereo, sineFrequency },
     setSliderState,
   ] = useReducer(reducer, sliderState);
+
+  const handleReset = () => {
+    console.log('clicked');
+  };
 
   const audio = audioContext ? (
     <Audio
@@ -89,6 +94,12 @@ const Slider = ({
           isPlaying={isPlaying}
         />
       )}
+      <SmallButton
+        text='Reset Levels'
+        className='button__reset'
+        handleClick={handleReset}
+        aria-label='Resets all levels'
+      />
 
       <StyledSlider>
         <Input
@@ -98,7 +109,6 @@ const Slider = ({
           aria-label={`Controls volume of ${type} track`}
         />
       </StyledSlider>
-
       <FaderKnob
         animate={animate}
         type={type}
