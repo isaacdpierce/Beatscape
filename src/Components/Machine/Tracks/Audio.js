@@ -97,29 +97,29 @@ export default ({ pan, sound, volume, type } = {}) => {
 
   useEffect(() => {
     if (!isPlaying && audio) {
+      if (type === 'kick') {
+        setState({ musicTimer: audio.currentTime });
+      }
+      if (type !== 'sprites' && type !== 'environment') {
+        audio.currentTime = musicTimer;
+      }
+      audio.pause();
       audioContext.suspend().then(() => {
-        if (type === 'kick') {
-          setState({ musicTimer: audio.currentTime });
-        }
-        if (type !== 'sprites' && type !== 'environment') {
-          audio.currentTime = musicTimer;
-        }
-        audio.pause();
         // console.log(audioContext.state, audioContext.currentTime);
         // console.log(`paused audio time = ${audio.currentTime}`);
       });
     }
     if (isPlaying) {
+      if (type === 'kick') {
+        setState({ musicTimer: audio.currentTime });
+      }
+      if (type !== 'sprites' && type !== 'environment') {
+        audio.currentTime = musicTimer;
+      }
+      audio.play();
       audioContext.resume().then(() => {
-        if (type === 'kick') {
-          setState({ musicTimer: audio.currentTime });
-        }
-        if (type !== 'sprites' && type !== 'environment') {
-          audio.currentTime = musicTimer;
-        }
-        audio.play();
         // console.log(audioContext.state, audioContext.currentTime);
-        // console.log(`play audio time of ${type} is ${audio.currentTime}`);
+        console.log(`play audio time of ${type} is ${audio.currentTime}`);
         console.log(musicTimer);
       });
     }

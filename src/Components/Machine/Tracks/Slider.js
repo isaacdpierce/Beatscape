@@ -9,13 +9,13 @@ import {
 import MachineContext from 'Context/MachineContext';
 import useAudioContext from 'Assets/hooks/useAudioContext';
 import Oscillator from 'Components/Machine/Tracks/Oscillator/Oscillator';
+import SetMachineContext from 'Context/SetMachineContext';
 import Input from './Input';
 import FaderKnob from './Knobs/FaderKnob';
 import { StyledSlider, SliderContainer } from './StyledSlider';
 import Audio from './Audio';
 
 const Slider = ({
-  resetValues,
   animate,
   animatedMaxVol = 1.0,
   animatedMinVol = 0,
@@ -29,7 +29,8 @@ const Slider = ({
     stereo: 0,
     sineFrequency: 60,
   };
-  const { isAnimated, isPlaying } = useContext(MachineContext);
+  const { isAnimated, isPlaying, resetValues } = useContext(MachineContext);
+  const setState = useContext(SetMachineContext);
   const [
     { value, nextValue, stereo, sineFrequency },
     setSliderState,
@@ -51,8 +52,12 @@ const Slider = ({
 
   useEffect(() => {
     if (resetValues) {
-      console.log(resetValues);
+      setSliderState({ value: setSliderValue(type) });
     }
+    return () => {
+      setState({ resetValues: false });
+    };
+    // eslint-disable-next-line
   }, [resetValues]);
 
   useEffect(() => {

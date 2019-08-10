@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import MachineContext from 'Context/MachineContext';
+import SetMachineContext from 'Context/SetMachineContext';
 import useEmptySliders from 'Assets/hooks/useEmptySliders';
 import MachineInstructions from 'Components/Instructions/MachineInstructions';
 import SmallButton from 'Components/Machine/Buttons/SmallButton';
@@ -11,30 +12,24 @@ const Tracks = () => {
   const { musicTracks, isAnimated, spriteTrack, environmentTrack } = useContext(
     MachineContext
   );
+  const setState = useContext(SetMachineContext);
   const [musicSliders, setMusicSliders] = useState(useEmptySliders);
-  const [resetValues, setResetValues] = useState(false);
 
   useEffect(() => {
     if (musicTracks) {
       const audioList = musicTracks.map((track, index) => {
         const { stemName, animate, sound } = track;
         return (
-          <Slider
-            key={index}
-            type={stemName}
-            animate={animate}
-            sound={sound}
-            resetValues={resetValues}
-          />
+          <Slider key={index} type={stemName} animate={animate} sound={sound} />
         );
       });
       setMusicSliders(audioList);
     }
-  }, [musicTracks, resetValues]);
+  }, [musicTracks]);
 
   const handleReset = () => {
     console.log('clicked');
-    setResetValues(true);
+    setState({ resetValues: true });
   };
 
   return (

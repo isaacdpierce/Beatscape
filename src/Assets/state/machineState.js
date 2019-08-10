@@ -19,6 +19,7 @@ const machineState = {
   environmentTrack: undefined,
   sceneType: 'City',
   musicTimer: 0,
+  resetValues: false,
 };
 
 export default machineState;
