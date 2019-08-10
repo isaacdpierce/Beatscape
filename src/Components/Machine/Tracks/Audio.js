@@ -96,6 +96,8 @@ export default ({ pan, sound, volume, type } = {}) => {
   }, [vol, volume]);
 
   useEffect(() => {
+    console.log(audio);
+
     if (!isPlaying && audio) {
       if (type === 'kick') {
         setState({ musicTimer: audio.currentTime });
