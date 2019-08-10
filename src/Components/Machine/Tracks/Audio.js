@@ -96,8 +96,6 @@ export default ({ pan, sound, volume, type } = {}) => {
   }, [vol, volume]);
 
   useEffect(() => {
-    console.log(audio);
-
     if (!isPlaying && audio) {
       if (type === 'kick') {
         setState({ musicTimer: audio.currentTime });
@@ -121,8 +119,7 @@ export default ({ pan, sound, volume, type } = {}) => {
       audio.play();
       audioContext.resume().then(() => {
         // console.log(audioContext.state, audioContext.currentTime);
-        console.log(`play audio time of ${type} is ${audio.currentTime}`);
-        console.log(musicTimer);
+        // console.log(`play audio time of ${type} is ${audio.currentTime}`);
       });
     }
     // eslint-disable-next-line

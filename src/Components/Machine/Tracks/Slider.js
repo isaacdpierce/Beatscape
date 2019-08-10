@@ -25,7 +25,7 @@ const Slider = ({
   const { audioContext } = useContext(useAudioContext);
   const sliderState = {
     value: setSliderValue(type),
-    nextValue: getRandomFloat(0, 1),
+    nextValue: getRandomFloat(animatedMaxVol, animatedMaxVol),
     stereo: 0,
     sineFrequency: 60,
   };

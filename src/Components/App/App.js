@@ -36,7 +36,6 @@ function App() {
   useEffect(() => {
     if (musicUrl) {
       const url = `https://pure-anchorage-38442.herokuapp.com${musicUrl}`;
-
       const fetchData = async () => {
         setState({ isLoading: true, isPlaying: false, isError: false });
         try {
@@ -52,8 +51,6 @@ function App() {
             errorMsg: 'There was a problem loading you music selection.',
           });
         }
-
-        // setState({ isLoading: false });
       };
 
       fetchData();
@@ -93,13 +90,10 @@ function App() {
   useEffect(() => {
     if (environmentUrl) {
       const url = `https://pure-anchorage-38442.herokuapp.com${environmentUrl}`;
-      console.log(url);
       const fetchEnvironmentData = async () => {
         setState({ isError: false });
         try {
           const result = await axios(url);
-          console.log(result);
-
           const environmentsArray = await result.data.map(
             environment => environment.environment_url
           );
