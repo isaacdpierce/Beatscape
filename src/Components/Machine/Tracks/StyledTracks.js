@@ -17,7 +17,7 @@ const moveLeft = keyframes`
   }
 `;
 
-const StyledTracks = styled.section.attrs({
+const StyledTracks = styled.form.attrs({
   className: 'tracks',
 })`
   grid-column: 2 / -2;
@@ -33,6 +33,13 @@ const StyledTracks = styled.section.attrs({
   justify-content: space-between;
   border-radius: 3px;
   position: relative;
+
+  .button__reset {
+    position: absolute;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
   .animated {
     pointer-events: none;

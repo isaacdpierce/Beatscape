@@ -12,21 +12,29 @@ const Tracks = () => {
     MachineContext
   );
   const [musicSliders, setMusicSliders] = useState(useEmptySliders);
+  const [resetValues, setResetValues] = useState(false);
 
   useEffect(() => {
     if (musicTracks) {
       const audioList = musicTracks.map((track, index) => {
         const { stemName, animate, sound } = track;
         return (
-          <Slider key={index} type={stemName} animate={animate} sound={sound} />
+          <Slider
+            key={index}
+            type={stemName}
+            animate={animate}
+            sound={sound}
+            resetValues={resetValues}
+          />
         );
       });
       setMusicSliders(audioList);
     }
-  }, [musicTracks]);
+  }, [musicTracks, resetValues]);
 
   const handleReset = () => {
     console.log('clicked');
+    setResetValues(true);
   };
 
   return (

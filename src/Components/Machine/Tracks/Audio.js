@@ -38,8 +38,6 @@ export default ({ pan, sound, volume, type } = {}) => {
 
   useEffect(() => {
     if (audio) {
-      console.log(audio);
-
       audio.onended = () => {
         const newAudio = getNewAudio(type, spriteData, environmentData);
         setAudioState({ audio: newAudio });
@@ -121,7 +119,7 @@ export default ({ pan, sound, volume, type } = {}) => {
         }
         audio.play();
         // console.log(audioContext.state, audioContext.currentTime);
-        console.log(`play audio time of ${type} is ${audio.currentTime}`);
+        // console.log(`play audio time of ${type} is ${audio.currentTime}`);
         console.log(musicTimer);
       });
     }

@@ -15,6 +15,7 @@ import { StyledSlider, SliderContainer } from './StyledSlider';
 import Audio from './Audio';
 
 const Slider = ({
+  resetValues,
   animate,
   animatedMaxVol = 1.0,
   animatedMinVol = 0,
@@ -47,6 +48,12 @@ const Slider = ({
       'Sorry, but the Web Audio API is not supported by your browser. Please, consider upgrading to the latest version or downloading Google Chrome or Mozilla Firefox'
     )
   );
+
+  useEffect(() => {
+    if (resetValues) {
+      console.log(resetValues);
+    }
+  }, [resetValues]);
 
   useEffect(() => {
     if (isAnimated && animate) {
