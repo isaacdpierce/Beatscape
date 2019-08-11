@@ -71,7 +71,7 @@ const Slider = ({
           const newNum = getRandomFloat(animatedMinVol, animatedMaxVol);
           setSliderState({ nextValue: roundCorrect(newNum - 0.01, 2) });
         }
-      }, getRandomFloat(100, 1000));
+      }, getRandomFloat(100, 2000));
       return () => clearTimeout(volumeLoop);
     }
     // eslint-disable-next-line
