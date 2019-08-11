@@ -106,14 +106,15 @@ export default ({ pan, sound, volume, type } = {}) => {
   useEffect(() => {
     if (audio && !isPlaying) {
       audio.pause();
-      audioContext.suspend();
+      // audioContext.suspend();
     }
     // eslint-disable-next-line
   }, [audio, isPlaying]);
 
   useEffect(() => {
     if (isPlaying) {
-      audioContext.resume();
+      audio.play();
+      // audioContext.resume();
       const timer = setTimeout(() => {
         if (type === 'snare') {
           setState({
@@ -121,7 +122,7 @@ export default ({ pan, sound, volume, type } = {}) => {
           });
         }
       }, 2000);
-      audio.play();
+
       return () => clearTimeout(timer);
     }
     // eslint-disable-next-line
@@ -135,8 +136,8 @@ export default ({ pan, sound, volume, type } = {}) => {
       type !== 'snare'
     ) {
       audio.currentTime = musicTimer;
-      // console.log(`${type} ${audio.currentTime}`);
-      // console.log(musicTimer);
+      console.log(`${type} ${audio.currentTime}`);
+      console.log(musicTimer);
     }
     // eslint-disable-next-line
   }, [ musicTimer]);

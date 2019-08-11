@@ -47,7 +47,7 @@ const StyledTracks = styled.form.attrs({
 
   .volume-instructions {
     position: absolute;
-    top: 5%;
+    top: 15%;
     left: 30%;
     width: 30rem;
   }
