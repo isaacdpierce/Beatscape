@@ -36,8 +36,6 @@ function App() {
   useEffect(() => {
     if (musicUrl) {
       const url = `${baseUrl}${musicUrl}`;
-      console.log(url);
-      
       const fetchData = async () => {
         setState({ isLoading: true, isPlaying: false, isError: false });
         try {
