@@ -116,7 +116,7 @@ export default ({ pan, sound, volume, type } = {}) => {
             musicTimer: audio.currentTime,
           });
         }
-      }, 6000);
+      }, 5000);
       audio.play();
       return () => clearTimeout(timer);
     }

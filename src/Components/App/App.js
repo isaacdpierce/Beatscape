@@ -35,7 +35,9 @@ function App() {
 
   useEffect(() => {
     if (musicUrl) {
-      const url = `https://pure-anchorage-38442.herokuapp.com${musicUrl}`;
+      const url = `${baseUrl}${musicUrl}`;
+      console.log(url);
+      
       const fetchData = async () => {
         setState({ isLoading: true, isPlaying: false, isError: false });
         try {
@@ -60,8 +62,7 @@ function App() {
 
   useEffect(() => {
     if (spriteUrl) {
-      // ${baseUrl}
-      const url = `https://pure-anchorage-38442.herokuapp.com${spriteUrl}`;
+      const url = `${baseUrl}${spriteUrl}`;
       const fetchSpriteData = async () => {
         setState({ isError: false });
         try {
@@ -89,7 +90,7 @@ function App() {
 
   useEffect(() => {
     if (environmentUrl) {
-      const url = `https://pure-anchorage-38442.herokuapp.com${environmentUrl}`;
+      const url = `${baseUrl}${environmentUrl}`;
       const fetchEnvironmentData = async () => {
         setState({ isError: false });
         try {
