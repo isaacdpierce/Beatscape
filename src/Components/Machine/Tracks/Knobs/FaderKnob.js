@@ -44,7 +44,7 @@ const FaderKnob = ({
           const newNum = getRandomFloat(knobMax, knobMin);
           setKnobNext(roundCorrect(newNum - 0.01, 2));
         }
-      }, getRandomFloat(10, 1000));
+      }, 10);
       return () => clearTimeout(knobLoop);
     }
     // eslint-disable-next-line

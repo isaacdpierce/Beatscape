@@ -1,22 +1,5 @@
 import styled, { keyframes } from 'styled-components';
 
-const slide = keyframes`
-  from {
-    transform: translateX(110%);
-  }
-  to {
-    transform: translateX(0%);
-  }
-`;
-
-const longSlide = keyframes`
-  from {
-    transform: translateX(80rem);
-  }
-  to {
-    transform: translateX(-37rem);
-  }
-`;
 export const StyledInfoDisplayWrapper = styled.section.attrs({
   className: 'info-display__wrapper',
 })`
@@ -58,6 +41,9 @@ export const StyledInfoDisplay = styled.div.attrs({
   align-items: center;
   border: 1px solid rgba(12, 12, 12);
   background-color: rgba(2, 2, 2);
+  box-shadow: inset 0 0 1px 2px black;
+  position: relative;
+  overflow: hidden;
 
   span {
     color: var(--brand-yellow);
@@ -76,13 +62,5 @@ export const StyledInfoDisplay = styled.div.attrs({
     span {
       padding: 0.5rem;
     }
-  }
-
-  .slide {
-    animation: ${slide} 5s linear forwards;
-  }
-
-  .long-slide {
-    animation: ${longSlide} 8s linear forwards;
   }
 `;

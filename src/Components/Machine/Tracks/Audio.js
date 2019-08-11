@@ -2,11 +2,7 @@ import { useEffect, useContext, useReducer } from 'react';
 import MachineContext from 'Context/MachineContext';
 import SetMachineContext from 'Context/SetMachineContext';
 import reducer from 'Assets/reducers/reducer.js';
-import {
-  makeHTMLAudio,
-  getNewAudio,
-  roundCorrect,
-} from 'Assets/helpers/helpers';
+import { makeHTMLAudio, getNewAudio } from 'Assets/helpers/helpers';
 import useAudioContext from 'Assets/hooks/useAudioContext';
 
 const getPanNode = audioCtx => {
@@ -18,21 +14,16 @@ const getPanNode = audioCtx => {
 
 export default ({ pan, sound, volume, type } = {}) => {
   const audioState = {
-    vol: 0,
+    vol: undefined,
     stereo: 0,
     audio: undefined,
-    duration: undefined,
   };
   const { audioContext } = useContext(useAudioContext);
-  const {
-    isPlaying,
-    spriteData,
-    environmentData,
-    musicTimer,
-    isLoading,
-  } = useContext(MachineContext);
+  const { isPlaying, spriteData, environmentData, musicTimer } = useContext(
+    MachineContext
+  );
   const setState = useContext(SetMachineContext);
-  const [{ vol, stereo, audio, duration }, setAudioState] = useReducer(
+  const [{ vol, stereo, audio }, setAudioState] = useReducer(
     reducer,
     audioState
   );
@@ -48,6 +39,7 @@ export default ({ pan, sound, volume, type } = {}) => {
   useEffect(() => {
     if (audio) {
       audio.onended = () => {
+        audio.pause();
         const newAudio = getNewAudio(type, spriteData, environmentData);
         setAudioState({ audio: newAudio });
       };
@@ -82,10 +74,9 @@ export default ({ pan, sound, volume, type } = {}) => {
   useEffect(() => {
     if (audio) {
       audio.addEventListener('loadeddata', () => {
-        console.log('loaded');
-        audio.currentTime = musicTimer;
-        setState({ isLoading: false });
-        setAudioState({ duration: roundCorrect(audio.duration, 0) });
+        setState({
+          isLoading: false,
+        });
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -105,11 +96,11 @@ export default ({ pan, sound, volume, type } = {}) => {
     if (vol) {
       vol.gain.value = volume;
     }
+    // eslint-disable-next-line
   }, [vol, volume]);
 
   useEffect(() => {
     if (audio && !isPlaying) {
-      audio.currentTime = musicTimer;
       audio.pause();
       audioContext.suspend();
     }
@@ -118,8 +109,6 @@ export default ({ pan, sound, volume, type } = {}) => {
 
   useEffect(() => {
     if (isPlaying) {
-      audio.currentTime = musicTimer;
-      audio.play();
       audioContext.resume();
       const timer = setTimeout(() => {
         if (type === 'snare') {
@@ -127,7 +116,8 @@ export default ({ pan, sound, volume, type } = {}) => {
             musicTimer: audio.currentTime,
           });
         }
-      }, 10000);
+      }, 6000);
+      audio.play();
       return () => clearTimeout(timer);
     }
     // eslint-disable-next-line
@@ -141,6 +131,8 @@ export default ({ pan, sound, volume, type } = {}) => {
       type !== 'snare'
     ) {
       audio.currentTime = musicTimer;
+      // console.log(`${type} ${audio.currentTime}`);
+      // console.log(musicTimer);
     }
     // eslint-disable-next-line
   }, [ musicTimer]);

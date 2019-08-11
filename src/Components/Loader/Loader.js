@@ -11,14 +11,20 @@ const spin = keyframes`
 `;
 const swing = keyframes`
   0% {
-    transform: translateX(220%);
+    transform: translateX(115%);
      background-color: var(--loader-dark);
+  }
+  20% {
+    background-color: var(--loader-dark);
   }
   50% {
     background-color: var(--loader-light);
   }
+  80% {
+    background-color: var(--loader-dark);
+  }
   100% {
-  transform: translateX(-120%);
+  transform: translateX(-200%);
   background-color: var(--loader-dark);
   }
 `;
@@ -27,11 +33,8 @@ const StyledSwingLoader = styled.div.attrs({
   className: 'loader',
 })`
   width: 50%;
-  height: 1.5rem;
+  height: 100%;
   position: absolute;
-  left: 0;
-  top: 2px;
-  background-color: var(--loader-color-light);
   animation: ${swing} 2s alternate ease-in-out infinite 2s;
 `;
 

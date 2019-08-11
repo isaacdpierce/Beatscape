@@ -28,7 +28,6 @@ const Tracks = () => {
   }, [musicTracks]);
 
   const handleReset = () => {
-    console.log('clicked');
     setState({ resetValues: true });
   };
 
@@ -36,7 +35,7 @@ const Tracks = () => {
     <StyledTracks className={isAnimated && 'animated'}>
       {isAnimated && <TrackCover />}
       <SmallButton
-        text='Reset Levels'
+        text={isAnimated ? '' : 'Reset Levels'}
         className='button__reset'
         handleClick={handleReset}
         aria-label='Resets all levels'
