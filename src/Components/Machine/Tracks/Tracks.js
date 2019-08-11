@@ -25,6 +25,7 @@ const Tracks = () => {
       });
       setMusicSliders(audioList);
     }
+    // eslint-disable-next-line
   }, [musicTracks]);
 
   const handleReset = () => {

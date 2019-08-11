@@ -36,20 +36,6 @@ const Slider = ({
     setSliderState,
   ] = useReducer(reducer, sliderState);
 
-  const audio = audioContext ? (
-    <Audio
-      type={type}
-      pan={stereo}
-      sound={sound}
-      volume={value}
-      isPlaying={isPlaying}
-    />
-  ) : (
-    alert(
-      'Sorry, but the Web Audio API is not supported by your browser. Please, consider upgrading to the latest version or downloading Google Chrome or Mozilla Firefox'
-    )
-  );
-
   useEffect(() => {
     if (resetValues) {
       setSliderState({ value: setSliderValue(type) });
@@ -92,7 +78,15 @@ const Slider = ({
 
   return (
     <SliderContainer>
-      {sound && audio}
+      {sound && (
+        <Audio
+          type={type}
+          pan={stereo}
+          sound={sound}
+          volume={value}
+          isPlaying={isPlaying}
+        />
+      )}
       {type === 'Binaural' && (
         <Oscillator
           frequency={sineFrequency}

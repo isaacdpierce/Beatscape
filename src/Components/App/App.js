@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useContext } from 'react';
 import { Route } from 'react-router-dom';
 import About from 'Routes/About/About';
 import Guide from 'Routes/Guide/Guide';
@@ -7,6 +7,7 @@ import Machine from 'Components/Machine/Machine';
 import Header from 'Components/Header/Header';
 import Footer from 'Components/Footer/Footer';
 import machineState from 'Assets/state/machineState';
+import useAudioContext from 'Assets/hooks/useAudioContext';
 import reducer from 'Assets/reducers/reducer.js';
 import { makeTracks, getRandomIndex, isSafari } from 'Assets/helpers/helpers';
 import axios from 'axios';
@@ -17,6 +18,7 @@ import { SetMachineProvider } from 'Context/SetMachineContext';
 import AppTheme from './AppTheme';
 
 function App() {
+  const { audioContext } = useContext(useAudioContext);
   const [state, setState] = useReducer(reducer, machineState);
   const { isAnimated, musicUrl, spriteUrl, environmentUrl, baseUrl } = state;
 
@@ -26,7 +28,12 @@ function App() {
         "Beatscape currently doesn't work in Safari Browser. To enjoy this audio experience please switch to Google Chrome or Firefox."
       );
     }
-  }, []);
+    if (!audioContext) {
+      alert(
+        'Sorry, but the Web Audio API is not supported by your browser. Please, consider upgrading to the latest version or downloading Google Chrome or Mozilla Firefox'
+      );
+    }
+  }, [audioContext]);
 
   useEffect(() => {
     isAnimated ? setState({ isPlaying: true }) : setState({ isPlaying: false });

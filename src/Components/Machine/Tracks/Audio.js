@@ -73,6 +73,10 @@ export default ({ pan, sound, volume, type } = {}) => {
 
   useEffect(() => {
     if (audio) {
+      if (type === 'sprites') {
+        console.log(audio);
+      }
+
       audio.addEventListener('loadeddata', () => {
         setState({
           isLoading: false,
@@ -116,7 +120,7 @@ export default ({ pan, sound, volume, type } = {}) => {
             musicTimer: audio.currentTime,
           });
         }
-      }, 5000);
+      }, 2000);
       audio.play();
       return () => clearTimeout(timer);
     }
