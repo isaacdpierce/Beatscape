@@ -2,7 +2,11 @@ import { useEffect, useContext, useReducer } from 'react';
 import MachineContext from 'Context/MachineContext';
 import SetMachineContext from 'Context/SetMachineContext';
 import reducer from 'Assets/reducers/reducer.js';
-import { makeHTMLAudio, getNewAudio } from 'Assets/helpers/helpers';
+import {
+  makeHTMLAudio,
+  getNewAudio,
+  roundCorrect,
+} from 'Assets/helpers/helpers';
 import useAudioContext from 'Assets/hooks/useAudioContext';
 
 const getPanNode = audioCtx => {
@@ -17,13 +21,18 @@ export default ({ pan, sound, volume, type } = {}) => {
     vol: 0,
     stereo: 0,
     audio: undefined,
+    duration: undefined,
   };
   const { audioContext } = useContext(useAudioContext);
-  const { isPlaying, spriteData, environmentData, musicTimer } = useContext(
-    MachineContext
-  );
+  const {
+    isPlaying,
+    spriteData,
+    environmentData,
+    musicTimer,
+    isLoading,
+  } = useContext(MachineContext);
   const setState = useContext(SetMachineContext);
-  const [{ vol, stereo, audio }, setAudioState] = useReducer(
+  const [{ vol, stereo, audio, duration }, setAudioState] = useReducer(
     reducer,
     audioState
   );
@@ -73,7 +82,10 @@ export default ({ pan, sound, volume, type } = {}) => {
   useEffect(() => {
     if (audio) {
       audio.addEventListener('loadeddata', () => {
+        console.log('loaded');
+        audio.currentTime = musicTimer;
         setState({ isLoading: false });
+        setAudioState({ duration: roundCorrect(audio.duration, 0) });
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -96,33 +108,41 @@ export default ({ pan, sound, volume, type } = {}) => {
   }, [vol, volume]);
 
   useEffect(() => {
-    if (!isPlaying && audio) {
-      if (type === 'kick') {
-        setState({ musicTimer: audio.currentTime });
-      }
-      if (type !== 'sprites' && type !== 'environment') {
-        audio.currentTime = musicTimer;
-      }
+    if (audio && !isPlaying) {
+      audio.currentTime = musicTimer;
       audio.pause();
-      audioContext.suspend().then(() => {
-        // console.log(audioContext.state, audioContext.currentTime);
-        // console.log(`paused audio time = ${audio.currentTime}`);
-      });
-    }
-    if (isPlaying) {
-      if (type === 'kick') {
-        setState({ musicTimer: audio.currentTime });
-      }
-      if (type !== 'sprites' && type !== 'environment') {
-        audio.currentTime = musicTimer;
-      }
-      audio.play();
-      audioContext.resume().then(() => {
-        // console.log(audioContext.state, audioContext.currentTime);
-        // console.log(`play audio time of ${type} is ${audio.currentTime}`);
-      });
+      audioContext.suspend();
     }
     // eslint-disable-next-line
   }, [audio, isPlaying]);
+
+  useEffect(() => {
+    if (isPlaying) {
+      audio.currentTime = musicTimer;
+      audio.play();
+      audioContext.resume();
+      const timer = setTimeout(() => {
+        if (type === 'snare') {
+          setState({
+            musicTimer: audio.currentTime,
+          });
+        }
+      }, 10000);
+      return () => clearTimeout(timer);
+    }
+    // eslint-disable-next-line
+  }, [musicTimer, isPlaying]);
+
+  useEffect(() => {
+    if (
+      audio &&
+      type !== 'sprites' &&
+      type !== 'environment' &&
+      type !== 'snare'
+    ) {
+      audio.currentTime = musicTimer;
+    }
+    // eslint-disable-next-line
+  }, [ musicTimer]);
   return null;
 };
