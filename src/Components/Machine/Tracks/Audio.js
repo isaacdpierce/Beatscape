@@ -83,20 +83,24 @@ export default ({ pan, sound, volume, type } = {}) => {
   useEffect(() => {
     if (audio) {
       audio.addEventListener('loadeddata', () => {
-        // console.log('loaded');
+        console.log(`${audio} loaded`);
         const endLoader = setTimeout(() => {
           setState({ isLoading: false });
         }, 3000);
         return () => clearTimeout(endLoader);
       });
-      if (type === 'sprites' || type === 'environment') {
-        audio.onended = () => {
-          console.log(`${type} ended`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [audio]);
 
-          const newAudio = getNewAudio(type, spriteData, environmentData);
-          setAudioState({ audio: newAudio });
-        };
-      }
+  useEffect(() => {
+    if (audio) {
+      audio.onended = () => {
+        console.log(`${type} ended`);
+
+        const newAudio = getNewAudio(type, spriteData, environmentData);
+        setAudioState({ audio: newAudio });
+      };
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [audio]);
@@ -112,12 +116,12 @@ export default ({ pan, sound, volume, type } = {}) => {
   }, [audio, isPlaying]);
 
   useEffect(() => {
-    if (isPlaying) {
+    if (audio && isPlaying) {
       audio.play();
       const timer = setTimeout(() => {
         if (type === 'snare') {
           setState({
-            musicTimer: audio.currentTime + 0.001,
+            musicTimer: audio.currentTime + 0.01,
           });
         }
       }, 2000);
