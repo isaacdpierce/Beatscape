@@ -46,14 +46,20 @@ export default ({ pan, sound, volume, type } = {}) => {
   }, [sound]);
 
   useEffect(() => {
-    if (audio) {
-      audio.onended = () => {
-        const newAudio = getNewAudio(type, spriteData, environmentData);
-        setAudioState({ audio: newAudio });
-      };
+    if (stereo && audioContext.createStereoPanner) {
+      stereo.pan.value = pan;
+    } else if (stereo && audioContext.createStereoPanner) {
+      stereo.panningModel = 'equalpower';
+      stereo.setPosition(pan, 0, 1 - Math.abs(pan));
     }
     // eslint-disable-next-line
-  }, [audio]);
+   }, [pan, stereo]);
+
+  useEffect(() => {
+    if (vol) {
+      vol.gain.value = volume;
+    }
+  }, [vol, volume]);
 
   useEffect(() => {
     if (audio) {
@@ -92,22 +98,6 @@ export default ({ pan, sound, volume, type } = {}) => {
   }, [audio]);
 
   useEffect(() => {
-    if (stereo && audioContext.createStereoPanner) {
-      stereo.pan.value = pan;
-    } else if (stereo && audioContext.createStereoPanner) {
-      stereo.panningModel = 'equalpower';
-      stereo.setPosition(pan, 0, 1 - Math.abs(pan));
-    }
-    // eslint-disable-next-line
-  }, [pan, stereo]);
-
-  useEffect(() => {
-    if (vol) {
-      vol.gain.value = volume;
-    }
-  }, [vol, volume]);
-
-  useEffect(() => {
     if (audio && !isPlaying) {
       audio.currentTime = musicTimer;
       audio.pause();
@@ -140,10 +130,21 @@ export default ({ pan, sound, volume, type } = {}) => {
       type !== 'snare'
     ) {
       audio.currentTime = musicTimer;
-      console.log(`${type} = ${audio.currentTime}`);
-      console.log(musicTimer);
+      // console.log(`${type} = ${audio.currentTime}`);
+      // console.log(musicTimer);
     }
     // eslint-disable-next-line
   }, [musicTimer]);
+
+  useEffect(() => {
+    if (audio) {
+      audio.onended = () => {
+        const newAudio = getNewAudio(type, spriteData, environmentData);
+        setAudioState({ audio: newAudio });
+      };
+    }
+    // eslint-disable-next-line
+    }, [audio]);
+
   return null;
 };
