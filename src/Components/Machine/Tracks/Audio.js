@@ -127,12 +127,7 @@ export default ({ pan, sound, volume, type } = {}) => {
   }, [isPlaying, musicTimer]);
 
   useEffect(() => {
-    if (
-      audio &&
-      type !== 'sprites' &&
-      type !== 'environment' &&
-      type !== 'snare'
-    ) {
+    if (audio && type !== 'sprites' && type !== 'environment') {
       audio.currentTime = musicTimer;
       // console.log(`${type} = ${audio.currentTime}`);
       // console.log(musicTimer);
