@@ -117,7 +117,7 @@ export default ({ pan, sound, volume, type } = {}) => {
       const timer = setTimeout(() => {
         if (type === 'snare') {
           setState({
-            musicTimer: audio.currentTime + 0.01,
+            musicTimer: audio.currentTime + 0.001,
           });
         }
       }, 2000);
