@@ -83,7 +83,7 @@ export default ({ pan, sound, volume, type } = {}) => {
   useEffect(() => {
     if (audio) {
       audio.addEventListener('loadeddata', () => {
-        console.log('loaded');
+        // console.log('loaded');
         const endLoader = setTimeout(() => {
           setState({ isLoading: false });
         }, 3000);
@@ -134,8 +134,8 @@ export default ({ pan, sound, volume, type } = {}) => {
       type !== 'snare'
     ) {
       audio.currentTime = musicTimer;
-      console.log(`${type} = ${audio.currentTime}`);
-      console.log(musicTimer);
+      // console.log(`${type} = ${audio.currentTime}`);
+      // console.log(musicTimer);
     }
     // eslint-disable-next-line
   }, [musicTimer]);
