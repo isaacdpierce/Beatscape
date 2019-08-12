@@ -83,12 +83,16 @@ export default ({ pan, sound, volume, type } = {}) => {
   useEffect(() => {
     if (audio) {
       audio.addEventListener('loadeddata', () => {
-        setTimeout(() => {
+        console.log('loaded');
+        const endLoader = setTimeout(() => {
           setState({ isLoading: false });
         }, 3000);
+        return () => clearTimeout(endLoader);
       });
-      if (type !== 'sprites' && type !== 'environment') {
+      if (type === 'sprites' || type === 'environment') {
         audio.onended = () => {
+          console.log(`${type} ended`);
+
           const newAudio = getNewAudio(type, spriteData, environmentData);
           setAudioState({ audio: newAudio });
         };
