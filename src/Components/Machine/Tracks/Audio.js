@@ -2,7 +2,12 @@ import { useEffect, useContext, useReducer } from 'react';
 import MachineContext from 'Context/MachineContext';
 import SetMachineContext from 'Context/SetMachineContext';
 import reducer from 'Assets/reducers/reducer.js';
-import { makeHTMLAudio, getNewAudio } from 'Assets/helpers/helpers';
+import useInterval from 'Assets/hooks/useInterval';
+import {
+  makeHTMLAudio,
+  getNewAudio,
+  roundCorrect,
+} from 'Assets/helpers/helpers';
 import useAudioContext from 'Assets/hooks/useAudioContext';
 
 const getPanNode = audioCtx => {
@@ -14,14 +19,18 @@ const getPanNode = audioCtx => {
 
 export default ({ pan, sound, volume, type } = {}) => {
   const audioState = {
-    vol: undefined,
+    vol: 0,
     stereo: 0,
     audio: undefined,
   };
   const { audioContext } = useContext(useAudioContext);
-  const { isPlaying, spriteData, environmentData, musicTimer } = useContext(
-    MachineContext
-  );
+  const {
+    isPlaying,
+    spriteData,
+    environmentData,
+    musicTimer,
+    isLoading,
+  } = useContext(MachineContext);
   const setState = useContext(SetMachineContext);
   const [{ vol, stereo, audio }, setAudioState] = useReducer(
     reducer,
@@ -39,7 +48,6 @@ export default ({ pan, sound, volume, type } = {}) => {
   useEffect(() => {
     if (audio) {
       audio.onended = () => {
-        audio.pause();
         const newAudio = getNewAudio(type, spriteData, environmentData);
         setAudioState({ audio: newAudio });
       };
@@ -73,18 +81,15 @@ export default ({ pan, sound, volume, type } = {}) => {
 
   useEffect(() => {
     if (audio) {
-      if (type === 'sprites') {
-        console.log(audio);
-      }
-
       audio.addEventListener('loadeddata', () => {
-        setState({
-          isLoading: false,
-        });
+        if (type !== 'sprites' && type !== 'environment') {
+          audio.currentTime = musicTimer;
+        }
+        setState({ isLoading: false });
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [audio, type]);
+  }, [audio]);
 
   useEffect(() => {
     if (stereo && audioContext.createStereoPanner) {
@@ -100,13 +105,13 @@ export default ({ pan, sound, volume, type } = {}) => {
     if (vol) {
       vol.gain.value = volume;
     }
-    // eslint-disable-next-line
   }, [vol, volume]);
 
   useEffect(() => {
     if (audio && !isPlaying) {
+      audio.currentTime = musicTimer;
       audio.pause();
-      // audioContext.suspend();
+      audioContext.suspend();
     }
     // eslint-disable-next-line
   }, [audio, isPlaying]);
@@ -114,19 +119,18 @@ export default ({ pan, sound, volume, type } = {}) => {
   useEffect(() => {
     if (isPlaying) {
       audio.play();
-      // audioContext.resume();
+      audioContext.resume();
       const timer = setTimeout(() => {
         if (type === 'snare') {
           setState({
             musicTimer: audio.currentTime,
           });
         }
-      }, 2000);
-
+      }, 3000);
       return () => clearTimeout(timer);
     }
     // eslint-disable-next-line
-  }, [musicTimer, isPlaying]);
+  }, [isPlaying, musicTimer]);
 
   useEffect(() => {
     if (
@@ -136,10 +140,10 @@ export default ({ pan, sound, volume, type } = {}) => {
       type !== 'snare'
     ) {
       audio.currentTime = musicTimer;
-      console.log(`${type} ${audio.currentTime}`);
+      console.log(`${type} = ${audio.currentTime}`);
       console.log(musicTimer);
     }
     // eslint-disable-next-line
-  }, [ musicTimer]);
+  }, [musicTimer]);
   return null;
 };
