@@ -2,7 +2,6 @@ import { useEffect, useContext, useReducer } from 'react';
 import MachineContext from 'Context/MachineContext';
 import SetMachineContext from 'Context/SetMachineContext';
 import reducer from 'Assets/reducers/reducer.js';
-import useInterval from 'Assets/hooks/useInterval';
 import {
   makeHTMLAudio,
   getNewAudio,
@@ -24,13 +23,9 @@ export default ({ pan, sound, volume, type } = {}) => {
     audio: undefined,
   };
   const { audioContext } = useContext(useAudioContext);
-  const {
-    isPlaying,
-    spriteData,
-    environmentData,
-    musicTimer,
-    isLoading,
-  } = useContext(MachineContext);
+  const { isPlaying, spriteData, environmentData, musicTimer } = useContext(
+    MachineContext
+  );
   const setState = useContext(SetMachineContext);
   const [{ vol, stereo, audio }, setAudioState] = useReducer(
     reducer,
@@ -44,22 +39,6 @@ export default ({ pan, sound, volume, type } = {}) => {
     }
     // eslint-disable-next-line
   }, [sound]);
-
-  useEffect(() => {
-    if (stereo && audioContext.createStereoPanner) {
-      stereo.pan.value = pan;
-    } else if (stereo && audioContext.createStereoPanner) {
-      stereo.panningModel = 'equalpower';
-      stereo.setPosition(pan, 0, 1 - Math.abs(pan));
-    }
-    // eslint-disable-next-line
-   }, [pan, stereo]);
-
-  useEffect(() => {
-    if (vol) {
-      vol.gain.value = volume;
-    }
-  }, [vol, volume]);
 
   useEffect(() => {
     if (audio) {
@@ -86,22 +65,44 @@ export default ({ pan, sound, volume, type } = {}) => {
   }, [audio]);
 
   useEffect(() => {
+    if (stereo && audioContext.createStereoPanner) {
+      stereo.pan.value = pan;
+    } else if (stereo && audioContext.createStereoPanner) {
+      stereo.panningModel = 'equalpower';
+      stereo.setPosition(pan, 0, 1 - Math.abs(pan));
+    }
+    // eslint-disable-next-line
+    }, [pan, stereo]);
+
+  useEffect(() => {
+    if (vol) {
+      vol.gain.value = volume;
+    }
+  }, [vol, volume]);
+
+  useEffect(() => {
     if (audio) {
       audio.addEventListener('loadeddata', () => {
-        if (type !== 'sprites' && type !== 'environment') {
-          audio.currentTime = musicTimer;
-        }
-        setState({ isLoading: false });
+        setTimeout(() => {
+          setState({ isLoading: false });
+        }, 3000);
       });
+      if (type !== 'sprites' && type !== 'environment') {
+        audio.onended = () => {
+          const newAudio = getNewAudio(type, spriteData, environmentData);
+          setAudioState({ audio: newAudio });
+        };
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [audio]);
 
   useEffect(() => {
     if (audio && !isPlaying) {
-      audio.currentTime = musicTimer;
+      if (type !== 'sprites' && type !== 'environment') {
+        audio.currentTime = musicTimer;
+      }
       audio.pause();
-      audioContext.suspend();
     }
     // eslint-disable-next-line
   }, [audio, isPlaying]);
@@ -109,14 +110,13 @@ export default ({ pan, sound, volume, type } = {}) => {
   useEffect(() => {
     if (isPlaying) {
       audio.play();
-      audioContext.resume();
       const timer = setTimeout(() => {
         if (type === 'snare') {
           setState({
-            musicTimer: audio.currentTime,
+            musicTimer: audio.currentTime + 0.01,
           });
         }
-      }, 3000);
+      }, 2000);
       return () => clearTimeout(timer);
     }
     // eslint-disable-next-line
@@ -130,21 +130,11 @@ export default ({ pan, sound, volume, type } = {}) => {
       type !== 'snare'
     ) {
       audio.currentTime = musicTimer;
-      // console.log(`${type} = ${audio.currentTime}`);
-      // console.log(musicTimer);
+      console.log(`${type} = ${audio.currentTime}`);
+      console.log(musicTimer);
     }
     // eslint-disable-next-line
   }, [musicTimer]);
-
-  useEffect(() => {
-    if (audio) {
-      audio.onended = () => {
-        const newAudio = getNewAudio(type, spriteData, environmentData);
-        setAudioState({ audio: newAudio });
-      };
-    }
-    // eslint-disable-next-line
-    }, [audio]);
 
   return null;
 };
