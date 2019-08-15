@@ -86,7 +86,7 @@ export default ({ pan, sound, volume, type } = {}) => {
         console.log(`${audio} loaded`);
         const endLoader = setTimeout(() => {
           setState({ isLoading: false });
-        }, 3000);
+        }, 1000);
         return () => clearTimeout(endLoader);
       });
     }
@@ -107,37 +107,35 @@ export default ({ pan, sound, volume, type } = {}) => {
 
   useEffect(() => {
     if (audio && !isPlaying) {
-      if (type !== 'sprites' && type !== 'environment') {
-        audio.currentTime = musicTimer;
-      }
       audio.pause();
     }
     // eslint-disable-next-line
   }, [audio, isPlaying]);
 
   useEffect(() => {
-    if (audio && isPlaying) {
-      audio.play();
-      const timer = setTimeout(() => {
+    const setTiming = async () => {
+      if (audio && isPlaying) {
+        audio.play();
+
         if (type === 'snare') {
-          setState({
-            musicTimer: audio.currentTime + 0.01,
-          });
+          const timer = await setTimeout(() => {
+            setState({
+              musicTimer: audio.currentTime + 0.01,
+            });
+          }, 2000);
+          return () => clearTimeout(timer);
         }
-      }, 2000);
-      return () => clearTimeout(timer);
-    }
+
+        if (audio && type !== 'sprites' && type !== 'environment') {
+          audio.currentTime = musicTimer;
+          console.log(`${type} = ${audio.currentTime}`);
+          console.log(musicTimer);
+        }
+      }
+    };
+    setTiming();
     // eslint-disable-next-line
   }, [isPlaying, musicTimer]);
-
-  useEffect(() => {
-    if (audio && type !== 'sprites' && type !== 'environment') {
-      audio.currentTime = musicTimer;
-      // console.log(`${type} = ${audio.currentTime}`);
-      // console.log(musicTimer);
-    }
-    // eslint-disable-next-line
-  }, [musicTimer]);
 
   return null;
 };

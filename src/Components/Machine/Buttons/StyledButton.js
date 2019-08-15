@@ -12,6 +12,7 @@ const StyledButton = styled.button`
   color: #999;
   padding: 0;
   border: 1px solid var(--machine-border-dark);
+  border-radius: 2px;
   transition: all 0.3s ease-in-out;
   :hover {
     cursor: pointer;
