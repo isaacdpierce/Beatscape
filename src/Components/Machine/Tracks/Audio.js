@@ -115,6 +115,25 @@ export default ({ pan, sound, volume, type } = {}) => {
     const setTiming = async () => {
       if (audio && isPlaying) {
         audio.play();
+        // TODO - set timing of tracks to match universal timer
+        if (type === 'snare') {
+          const timer = await setTimeout(() => {
+            setState({
+              musicTimer: audio.currentTime + 0.01,
+            });
+          }, 2000);
+          if (
+            audio &&
+            type !== 'sprites' &&
+            type !== 'environment' &&
+            type !== 'snare'
+          ) {
+            audio.currentTime = musicTimer;
+            console.log(`${type} = ${audio.currentTime}`);
+            console.log(musicTimer);
+          }
+          return () => clearTimeout(timer);
+        }
       }
     };
     setTiming();
