@@ -83,7 +83,7 @@ export default ({ pan, sound, volume, type } = {}) => {
   useEffect(() => {
     if (audio) {
       audio.addEventListener('loadeddata', () => {
-        console.log(`${audio} loaded`);
+        // console.log(`${audio} loaded`);
         const endLoader = setTimeout(() => {
           setState({ isLoading: false });
         }, 1000);
@@ -96,8 +96,7 @@ export default ({ pan, sound, volume, type } = {}) => {
   useEffect(() => {
     if (audio) {
       audio.onended = () => {
-        console.log(`${type} ended`);
-
+        // console.log(`${type} ended`);
         const newAudio = getNewAudio(type, spriteData, environmentData);
         setAudioState({ audio: newAudio });
       };
@@ -116,26 +115,11 @@ export default ({ pan, sound, volume, type } = {}) => {
     const setTiming = async () => {
       if (audio && isPlaying) {
         audio.play();
-
-        if (type === 'snare') {
-          const timer = await setTimeout(() => {
-            setState({
-              musicTimer: audio.currentTime + 0.01,
-            });
-          }, 2000);
-          return () => clearTimeout(timer);
-        }
-
-        if (audio && type !== 'sprites' && type !== 'environment') {
-          audio.currentTime = musicTimer;
-          console.log(`${type} = ${audio.currentTime}`);
-          console.log(musicTimer);
-        }
       }
     };
     setTiming();
     // eslint-disable-next-line
-  }, [isPlaying, musicTimer]);
+  }, [isPlaying]);
 
   return null;
 };
